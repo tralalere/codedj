@@ -56,12 +56,7 @@ define([
 
 
     function saveSound (pattern) {
-        // console.log(pattern.notes[0].sample)
-        // var buff
-        // for (var i = 0; i < pattern.notes.length; i++) {
-        //     var note = pattern.notes[i]
-        //
-        // }
+
     }
 
 

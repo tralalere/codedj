@@ -9,20 +9,26 @@ define([
     globalEventBus.on('world ready', function (world) {
         worldRef = world
         worldRef.api.userToCoreKeys = userToCoreKeys
+    })
 
+    globalEventBus('solutionWorld').on('world ready', function (world) {
         run(world.exposedCode())
     })
 
     globalEventBus.on('code execution requested', run)
 
     function run (sourceCode) {
-        var userToCoreCode = userToCoreKeysCode()
-        sourceCode = userToCoreCode.declaration.concat(worldRef.startCode(), sourceCode, userToCoreCode.assignation, worldRef.endCode()).join('\n')
-        execute({
-            source: sourceCode,
-            scope:  worldRef.api
-        })
-        worldRef.eventBus.emit('code executed')
+        try {
+            var userToCoreCode = userToCoreKeysCode()
+            sourceCode = userToCoreCode.declaration.concat(worldRef.startCode(), sourceCode, userToCoreCode.assignation, worldRef.endCode()).join('\n')
+            execute({
+                source: sourceCode,
+                scope:  worldRef.api
+            })
+            worldRef.eventBus.emit('code executed')
+        } catch (e) {
+            console.error(e)
+        }
     }
 
     function userToCoreKeysCode () {

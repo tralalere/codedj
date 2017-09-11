@@ -51,7 +51,6 @@ define([
 
         $blocChallengesContainer.removeClass('invisible')
         $('.loader').addClass('invisible')
-        $('body').addClass('secondBack');
         $viewApp.empty()
         $viewApp.prepend($('#world1')).find('.containPreHome').append($blocChallengesContainer);
         $('.btnWorldWin #btnGoMenu').on('click',function () {
@@ -73,6 +72,7 @@ define([
 
 
     function createChallengeView (challenge) {
+        $('body').addClass('secondBack');
         $blocCount.find('.count').text(counter)
         $blocChallenge.removeClass('win lose')
         addQuestion(challenge)

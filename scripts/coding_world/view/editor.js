@@ -48,7 +48,8 @@ define([
         addCodeEditorCapabilities(codeEditor, {
             container: $('#code_editor'),
             content:   '',
-            fontSize: 20
+            fontSize: 20,
+            onChange: onEditorChanges
         })
 
         aceCustomJavaScript({
@@ -181,6 +182,15 @@ define([
     function initEditor (world) {
         initialCode = world.exposedCode()
         codeEditor.setContent(initialCode)
+    }
+
+    var editorChangeTimeout
+
+    function onEditorChanges () {
+        if (editorChangeTimeout) {
+            clearTimeout(editorChangeTimeout)
+        }
+        editorChangeTimeout = setTimeout(runCode, 500)
     }
 
 

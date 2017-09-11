@@ -5,7 +5,7 @@ require.config({
         jquery:    'ext_libs/jquery-1.11.2.min',
         ace:       'ext_libs/ace/ace',
         soundjs:   'ext_libs/soundjs.min',
-        toxilibs:  '/toxilibs',
+        toxilibs:  '../toxilibs',
         level:     'silent_teacher_world/core/level',
         steps:     'silent_teacher_world/steps',
         globals:   'silent_teacher_world/globals',

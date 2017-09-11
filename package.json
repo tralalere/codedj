@@ -1,0 +1,32 @@
+{
+  "name": "code_dj",
+  "version": "1.0.0",
+  "description": "",
+  "main": "scripts/main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "node ../../toxilibs_js/libs/tools/build.js"
+  },
+  "buildConfig": {
+    "baseUrl": "scripts",
+    "name":    "main",
+    "out":     "main-built.js",
+    "debug":   false
+  },
+  "toxilibsPath": "../../toxilibs_js/libs/",
+  "repository": {
+    "type": "git",
+    "url": "git@git.toxicode.fr:tralalere/code_dj.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "audiobuffer-to-wav": "^1.0.0",
+    "expect.js": "^0.3.1",
+    "node-wav": "0.0.2",
+    "requirejs": "^2.3.3",
+    "sox": "^0.1.0",
+    "sox-audio": "^0.3.0",
+    "wav": "^1.0.1"
+  }
+}
