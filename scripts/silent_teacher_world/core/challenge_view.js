@@ -128,7 +128,7 @@ define([
         challenge.answerContainer.find('.btnAnswer').hide()
 
         if (!win) {
-            challenge.answerContainer.find('.correct_answer').html(challenge.answer).fadeIn(750)
+            challenge.answerContainer.find('.correct_answer').html(challenge.answer.toString()).fadeIn(750)
         }
     }
 

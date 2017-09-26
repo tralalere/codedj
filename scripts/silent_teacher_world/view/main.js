@@ -112,6 +112,13 @@ define([
     }
 
 
+    function progressionPercent () {
+        var currentLevelIndex = levelsNavigator.getLevelIndex(globals.levelID)
+        var lastLevelIndex    = levelsNavigator.getLevelIndex(levelsNavigator.lastLevelID)
+        return currentLevelIndex * 100 / lastLevelIndex
+    }
+
+
 
     return init
 

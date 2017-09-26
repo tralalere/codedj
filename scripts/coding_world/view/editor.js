@@ -29,10 +29,17 @@ define([
         solutionCode = world.exposedCode()
     })
 
+
+
     /*
      TODO:  integration css function initDom () in comment
      */
     function initDom () {
+        
+        globalEventBus.on('change focus', function () {
+            switchPlay()
+        })
+        
         initDomEvents()
         $('#editor').css({
             display: 'block'
@@ -49,7 +56,7 @@ define([
             container: $('#code_editor'),
             content:   '',
             fontSize: 20,
-            onChange: onEditorChanges
+            // onChange: onEditorChanges
         })
 
         aceCustomJavaScript({
@@ -182,16 +189,26 @@ define([
     function initEditor (world) {
         initialCode = world.exposedCode()
         codeEditor.setContent(initialCode)
+
+    }    
+    function switchPlay () {
+        if ($('#btn_execute').hasClass('pause')) {
+            $('#btn_execute').removeClass('pause')
+            runCode()
+        } else {
+            $('#btn_execute').addClass('pause')
+            stopLoop()
+        }
     }
 
     var editorChangeTimeout
 
-    function onEditorChanges () {
-        if (editorChangeTimeout) {
-            clearTimeout(editorChangeTimeout)
-        }
-        editorChangeTimeout = setTimeout(runCode, 500)
-    }
+    // function onEditorChanges () {
+    //     if (editorChangeTimeout) {
+    //         clearTimeout(editorChangeTimeout)
+    //     }
+    //     editorChangeTimeout = setTimeout(runCode, 500)
+    // }
 
 
     function runCode () {

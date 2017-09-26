@@ -9,9 +9,6 @@ define([
     globalEventBus.on('world ready', function (world) {
         worldRef = world
         worldRef.api.userToCoreKeys = userToCoreKeys
-    })
-
-    globalEventBus('solutionWorld').on('world ready', function (world) {
         run(world.exposedCode())
     })
 

@@ -130,7 +130,7 @@ define([
             globals.currentQuestionID = questionID
         }
         setCurrentQuestions()
-        
+
         eventBus.emit('challenge changed')
 
         globals.currentChallenge = new Challenge({
@@ -238,12 +238,13 @@ define([
 
 
     return {
-        isLastLevel:  isLastLevel,
-        levelExists:  levelExists,
-        startLevelID: startLevelID,
-        lastLevelID:  lastLevelID,
-        levelForID:   levelForID,
-        nextLevelID:  nextLevelID
+        isLastLevel:   isLastLevel,
+        levelExists:   levelExists,
+        startLevelID:  startLevelID,
+        lastLevelID:   lastLevelID,
+        levelForID:    levelForID,
+        nextLevelID:   nextLevelID,
+        getLevelIndex: getLevelIndex
     }
 
 

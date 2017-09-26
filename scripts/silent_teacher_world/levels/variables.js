@@ -18,7 +18,7 @@ define([
     level.addQuestion({
         generator: function (q) {
             var a = random.int(1, 6)
-            q.addJSCode('var a = ' + a + ';\na')
+            q.addJSCode('var a = ' + a + ';\na;')
         },
         timeoutTime: 10000
     })

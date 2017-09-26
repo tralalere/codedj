@@ -1,8 +1,9 @@
 define([
     './instrument',
     './pattern',
-    './tune'
-], function (createInstrumentConstructor, createPatternConstructor, createTuneConstructor) {
+    './tune',
+    './timeline_tab'
+], function (createInstrumentConstructor, createPatternConstructor, createTuneConstructor, createTabConstructor) {
 
 
     function World (eventBus, challengeCode) {
@@ -10,6 +11,7 @@ define([
             Tune:       createTuneConstructor(eventBus),
             Instrument: createInstrumentConstructor(eventBus),
             Pattern:    createPatternConstructor(eventBus),
+            Tab:        createTabConstructor(eventBus),
             eventBus:   eventBus
         }
         this.eventBus = eventBus

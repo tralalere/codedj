@@ -5,6 +5,7 @@ define([
 
     function Timeline (params) {
         this.initView(params)
+        this.sampleName = params.sampleName
     }
 
 
@@ -13,12 +14,10 @@ define([
 
         this.view.append('<th class="btn">' + params.sampleName)
         for (var i = 0; i < params.beats; i++) {
-        // for (var i = 0; i < params.beats; i += 0.25) {
             var $beat = $('<tr></tr>')
             this.view.append($beat)
             for (var j = 0; j < 1; j += 0.25) {
                 $beat.append('<td class="beat_' +  beatToClass(i + j + 1) + '"></td>')
-                // this.view.append('<td class="beat_' +  beatToClass(i + 1) + '"></td>')
             }
         }
 
@@ -28,6 +27,16 @@ define([
 
     Timeline.prototype.displayNote = function (params) {
         this.view.find('.beat_' + beatToClass(params.beat)).addClass(params.class)
+    }
+
+
+    Timeline.prototype.show = function () {
+        this.view.show()
+    }
+
+
+    Timeline.prototype.hide = function () {
+        this.view.hide()
     }
 
 

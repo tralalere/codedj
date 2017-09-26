@@ -4,8 +4,12 @@ define([
     'music_timeline/music_timeline',
     'music_timeline/timeline_bar',
     'music_player/volume_view',
+    'coding_world/core/timeline_tab',
     'perfectScrollbarJQuery'
-], function ($, globalEventBus, Timeline, TimelineBar, initVolumeSlider) {
+], function ($, globalEventBus, Timeline, TimelineBar, initVolumeSlider, createTabConstructor) {
+
+
+    //=============Variables=============
 
     var eventBus = globalEventBus('view')
 
@@ -13,12 +17,21 @@ define([
     var $endScreen
     var $viewApp
     var $world2
+    var $tabContainer
 
-    var patterns  = {}
-    var timelines = {}
+    var patterns    = {}
+    var timelines   = {}
+    var tabsBySound = {}
+    var defaultTimelineTab
+    var lastSelectedTabName
 
     var timelineBar
 
+    var Tab = createTabConstructor(eventBus)
+
+
+
+    //=============Events=============
 
     eventBus.on('html ready',  init)
     eventBus.on('monde3',  worldThree)
@@ -27,12 +40,21 @@ define([
     eventBus.on('ready to display notes', updateTimelines)
     eventBus.on('code execution requested', clearView)
     eventBus.on('patterns compared', displayEndScreen)
+    eventBus.on('new tab', addTab)
+    eventBus.on('add instrument to tab', associateInstrumentWithTab)
+    eventBus.on('tab copied', replaceTab)
+    eventBus.on('timeline tab changed', onTabChanged)
+
+
+
+    //=============Initialization=============
 
     function init () {
-        $view      = $('#view')
-        $endScreen = $('#end_screen')
-        $viewApp   = $('#viewApp')
-        $world2    = $('#world2')
+        $view         = $('#view')
+        $endScreen    = $('#end_screen')
+        $viewApp      = $('#viewApp')
+        $world2       = $('#world2')
+        $tabContainer = $('#tabs_container')
         $('body').addClass('secondBack');
         $('.loader').addClass('invisible')
         $viewApp.empty()
@@ -47,11 +69,14 @@ define([
             loopTime: 16 * 60 / 130 * 1000  //TODO: no magic number => (mesuresCount * beatPerMesure) * 60 / tempo * 1000
         })
 
+        // defaultTimelineTab = new Tab()
+
         initVolumeSlider()
 
         eventBus.on('pattern beat played', launchTimelineBar)
         eventBus.on('loop stop requested', stopTimelineBar)
     }
+
 
     function initDomEvents () {
         $('.logoImg').on('click', function () {
@@ -64,10 +89,15 @@ define([
         })
     }
 
+
     function worldThree(){
          $('#view').addClass('customHeightTimeline')
          $('#mp3').removeClass('invisible')
     }
+
+
+
+    //=============Patterns=============
 
     function addPattern (pattern) {
         patterns[pattern.id] = $('<table class="pattern">')
@@ -75,6 +105,9 @@ define([
         $view.append(patterns[pattern.id])
     }
 
+
+
+    //=============Timelines=============
 
     function updateTimelines (notes) {
         for (var i in notes) {
@@ -87,8 +120,7 @@ define([
         var timeline = timelines[note.soundName() + note.pattern.id]
         if (!timeline) {
             timeline = addTimeline(note.soundName(), note.pattern)
-            timelineBar.updateHeight()
-            timelineBar.setStartOffset(timeline.view.find('th').outerWidth(true))
+            refreshTimelineBar()
         }
 
         timeline.displayNote({
@@ -110,6 +142,12 @@ define([
     }
 
 
+    function refreshTimelineBar () {
+        timelineBar.updateHeight()
+        timelineBar.setStartOffset($('.timeline-container').find('th:visible:last').outerWidth(true))
+    }
+
+
     function addTimeline (sampleName, pattern) {
         var timeline = new Timeline({
             sampleName: sampleName,
@@ -118,9 +156,66 @@ define([
         })
         timelines[sampleName + pattern.id] = timeline
 
+        addTimelineToTabs(sampleName, timeline)
+
         return timeline
     }
 
+
+
+    //=============Tabs=============
+
+    function addTab (tab) {
+        $tabContainer.append(tab.view)
+    }
+
+
+    function replaceTab (params) {
+        $tabContainer.find(params.old.view).remove()
+    }
+
+
+    function addTimelineToTabs (sampleName, timeline) {
+        var tabsList = tabsBySound[sampleName]
+        if (tabsList) {
+            for (var index in tabsList) {
+                var tab = tabsList[index]
+                tab.addTimeline(timeline)
+            }
+        } else {
+            defaultTimelineTab.addTimeline(timeline)
+        }
+    }
+
+
+    function associateInstrumentWithTab (params) {
+        for (var patternID in patterns) {
+            var timeline = timelines[params.soundName + patternID]
+            var tabsList = tabsBySound[params.soundName]
+
+            if (tabsList) {
+                tabsList.push(params.tab)
+            } else {
+                tabsBySound[params.soundName] = [params.tab]
+            }
+
+            if (timeline) {
+                params.tab.addTimeline(timeline)
+            }
+        }
+    }
+
+
+    function onTabChanged (tab) {
+        lastSelectedTabName = tab.name
+        refreshTimelineBar()
+    }
+
+
+
+
+
+    //=============Others=============
 
     function htmlClass (note) {
         if (note.isCorrect) {
@@ -143,9 +238,15 @@ define([
 
 
     function clearView () {
-        patterns  = {}
-        timelines = {}
+        patterns    = {}
+        timelines   = {}
+        tabsBySound = {}
         $view.find('.pattern').remove()
+        $tabContainer.find('.timeline-tab').remove()
+        defaultTimelineTab = new Tab()
+        if (lastSelectedTabName) {
+            eventBus.emit('tab switch requested', lastSelectedTabName)
+        }
     }
 
 })

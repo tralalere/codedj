@@ -12,7 +12,6 @@ define([
     level.instrumentName = 'BasicMaths'
     level.samplePack = 'A'
 
-
     level.addQuestion({
         generator: function (q) {
             var a = random.int(1, 6)
