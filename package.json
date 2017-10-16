@@ -9,9 +9,9 @@
   },
   "buildConfig": {
     "baseUrl": "scripts",
-    "name":    "main",
-    "out":     "main-built.js",
-    "debug":   false
+    "name": "main",
+    "out": "main-built.js",
+    "debug": false
   },
   "toxilibsPath": "../../toxilibs_js/libs/",
   "repository": {
@@ -22,7 +22,9 @@
   "license": "ISC",
   "dependencies": {
     "audiobuffer-to-wav": "^1.0.0",
+    "body-parser": "^1.18.2",
     "expect.js": "^0.3.1",
+    "express": "^4.16.1",
     "node-wav": "0.0.2",
     "requirejs": "^2.3.3",
     "sox": "^0.1.0",

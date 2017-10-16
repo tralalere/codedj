@@ -1,3 +1,0 @@
-Copied from Toxilibs.
-
-Do not modify, except for adding new modes
