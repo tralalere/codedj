@@ -1,0 +1,4 @@
+public/scripts/ext_libs/*
+node_modules/*
+public/scripts/main-built.js
+public/scripts/silent_teacher_world/sample_packs.js

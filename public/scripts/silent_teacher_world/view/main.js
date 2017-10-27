@@ -25,13 +25,13 @@ define([
      */
     function init () {
         initHtml()
-        if(!countLevel().current){
-            $('.jauge .current').empty().html(0);
-        } else{
-            $('.jauge .current').empty().html(countLevel().current);
+        if (!countLevel().current) {
+            $('.jauge .current').empty().html(0)
+        } else {
+            $('.jauge .current').empty().html(countLevel().current)
         }
 
-        $('.jauge .total').empty().html(countLevel().total);
+        $('.jauge .total').empty().html(countLevel().total)
 
         eventBus.on('level won', levelWon)
         eventBus.on('sample pack changed', clearTimelines)
@@ -42,12 +42,12 @@ define([
             $wrapChallengeTimeline.append($blocChallenge)
             $blocChallenge.find('input').focus()
 
-            $('#btnGoMenu').on('click',function () {
-                eventBus.emit('world select');
+            $('#btnGoMenu').on('click', function () {
+                eventBus.emit('world select')
             })
         })
 
-        $('.btnWorldWin #btnGoMenu').on('click',function () {
+        $('.btnWorldWin #btnGoMenu').on('click', function () {
             window.location.href = '.?monde=select'
         })
     }
@@ -68,16 +68,17 @@ define([
      Todo: modif integration css => levelWon
      */
     function levelWon () {
-        var widthBar = $('.progress-bar-Level .progress-bar ').width();
+        var widthBar = $('.progress-bar-Level .progress-bar ').width()
+
         //$('#challengeAfterAnswer').prepend('<div class="levelWin row" style="padding: 1em 0">Niveau gagné !</div>') //FIXME
-        var progress = progressionPercent();
-        $('.jauge .current').empty().html(countLevel().current);
-        $('.jauge .total').empty().html(countLevel().total);
-        if(progress !==0 && progress <= 100){
-            $('.progress-bar-Level .progress-bar').css('width',progress+'%');
+        var progress = progressionPercent()
+        $('.jauge .current').empty().html(countLevel().current)
+        $('.jauge .total').empty().html(countLevel().total)
+        if (progress !== 0 && progress <= 100) {
+            $('.progress-bar-Level .progress-bar').css('width', progress + '%')
             $('.levelWon').fadeIn(function () {
                 $('.levelWon').delay(3000).fadeOut()
-            });
+            })
             /*$('.missionCompleted').fadeOut(function () {
                 $('.levelWon').fadeIn(function () {
                     $('.levelWon').delay(3000).fadeOut()
@@ -85,10 +86,15 @@ define([
                 });
             });*/
 
-            eventBus.emit('start sparkle');
-            setTimeout(function(){
-                eventBus.emit('stop sparkle');
-            },3000)
+            eventBus.emit('start sparkle')
+            
+            if(progress < 100){
+                setTimeout(function () {
+                    eventBus.emit('stop sparkle')
+                }, 3000)
+            }
+
+            
         }
 
 
@@ -143,14 +149,14 @@ define([
     function progressionPercent () {
         var currentLevelIndex = levelsNavigator.getLevelIndex(globals.levelID)
         var lastLevelIndex    = levelsNavigator.getLevelIndex(levelsNavigator.lastLevelID)
-        return Math.round(currentLevelIndex * 100 / lastLevelIndex);
+        return Math.round(currentLevelIndex * 100 / lastLevelIndex)
     }
     function countLevel () {
         var currentLevelIndex = levelsNavigator.getLevelIndex(globals.levelID)
         var lastLevelIndex    = levelsNavigator.getLevelIndex(levelsNavigator.lastLevelID)
         return {
-            current:currentLevelIndex,
-            total:lastLevelIndex
+            current: currentLevelIndex,
+            total: lastLevelIndex
         }
     }
 

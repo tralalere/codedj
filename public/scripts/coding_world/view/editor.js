@@ -33,14 +33,13 @@ define([
     })
 
 
-
     /*
      TODO:  integration css function initDom () in comment
      */
     function initDom () {
 
-        globalEventBus.on('change focus', function () {
-            switchPlay()
+        globalEventBus.on('change focus', function (hidden) {
+            switchPlay(hidden)
         })
 
         initDomEvents()
@@ -58,6 +57,7 @@ define([
             container: $('#code_editor'),
             content:   '',
             fontSize: 20
+
             // onChange: onEditorChanges
         })
 
@@ -77,9 +77,11 @@ define([
         $('#code_editor').append($searchFieldButton)
         $searchFieldButton.click(openSearch)
 
-        $("#resizable").resize(function(){
+        $('#resizable').resize(function () {
             codeEditor.aceEditor.resize()
         })
+
+        codeEditor.aceEditor.setOptions({enableBasicAutocompletion: false, enableLiveAutocompletion: false});
 
     }
 
@@ -93,6 +95,7 @@ define([
     function initDomEvents () {
        // $('#btn_execute').on('click', runCode)
         $('#btn_reset').on('click', reset)
+
         //$('#btn_stop').on('click', stopLoop)
         $('#btn_solution').on('click', function () {
             codeEditor.setContent(solutionCode)
@@ -199,14 +202,15 @@ define([
         codeEditor.setContent(initialCode)
 
     }
-    function switchPlay () {
-        if ($('#btn_execute').hasClass('pause')) {
-            $('#btn_execute').removeClass('pause')
-            runCode()
-        } else {
+    function switchPlay (hidden) {
+        if(hidden){
             $('#btn_execute').addClass('pause')
             stopLoop()
+        }else {
+            $('#btn_execute').removeClass('pause')
+            runCode()
         }
+       
     }
 
     var editorChangeTimeout

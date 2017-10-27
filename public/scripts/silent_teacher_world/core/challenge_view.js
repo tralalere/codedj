@@ -51,18 +51,18 @@ define([
         $blocChallengesContainer.removeClass('invisible')
         $('.loader').addClass('invisible')
         $viewApp.empty()
-        $viewApp.prepend($('#world1')).find('.containPreHome').append($blocChallengesContainer);
-        $('.btnWorldWin #btnGoMenu').on('click',function () {
+        $viewApp.prepend($('#world1')).find('.containPreHome').append($blocChallengesContainer)
+        $('.btnWorldWin #btnGoMenu').on('click', function () {
             window.location.href = '.?monde=select'
         })
-        $('.logoImg').on('click', function(){
+        $('.logoImg').on('click', function () {
             $viewApp.empty()
             window.location.href = '.?monde'
         })
-        $('.btnPrevious').click(function(){
+        $('.btnPrevious').click(function () {
             window.location.href = '.?monde=select'
-            return false;
-        });
+            return false
+        })
         $blocChallengesContainer.find('.wrapChallengeTimeline').prepend(blocTimeline)
 
         $blocChallengesContainer.append($challengeAfterAnswer)
@@ -72,7 +72,7 @@ define([
 
 
     function createChallengeView (challenge) {
-        $('body').addClass('secondBack');
+        $('body').addClass('secondBack')
         $blocCount.find('.count').text(counter)
         $blocChallenge.removeClass('win lose')
         addQuestion(challenge)

@@ -66,7 +66,7 @@ define([
 
 
     function updateCustomVolume (custom) {
-        globalVolume = custom / 100;
+        globalVolume = custom / 100
         applyVolume()
     }
 

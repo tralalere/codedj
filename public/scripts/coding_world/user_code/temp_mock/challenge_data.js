@@ -42,6 +42,7 @@ define(function () {
     ]
 
     var portions = [
+
         // {
         //     solution: [
         //         'pattern.addSound(drum.kick, 1)',
@@ -95,6 +96,7 @@ define(function () {
     ]
 
     var end = [
+
         // 'for (var i = 1; i <= 16; i++) {',
         // '    pattern.addSound(drum.hithat, i)',
         // '}'

@@ -2,7 +2,7 @@ define([
     'jquery',
     'toxilibs/event_bus_queued',
     'pages/home',
-    'perfectScrollbarJQuery',
+    'perfectScrollbarJQuery'
 
 ], function ($, eventBus, initDomEvents, initHome) {
     require('perfectScrollbarJQuery')
@@ -21,7 +21,7 @@ define([
     function init () {
         //$('.loader').addClass('invisible')
         $('#viewApp').perfectScrollbar({
-            suppressScrollX:true
+            suppressScrollX: true
         })
         initHtml()
         unlockWorld()
@@ -30,8 +30,10 @@ define([
             $viewApp.empty()
             $viewApp.prepend($postHome)
             $('.animateLogo').fadeIn(function () {
-                $( '#progress' ).fadeIn(function() {
-                    setInterval(function(){modifValues()},10)
+                $('#progress').fadeIn(function () {
+                    setInterval(function () {
+                        modifValues()
+                    }, 10)
                 })
             }).addClass('animateBigLogo')
             $('#viewApp').perfectScrollbar('update')
@@ -41,26 +43,26 @@ define([
             $viewApp.empty()
             $viewApp.prepend($preHome)
             $('#viewApp').perfectScrollbar('update')
-            $('body').addClass('secondBack');
+            $('body').addClass('secondBack')
         })
 
-       $($credit).on('click',function () {
-           $($blocPopUp).fadeIn()
-       })
+        $($credit).on('click', function () {
+            $($blocPopUp).fadeIn()
+        })
 
-        $($blocPopUp).on('click',function (event) {
+        $($blocPopUp).on('click', function (event) {
             event.stopPropagation()
             $($blocPopUp).fadeOut()
         })
 
-        $('.pop').on('click',function (event) {
+        $('.pop').on('click', function (event) {
             event.stopPropagation()
         })
-        $('#preHome #back').click(function(){
+        $('#preHome #back').click(function () {
             window.location.href = '.?monde'
             initHome()
-            return false;
-        });
+            return false
+        })
     }
 
 
@@ -73,35 +75,36 @@ define([
 
         $blocPopUp = $('.blocPopUp')
         $credit = $('.credit')
+
         //$homeTemplate = $('#home_template')
         //$viewContainer = $('#challenges_container')
     }
 
-    function unlockWorld(){
+    function unlockWorld () {
 
         var worlds = localStorage.getItem('accessToWorld')
-        if(!worlds){
-            worlds = [];
-        }else{
+        if (!worlds) {
+            worlds = []
+        } else {
             worlds.split(',')
         }
-        for(var i=2; i<4; i++){
-            if(worlds && worlds.indexOf(i.toString()) !== -1){
-                $("#" +"btn_world"+i).removeClass('lock');
+        for (var i = 2; i < 4; i++) {
+            if (worlds && worlds.indexOf(i.toString()) !== -1) {
+                $('#' + 'btn_world' + i).removeClass('lock')
             }
         }
     }
 
-    function modifValues(){
-        var val = $('#progress progress').attr('value');
-        if(val>=100){
-            val=100
-            $( '#progress' ).fadeOut(function () {
-                $('.blocLogo').animate({top:0},800)
+    function modifValues () {
+        var val = $('#progress progress').attr('value')
+        if (val >= 100) {
+            val = 100
+            $('#progress').fadeOut(function () {
+                $('.blocLogo').animate({top: 0}, 800)
             })
-            $(".blocAnimation").delay(1500).fadeIn()
-            $(".encart").delay(1500).fadeOut()
-            $(".blocAnimationBefore").delay(1500).fadeIn('slow', function () {
+            $('.blocAnimation').delay(1500).fadeIn()
+            $('.encart').delay(1500).fadeOut()
+            $('.blocAnimationBefore').delay(1500).fadeIn('slow', function () {
                 $('.hideLeftStart').addClass('hideLeftEnd')
                 $('.hideRightStart').addClass('hideRightEnd')
                 setTimeout(function () {
@@ -110,11 +113,11 @@ define([
                 }, 500)
             })
         }
-        var newVal = val*1+0.5;
-        var txt = Math.floor(newVal)+'%';
+        var newVal = Number(val) + 0.5
+        var txt = Math.floor(newVal) + '%'
 
-        $('#progress progress').attr('value',newVal).text(txt);
-        $('#progress strong').html(txt);
+        $('#progress progress').attr('value', newVal).text(txt)
+        $('#progress strong').html(txt)
     }
 
     return init

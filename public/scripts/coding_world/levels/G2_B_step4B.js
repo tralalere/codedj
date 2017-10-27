@@ -57,13 +57,13 @@ define(function () {
         {
             solution: [
                 '// Augmenter la valeur à 9.5 dans i === 9.5 permet de trouver le bon moment pour ajouter des sons',
-				'for (var i = 1.5; i < 17; i = i + 4)',
-				'{',
-				'    pattern.addSound(snare, i)',
+                'for (var i = 1.5; i < 17; i = i + 4)',
+                '{',
+                '    pattern.addSound(snare, i)',
                 '    if (i === 9.5) {',
-				'        pattern.addSound(snare, i - 3)',
-				'    }',
-				'}',
+                '        pattern.addSound(snare, i - 3)',
+                '    }',
+                '}',
                 '',
                 'pattern.addSound(snare, 2.25)',
                 'pattern.addSound(snare, 6.25)',
@@ -75,13 +75,13 @@ define(function () {
             ],
             base: [
                 '// Essaie de faire monter la valeur 5.5 dans i === 5.5 et regarde comment ça affecte les sons',
-				'for (var i = 1.5; i < 17; i = i + 4)',
-				'{',
-				'    pattern.addSound(snare, i)',
+                'for (var i = 1.5; i < 17; i = i + 4)',
+                '{',
+                '    pattern.addSound(snare, i)',
                 '    if (i === 5.5){',
                 '        pattern.addSound(snare, i - 3)',
                 '    }',
-				'}',
+                '}',
                 '',
                 'pattern.addSound(snare, 2.25)',
                 'pattern.addSound(snare, 6.25)',
@@ -95,9 +95,9 @@ define(function () {
         {
             solution: [
                 '// Réduire à 4.5 la valeur dans i === 4.5 permet de sauter des temps avant de recommencer à ajouter des sons',
-				'for (var i = 2.5; i < 17; i = i + 1)',
-				'{',
-				'    pattern.addSound(kick, i)',
+                'for (var i = 2.5; i < 17; i = i + 1)',
+                '{',
+                '    pattern.addSound(kick, i)',
                 '    if (i === 4.5) {',
                 '        i = i + 3',
                 '    } else if (i === 8.5) {',
@@ -105,7 +105,7 @@ define(function () {
                 '    } else if (i === 12.5) {',
                 '        i = i + 2',
                 '    }',
-				'}',
+                '}',
                 '',
                 'pattern.addSound(kick, 1)',
                 'pattern.addSound(kick, 3.75)',
@@ -116,10 +116,10 @@ define(function () {
                 'pattern.addSound(kick, 13)'
             ],
             base: [
-				'// Essaie de faire baisser un peu la valeur 5.5 dans i === 5.5 et regarde comment ça affecte les sons',
-				'for (var i = 2.5; i < 17; i = i + 1)',
-				'{',
-				'    pattern.addSound(kick, i)',
+                '// Essaie de faire baisser un peu la valeur 5.5 dans i === 5.5 et regarde comment ça affecte les sons',
+                'for (var i = 2.5; i < 17; i = i + 1)',
+                '{',
+                '    pattern.addSound(kick, i)',
                 '    if (i === 5.5){',
                 '        i = i + 3',
                 '    } else if ( i === 8.5) {',
@@ -127,7 +127,7 @@ define(function () {
                 '    } else if ( i === 12.5) {',
                 '        i = i + 2',
                 '    }',
-				'}',
+                '}',
                 '',
                 'pattern.addSound(kick, 1)',
                 'pattern.addSound(kick, 3.75)',
@@ -141,12 +141,12 @@ define(function () {
     ]
 
     var end = [
-			'for (var i = 3; i < 17; i = i + 8)',
-			'{',
-			'    pattern.addSound(clap, i)',
-			'}',
-            'pattern.addSound(clap, 7)',
-            'pattern.addSound(clap, 15)'
+        'for (var i = 3; i < 17; i = i + 8)',
+        '{',
+        '    pattern.addSound(clap, i)',
+        '}',
+        'pattern.addSound(clap, 7)',
+        'pattern.addSound(clap, 15)'
     ]
 
 

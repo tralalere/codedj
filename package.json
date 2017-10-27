@@ -5,15 +5,8 @@
   "main": "scripts/main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "node ../../toxilibs_js/libs/tools/build.js"
+    "build": "node build.js"
   },
-  "buildConfig": {
-    "baseUrl": "scripts",
-    "name": "main",
-    "out": "main-built.js",
-    "debug": false
-  },
-  "toxilibsPath": "../../toxilibs_js/libs/",
   "repository": {
     "type": "git",
     "url": "git@git.toxicode.fr:tralalere/code_dj.git"

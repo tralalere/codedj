@@ -63,7 +63,7 @@ define(function () {
 
     var init = [
         'tempo = 130',
-		'var pattern  = new Pattern({loopLimit: 2})',
+        'var pattern  = new Pattern({loopLimit: 2})',
 
         'var tune     = new Tune({ loop:true })',
         'tune.add(pattern)',
@@ -82,19 +82,19 @@ define(function () {
         {
             solution: [
                 '// Mettre 3 à la première ligne, et 11 à la deuxième ligne, permet aux sons d\'être joués aux bons moments',
-				'pattern.addSound(conga3, 3)',
+                'pattern.addSound(conga3, 3)',
                 'pattern.addSound(conga3, 11)'
             ],
             base: [
                 '// Change les chiffres entre parenthèses pour jouer les sons au bon moment',
-				'pattern.addSound(conga3, 2)',
+                'pattern.addSound(conga3, 2)',
                 'pattern.addSound(conga3, 15)'
             ]
         },
         {
             solution: [
-				'// Il fallait s\'assurer que les nombres se suivent d\'une ligne à l\'autre permet de jouer les sons aux bons moments',
-				'// 12.75 est une exception qui joue le son une fois de plus, pour être dans le rythme des autres instruments',
+                '// Il fallait s\'assurer que les nombres se suivent d\'une ligne à l\'autre permet de jouer les sons aux bons moments',
+                '// 12.75 est une exception qui joue le son une fois de plus, pour être dans le rythme des autres instruments',
                 'pattern.addSound(hh, 1)',
                 'pattern.addSound(hh, 2)',
                 'pattern.addSound(hh, 3)',
@@ -115,7 +115,7 @@ define(function () {
             ],
             base: [
                 '// Change les chiffres entre parenthèses pour jouer les sons au bon moment',
-				'pattern.addSound(hh, 1)',
+                'pattern.addSound(hh, 1)',
                 'pattern.addSound(hh, 1.5)',
                 'pattern.addSound(hh, 3)',
                 'pattern.addSound(hh, 4.5)',
@@ -136,7 +136,7 @@ define(function () {
         },
         {
             solution: [
-				'// Mettre 8.5 à la place de 3.5, et 9 à la place de 4.5, permet aux sons d\'être joués aux bons moments',
+                '// Mettre 8.5 à la place de 3.5, et 9 à la place de 4.5, permet aux sons d\'être joués aux bons moments',
                 'pattern.addSound(conga1, 1)',
                 'pattern.addSound(conga1, 2.5)',
                 'pattern.addSound(conga1, 8.5)',
@@ -145,7 +145,7 @@ define(function () {
                 'pattern.addSound(conga1, 16.5)'
             ],
             base: [
-				'// Change les chiffres entre parenthèses pour jouer les sons au bon moment',
+                '// Change les chiffres entre parenthèses pour jouer les sons au bon moment',
                 'pattern.addSound(conga1, 1)',
                 'pattern.addSound(conga1, 2.5)',
                 'pattern.addSound(conga1, 3.5)',
@@ -156,7 +156,7 @@ define(function () {
         },
         {
             solution: [
-				'// Mettre 5.5 à la place de 3.5, et 10.75 à la place de 9.75, permet aux sons d\'être joués aux bons moments',
+                '// Mettre 5.5 à la place de 3.5, et 10.75 à la place de 9.75, permet aux sons d\'être joués aux bons moments',
                 'pattern.addSound(conga2, 2.75)',
                 'pattern.addSound(conga2, 4.5)',
                 'pattern.addSound(conga2, 4.75)',
@@ -176,7 +176,7 @@ define(function () {
             ],
             base: [
                 '// Change les chiffres entre parenthèses pour jouer les sons au bon moment',
-				'pattern.addSound(conga2, 2.75)',
+                'pattern.addSound(conga2, 2.75)',
                 'pattern.addSound(conga2, 4.5)',
                 'pattern.addSound(conga2, 4.75)',
                 'pattern.addSound(conga2, 3.5)',
@@ -196,7 +196,7 @@ define(function () {
         },
         {
             solution: [
-				'// Mettre 10 à la place de 8, et 14 à la place de 9, permet aux sons d\'être joués aux bons moments',
+                '// Mettre 10 à la place de 8, et 14 à la place de 9, permet aux sons d\'être joués aux bons moments',
                 'pattern.addSound(rim, 2)',
                 'pattern.addSound(rim, 6)',
                 'pattern.addSound(rim, 10)',
@@ -204,7 +204,7 @@ define(function () {
             ],
             base: [
                 '// Change les chiffres entre parenthèses pour jouer les sons au bon moment',
-				'pattern.addSound(rim, 2)',
+                'pattern.addSound(rim, 2)',
                 'pattern.addSound(rim, 6)',
                 'pattern.addSound(rim, 8)',
                 'pattern.addSound(rim, 9)'
@@ -212,8 +212,8 @@ define(function () {
         },
         {
             solution: [
-				'// Mettre 5 à la place de 7, et 9 à la place de 10, permet aux sons d\'être joués aux bons moments',
-				'pattern.addSound(kick, 1)',
+                '// Mettre 5 à la place de 7, et 9 à la place de 10, permet aux sons d\'être joués aux bons moments',
+                'pattern.addSound(kick, 1)',
                 'pattern.addSound(kick, 3.5)',
                 'pattern.addSound(kick, 4.5)',
                 'pattern.addSound(kick, 5)',
@@ -227,7 +227,7 @@ define(function () {
             ],
             base: [
                 '// Change les chiffres entre parenthèses pour jouer les sons au bon moment',
-				'pattern.addSound(kick, 1)',
+                'pattern.addSound(kick, 1)',
                 'pattern.addSound(kick, 3.5)',
                 'pattern.addSound(kick, 4.5)',
                 'pattern.addSound(kick, 7)',
@@ -242,7 +242,7 @@ define(function () {
         },
         {
             solution: [
-				'// Mettre 7 à la place de 5, et 11 à la place de 10, permet aux sons d\'être joués aux bons moments',
+                '// Mettre 7 à la place de 5, et 11 à la place de 10, permet aux sons d\'être joués aux bons moments',
                 'pattern.addSound(snare, 3)',
                 'pattern.addSound(snare, 7)',
                 'pattern.addSound(snare, 11)',
@@ -250,7 +250,7 @@ define(function () {
             ],
             base: [
                 '// Change les chiffres entre parenthèses pour jouer les sons au bon moment',
-				'pattern.addSound(snare, 3)',
+                'pattern.addSound(snare, 3)',
                 'pattern.addSound(snare, 5)',
                 'pattern.addSound(snare, 10)',
                 'pattern.addSound(snare, 15)'

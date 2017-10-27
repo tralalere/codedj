@@ -72,18 +72,18 @@ define(function () {
             solution: [
                 '// La boucle for ne se répétait pas assez de fois. En utilisant 17 comme limite dans i<17, nous nous sommes assurés que le son s\'est joué à chaque temps, dans le bon rhytme.',
                 'for (var i = 1; i < 17; i = i + 1)',
-				'{',
-				'    pattern.addSound(hh, i)',
-				'}',
+                '{',
+                '    pattern.addSound(hh, i)',
+                '}',
                 '',
                 'pattern.addSound(hh, 12.75)'
             ],
             base: [
-				'// les boucles for permettent de ne pas avoir à répéter plein de fois la même sorte de ligne. Mais ici le for ne va pas assez loin. Essaie d\'utiliser un chiffre un peu plus grand que 12 dans i < 12',
+                '// les boucles for permettent de ne pas avoir à répéter plein de fois la même sorte de ligne. Mais ici le for ne va pas assez loin. Essaie d\'utiliser un chiffre un peu plus grand que 12 dans i < 12',
                 'for (var i = 1; i < 12; i = i + 1)',
-				'{',
-				'    pattern.addSound(hh, i)',
-				'}',
+                '{',
+                '    pattern.addSound(hh, i)',
+                '}',
                 '',
                 'pattern.addSound(hh, 12.75)'
             ]
@@ -91,10 +91,10 @@ define(function () {
         {
             solution: [
                 '// La boucle for ne se répétait pas assez de fois. En utilisant 14 comme limite dans i<14, nous nous sommes assurés que le son s\'est joué à chaque temps, dans le bon rhytme.',
-				'for (var i = 1.75; i < 14; i = i + 4)',
-				'{',
-				'    pattern.addSound(kick, i)',
-				'}',
+                'for (var i = 1.75; i < 14; i = i + 4)',
+                '{',
+                '    pattern.addSound(kick, i)',
+                '}',
                 '',
                 'pattern.addSound(kick, 1)',
                 'pattern.addSound(kick, 2.5)',
@@ -114,9 +114,9 @@ define(function () {
             base: [
                 '// les boucles for permettent de ne pas avoir à répéter plein de fois la même sorte de ligne. Mais ici le for ne va pas assez loin. Essaie d\'utiliser un chiffre un peu plus grand que 8 dans i < 8',
                 'for (var i = 1.75; i < 8; i = i + 4)',
-				'{',
-				'    pattern.addSound(kick, i)',
-				'}',
+                '{',
+                '    pattern.addSound(kick, i)',
+                '}',
                 '',
                 'pattern.addSound(kick, 1)',
                 'pattern.addSound(kick, 2.5)',
@@ -138,18 +138,18 @@ define(function () {
             solution: [
                 '// La boucle for ne se répétait pas assez de fois. En utilisant 17 comme limite dans i<17, nous nous sommes assurés que le son s\'est joué à chaque temps, dans le bon rhytme.',
                 'for (var i = 1; i < 17; i = i + 1)',
-				'{',
-				'    pattern.addSound(rim, i)',
-				'}',
+                '{',
+                '    pattern.addSound(rim, i)',
+                '}',
                 '',
                 'pattern.addSound(rim, 12.75)'
             ],
             base: [
                 '// les boucles for permettent de ne pas avoir à répéter plein de fois la même sorte de ligne. Mais ici le for ne va pas assez loin. Essaie d\'utiliser un chiffre un peu plus grand que 11 dans i<11',
                 'for (var i = 1; i < 11; i = i + 1)',
-				'{',
-				'    pattern.addSound(rim, i)',
-				'}',
+                '{',
+                '    pattern.addSound(rim, i)',
+                '}',
                 '',
                 'pattern.addSound(rim, 12.75)'
             ]
@@ -158,38 +158,38 @@ define(function () {
             solution: [
                 '// La boucle for ne se répétait pas assez de fois. En utilisant 16 comme limite dans i<16, nous nous sommes assurés que le son s\'est joué à chaque temps, dans le bon rhytme.',
                 'for (var i = 1.5; i < 16; i = i + 1)',
-				'{',
-				'    pattern.addSound(shaker1, i)',
-				'}',
+                '{',
+                '    pattern.addSound(shaker1, i)',
+                '}'
             ],
             base: [
                 '// les boucles for permettent de ne pas avoir à répéter plein de fois la même sorte de ligne. Mais ici le for ne va pas assez loin. Essaie d\'utiliser un chiffre un peu plus grand que 10 dans i<10',
                 'for (var i = 1.5; i < 10; i = i + 1)',
-				'{',
-				'    pattern.addSound(shaker1, i)',
-				'}'
+                '{',
+                '    pattern.addSound(shaker1, i)',
+                '}'
             ]
         },
         {
             solution: [
                 '// La boucle for ne se répétait pas assez de fois. En utilisant 16 comme limite dans i<16, nous nous sommes assurés que le son s\'est joué à chaque temps, dans le bon rhytme.',
                 'for (var i = 3; i < 16; i = i + 4)',
-				'{',
-				'    pattern.addSound(snare, i)',
-				'}'
+                '{',
+                '    pattern.addSound(snare, i)',
+                '}'
             ],
             base: [
                 '// les boucles for permettent de ne pas avoir à répéter plein de fois la même sorte de ligne. Mais ici le for ne va pas assez loin. Essaie d\'utiliser un chiffre un peu plus grand que 10 dans i<10',
                 'for (var i = 3; i < 10; i = i + 4)',
-				'{',
-				'    pattern.addSound(snare, i)',
-				'}'
+                '{',
+                '    pattern.addSound(snare, i)',
+                '}'
             ]
         },
         {
             solution: [
                 '// Et voilà, ça marche avec le nombre changé!',
-				'pattern.addSound(tom, 16.75)'
+                'pattern.addSound(tom, 16.75)'
             ],
             base: [
                 '//Respire ! Tu peux le faire. Juste un nombre à changer :)',

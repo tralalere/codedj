@@ -23,6 +23,11 @@ define([
         globalEventBus.emit('page loaded')
         globalEventBus.emit('user ready to start')
         globalEventBus.emit('change volume custom', 100)
+
+        $('.wonWorld').on('click', function(event){
+            event.isImmediatePropagationStopped()
+            $('.wonWorld').addClass('invisible')
+        })
     }
 
 
@@ -40,19 +45,23 @@ define([
 
 
     function onAllLevelsComplete () {
-        $('.wonWorld').removeClass('invisible')
+        $('.missionCompleted').addClass('missionWon')
+        setTimeout(function () {
+            $('.wonWorld').removeClass('invisible')
+        }, 5000);
+       
         setAccess(2)
     }
 
-    function setAccess(world){
+    function setAccess (world) {
         var worlds = localStorage.getItem('accessToWorld')
-        if(!worlds){
+        if (!worlds) {
             worlds = []
-        } else{
+        } else {
             worlds.split(',')
         }
 
-        if(worlds.indexOf(world.toString()) == -1){
+        if (worlds.indexOf(world.toString()) == -1) {
             worlds.push(world)
             localStorage.setItem('accessToWorld', worlds)
         }

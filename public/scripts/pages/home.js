@@ -29,29 +29,29 @@ define([
         $('.recoText').on('click', function () {
             showPopUp('recoText')
         })
-        $('a').on('click',function (event) {
-            event.stopPropagation();
+        $('a').on('click', function (event) {
+            event.stopPropagation()
         })
 
         $('#btn_world3').on('click', function () {
-            if(filterAccessWorld(3)){
+            if (filterAccessWorld(3)) {
                 goToWorld(3)
-            }else{
+            } else {
                 showPopUp('lockWorld')
             }
         })
 
         $('#btn_world2').on('click', function () {
-            if(filterAccessWorld(2)){
-                $('#viewApp').empty();
+            if (filterAccessWorld(2)) {
+                $('#viewApp').empty()
                 goToWorld(2)
-            }else{
-               showPopUp('lockWorld')
+            } else {
+                showPopUp('lockWorld')
             }
         })
 
         $('#btn_world1').on('click', function () {
-              goToWorld(1)
+            goToWorld(1)
         })
 
         $('.goToSelectWorld').on('click', function () {
@@ -59,23 +59,23 @@ define([
         })
     }
 
-    function filterAccessWorld(world) {
+    function filterAccessWorld (world) {
         var worlds = localStorage.getItem('accessToWorld')
-        if(!worlds){
-            worlds = [];
-        }else{
+        if (!worlds) {
+            worlds = []
+        } else {
             worlds.split(',')
         }
-        if(worlds.indexOf(world.toString()) !== -1){
-            return true;
+        if (worlds.indexOf(world.toString()) !== -1) {
+            return true
         }
     }
 
-    function showPopUp(select){
+    function showPopUp (select) {
         $('.blocPopUp .pop').empty()
-        $.getJSON( "json/text.json", function( data ) {
-            $('.blocPopUp .pop').html(data[select]);
-        });
+        $.getJSON('json/text.json', function (data) {
+            $('.blocPopUp .pop').html(data[select])
+        })
         $('.blocPopUp').fadeIn()
     }
 

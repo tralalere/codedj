@@ -36,9 +36,9 @@ define([
 
 
     TimelineBar.prototype.setStartOffset = function (startOffset) {
-            this.startOffset   = startOffset
-            this.timelineWidth = this.$container.width() - startOffset
-            this.setPosition(0)
+        this.startOffset   = startOffset
+        this.timelineWidth = this.$container.width() - startOffset
+        this.setPosition(0)
 
 
     }
@@ -79,9 +79,10 @@ define([
     TimelineBar.prototype.setPosition = function (percent) {
         this.timelineWidth = this.$container.width() - this.startOffset
         this.$bar.css({
-            'width':(0 + percent * this.timelineWidth),
+            'width': (0 + percent * this.timelineWidth),
             'left': this.startOffset
         })
+
        // this.$bar.css('left',(-this.timelineWidth - this.startOffset + 80 + percent * this.timelineWidth))
     }
 

@@ -32,12 +32,12 @@ define([
                 $beat.append('<td class="beat_' +  beatToClass(i + j + 1) + '"></td>')
             }
 
-            $beatForRef.append('<td class="beat_ref_'+i+' beat_ref"><div>'+(i+1)+'</div></td>')
+            $beatForRef.append('<td class="beat_ref_' + i + ' beat_ref"><div>' + (i + 1) + '</div></td>')
         }
 
         params.container.append(this.view)
 
-        if($('.numberReference').length == 0){
+        if ($('.numberReference').length == 0) {
             params.container.append(this.beatReference)
         }
 

@@ -17,7 +17,7 @@ define(function () {
         {
             loopName: 'G3_2arp',
             source:   'G3/2 - ARP.wav'
-        },
+        }
     ]
 
 
@@ -53,84 +53,84 @@ define(function () {
     ]
 
     var portions = [
-		{
+        {
             solution: [
-				'// Mettre 3 à la place du 1 dans (i%4 === 3) permet au clap d\'être joué aux temps 3, 7, 11, et 15',
+                '// Mettre 3 à la place du 1 dans (i%4 === 3) permet au clap d\'être joué aux temps 3, 7, 11, et 15',
                 'for (var i = 1; i < 17; i = i + 2)',
-				'{',
-					'pattern.addSound(hh, i)',
-					'if (i%4 === 3){',
-						'pattern.addSound(clap, i)',
-					'}',
-				'}',
+                '{',
+                'pattern.addSound(hh, i)',
+                'if (i%4 === 3){',
+                'pattern.addSound(clap, i)',
+                '}',
+                '}'
             ],
             base: [
-				'// Change une valeur dans i%4 === 1 pour retrouver le bon rythme',
-				'// % est un signe qui permet de trouver le RESTE d\'une division.',
-				'// Par exemple 7 divisé par 2 donne 3 et il reste 1, donc 7%2 donne 1.',
+                '// Change une valeur dans i%4 === 1 pour retrouver le bon rythme',
+                '// % est un signe qui permet de trouver le RESTE d\'une division.',
+                '// Par exemple 7 divisé par 2 donne 3 et il reste 1, donc 7%2 donne 1.',
                 'for (var i = 1; i < 17; i = i + 2)',
-				'{',
-					'pattern.addSound(hh, i)',
-					'if (i%4 === 1){',
-						'pattern.addSound(clap, i)',
-					'}',
-				'}',
+                '{',
+                'pattern.addSound(hh, i)',
+                'if (i%4 === 1){',
+                'pattern.addSound(clap, i)',
+                '}',
+                '}'
             ]
         },
         {
             solution: [
-				'// Avec une valeur passée à 4, le bon rythme est retrouvé',
+                '// Avec une valeur passée à 4, le bon rythme est retrouvé',
                 'for (var i = 3; i < 17; i = i + 4)',
-				'{',
-					'pattern.addSound(snare, i)',
-				'}',
+                '{',
+                'pattern.addSound(snare, i)',
+                '}'
             ],
             base: [
-				'// Change la valeur dans i = i + 2 pour retrouver le bon rythme',
+                '// Change la valeur dans i = i + 2 pour retrouver le bon rythme',
                 'for (var i = 3; i < 17; i = i + 2)',
-				'{',
-					'pattern.addSound(snare, i)',
-				'}',
+                '{',
+                'pattern.addSound(snare, i)',
+                '}'
             ]
         },
-		{
+        {
             solution: [
-				'// Mettre 3 à la place du 6 dans (i%4 === 3) permet au clap d\'être joué aux temps 3, 7, 11, et 15',
+                '// Mettre 3 à la place du 6 dans (i%4 === 3) permet au clap d\'être joué aux temps 3, 7, 11, et 15',
                 'for (var i = 1; i < 17; i = i + 2)',
-				'{',
-					'pattern.addSound(hh, i)',
-					'if (i%4 === 3){',
-						'pattern.addSound(clap, i)',
-					'}',
-				'}',
+                '{',
+                'pattern.addSound(hh, i)',
+                'if (i%4 === 3){',
+                'pattern.addSound(clap, i)',
+                '}',
+                '}'
             ],
             base: [
-				'// Change une valeur dans i%4 === 6 pour retrouver le bon rythme',
-				'// % est un signe qui permet de trouver le RESTE d\'une division.',
-				'// Par exemple 7 divisé par 2 donne 3 et il reste 1, donc 7%2 donne 1.',
+                '// Change une valeur dans i%4 === 6 pour retrouver le bon rythme',
+                '// % est un signe qui permet de trouver le RESTE d\'une division.',
+                '// Par exemple 7 divisé par 2 donne 3 et il reste 1, donc 7%2 donne 1.',
                 'for (var i = 1; i < 17; i = i + 2)',
-				'{',
-					'pattern.addSound(hh, i)',
-					'if (i%4 === 6){',
-						'pattern.addSound(clap, i)',
-					'}',
-				'}',
+                '{',
+                'pattern.addSound(hh, i)',
+                'if (i%4 === 6){',
+                'pattern.addSound(clap, i)',
+                '}',
+                '}'
             ]
-        },
+        }
     ]
 
     var end = [
-				'for (var i = 1; i < 17; i+=4)',
-				'{',
-					'pattern.addSound(kick, i)',
-					'if (i === 5){',
-						'pattern.addSound(kick, (i-0.5))',
-					'} else if ( i === 9) {',
-						'pattern.addSound(kick, (i-1.5))',
-					'} else if ( i === 13) {',
-						'pattern.addSound(kick, (i+3.75))',
-					'}',
-				'}',
+        'for (var i = 1; i < 17; i+=4)',
+        '{',
+        'pattern.addSound(kick, i)',
+        'if (i === 5){',
+        'pattern.addSound(kick, (i-0.5))',
+        '} else if ( i === 9) {',
+        'pattern.addSound(kick, (i-1.5))',
+        '} else if ( i === 13) {',
+        'pattern.addSound(kick, (i+3.75))',
+        '}',
+        '}'
     ]
 
 
@@ -141,7 +141,7 @@ define(function () {
         isolatePortions: true,
         musicLoops: musicLoops,
         sounds: sounds,
-		minimumGoodAnswers: 2
+        minimumGoodAnswers: 2
     }
 
 

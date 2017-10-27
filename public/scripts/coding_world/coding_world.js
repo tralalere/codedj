@@ -57,15 +57,15 @@ define([
         setAccess(3)
     }
 
-    function setAccess(world){
+    function setAccess (world) {
         var worlds = localStorage.getItem('accessToWorld')
-        if(!worlds){
+        if (!worlds) {
             worlds = []
-        } else{
+        } else {
             worlds = worlds.split(',')
         }
 
-        if(worlds.indexOf(world.toString()) == -1){
+        if (worlds.indexOf(world.toString()) == -1) {
             worlds.push(world)
             localStorage.setItem('accessToWorld', worlds)
         }

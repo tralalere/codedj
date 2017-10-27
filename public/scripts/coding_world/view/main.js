@@ -56,7 +56,7 @@ define([
         $viewApp      = $('#viewApp')
         $world2       = $('#world2')
         $tabContainer = $('#tabs_container')
-        $('body').addClass('secondBack');
+        $('body').addClass('secondBack')
         $('.loader').addClass('invisible')
         $viewApp.empty()
         $viewApp.prepend($world2)
@@ -91,9 +91,9 @@ define([
     }
 
 
-    function worldThree(){
-         $('#view').addClass('customHeightTimeline')
-         $('#mp3').removeClass('invisible')
+    function worldThree () {
+        $('#view').addClass('customHeightTimeline')
+        $('#mp3').removeClass('invisible')
     }
 
 
@@ -262,12 +262,14 @@ define([
             var samplesPath = data.samples
             for (var i = 0; i < samplesPath; i++) {
                 var path = samplesPath[i]
+
                 //TODO: display all samples path
             }
 
             var loopsPath = data.loops
             for (var j = 0; j < loopsPath; j++) {
                 var path = loopsPath[j]
+
                 //TODO: display all loops path
             }
         })

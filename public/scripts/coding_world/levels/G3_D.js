@@ -17,7 +17,7 @@ define(function () {
         {
             loopName: 'G3_2VOIX',
             source:   'G3/2 - VOIX.wav'
-        },
+        }
     ]
 
 
@@ -45,29 +45,29 @@ define(function () {
     var portions = [
         {
             solution: [
-				'// Il suffisait de faire un seul changement, et le kick a été joué deux fois plus. C\'est toute la puissance du for pour créer un rhytme !',
-				'for (var i = 2; i < 17; i = i + 2)',
-				'{',
-					'pattern.addSound(clap, i)',
-					'for (var h = 1; h < 2; h = h + 1)',
-					'{',
-						'pattern.addSound(kick, (i+1-h))',
-					'}',
-				'}',
+                '// Il suffisait de faire un seul changement, et le kick a été joué deux fois plus. C\'est toute la puissance du for pour créer un rhytme !',
+                'for (var i = 2; i < 17; i = i + 2)',
+                '{',
+                'pattern.addSound(clap, i)',
+                'for (var h = 1; h < 2; h = h + 1)',
+                '{',
+                'pattern.addSound(kick, (i+1-h))',
+                '}',
+                '}'
             ],
             base: [
-				'// la boucle for qui ajoute le son kick est elle-même dans la boucle for qui ajoute le son clap',
-				'// change la valeur de quelque chose dans le for qui ajoute le son kick pour retrouver le bon rhytme',
-				'for (var i = 2; i < 17; i = i + 2)',
-				'{',
-					'pattern.addSound(clap, i)',
-					'for (var h = 1; h < 1; h = h + 1)',
-					'{',
-						'pattern.addSound(kick, (i+1-h))',
-					'}',
-				'}',
+                '// la boucle for qui ajoute le son kick est elle-même dans la boucle for qui ajoute le son clap',
+                '// change la valeur de quelque chose dans le for qui ajoute le son kick pour retrouver le bon rhytme',
+                'for (var i = 2; i < 17; i = i + 2)',
+                '{',
+                'pattern.addSound(clap, i)',
+                'for (var h = 1; h < 1; h = h + 1)',
+                '{',
+                'pattern.addSound(kick, (i+1-h))',
+                '}',
+                '}'
             ]
-        },
+        }
     ]
 
     var end = [
@@ -81,7 +81,7 @@ define(function () {
         end: end,
         musicLoops: musicLoops,
         sounds: sounds,
-		minimumGoodAnswers: 1
+        minimumGoodAnswers: 1
     }
 
 

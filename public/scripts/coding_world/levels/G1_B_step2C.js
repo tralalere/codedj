@@ -72,18 +72,18 @@ define(function () {
             solution: [
                 '// La boucle for ne commençait pas à ajouter des sons au temps 1. En utilisant 1 comme valeur de départ pour var i = 1, les sons se sont joués assez tôt pour composer la bonne musique.',
                 'for (var i = 1; i <= 16; i = i + 1)',
-				'{',
-				'    pattern.addSound(hh, i)',
-				'}',
+                '{',
+                '    pattern.addSound(hh, i)',
+                '}',
                 '',
                 'pattern.addSound(hh, 12.75)'
             ],
             base: [
-				'// Les boucles for permettent de ne pas réécrire plusieurs fois des lignes de code semblables. Mais ici la boucle for commence trop tard. Essaie d\'utiliser un nombre un peu plus petit que 5 dans var i = 5',
+                '// Les boucles for permettent de ne pas réécrire plusieurs fois des lignes de code semblables. Mais ici la boucle for commence trop tard. Essaie d\'utiliser un nombre un peu plus petit que 5 dans var i = 5',
                 'for (var i = 5; i <= 16; i = i + 1)',
-				'{',
-				'    pattern.addSound(hh, i)',
-				'}',
+                '{',
+                '    pattern.addSound(hh, i)',
+                '}',
                 '',
                 'pattern.addSound(hh, 12.75)'
             ]
@@ -92,9 +92,9 @@ define(function () {
             solution: [
                 '// La boucle for ajoutait des sons trop tôt et en décalé. En utilisant 1.75 comme valeur de départ pour var i = 1.75, les sons se sont joués aux bons moments.',
                 'for (var i = 1.75; i < 14; i = i + 4)',
-				'{',
-				'    pattern.addSound(kick, i)',
-				'}',
+                '{',
+                '    pattern.addSound(kick, i)',
+                '}',
                 '',
                 'pattern.addSound(kick, 1)',
                 'pattern.addSound(kick, 2.5)',
@@ -114,9 +114,9 @@ define(function () {
             base: [
                 '// Les boucles for permettent de ne pas réécrire plusieurs fois des lignes de code semblables. Mais ici la boucle for commence trop tôt. Essaie d\'utiliser un nombre un peu plus grand que 1 dans var i = 1',
                 'for (var i = 1; i < 14; i = i + 4)',
-				'{',
-				'    pattern.addSound(kick, i)',
-				'}',
+                '{',
+                '    pattern.addSound(kick, i)',
+                '}',
                 '',
                 'pattern.addSound(kick, 1)',
                 'pattern.addSound(kick, 2.5)',
@@ -138,18 +138,18 @@ define(function () {
             solution: [
                 '// La boucle for ne commençait pas à ajouter des sons au temps 1. En utilisant 1 comme valeur de départ pour var i = 1, les sons se sont joués assez tôt pour composer la bonne musique.',
                 'for (var i = 1; i <=16; i = i + 1)',
-				'{',
-				'    pattern.addSound(rim, i)',
-				'}',
+                '{',
+                '    pattern.addSound(rim, i)',
+                '}',
                 '',
                 'pattern.addSound(rim, 12.75)'
             ],
             base: [
                 '// Les boucles for permettent de ne pas réécrire plusieurs fois des lignes de code semblables. Mais ici la boucle for commence trop tard. Essaie d\'utiliser un nombre un peu plus petit que 5 dans var i = 5',
                 'for (var i = 11; i <= 16; i = i + 1)',
-				'{',
-				'    pattern.addSound(rim, i)',
-				'}',
+                '{',
+                '    pattern.addSound(rim, i)',
+                '}',
                 '',
                 'pattern.addSound(rim, 12.75)'
             ]
@@ -158,38 +158,38 @@ define(function () {
             solution: [
                 '// La boucle for ajoutait des sons trop tôt et en décalé. En utilisant 1.5 comme valeur de départ pour var i = 1.5, les sons se sont joués aux bons moments.',
                 'for (var i = 1.5; i < 16; i = i + 1)',
-				'{',
-				'    pattern.addSound(shaker1, i)',
-				'}',
+                '{',
+                '    pattern.addSound(shaker1, i)',
+                '}'
             ],
             base: [
-				'// Les boucles for permettent de ne pas réécrire plusieurs fois des lignes de code semblables. Mais ici la boucle for commence trop tôt. Essaie d\'utiliser un nombre un peu plus petit que 5 dans var i = 5',
+                '// Les boucles for permettent de ne pas réécrire plusieurs fois des lignes de code semblables. Mais ici la boucle for commence trop tôt. Essaie d\'utiliser un nombre un peu plus petit que 5 dans var i = 5',
                 'for (var i = 1; i < 16; i = i + 1)',
-				'{',
-				'    pattern.addSound(shaker1, i)',
-				'}'
+                '{',
+                '    pattern.addSound(shaker1, i)',
+                '}'
             ]
         },
         {
             solution: [
                 '// La boucle for ajoutait des sons trop tôt et en décalé. En utilisant 3 comme valeur de départ pour var i = 3, les sons se sont joués aux bons moments.',
                 'for (var i = 3; i < 16; i = i + 4)',
-				'{',
-				'    pattern.addSound(snare, i)',
-				'}'
+                '{',
+                '    pattern.addSound(snare, i)',
+                '}'
             ],
             base: [
                 '// Les boucles for permettent de ne pas réécrire plusieurs fois des lignes de code semblables. Mais ici la boucle for commence trop tôt. Essaie d\'utiliser un nombre un peu plus petit que 5 dans var i = 5',
                 'for (var i = 1.5; i < 16; i = i + 4)',
-				'{',
-				'    pattern.addSound(snare, i)',
-				'}'
+                '{',
+                '    pattern.addSound(snare, i)',
+                '}'
             ]
         },
         {
             solution: [
                 '// Il fallait mettre 16,75 entre parenthèse pour que le sample soit joué au bon moment.',
-				'pattern.addSound(tom, 16.75)'
+                'pattern.addSound(tom, 16.75)'
             ],
             base: [
                 '//Respire ! Tu peux le faire. Et si tu changeais le nombre entre parenthèses ?',

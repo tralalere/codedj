@@ -14,7 +14,7 @@ require.config({
         bootstrap: 'ext_libs/bootstrap-4.0.0-alpha.6-dist/js/bootstrap.min',
         perfectScrollbar: 'ext_libs/perfect-scrollbar/js/perfect-scrollbar',
         perfectScrollbarJQuery: 'ext_libs/perfect-scrollbar/js/perfect-scrollbar.jquery',
-        jqueryUi:"//code.jquery.com/ui/1.12.0/jquery-ui.min"
+        jqueryUi: '//code.jquery.com/ui/1.12.0/jquery-ui.min'
     },
     shim: {
         ace: {
@@ -40,14 +40,14 @@ require([
     'tether',
     'bootstrap',
     'perfectScrollbar',
-    'perfectScrollbarJQuery',
+    'perfectScrollbarJQuery'
 
-], function ($, globalEventBus, getUrlParams, initHome, initWin, initSilentTeacherWorld, initCodingWorld, initSandboxWorld,jqueryUi) {
+], function ($, globalEventBus, getUrlParams, initHome, initWin, initSilentTeacherWorld, initCodingWorld, initSandboxWorld, jqueryUi) {
 
     var urlParams = getUrlParams()
 
     $(function () {
-        $( "#resizable" ).resizable();
+        $('#resizable').resizable()
 
         if (urlParams.monde === '1') {
             initSilentTeacherWorld()
@@ -63,55 +63,54 @@ require([
         } else {
             initHome()
         }
-        $('.logoImg').on('click', function(){
+        $('.logoImg').on('click', function () {
             $('#viewApp').empty()
             window.location.href = '.?monde'
         })
+
         //Todo: fix this (scroll mobile device)
-        $(document).on('touchmove',function(e){
-            e.preventDefault();
-        });
+        $(document).on('touchmove', function (e) {
+            e.preventDefault()
+        })
 
         // Set the name of the hidden property and the change event for visibility
-        var hidden, visibilityChange;
-        if (typeof document.hidden !== "undefined") { // Opera 12.10 and Firefox 18 and later support
-            hidden = "hidden";
-            visibilityChange = "visibilitychange";
-        } else if (typeof document.msHidden !== "undefined") {
-            hidden = "msHidden";
-            visibilityChange = "msvisibilitychange";
-        } else if (typeof document.webkitHidden !== "undefined") {
-            hidden = "webkitHidden";
-            visibilityChange = "webkitvisibilitychange";
+        var hidden, visibilityChange
+        if (typeof document.hidden !== 'undefined') { // Opera 12.10 and Firefox 18 and later support
+            hidden = 'hidden'
+            visibilityChange = 'visibilitychange'
+        } else if (typeof document.msHidden !== 'undefined') {
+            hidden = 'msHidden'
+            visibilityChange = 'msvisibilitychange'
+        } else if (typeof document.webkitHidden !== 'undefined') {
+            hidden = 'webkitHidden'
+            visibilityChange = 'webkitvisibilitychange'
         }
 
 
 
 // If the page is hidden, pause the sound;
 // if the page is shown, play the sound
-        function handleVisibilityChange() {
+        function handleVisibilityChange () {
             if (urlParams.monde === '1') {
                 if (document[hidden]) {
-                    globalEventBus.emit('change volume custom',0)
+                    globalEventBus.emit('change volume custom', 0)
                 } else {
-                    globalEventBus.emit('change volume custom',50)
+                    globalEventBus.emit('change volume custom', 50)
                 }
             } else if (urlParams.monde === '2' || urlParams.monde === '3') {
-                // if (document[hidden]) {
-                //     globalEventBus.emit('change focus')
-                // } else {
-                //     globalEventBus.emit('change focus')
-                // }
+
+                globalEventBus.emit('change focus',document[hidden]);
+
             }
 
         }
 
 // Warn if the browser doesn't support addEventListener or the Page Visibility API
-        if (typeof document.addEventListener === "undefined" || typeof document[hidden] === "undefined") {
-            console.log("This application requires a browser, such as Google Chrome or Firefox, that supports the Page Visibility API.");
+        if (typeof document.addEventListener === 'undefined' || typeof document[hidden] === 'undefined') {
+            console.log('This application requires a browser, such as Google Chrome or Firefox, that supports the Page Visibility API.')
         } else {
             // Handle page visibility change
-            document.addEventListener(visibilityChange, handleVisibilityChange, false);
+            document.addEventListener(visibilityChange, handleVisibilityChange, false)
         }
 
 

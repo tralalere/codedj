@@ -86,7 +86,7 @@ define(function () {
             ],
             base: [
                 '// Change les chiffres entre parenthèses pour jouer les sons au bon moment',
-				'pattern.addSound(conga3, 2)',
+                'pattern.addSound(conga3, 2)',
                 'pattern.addSound(conga3, 15)'
             ]
         },
@@ -112,7 +112,7 @@ define(function () {
             ],
             base: [
                 '// Change les chiffres entre parenthèses pour jouer les sons au bon moment',
-				'pattern.addSound(hh, 1)',
+                'pattern.addSound(hh, 1)',
                 'pattern.addSound(hh, 1.5)',
                 'pattern.addSound(hh, 3)',
                 'pattern.addSound(hh, 4.5)',
@@ -141,7 +141,7 @@ define(function () {
                 'pattern.addSound(conga1, 16.5)'
             ],
             base: [
-				'// Change les chiffres entre parenthèses pour jouer les sons au bon moment',
+                '// Change les chiffres entre parenthèses pour jouer les sons au bon moment',
                 'pattern.addSound(conga1, 1)',
                 'pattern.addSound(conga1, 2.5)',
                 'pattern.addSound(conga1, 3.5)',
@@ -171,7 +171,7 @@ define(function () {
             ],
             base: [
                 '// Change les chiffres entre parenthèses pour jouer les sons au bon moment',
-				'pattern.addSound(conga2, 2.75)',
+                'pattern.addSound(conga2, 2.75)',
                 'pattern.addSound(conga2, 4.5)',
                 'pattern.addSound(conga2, 4.75)',
                 'pattern.addSound(conga2, 5)',
@@ -198,7 +198,7 @@ define(function () {
             ],
             base: [
                 '// Change les chiffres entre parenthèses pour jouer les sons au bon moment',
-				'pattern.addSound(rim, 2)',
+                'pattern.addSound(rim, 2)',
                 'pattern.addSound(rim, 6)',
                 'pattern.addSound(rim, 8)',
                 'pattern.addSound(rim, 9)'
@@ -206,7 +206,7 @@ define(function () {
         },
         {
             solution: [
-				'pattern.addSound(kick, 1)',
+                'pattern.addSound(kick, 1)',
                 'pattern.addSound(kick, 3.5)',
                 'pattern.addSound(kick, 4.5)',
                 'pattern.addSound(kick, 5)',
@@ -220,7 +220,7 @@ define(function () {
             ],
             base: [
                 '// Change les chiffres entre parenthèses pour jouer les sons au bon moment',
-				'pattern.addSound(kick, 1)',
+                'pattern.addSound(kick, 1)',
                 'pattern.addSound(kick, 3.5)',
                 'pattern.addSound(kick, 4.5)',
                 'pattern.addSound(kick, 5)',
@@ -242,7 +242,7 @@ define(function () {
             ],
             base: [
                 '// Change les chiffres entre parenthèses pour jouer les sons au bon moment',
-				'pattern.addSound(snare, 3)',
+                'pattern.addSound(snare, 3)',
                 'pattern.addSound(snare, 7)',
                 'pattern.addSound(snare, 11)',
                 'pattern.addSound(snare, 15)'

@@ -9,7 +9,7 @@ var exportSounds = require(scriptsPath + '/export.js')
 
 
 app.use(express.static('public'))
-app.use(bodyParser.urlencoded({ extended: true }))
+app.use(bodyParser.urlencoded({extended: true}))
 
 app.get('/samples', function (req, res) {
     var list = require(scriptsPath + '/get_samples.js')
@@ -22,7 +22,7 @@ var increment = 0
 
 app.get('/export', function (req, res) {
     var token = req.query.token
-    var id    = Date.now() + '' + increment
+    var id    = String(Date.now()) + increment
     increment++
     tokenToID[token] = id
     var notesList = JSON.parse(req.query.notes)

@@ -1,5 +1,5 @@
 /* eslint-disable no-magic-numbers */
-define(['./embedded_extlibs/alea.min'], function (alea) {
+define([], function () {
     'use strict'
 
     var allLetters             = 'abcdefghijklmnopqrstuvwxyz'
@@ -9,14 +9,11 @@ define(['./embedded_extlibs/alea.min'], function (alea) {
     var chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXTZ' + allLetters
 
 
-    var random = alea(generateSeed())
+    var random = Math.random
 
 
-    // by default we use alea.min. Very fast (almost as the native), good quality
-    // an alternative is xor4096. Quite fast (1.3 x slower than native), excellent quality
-
-    function reset (seed, randomGenerator) {
-        random = (randomGenerator || alea)(seed)
+    function reset () {
+        random = Math.random
     }
 
 
@@ -117,12 +114,12 @@ define(['./embedded_extlibs/alea.min'], function (alea) {
 
 
     //****************************** GAUSSIAN RANDOM
-    
+
     // 67% chances of being between value - variance and value + variance
     // Algo : polar form of the Box-Muller transformation
     // http://www.design.caltech.edu/erik/Misc/Gaussian.html
     function around (value, variance) {
-        
+
         var x1
         var x2
         var w = 2
@@ -131,7 +128,7 @@ define(['./embedded_extlibs/alea.min'], function (alea) {
             x2 = 2 * random() - 1
             w = x1 * x1 + x2 * x2
         }
-        
+
         w = Math.sqrt(-2 * Math.log(w) / w)
         return x1 * w * variance
 

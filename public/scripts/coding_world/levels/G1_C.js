@@ -24,7 +24,7 @@ define(function () {
         {
             soundName: 'G1_2VOIX1',
             soundSource: 'loops/G1/2 - VOIX 1.wav'
-        },
+        }
     ]
 
 

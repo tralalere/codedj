@@ -82,19 +82,19 @@ define(function () {
         {
             solution: [
                 '// Tu peux copier et réutiliser le code en changeant certains éléments pour arriver à faire ce que tu veux.',
-				'// Ici, tu pouvais réécrire toute la ligne avec un autre nombre pour changer le temps auquel le son est joué, ou faire un copier coller et changer le nombre',
-				'pattern.addSound(conga3, 3)',
+                '// Ici, tu pouvais réécrire toute la ligne avec un autre nombre pour changer le temps auquel le son est joué, ou faire un copier coller et changer le nombre',
+                'pattern.addSound(conga3, 3)',
                 'pattern.addSound(conga3, 11)'
             ],
             base: [
                 '// Il manque une ligne pour ajouter un son au temps 11, essaie de copier la ligne existante en y mettant le nombre correspondant au temps auquel tu veux jouer le son',
-				'pattern.addSound(conga3, 3)'
+                'pattern.addSound(conga3, 3)'
             ]
         },
         {
             solution: [
                 '// Tu peux copier et réutiliser le code en changeant certains éléments pour arriver à faire ce que tu veux.',
-				'// Ici, tu pouvais réécrire chaque ligne manquante avec un autre nombre pour changer le temps auquel le son est joué, ou faire un copier coller et changer le nombre',
+                '// Ici, tu pouvais réécrire chaque ligne manquante avec un autre nombre pour changer le temps auquel le son est joué, ou faire un copier coller et changer le nombre',
                 'pattern.addSound(hh, 1)',
                 'pattern.addSound(hh, 2)',
                 'pattern.addSound(hh, 3)',
@@ -115,7 +115,7 @@ define(function () {
             ],
             base: [
                 '// Il manque les deux dernières lignes. Tu peux copier-coller ou t\'inspirer des lignes existantes',
-				'pattern.addSound(hh, 1)',
+                'pattern.addSound(hh, 1)',
                 'pattern.addSound(hh, 2)',
                 'pattern.addSound(hh, 3)',
                 'pattern.addSound(hh, 4)',
@@ -135,7 +135,7 @@ define(function () {
         {
             solution: [
                 '// Tu peux copier et réutiliser le code en changeant certains éléments pour arriver à faire ce que tu veux.',
-				'// Ici, tu pouvais réécrire chaque ligne manquante avec un autre nombre pour changer le temps auquel le son est joué, ou faire un copier coller et changer le nombre',
+                '// Ici, tu pouvais réécrire chaque ligne manquante avec un autre nombre pour changer le temps auquel le son est joué, ou faire un copier coller et changer le nombre',
                 'pattern.addSound(conga1, 1)',
                 'pattern.addSound(conga1, 2.5)',
                 'pattern.addSound(conga1, 8.5)',
@@ -154,7 +154,7 @@ define(function () {
         {
             solution: [
                 '// Tu peux copier et réutiliser le code en changeant certains éléments pour arriver à faire ce que tu veux.',
-				'// Ici, tu pouvais réécrire chaque ligne manquante avec un autre nombre pour changer le temps auquel le son est joué, ou faire un copier coller et changer le nombre',
+                '// Ici, tu pouvais réécrire chaque ligne manquante avec un autre nombre pour changer le temps auquel le son est joué, ou faire un copier coller et changer le nombre',
                 'pattern.addSound(conga2, 2.75)',
                 'pattern.addSound(conga2, 4.5)',
                 'pattern.addSound(conga2, 4.75)',
@@ -192,8 +192,8 @@ define(function () {
         },
         {
             solution: [
-				'// Tu peux copier et réutiliser le code en changeant certains éléments pour arriver à faire ce que tu veux.',
-				'// Ici, tu pouvais réécrire chaque ligne manquante avec un autre nombre pour changer le temps auquel le son est joué, ou faire un copier coller et changer le nombre',
+                '// Tu peux copier et réutiliser le code en changeant certains éléments pour arriver à faire ce que tu veux.',
+                '// Ici, tu pouvais réécrire chaque ligne manquante avec un autre nombre pour changer le temps auquel le son est joué, ou faire un copier coller et changer le nombre',
                 'pattern.addSound(rim, 2)',
                 'pattern.addSound(rim, 6)',
                 'pattern.addSound(rim, 10)',
@@ -201,14 +201,14 @@ define(function () {
             ],
             base: [
                 '// Il manque les deux dernières lignes. Tu peux copier-coller ou t\'inspirer des lignes existantes',
-				'pattern.addSound(rim, 2)',
+                'pattern.addSound(rim, 2)',
                 'pattern.addSound(rim, 6)'
             ]
         },
         {
             solution: [
                 '// Tu peux copier et réutiliser le code en changeant certains éléments pour arriver à faire ce que tu veux.',
-				'// Ici, tu pouvais réécrire chaque ligne manquante avec un autre nombre pour changer le temps auquel le son est joué, ou faire un copier coller et changer le nombre',
+                '// Ici, tu pouvais réécrire chaque ligne manquante avec un autre nombre pour changer le temps auquel le son est joué, ou faire un copier coller et changer le nombre',
                 'pattern.addSound(kick, 1)',
                 'pattern.addSound(kick, 3.5)',
                 'pattern.addSound(kick, 4.5)',
@@ -237,7 +237,7 @@ define(function () {
         {
             solution: [
                 '// Tu peux copier et réutiliser le code en changeant certains éléments pour arriver à faire ce que tu veux.',
-				'// Ici, tu pouvais réécrire chaque ligne manquante avec un autre nombre pour changer le temps auquel le son est joué, ou faire un copier coller et changer le nombre',
+                '// Ici, tu pouvais réécrire chaque ligne manquante avec un autre nombre pour changer le temps auquel le son est joué, ou faire un copier coller et changer le nombre',
                 'pattern.addSound(snare, 3)',
                 'pattern.addSound(snare, 7)',
                 'pattern.addSound(snare, 11)',
