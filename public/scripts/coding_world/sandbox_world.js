@@ -93,8 +93,8 @@ define([
             browsePatterns(patterns, notes)
         }
 
-        $.get('/export', {notes: JSON.stringify(notes), token: userToken}, function () {
-            window.location = '/download?token=' + userToken
+        $.get(document.location.origin+document.location.pathname+'export', {notes: JSON.stringify(notes), token: userToken}, function () {
+            window.location = document.location.origin+document.location.pathname+'/download?token=' + userToken
         })
     }
 
