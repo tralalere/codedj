@@ -314,9 +314,6 @@ body.secondBack{
     max-height: 45px;
 }
 
-#viewApp #world2 .containPreHome #tabs_container{
-    margin-top: 50px;
-}
 
 #preHome .containPreHome .blocHead .btnTop .btn.btnCodeDj img,
 #world2 .containPreHome .blocHead .btnTop .btn.btnCodeDj img,
@@ -647,17 +644,30 @@ body.secondBack{
 #viewApp #world2 .containPreHome .blocHead .btnCodeDj{
     width:180px;
 }
-
-#viewApp #world2 .containPreHome .blocHead #btn_next_question.btnCodeDj{
-    color: #ff0d7b;
-}
-
-#btn_next_question{
-    line-height: 60px;
-    text-align: center;
-    font-size: 1.7rem;
+#viewApp #world2 .containPreHome #editor #code_buttons div.blocCommandeBtn #btn_next_question.btnCodeDj{
+    /*: #ff0d7b;*/
+    min-width: 100px;
+    width: initial;
+    height:initial;
+    font-size: 1.5rem;
+    padding: 10px 5px;
+    top: 3px;
+    max-height: 45px;
+    border-radius: 30px;
+    -webkit-border-radius: 30px;
+    -moz-border-radius: 30px;
     color : #ff0d7b;
+    left: 50%;
+    transform: translateX(-50%);
 }
+
+#viewApp #world2 .containPreHome #btn_next_question.btnCodeDj img{
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    top:3px;
+}
+
 
 .traitZigzag{
     background: url(../assets/traitZigzag.svg);
@@ -818,13 +828,17 @@ tbody{
     cursor: default;
     color: #fff;
     font-weight: 700;
-    background-color: rgba(20, 13, 34, 0.4);
+    /*background-color: rgba(20, 13, 34, 0.4);*/
     border-radius: 10px;
     font-size: 1.5rem;
     display: block;
     border: none;
     box-shadow: none;
     padding: 10px 5px 14px;
+}
+
+#world1 .timeline-container table tbody tr th{
+    line-height: 42px;
 }
 
 #world1 .timeline-container table tbody tr th.btn:hover,
@@ -896,7 +910,7 @@ tbody{
     background-repeat: no-repeat;
 
 }
-#code_buttons #btn_solution{
+#world2 .containPreHome #editor #code_buttons div.blocCommandeBtn #btn_solution{
     width: 100px;
     height: 60px;
     background: url('../assets/solution.png');
@@ -1079,6 +1093,24 @@ display: none;
     background: transparent;
     border-radius: 15px;
     height: 40px;
+}
+
+#world2 .containPreHome #editor #resizable #code_editor .ace_search .ace_search_form ::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+    color:    transparent;
+}
+#world2 .containPreHome #editor #resizable #code_editor .ace_search .ace_search_form :-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    color:    transparent;
+    opacity:  1;
+}
+#world2 .containPreHome #editor #resizable #code_editor .ace_search .ace_search_form ::-moz-placeholder { /* Mozilla Firefox 19+ */
+    color:    transparent;
+    opacity:  1;
+}
+#world2 .containPreHome #editor #resizable #code_editor .ace_search .ace_search_form :-ms-input-placeholder { /* Internet Explorer 10-11 */
+    color:    transparent;
+}
+#world2 .containPreHome #editor #resizable #code_editor .ace_search .ace_search_form ::-ms-input-placeholder { /* Microsoft Edge */
+    color:    transparent;
 }
 
 #world2 .containPreHome #editor  .search input{
@@ -2860,3 +2892,112 @@ progress span{
     font-family: 'Coiny-Regular';
     font-size: 12px;
 }
+
+.bloc-translate-btn .translate-fr,
+.bloc-translate-btn .translate-en{
+    height:40px;
+    width: 40px;
+    cursor: pointer;
+    float: right;
+    position: relative;
+    right: 200px;
+    border-radius: 50%;
+    margin: 5px 10px 0 0;
+}
+.bloc-translate-btn .translate-fr{
+    background: url('../assets/flag-fr.png');
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+}
+.bloc-translate-btn .translate-en{
+    background: url('../assets/flag-en.png');
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    margin: 5px 0 0 0;
+}
+
+#preHome .bloc-translate-btn .translate-fr,
+#preHome .bloc-translate-btn .translate-en{
+    right:0;
+}
+
+
+#postHome .containPostHome2 .bloc-translate-btn{
+    position: absolute;
+    top: 40px;
+    right: 20px;
+    width:100%;
+}
+#postHome .containPostHome2 .bloc-translate-btn .translate-fr,
+#postHome .containPostHome2 .bloc-translate-btn .translate-en{
+    right: 10%;
+}
+/****************** ONGLET ******************/
+/*Todo css a finir des onglets*/
+/*#viewApp #world2 .containPreHome .bloc-tab{
+    margin-top: 50px;
+    width: 105%;
+    height:60px;
+    background: yellow;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap ;
+}
+#viewApp #world2 .containPreHome .bloc-tab #tabs_container{
+    background: greenyellow;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap ;
+}
+
+#viewApp #world2 .containPreHome .bloc-tab .space{
+    background: red;
+    height:60px;
+    width:185px;
+}
+#viewApp #world2 .containPreHome .bloc-tab .center-tab{
+    order:2;
+    flex:1;
+    overflow: hidden;
+}
+#viewApp #world2 .containPreHome .bloc-tab .space.bloc-space-left{
+    order:1;
+}
+#viewApp #world2 .containPreHome .bloc-tab .space.bloc-space-right{
+    order:3;
+}
+
+#viewApp #world2 .containPreHome .bloc-tab #tabs_container .timeline-tab {
+    width: 100px;
+    text-align: center;
+    display: inline-block;
+    padding: 5px 30px;
+    margin: 0 10px;
+    font-size: 200%;
+    color: white;
+    background-color: rgb(83, 0, 147);
+    cursor: pointer;
+    border-radius: 10px 10px 0 0;
+}
+#viewApp #world2 .containPreHome .bloc-tab #tabs_container .timeline-tab.active {
+    background-color: rgb(138, 0, 134);
+}
+
+#previousTab,
+#nextTab{
+    width:50px;
+    height:50px;
+    margin: 0 auto;
+    cursor: pointer;
+}
+#previousTab{
+    background: orange;
+}
+
+#nextTab{
+    background: deepskyblue;
+}
+*/

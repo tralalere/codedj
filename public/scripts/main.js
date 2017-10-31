@@ -47,7 +47,33 @@ require([
     var urlParams = getUrlParams()
 
     $(function () {
+        $('.translate-fr').on('click', function(){
+            globalEventBus.emit('lang changed', 'fr')
+        })
+
+        $('.translate-en').on('click', function(){
+            globalEventBus.emit('lang changed', 'en')
+        })
+
         $('#resizable').resizable()
+
+        $.getJSON('json/'+lang+'/text.json', function (data) {
+            $('.btnNext span').html(data['button']['next'])
+            $('.btnPrevious span').html(data['button']['previous'])
+            $('.btnWorld span').html(data['button']['begin'])
+            $('.goToSelectWorld span').html(data['button']['play'])
+            $('.titleWorldWin').html(data['woldWin'])
+            $('.missionCompleted').html(data['missionCompleted'])
+            $('.levelWon').html(data['levelWon'])
+
+            $('.titleWorld span').html(data['button']['titleWorld'])
+
+            $('.creditText').html(data['button']['creditText'])
+            $('.mentionText').html(data['button']['mentionText'])
+            $('.faqText').html(data['button']['faqText'])
+            $('.recoText').html(data['button']['recoText'])
+            $('.sourcesGitHub').html(data['button']['sourcesGitHub'])
+        })
 
         if (urlParams.monde === '1') {
             initSilentTeacherWorld()

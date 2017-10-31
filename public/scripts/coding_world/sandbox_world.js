@@ -67,7 +67,15 @@ define([
         new World(globalEventBus, {
             exposed: initialCode.join('\n')
         })
+
+
+
+
     }
+
+
+
+
 
 
     globalEventBus.on('save creation requested', saveCreation)

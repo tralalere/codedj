@@ -18,9 +18,9 @@
             integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn"
             crossorigin="anonymous"></script>
     <link   rel="stylesheet"
-            href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css"
-            integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ"
-            crossorigin="anonymous">
+        href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css"
+        integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ"
+        crossorigin="anonymous">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 
 
@@ -141,7 +141,11 @@
     </div>
     <div class="containPostHome2">
         <div class="encart">
-            <img src="assets/partenaire.png">
+            <img src="assets/partenaires.png">
+        </div>
+        <div class="bloc-translate-btn">
+            <div class="translate-en"></div>
+            <div class="translate-fr"></div>
         </div>
         <div class="containTraitTop">
             <div class="hideLeftStart"></div>
@@ -155,11 +159,11 @@
 
         <div class="containTraitBottom">
             <div class="hideLeftStart"></div>
-            <div class=" btn btnCodeDj left goToSelectWorld"><img class="iconBtnNext" src="assets/iconBtnNext.png">Jouer</div>
+            <div class=" btn btnCodeDj left goToSelectWorld"><img class="iconBtnNext" src="assets/iconBtnNext.png"><span>Jouer</span></div>
             <div class="traitBottom right traitZigzag"></div>
         </div>
         <div class="blocCredit">
-            <div class="credit"><span class="creditText">CRÉDITS</span> -<span class="mentionText"> MENTIONS </span> -<span class="faqText"> FAQ </span> -<span class="recoText"> ? </span> -<a href="https://github.com/tralalere/codedj" target="_blank"> Sources</a></div>
+            <div class="credit"><span class="creditText">CRÉDITS</span> -<span class="mentionText"> MENTIONS </span> -<span class="faqText"> FAQ </span> -<span class="recoText"> ? </span> -<a class="sourcesGitHub" href="https://github.com/tralalere/codedj" target="_blank">Sources</a></div>
         </div>
     </div>
     <div class="blocPopUp">
@@ -171,9 +175,16 @@
 <div class="container-fluid" id="preHome">
     <div class="containPreHome center-block">
         <div class="row blocHead">
-            <div class="btnTop col-lg-4 col-md-4 col-sm-4 col-xs-4 "><div id="back" class="btnPrevious left btn btnCodeDj">Retour<img class="iconBtnPrevious" src="assets/iconBtnPrevious.png"></div></div>
+            <div class="btnTop col-lg-4 col-md-4 col-sm-4 col-xs-4 "><div id="back" class="btnPrevious left btn btnCodeDj"><span>Retour</span><img class="iconBtnPrevious" src="assets/iconBtnPrevious.png"></div></div>
             <div class="logoTop col-lg-4 col-md-4 col-sm-4 col-xs-4"><div class="demiLogo logoImg shadow"></div></div>
-            <div class="btnTop col-lg-4 col-md-4 col-sm-4 col-xs-4 "><div class="right btn btnCodeDj invisible"><img class="iconBtnConnexion" src="assets/iconBtnConnexion.png">Connexion</div></div>
+            <div class="btnTop col-lg-4 col-md-4 col-sm-4 col-xs-4 ">
+                <div class="bloc-translate-btn">
+                    <div class="translate-en"></div>
+                    <div class="translate-fr"></div>
+                </div>
+
+                <div class="right btn btnCodeDj invisible"><img class="iconBtnConnexion" src="assets/iconBtnConnexion.png">Connexion</div>
+            </div>
         </div>
         <div class="row blocHeadTrait">
             <div class="trait"><img src="assets/traitZigzag.svg" width="100%"></div>
@@ -212,8 +223,8 @@
                         </div>
                     </div>
                     <div class="blocWorld ">
-                        <div class="titleWorld">Monde 1</div>
-                        <div id="btn_world1" class="btnWorld btn btnCodeDj"><img class="iconBtnNext" src="assets/iconBtnNext.png">Commencer</div>
+                        <div class="titleWorld"><span>Monde </span> 1</div>
+                        <div id="btn_world1" class="btnWorld btn btnCodeDj"><img class="iconBtnNext" src="assets/iconBtnNext.png"><span>Commencer</span></div>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12 itemWorld ">
@@ -248,8 +259,8 @@
                         </div>
                     </div>
                     <div class="blocWorld ">
-                        <div class="titleWorld">Monde 2</div>
-                        <div id="btn_world2" class="btnWorld btn btnCodeDj lock"><img class="iconBtnNext" src="assets/iconBtnNext.png">Commencer</div>
+                        <div class="titleWorld"><span>Monde </span> 2</div>
+                        <div id="btn_world2" class="btnWorld btn btnCodeDj lock"><img class="iconBtnNext" src="assets/iconBtnNext.png"><span>Commencer</span></div>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12 itemWorld ">
@@ -284,8 +295,8 @@
                         </div>
                     </div>
                     <div class="blocWorld ">
-                        <div class="titleWorld">Monde 3</div>
-                        <div id="btn_world3" class="btnWorld btn btnCodeDj lock"><img class="iconBtnNext" src="assets/iconBtnNext.png">Commencer</div>
+                        <div class="titleWorld"><span>Monde </span> 3</div>
+                        <div id="btn_world3" class="btnWorld btn btnCodeDj lock"><img class="iconBtnNext" src="assets/iconBtnNext.png"><span>Commencer</span></div>
                     </div>
                 </div>
             </div>
@@ -367,60 +378,14 @@
 </div>
 
 <div class="container-fluid" id="world2">
+
     <div class="blocPopUp">
         <div class="pop shopPopPup">
-
             <div class="iconeBlocShop icon-shop icon-pack invisible"></div>
             <div class="offerPack invisible">Ton premier pack de samples est offert, choisis celui que tu veux !</div>
-
-            <div class="bloc-shop bloc-pack ">
-                <div class="row row-btn-top">
-                    <div class="col-md-8">
-                        <div class="bloc-btn-shop">
-                            <div class="btn-shop grey-btn">Mes packs</div>
-                            <div class="btn-shop">Plus de packs</div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="bloc-btn-shop btn-small">
-                            <div class="btn-shop grey-btn pull-right">Sons</div>
-                            <div class="btn-shop grey-btn pull-right">Boucles</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row row-pack">
-                    <div class="col-md-6">
-                        <div class="pack-item">
-                            <div class=" row">
-                                <div class="col-md-4">
-                                    <div class="icon-play-shop"></div>
-                                </div>
-                                <div class="bloc-btn-shop col-md-8">
-                                    <h3>Nom du sample</h3>
-                                    <div class="btn-shop white-btn">Ajouter au script</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="pack-item">
-                            <div class=" row">
-                                <div class="col-md-4">
-                                    <div class="icon-play-shop"></div>
-                                </div>
-                                <div class="bloc-btn-shop col-md-8">
-                                    <h3>Nom du sample</h3>
-                                    <div class="btn-shop white-btn">Ajouter au script</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-
         </div>
     </div>
+
     <div class="wonWorld invisible">
         <div class="blocAnimationWorld">
             <div class="loader-container level2">
@@ -442,16 +407,20 @@
         </div>
         <div class="btnWorldWin d-flex flex-row">
             <div class="leftTrait traitZigzag"></div>
-            <div id="btnGoMenu" class="btn btnCodeDj"><img class="iconBtnNext" src="assets/iconBtnNext.png">Suivant</div>
+            <div id="btnGoMenu" class="btn btnCodeDj btnNext"><img class="iconBtnNext" src="assets/iconBtnNext.png"><span>Suivant</span></div>
             <div class="rightTrait traitZigzag"></div>
         </div>
     </div>
     <div class="containPreHome center-block">
         <div class="row blocHead">
-            <div class="btnTop col-lg-4 col-md-4 col-sm-4 col-xs-4 "><div class="btnPrevious left btn btnCodeDj">Retour<img class="iconBtnPrevious" src="assets/iconBtnPrevious.png"></div></div>
+            <div class="btnTop col-lg-4 col-md-4 col-sm-4 col-xs-4 "><div class="btnPrevious left btn btnCodeDj"><span>Retour</span><img class="iconBtnPrevious" src="assets/iconBtnPrevious.png"></div></div>
             <div class="logoTop col-lg-4 col-md-4 col-sm-4 col-xs-4 "><div class="demiLogo logoImg shadow"></div></div>
             <div class="btnTop col-lg-4 col-md-4 col-sm-4 col-xs-4 ">
-                <!--<div id="btn_next_question" class="right btn btnCodeDj invisible"><img class="iconBtnNext" src="assets/iconBtnNext.png">Suivant</div>-->
+                <div class="bloc-translate-btn">
+                    <div class="translate-en"></div>
+                    <div class="translate-fr"></div>
+                </div>
+                <!--<div id="btn_next_question" class="right btn btnCodeDj invisible"><img class="iconBtnNext" src="assets/iconBtnNext.png"><span>Suivant</span></div>-->
                 <div class="bloc-btn-volume">
                     <div class="blocVolume d-flex flex-row">
                         <div class="moins">-</div>
@@ -472,18 +441,14 @@
                 </div>
             </div>
         </div>
-        <!--<div class="row blocHeadTrait">
-            <div class="trait"><img src="assets/traitZigzag.svg" width="100%"></div>
+
+       <!-- <div class="bloc-tab">
+            <div class="space bloc-space-left"><div id="previousTab"></div></div>
+            <div class="center-tab">
+                <div id="tabs_container"></div>
+            </div>
+            <div class="space bloc-space-right"><div id="nextTab"></div></div>
         </div>-->
-
-        <!-- <div class="row blocOnglet">
-             <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 bloc-btn-volume">
-
-             </div>
-             <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
-                 <div class="blocItemOnglet"></div>
-             </div>
-         </div>-->
 
         <div id="tabs_container"></div>
         <div class="top customTopBottom">
@@ -513,7 +478,7 @@
                     <div id="btn_execute"></div>
                     <div id="btn_reset"></div>
                     <div id="btn_solution"></div>
-                    <div id="btn_next_question">Suivant</div>
+                    <div id="btn_next_question" class="btnNext btn btnCodeDj"><img class="iconBtnNext" src="assets/iconBtnNext.png"><span>Suivant</span></div>
                     <div id="btn_save" class="invisible"></div>
                     <div id="btn_load" class="invisible"></div>
                     <div id="mp3" class="btn-inactif invisible"></div>
@@ -552,15 +517,19 @@
         </div>
         <div class="btnWorldWin d-flex flex-row">
             <div class="leftTrait traitZigzag"></div>
-            <div id="btnGoMenu" class="btn btnCodeDj"><img class="iconBtnNext" src="assets/iconBtnNext.png">Suivant</div>
+            <div id="btnGoMenu" class="btn btnCodeDj"><img class="iconBtnNext" src="assets/iconBtnNext.png"><span>Suivant</span></div>
             <div class="rightTrait traitZigzag"></div>
         </div>
     </div>
     <div class="containPreHome center-block">
         <div class="row blocHead">
-            <div class="btnTop col-lg-4 col-md-4 col-sm-4 col-xs-4 "><div class="btnPrevious left btn btnCodeDj">Retour<img class="iconBtnPrevious" src="assets/iconBtnPrevious.png"></div></div>
+            <div class="btnTop col-lg-4 col-md-4 col-sm-4 col-xs-4 "><div class="btnPrevious left btn btnCodeDj"><span>Retour</span><img class="iconBtnPrevious" src="assets/iconBtnPrevious.png"></div></div>
             <div class="logoTop col-lg-4 col-md-4 col-sm-4 col-xs-4 "><div class="demiLogo logoImg shadow"></div></div>
             <div class="btnTop col-lg-4 col-md-4 col-sm-4 col-xs-4 ">
+                <div class="bloc-translate-btn">
+                    <div class="translate-en"></div>
+                    <div class="translate-fr"></div>
+                </div>
                 <div class="bloc-btn-volume">
                     <div class="blocVolume d-flex flex-row">
                         <div class="moins">-</div>

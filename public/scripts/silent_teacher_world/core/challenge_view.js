@@ -13,7 +13,10 @@ define([
 
     eventBus.on('challenge changed', updateAnsweredQuestions)
 
-
+    eventBus.on('lang changed', function (lang) {
+        localStorage.setItem('lang', lang)
+        location.reload();
+    })
 
     var answerTemplate
     var correctionTemplate

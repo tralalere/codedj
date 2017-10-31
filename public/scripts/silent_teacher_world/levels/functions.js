@@ -23,7 +23,7 @@ define([
             if (b === a) {
                 b += 2
             }
-            q.addJSCode('function bonjour (a, b) {\n\treturn a + b;\n}\n\nbonjour(' + a + ', ' + b + ');')
+            q.addJSCode('function hello (a, b) {\n\treturn a + b;\n}\n\nhello(' + a + ', ' + b + ');')
         },
         timeoutTime: 15000
     })
@@ -36,7 +36,7 @@ define([
             if (b === a) {
                 b += 1
             }
-            q.addJSCode('function salut (a, b) {\n\treturn a * b;\n}\n\nsalut(' + a + ', ' + b + ');')
+            q.addJSCode('function hi (a, b) {\n\treturn a * b;\n}\n\nhi(' + a + ', ' + b + ');')
         },
         timeoutTime: 13000
     })

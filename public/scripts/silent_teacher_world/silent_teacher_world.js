@@ -14,7 +14,7 @@ define([
 
     globals.challengeInputWidth = 300
     globals.errorsCount = 0
-    globals.levelID     = levelsNavigator.startLevelID
+    globals.levelID = levelsNavigator.startLevelID
 
 
     function init () {
@@ -23,7 +23,7 @@ define([
         globalEventBus.emit('page loaded')
         globalEventBus.emit('user ready to start')
         globalEventBus.emit('change volume custom', 100)
-
+        
         $('.wonWorld').on('click', function(event){
             event.isImmediatePropagationStopped()
             $('.wonWorld').addClass('invisible')

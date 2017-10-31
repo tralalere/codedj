@@ -461,7 +461,6 @@ button {
 .pattern th{
     font-family: 'Raleway';
     font-weight: 700;
-    background:#4E0A63;
     color: #e7e7e7;
     text-align: center;
 }
@@ -497,7 +496,7 @@ button {
     position: absolute;
     z-index: 10;
     top: 5px;
-    right: 15px;
+    right: 30px;
 }
 
 .btn-next{

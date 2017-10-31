@@ -84,13 +84,24 @@ define([
             $('#viewApp').empty()
             window.location.href = '.?monde'
         })
-        $('.btnPrevious').click(function () {
+       /* $('#btnPrevious').click(function () {
             window.location.href = '.?monde=select'
             return false
         })
+        $('#previousTab').on('click', function(){
+            var elemWidth = elementWidth($('#tabs_container'))
+            console.log(elemWidth)
+
+        })*/
     }
 
-
+    function elementWidth(elem) {
+        return {
+            parent : elem[0].parentElement.clientWidth,
+            child : elem[0].clientWidth
+        }
+    }
+    
     function worldThree () {
         $('#view').addClass('customHeightTimeline')
         $('#mp3').removeClass('invisible')

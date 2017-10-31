@@ -1,3 +1,10 @@
+var lang = 'fr';
+if(navigator.language || navigator.userLanguage){
+    lang = navigator.language || navigator.userLanguage;
+};
+if(localStorage.getItem('lang')){
+    lang = localStorage.getItem('lang');
+}
 define([
     'toxilibs/event_bus_queued',
     './levels/level_manager',
@@ -52,7 +59,11 @@ define([
 
 
     function onAllLevelsComplete () {
-        $('#world2 .wonWorld .worldUnlocked').html('monde 3')
+        if(lang == 'fr'){
+            $('#world2 .wonWorld .worldUnlocked').html('monde 3')
+        } else{
+            $('#world2 .wonWorld .worldUnlocked').html('world 3')
+        }
         $('.wonWorld').removeClass('invisible')
         setAccess(3)
     }

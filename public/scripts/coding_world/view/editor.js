@@ -26,8 +26,6 @@ define([
     var $textArea
     var $searchFieldButton
 
-
-
     globalEventBus('solutionWorld').on('world ready', function (world) {
         solutionCode = world.exposedCode()
     })

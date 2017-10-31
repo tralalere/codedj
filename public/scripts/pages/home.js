@@ -1,3 +1,10 @@
+var lang = 'fr';
+if(navigator.language || navigator.userLanguage){
+    lang = navigator.language || navigator.userLanguage;
+};
+if(localStorage.getItem('lang')){
+    lang = localStorage.getItem('lang');
+}
 define([
     'jquery',
     'toxilibs/event_bus_queued',
@@ -7,6 +14,11 @@ define([
     initView()
 
     function init (event) {
+        globalEventBus.on('lang changed', function (lang) {
+            localStorage.setItem('lang', lang)
+            location.reload();
+        })
+        
         event = (typeof event === 'undefined') ? 'home view ready' : event
         $('.iconCodeDj').addClass('invisible')
         $('#challenges_container, .wrapChallengeTimeline').removeClass('box_shadow_container')
@@ -73,7 +85,7 @@ define([
 
     function showPopUp (select) {
         $('.blocPopUp .pop').empty()
-        $.getJSON('json/text.json', function (data) {
+        $.getJSON('json/'+lang+'/text.json', function (data) {
             $('.blocPopUp .pop').html(data[select])
         })
         $('.blocPopUp').fadeIn()

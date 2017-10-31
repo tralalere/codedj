@@ -1,3 +1,10 @@
+var lang = 'fr';
+if(navigator.language || navigator.userLanguage){
+    lang = navigator.language || navigator.userLanguage;
+};
+if(localStorage.getItem('lang')){
+    lang = localStorage.getItem('lang');
+}
 define([
     'toxilibs/event_bus_queued',
     'toxilibs/sound',
@@ -5,33 +12,33 @@ define([
     '../challenge',
     './G1_A',
     './G1_B',
-    './G1_B_step2A',
-    './G1_B_step2B',
-    './G1_B_step2C',
+    './'+lang+'/G1_B_step2A',
+    './'+lang+'/G1_B_step2B',
+    './'+lang+'/G1_B_step2C',
     './G1_C',
     './G1_D',
-    './G1_D_step1A',
-    './G1_D_step1B',
-    './G1_D_step6',
+    './'+lang+'/G1_D_step1A',
+    './'+lang+'/G1_D_step1B',
+    './'+lang+'/G1_D_step6',
     './G1_E',
     './G1_F',
     './G2_A',
     './G2_B',
-    './G2_B_step4A',
-    './G2_B_step4B',
+    './'+lang+'/G2_B_step4A',
+    './'+lang+'/G2_B_step4B',
     './G2_C',
     './G2_D',
-    './G2_D_step5B',
+    './'+lang+'/G2_D_step5B',
     './G2_E',
     './G2_F',
     './G3_A',
     './G3_B',
-    './G3_B_step4C',
-    './G3_B_step5A',
+    './'+lang+'/G3_B_step4C',
+    './'+lang+'/G3_B_step5A',
     './G3_C',
     './G3_D',
-    './G3_D_step3A',
-    './G3_D_step3B',
+    './'+lang+'/G3_D_step3A',
+    './'+lang+'/G3_D_step3B',
     './G3_E',
     './G3_F',
     './G3_G'
@@ -57,6 +64,11 @@ define([
 
 
     function init () {
+        globalEventBus.on('lang changed', function (lang) {
+            localStorage.setItem('lang', lang)
+            location.reload();
+        })
+
         setChallenge(levelsData[currentLevelIndex])
 
         globalEventBus.on('pattern beat played', function (pattern, beat) {
