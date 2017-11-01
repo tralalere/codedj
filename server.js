@@ -6,6 +6,7 @@ var port = 8000
 
 var scriptsPath = './back'
 var exportSounds = require(scriptsPath + '/export.js')
+const scrapeService = require(scriptsPath + '/scrape_service.js');
 
 
 app.use(express.static('public'))
@@ -51,6 +52,10 @@ app.get('/download', function (req, res) {
         }
     })
 })
+
+app.get('/scrape', function (req, res) {
+  res.json(scrapeService.getData());
+});
 
 app.listen(port, function () {
     console.log('Server is running on port: ' + port)
