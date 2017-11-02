@@ -75,7 +75,7 @@ require([
             $('.levelWon').html(data['levelWon'])
 
             $('.titleWorld.samples span').html(data['button']['titleWorld-samples'])
-            $('.titleWorld.rhytmes span').html(data['button']['titleWorld-rhytmes'])
+            $('.titleWorld.rythmes span').html(data['button']['titleWorld-rhytmes'])
             $('.titleWorld.morceaux span').html(data['button']['titleWorld-morceaux'])
 
             $('.creditText').html(data['button']['creditText'])
