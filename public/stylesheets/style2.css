@@ -2893,6 +2893,10 @@ progress span{
     font-size: 12px;
 }
 
+#world1 .bloc-translate-btn{
+    position: relative;
+    z-index: 9999;
+}
 .bloc-translate-btn .translate-fr,
 .bloc-translate-btn .translate-en{
     height:40px;

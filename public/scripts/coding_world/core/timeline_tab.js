@@ -1,3 +1,10 @@
+var lang = 'fr';
+if(navigator.language || navigator.userLanguage){
+    lang = navigator.language || navigator.userLanguage;
+};
+if(localStorage.getItem('lang')){
+    lang = localStorage.getItem('lang');
+}
 define([
 
 ], function () {
@@ -8,7 +15,12 @@ define([
     function createTabConstructor (eventBus) {
 
         function TimelineTab (name) {
-            this.name = name || 'default'
+            if(lang == 'fr'){
+                this.name = name || 'Global'
+            } else{
+                this.name = name || 'Default'
+            }
+
 
             if (tabs[this.name]) {
                 var copiedTab = tabs[this.name]

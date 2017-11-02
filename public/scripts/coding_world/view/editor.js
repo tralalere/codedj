@@ -1,3 +1,11 @@
+var lang = 'fr';
+if(navigator.language || navigator.userLanguage){
+    lang = navigator.language || navigator.userLanguage;
+};
+if(localStorage.getItem('lang')){
+    lang = localStorage.getItem('lang');
+}
+
 define([
     'jquery',
     'toxilibs/event_bus_queued',
@@ -140,6 +148,10 @@ define([
 
     function showSavePopin () {
         var popin = $('<div class="popin">Choisissez un nom de sauvegarde <input id="filename" type="text"><button id="save">Sauvegarder</button></div>')
+        if (lang !== 'fr'){
+            popin = $('<div class="popin">Choose a save name<input id="filename" type="text"><button id="save">Save</button></div>')
+        }
+
         popin.append('<div class="closeBtn">x</div>')
 
         $('body').append(popin)
@@ -153,7 +165,13 @@ define([
 
 
     function showLoadPopin () {
+        
         var popin = $('<div class="popin">Choisissez la sauvegarde à charger<br></div>')
+
+        if (lang !== 'fr'){
+            popin =  $('<div class="popin">Choose a creation to load<br></div>')
+        }
+
         popin.append('<div class="closeBtn">x</div>')
 
         var select = $('<select id="saves"></select>')
@@ -164,7 +182,13 @@ define([
         }
 
         popin.append(select)
-        popin.append('<button id="load">Charger</button>')
+
+        if(lang == 'fr'){
+            popin.append('<button id="load">Charger</button>')
+        } else {
+            popin.append('<button id="load">Load</button>')
+        }
+
 
         $('body').append(popin)
 

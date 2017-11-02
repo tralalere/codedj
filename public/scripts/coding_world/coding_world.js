@@ -60,9 +60,9 @@ define([
 
     function onAllLevelsComplete () {
         if(lang == 'fr'){
-            $('#world2 .wonWorld .worldUnlocked').html('monde 3')
+            $('#world2 .wonWorld .worldUnlocked').html('monde des morceaux')
         } else{
-            $('#world2 .wonWorld .worldUnlocked').html('world 3')
+            $('#world2 .wonWorld .worldUnlocked').html('world of Tracks!')
         }
         $('.wonWorld').removeClass('invisible')
         setAccess(3)

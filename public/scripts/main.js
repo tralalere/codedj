@@ -1,3 +1,10 @@
+var lang = 'fr';
+if(navigator.language || navigator.userLanguage){
+    lang = navigator.language || navigator.userLanguage;
+};
+if(localStorage.getItem('lang')){
+    lang = localStorage.getItem('lang');
+}
 require.config({
     urlArgs: (typeof window !== 'undefined' && (window.location.protocol === 'file:' || window.location.hostname === 'localhost')) ? 'bust=' + Date.now() : '',
     baseUrl: 'scripts',
@@ -62,17 +69,23 @@ require([
             $('.btnPrevious span').html(data['button']['previous'])
             $('.btnWorld span').html(data['button']['begin'])
             $('.goToSelectWorld span').html(data['button']['play'])
-            $('.titleWorldWin').html(data['woldWin'])
+            $('#world1 .titleWorldWin').html(data['woldWinBeats'])
+            $('#world2 .titleWorldWin').html(data['woldWinTracks'])
             $('.missionCompleted').html(data['missionCompleted'])
             $('.levelWon').html(data['levelWon'])
 
-            $('.titleWorld span').html(data['button']['titleWorld'])
+            $('.titleWorld.samples span').html(data['button']['titleWorld-samples'])
+            $('.titleWorld.rhytmes span').html(data['button']['titleWorld-rhytmes'])
+            $('.titleWorld.morceaux span').html(data['button']['titleWorld-morceaux'])
 
             $('.creditText').html(data['button']['creditText'])
             $('.mentionText').html(data['button']['mentionText'])
             $('.faqText').html(data['button']['faqText'])
-            $('.recoText').html(data['button']['recoText'])
             $('.sourcesGitHub').html(data['button']['sourcesGitHub'])
+
+            $('.encart').html(data['partenaires'])
+
+
         })
 
         if (urlParams.monde === '1') {

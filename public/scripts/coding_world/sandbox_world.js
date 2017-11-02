@@ -72,16 +72,11 @@ define([
 
 
     }
-
-
-
-
-
-
+    
     globalEventBus.on('save creation requested', saveCreation)
 
 
-    function saveCreation () {
+    function saveCreation() {
         var notes = []
 
         if (tunes.length > 0) {
@@ -92,9 +87,11 @@ define([
         } else {
             browsePatterns(patterns, notes)
         }
-
-        $.get(document.location.origin+document.location.pathname+'export', {notes: JSON.stringify(notes), token: userToken}, function () {
-            window.location = document.location.origin+document.location.pathname+'/download?token=' + userToken
+        $.get(document.location.origin + document.location.pathname + 'export', {
+            notes: JSON.stringify(notes),
+            token: userToken
+        }, function () {
+            window.location = document.location.origin + document.location.pathname + '/download?token=' + userToken
         })
     }
 
