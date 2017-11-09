@@ -18,6 +18,7 @@
     "body-parser": "^1.18.2",
     "expect.js": "^0.3.1",
     "express": "^4.16.1",
+    "fluent-ffmpeg": "^2.1.2",
     "node-wav": "0.0.2",
     "requirejs": "^2.3.3",
     "sox": "^0.1.0",
