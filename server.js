@@ -2,6 +2,9 @@ var express = require('express')
 var app = express()
 var bodyParser = require('body-parser')
 var exec = require('child_process').exec
+var mp4converter = require('./back/exporter/mp4_exporter');
+const uniqueString = require('unique-string');
+const fs = require('fs');
 var port = 8000
 
 var scriptsPath = './back'
@@ -25,7 +28,8 @@ app.get('/export', function (req, res) {
     var id    = String(Date.now()) + increment
     increment++
     tokenToID[token] = id
-    var notesList = JSON.parse(req.query.notes)
+    var notesList = JSON.parse(req.query.notes.replace(/mp3/g,'wav'));
+    console.log(notesList);
     exportSounds({
         notes: notesList,
         id: id
@@ -51,6 +55,43 @@ app.get('/download', function (req, res) {
         }
     })
 })
+
+app.get('/video', function (req, res) {
+    var uniqueFileId  = uniqueString() + '_' + String(Date.now());
+    var notesList     = JSON.parse(req.query.notes.replace(/mp3/g,'wav'));
+    exportSounds({
+        notes: notesList,
+        id: uniqueFileId
+    }, function () {
+
+      var prefix_path = './public/assets/sounds/export/output' + uniqueFileId;
+
+      mp4converter.doExport(prefix_path + '.mp3', prefix_path, function(err, success) {
+        if(err)
+        {
+          console.error('mp4_exporter :: export fail', err);
+          res.status(500).end('Server error');
+          return;
+        }
+        else
+        {
+          console.log('mp4_exporter :: export success');
+          var stat = fs.statSync(prefix_path + '.mp4');
+
+          res.writeHead(200, {
+             'Content-Type': 'video/mp4',
+             'Content-Length': stat.size
+          });
+
+          var readStream = fs.createReadStream(prefix_path + '.mp4');
+          readStream.pipe(res);
+
+          exec('rm ' + prefix_path + '.mp3');
+          exec('rm ' + prefix_path + '.mp4');
+        }
+    });
+  });
+});
 
 app.listen(port, function () {
     console.log('Server is running on port: ' + port)

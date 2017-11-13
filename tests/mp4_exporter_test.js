@@ -5,18 +5,19 @@ const fs               = require('fs');
 const os               = require('os');
 const assert           = require('assert');
 const expect           = require('chai').expect;
-const mp4_exporter     = require('../back/mp4_exporter');
+const mp4_exporter     = require('../back/exporter/mp4_exporter');
 
 
 describe('convert mp3 + jpg to video by passing path of audio', function () {
 
+  this.timeout(20000);
+
   it('Should run success', function (done) {
 
-    var mp3_path = '../public/assets/sounds/export/output.wav';
-    var img_path = './assets/background_img_yt.png';
-    var mp4_path = os.tmpdir() + Date.now() + '.mp4';
+    var mp3_path        = fs.createReadStream(__dirname + '/../public/assets/sounds/export/output.mp3');
+    var mp4_path        = '/codedj/public/assets/sounds/export/youtube';
 
-    mp4_exporter.doExportPath(mp3_path, img_path, mp4_path, function(err, success) {
+    mp4_exporter.doExport(mp3_path, mp4_path, function(err, success) {
       if(err)
       {
         console.error('mp4_exporter :: export fail', err);
@@ -25,10 +26,11 @@ describe('convert mp3 + jpg to video by passing path of audio', function () {
       else
       {
         console.log('mp4_exporter :: export success : ' +  mp4_path);
-        expect(fs.existsSync(mp4_path)).to.be.true;
+        expect(fs.existsSync(mp4_path + '.mp4')).to.be.true;
 
-        var stats = fs.statSync(mp4_path);
-        expect(stats.size).to.equal(10000);
+        var stats = fs.statSync(mp4_path + '.mp4');
+        console.log(stats);
+        expect(stats.size).to.be.at.least(100);
       }
       done();
     });
