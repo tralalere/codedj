@@ -57,8 +57,11 @@ app.get('/download', function (req, res) {
 })
 
 app.get('/video', function (req, res) {
+
     var uniqueFileId  = uniqueString() + '_' + String(Date.now());
+
     var notesList     = JSON.parse(req.query.notes.replace(/mp3/g,'wav'));
+
     exportSounds({
         notes: notesList,
         id: uniqueFileId
@@ -66,7 +69,7 @@ app.get('/video', function (req, res) {
 
       var prefix_path = './public/assets/sounds/export/output' + uniqueFileId;
 
-      mp4converter.doExport(prefix_path + '.mp3', prefix_path, function(err, success) {
+      mp4converter.doExport(prefix_path + '.mp3', prefix_path + '.mkv', function(err, success) {
         if(err)
         {
           console.error('mp4_exporter :: export fail', err);
@@ -76,20 +79,21 @@ app.get('/video', function (req, res) {
         else
         {
           console.log('mp4_exporter :: export success');
-          var stat = fs.statSync(prefix_path + '.mp4');
+          var stat = fs.statSync(prefix_path + '.mkv');
 
           res.writeHead(200, {
-             'Content-Type': 'video/mp4',
+             'Content-Type': 'video/mkv',
              'Content-Length': stat.size
           });
 
-          var readStream = fs.createReadStream(prefix_path + '.mp4');
+          var readStream = fs.createReadStream(prefix_path + '.mkv');
           readStream.pipe(res);
 
           exec('rm ' + prefix_path + '.mp3');
-          exec('rm ' + prefix_path + '.mp4');
+          exec('rm ' + prefix_path + '.mkv');
         }
     });
+
   });
 });
 
