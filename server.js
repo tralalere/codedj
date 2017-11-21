@@ -58,43 +58,52 @@ app.get('/download', function (req, res) {
 
 app.get('/video', function (req, res) {
 
-    var uniqueFileId  = uniqueString() + '_' + String(Date.now());
+  var uniqueFileId  = uniqueString() + '_' + String(Date.now());
 
-    var notesList     = JSON.parse(req.query.notes.replace(/mp3/g,'wav'));
+  var notesList     = JSON.parse(req.query.notes.replace(/mp3/g,'wav'));
 
-    exportSounds({
-        notes: notesList,
-        id: uniqueFileId
-    }, function () {
+  var lang          = req.acceptsLanguages('en', 'fr');
+  lang = (lang) ? lang.toUpperCase(): 'EN';
 
-      var prefix_path = './public/assets/sounds/export/output' + uniqueFileId;
+  exportSounds({
+      notes: notesList,
+      id: uniqueFileId
+  }, function () {
 
-      mp4converter.doExport(prefix_path + '.mp3', prefix_path + '.mkv', function(err, success) {
-        if(err)
-        {
-          console.error('mp4_exporter :: export fail', err);
-          res.status(500).end('Server error');
-          return;
-        }
-        else
-        {
-          console.log('mp4_exporter :: export success');
-          var stat = fs.statSync(prefix_path + '.mkv');
+    var prefix_path = './public/assets/sounds/export/output' + uniqueFileId;
 
-          res.writeHead(200, {
-             'Content-Type': 'video/mkv',
-             'Content-Length': stat.size
-          });
+    mp4converter.doExport(prefix_path + '.mp3', prefix_path, lang, function(err, success) {
+      if(err)
+      {
+        console.error('mp4_exporter :: export fail', err);
+        res.status(500).end('Server error');
+        return;
+      }
+      else
+      {
+        console.log('mp4_exporter :: export success');
 
-          var readStream = fs.createReadStream(prefix_path + '.mkv');
-          readStream.pipe(res);
+        res.sendFile(prefix_path + '.mp4', {root: __dirname}, function (err) {
+          if (err)
+          {
+            res.status(500).end('Server error');
+          }
+          else
+          {
+            console.log('Sent:', prefix_path + '.mp4');
+          }
+          try { exec('rm ' + prefix_path + '.mp3'); } catch (e) {}
+          try { exec('rm ' + prefix_path + '.mp4'); } catch (e) {}
+        });
 
+        setTimeout(function () {
           exec('rm ' + prefix_path + '.mp3');
-          exec('rm ' + prefix_path + '.mkv');
-        }
+          exec('rm ' + prefix_path + '.mp4');
+        }, 15000);
+      }
     });
-
   });
+
 });
 
 app.listen(port, function () {

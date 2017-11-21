@@ -42,5 +42,3 @@ libswscale      4.  8.100 /  4.  8.100
 libswresample   2.  9.100 /  2.  9.100
 libpostproc    54.  7.100 / 54.  7.100
 ```
-### Options de conversion
-======
