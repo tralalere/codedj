@@ -38,7 +38,6 @@
 
     <script data-main="./scripts/main" src="./scripts/ext_libs/require.js"></script>
 
-    <script src="//apis.google.com/js/client:plusone.js"></script>
 
     <script>
         (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -418,13 +417,22 @@
                     </div>
 
                     <div class="select_upload">
-                        <label for="privacy-status">Status :</label>
+                        <!--<label for="privacy-status">Status :</label>
                         <select id="privacy-status">
-                            <option class="public">public</option>
+                            <option class="public"></option>
                             <option class="unlisted">unlisted</option>
                             <option class="private">private</option>
-                        </select>
+                        </select>-->
+                        <label>Status :</label>
+                        <div class="blocBtnStatus">
+                            <div class="active">public</div>
+                            <div>unlisted</div>
+                            <div>private</div>
+                        </div>
+
                     </div>
+
+
 
                     <div class="wrap-btn">
                         <div class="btn btnCodeDj btn-upload"><img class="iconBtnNext" src="assets/iconBtnNext.png"><span>Upload</span></div>
@@ -725,6 +733,8 @@
     </div>
 
 </div>
+<script src="//apis.google.com/js/client:plusone.js"></script>
+
 </body>
 
 </html>

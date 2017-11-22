@@ -3330,3 +3330,33 @@ progress span{
 #uploadAndConvert label {
     display: block;
 }
+
+
+.blocBtnStatus{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+}
+
+.blocBtnStatus div{
+    width:100px;
+    height:40px;
+    background: rgba(20, 13, 34, 1);
+    margin: 0 10px;
+    border-radius: 10px;
+    color: #fff;
+    border: 2px solid #fff;
+    cursor: pointer;
+    text-align: center;
+    line-height: 34px;
+    font-size: 1.5rem;
+}
+
+.blocBtnStatus div.active{
+    -webkit-box-shadow: 0 0 5px 3px #53D8FB;
+    -moz-box-shadow: 0 0 5px 3px #53D8FB;
+    box-shadow: 0 0 5px 3px #53D8FB;
+    border: none;
+    color: rgb(255, 13, 123);
+}
