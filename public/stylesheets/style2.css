@@ -3346,17 +3346,18 @@ progress span{
     margin: 0 10px;
     border-radius: 10px;
     color: #fff;
-    border: 2px solid #fff;
     cursor: pointer;
     text-align: center;
     line-height: 34px;
     font-size: 1.5rem;
+    -webkit-box-shadow: 0 0 5px 0px #53D8FB;
+    -moz-box-shadow: 0 0 5px 0px #53D8FB;
+    box-shadow: 0 0 5px 0px #53D8FB;
 }
 
 .blocBtnStatus div.active{
     -webkit-box-shadow: 0 0 5px 3px #53D8FB;
     -moz-box-shadow: 0 0 5px 3px #53D8FB;
     box-shadow: 0 0 5px 3px #53D8FB;
-    border: none;
-    color: rgb(255, 13, 123);
+    border: 1px solid #53D8FB;
 }
