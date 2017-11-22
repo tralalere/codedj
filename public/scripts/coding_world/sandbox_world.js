@@ -3,12 +3,13 @@ define([
     'toxilibs/event_bus_queued',
     './core/world_main',
     './core/user_to_core',
+    '../upload_youtube/upload_youtube',
 
     './view/main',
     './view/editor',
     './user_code/user_code',
     'music_player/music_player'
-], function ($, globalEventBus, World, userToCoreKeys) {
+], function ($, globalEventBus, World, userToCoreKeys, uploadYoutube) {
 
     var initialCode = [
         'var pattern = new Pattern()',
@@ -43,7 +44,7 @@ define([
     var patterns = []
 
     var userToken
-
+    var self = this
     function init () {
         userToken = Date.now()
         $('#btn_save').removeClass('invisible')
@@ -62,20 +63,77 @@ define([
         })
         globalEventBus.on('new tune', function (tune) {
             tunes.push(tune)
+        })        
+        
+        globalEventBus.on('load_token', function (token) {
+            self.access_token = token;
         })
+        
 
         new World(globalEventBus, {
             exposed: initialCode.join('\n')
         })
 
 
+        $('#uploadYt').on('click', function(){
+            $('#blocPopUp-youtube').fadeIn();
+            if(!self.access_token){
+                $('.disabled-bloc').addClass('active')
+            } else {
+                $('.disabled-bloc').removeClass('active')
+            }
+        })
+        
+        $('#uploadAndConvert .close-icon, .btn-upload-completed').on('click', function(){
+            $('#blocPopUp-youtube').fadeOut();
+        })
+
+
+        $('.blocBtnStatus div').on('click',function(){
+            $('.blocBtnStatus div').removeClass('active')
+            $(this).addClass('active')
+        });
+        
+
+
+
+
+        
+        $('#upload-my-video').on('click', function(){
+            var notes = []
+            
+            if (tunes.length > 0) {
+                for (var i in tunes) {
+                    var tune = tunes[i]
+                    browsePatterns(tune.patterns, notes)
+                }
+            } else {
+                browsePatterns(patterns, notes)
+            }
+            
+            
+            var data = {
+                title:$('.title-upload #title').val(),
+                description:'description',
+                tags:'codeDJ',
+                privacy:$('.blocBtnStatus .active').text(),
+                notes:notes,
+                token: self.access_token
+            }
+            uploadYoutube.shareVideoToYoutube(data,function(){
+                console.log('error');
+            },function () {
+                console.log('suuuuuuper!!!');
+            })
+        })
+        
 
 
     }
     
     globalEventBus.on('save creation requested', saveCreation)
 
-
+        
     function saveCreation() {
         var notes = []
 

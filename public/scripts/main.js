@@ -1,6 +1,39 @@
-var lang = 'fr';
+var lang = 'fr'
+var token = null
+
+var signinCallback = function (result) {
+    if (result.access_token) {
+        ready(result.access_token);
+    }
+};
+
+function ready(accessToken) {
+    console.log(accessToken)
+    token = accessToken;
+    this.gapi = gapi;
+    this.authenticated = true;
+    this.gapi.client.request({
+        path: '/youtube/v3/channels',
+        params: {
+            part: 'snippet',
+            mine: true
+        },
+        callback: function (response) {
+            if (response.error) {
+                console.log(response.error.message)
+            } else {
+                $('#channel-name').text(response.items[0].snippet.title)
+                $('#channel-thumbnail').attr('src', response.items[0].snippet.thumbnails.default.url)
+
+                $('.pre-sign-in').hide()
+                $('.post-sign-in').show()
+            }
+        }.bind(this)
+    });
+};
+
 if(navigator.language || navigator.userLanguage){
-    lang = navigator.language || navigator.userLanguage;
+    lang = navigator.language || navigator.userLanguage
 };
 if(localStorage.getItem('lang')){
     lang = localStorage.getItem('lang');
@@ -47,13 +80,32 @@ require([
     'tether',
     'bootstrap',
     'perfectScrollbar',
-    'perfectScrollbarJQuery'
+    'perfectScrollbarJQuery',
+    '//apis.google.com/js/client:plusone.js'
 
 ], function ($, globalEventBus, getUrlParams, initHome, initWin, initSilentTeacherWorld, initCodingWorld, initSandboxWorld, jqueryUi) {
-
+    
     var urlParams = getUrlParams()
 
     $(function () {
+
+        var signinCallback = function (result) {
+            if (result.access_token) {
+                ready(result.access_token);
+            }
+        };
+            gapi.auth.authorize({
+                client_id: '837989009437-clgij106bf9i993v4lssc9rt8hvcjajk.apps.googleusercontent.com',
+                scope: 'https://www.googleapis.com/auth/youtube.upload https://www.googleapis.com/auth/youtube',
+                immediate: true
+            }, function(rep){
+                if (rep && !rep.error) {
+                    console.log('auth',rep);
+                    globalEventBus.emit('load_token', rep.access_token)
+                }
+            });
+
+        
         $('.translate-fr').on('click', function(){
             globalEventBus.emit('lang changed', 'fr')
         })

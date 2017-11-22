@@ -417,17 +417,12 @@
                     </div>
 
                     <div class="select_upload">
-                        <!--<label for="privacy-status">Status :</label>
-                        <select id="privacy-status">
-                            <option class="public"></option>
-                            <option class="unlisted">unlisted</option>
-                            <option class="private">private</option>
-                        </select>-->
+
                         <label>Status :</label>
                         <div class="blocBtnStatus">
-                            <div class="active">public</div>
-                            <div>unlisted</div>
-                            <div>private</div>
+                            <div class="public active">public</div>
+                            <div class="unlisted">unlisted</div>
+                            <div class="private">private</div>
                         </div>
 
                     </div>
@@ -435,7 +430,7 @@
 
 
                     <div class="wrap-btn">
-                        <div class="btn btnCodeDj btn-upload"><img class="iconBtnNext" src="assets/iconBtnNext.png"><span>Upload</span></div>
+                        <div id="upload-my-video" class="btn btnCodeDj btn-upload"><img class="iconBtnNext" src="assets/iconBtnNext.png"><span>Upload</span></div>
 
                     </div>
 
@@ -445,11 +440,6 @@
                         </div>
 
                         <div class="post-upload">
-                            <div class="hide">
-                                <p>Uploaded video with id <span id="video-id"></span>. Polling for status...</p>
-                                <ul id="post-upload-status"></ul>
-                                <div id="player"></div>
-                            </div>
 
                             <div class="upload-completed">
                                 <div class="icon-star"></div>
