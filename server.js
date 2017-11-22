@@ -2,11 +2,13 @@ var express = require('express')
 var app = express()
 var bodyParser = require('body-parser')
 var exec = require('child_process').exec
+var mp4converter = require('./back/exporter/mp4_exporter');
+const uniqueString = require('unique-string');
+const fs = require('fs');
 var port = 8000
 
 var scriptsPath = './back'
 var exportSounds = require(scriptsPath + '/export.js')
-const scrapeService = require(scriptsPath + '/scrape_service.js');
 
 
 app.use(express.static('public'))
@@ -26,7 +28,8 @@ app.get('/export', function (req, res) {
     var id    = String(Date.now()) + increment
     increment++
     tokenToID[token] = id
-    var notesList = JSON.parse(req.query.notes)
+    var notesList = JSON.parse(req.query.notes.replace(/mp3/g,'wav'));
+    console.log(notesList);
     exportSounds({
         notes: notesList,
         id: id
@@ -53,8 +56,54 @@ app.get('/download', function (req, res) {
     })
 })
 
-app.get('/scrape', function (req, res) {
-  res.json(scrapeService.getData());
+app.get('/video', function (req, res) {
+
+  var uniqueFileId  = uniqueString() + '_' + String(Date.now());
+
+  var notesList     = JSON.parse(req.query.notes.replace(/mp3/g,'wav'));
+
+  var lang          = req.acceptsLanguages('en', 'fr');
+  lang = (lang) ? lang.toUpperCase(): 'EN';
+
+  exportSounds({
+      notes: notesList,
+      id: uniqueFileId
+  }, function () {
+
+    var prefix_path = './public/assets/sounds/export/output' + uniqueFileId;
+
+    mp4converter.doExport(prefix_path + '.mp3', prefix_path, lang, function(err, success) {
+      if(err)
+      {
+        console.error('mp4_exporter :: export fail', err);
+        res.status(500).end('Server error');
+        return;
+      }
+      else
+      {
+        console.log('mp4_exporter :: export success');
+
+        res.sendFile(prefix_path + '.mp4', {root: __dirname}, function (err) {
+          if (err)
+          {
+            res.status(500).end('Server error');
+          }
+          else
+          {
+            console.log('Sent:', prefix_path + '.mp4');
+          }
+          try { exec('rm ' + prefix_path + '.mp3'); } catch (e) {}
+          try { exec('rm ' + prefix_path + '.mp4'); } catch (e) {}
+        });
+
+        setTimeout(function () {
+          exec('rm ' + prefix_path + '.mp3');
+          exec('rm ' + prefix_path + '.mp4');
+        }, 15000);
+      }
+    });
+  });
+
 });
 
 app.listen(port, function () {
