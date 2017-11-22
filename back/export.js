@@ -18,7 +18,7 @@ function exportSounds (params, callback) {
             exec('rm ' + path + 'output' + id + '.wav')
             callback()
         }
-    })
+    });
 }
 
 function mixNotes (notes) {
