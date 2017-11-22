@@ -937,6 +937,10 @@ tbody{
     background-repeat: no-repeat;
 }
 
+#code_buttons #uploadYt{
+    background: yellow;
+}
+
 #world2 .containPreHome .blocStreightTrait{
     height:20px;
     margin: 10px auto;
@@ -3005,3 +3009,324 @@ progress span{
     background: deepskyblue;
 }
 */
+/*************** HOUROFCODE************************/
+#finishedHour{
+    display: block;
+    position: absolute;
+    left:150px;
+    font-size: 15px;
+    color: #fff;
+    text-decoration: underline;
+    top: 10px;
+}
+.btnWorldWin .getCertificate.btn.btnCodeDj{
+    width: initial !important;
+    padding: 15px 35px;
+}
+.btnTop .getCertificate.btn.btnCodeDj{
+    top: 10px;
+    left:190px;
+    position: absolute;
+    padding: 10px 25px !important;
+}
+.btnTop .getCertificate.btn.btnCodeDj img.iconBtnNext{
+    width: 40px;
+    height: 40px;
+}
+.getCertificate.btn.btnCodeDj a{
+    color: #fff;
+}
+.getCertificate.btn.btnCodeDj:hover a{
+    text-decoration: none;
+    color: #000;
+}
+
+/************************************************* YOUTUBE TEST CSS*****************************************************/
+
+#blocPopUp-youtube{
+    display: none;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 99999;
+    background: rgba(0, 0, 0,0.5);
+}
+
+#uploadAndConvert{
+    width: 500px;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    margin: 0 auto;
+    z-index: 99999;
+    background: rgba(20, 13, 34, 1);
+    color: #000;
+    -webkit-box-shadow: 0 0 15px 5px rgba(83, 216, 251, 0.5);
+    -moz-box-shadow: 0 0 15px 5px rgba(83, 216, 251, 0.5);
+    box-shadow: 0 0 15px 5px rgba(83, 216, 251, 0.5);
+    border-radius: 40px;
+}
+
+#uploadAndConvert .top-icon-upload{
+    width: 70px;
+    height: 70px;
+    top: -35px;
+    position: absolute;
+    z-index: 9999;
+    left: 50%;
+    transform: translateX(-50%);
+    background: url(../assets/top-icon-upload.png);
+    background-size: 70px 70px;
+    background-repeat: no-repeat;
+}
+#uploadAndConvert .close-icon{
+    width: 50px;
+    height:50px;
+    border-radius: 50%;
+    cursor: pointer;
+    top: 20px;
+    right: 20px;
+    position: absolute;
+    z-index: 9999;
+    background: url(../assets/close.png);
+    background-size: 50px 50px;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+}
+#uploadAndConvert input:focus,
+#uploadAndConvert select:focus,
+#uploadAndConvert textarea:focus,
+#uploadAndConvert button:focus {
+    outline: none;
+}
+
+#uploadAndConvert .bloc-sign-in{
+    height:120px;
+    width:100%;
+    position: relative;
+}
+#signinButton{
+    width: 100%;
+    height:100%;
+    display: block;
+    text-align: center;
+    padding: 25px;
+}
+#signinButton >div{
+    top:50%;
+    transform: translateY(-50%);
+}
+
+.post-sign-in{
+    width: 100%;
+    margin: 0px auto;
+    padding: 25px;
+}
+.post-sign-in #channel-name{
+    color: #fff;
+}
+
+.wrap-upload-config{
+    position: relative;
+    padding: 0px 0px 20px;
+    width: 100%;
+}
+.wrap-upload-config .upload-config{
+    width:80%;
+    margin: 0 auto;
+}
+
+.disabled-bloc.active{
+    width:100%;
+    height:100%;
+    position: absolute;
+    background: rgba(0,0,0,0.8);
+}
+.wrap-upload-config div{
+    margin: 0px auto 20px;
+}
+
+.wrap-upload-config .disabled-bloc,
+.wrap-upload-config .upload-config{
+    border-bottom-right-radius: 40px;
+    border-bottom-left-radius: 40px;
+}
+
+
+.title-upload{
+    width:100%;
+}
+
+.title-upload label{
+    color: rgb(255, 13, 123);
+}
+.title-upload input{
+    font-size: 1.5rem;
+    padding-left: 20px;
+    border: none;
+    -webkit-box-shadow: 0 0 5px 0px #53D8FB;
+    -moz-box-shadow: 0 0 5px 0px #53D8FB;
+    box-shadow: 0 0 5px 0px #53D8FB;
+    margin: 0 10px 0 0;
+    background: transparent;
+    border-radius: 15px;
+    height: 40px;
+    color: #fff;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+#signinButton > div{
+    margin:0 auto;
+}
+
+.description-upload{
+    display: none;
+
+}
+.select_upload{
+    width:100%;
+
+}
+.select_upload select{
+    cursor: pointer;
+    font-size: 1.5rem;
+    padding-left: 20px;
+    border: none;
+    -webkit-box-shadow: 0 0 5px 0px #53D8FB;
+    -moz-box-shadow: 0 0 5px 0px #53D8FB;
+    box-shadow: 0 0 5px 0px #53D8FB;
+    width: 100%;
+    height: 40px;
+    background: transparent;
+    color: #fff;
+    border-radius: 15px;
+}
+
+.select_upload select option{
+    color: #000;
+}
+.title-upload label,
+#uploadAndConvert .post-upload .upload-completed,
+.select_upload label{
+    margin-bottom: 10px;
+    font-size: 2rem;
+    font-family: 'Raleway';
+    color: rgb(255, 13, 123);
+}
+
+
+#uploadAndConvert .disclamer-upload{
+    width:100%;
+    padding:10px;
+    margin: 20px auto 0;
+}
+
+#uploadAndConvert #channel-image {
+    width: 2em;
+    height: 2em;
+    vertical-align: middle;
+
+}
+
+#uploadAndConvert #channel-name {
+    margin-left: 0.2em;
+    margin-right: 0.2em;
+    display: inline-block;
+    height: 50px;
+    position: relative;
+    top: 5px;
+    font-size: 2rem;
+}
+
+#uploadAndConvert #disclaimer {
+    font-size: 1rem;
+    color: #aeaeae;
+    margin: 0 auto;
+}
+
+
+#uploadAndConvert .post-sign-in {
+    display: none;
+}
+
+#uploadAndConvert .post-sign-in div{
+    text-align: center;
+}
+#uploadAndConvert .post-sign-in .bloc-avatar-upload img{
+    max-width: 70px;
+}
+
+#uploadAndConvert .during-upload {
+    display: none;
+    padding: 10px 0;
+}
+#uploadAndConvert .during-upload #upload-progress{
+    display: block;
+    width: 80%;
+    margin: 0 auto;
+}
+
+#uploadAndConvert .post-upload {
+    text-align: center;
+    display: none;
+}
+
+#uploadAndConvert .post-upload .upload-completed{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    color: rgb(255, 13, 123);
+    font-size: 2rem;
+    margin: 10px auto;
+    justify-content: center;
+}
+
+#uploadAndConvert .post-upload .upload-completed .icon-star{
+    margin: 0;
+    background: url(../assets/icon-star.png);
+    background-size: 40px 40px;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    width:50px;
+    height:50px;
+}
+#uploadAndConvert .post-upload .upload-completed label{
+    position: relative;
+    top: 4px;
+    font-weight: bold;
+    font-family: 'Coiny-Regular';
+    font-size: 2.5rem;
+}
+
+#uploadAndConvert .wrap-btn .btn-upload,
+#uploadAndConvert .wrap-btn {
+    margin: 0;
+}
+
+#uploadAndConvert .wrap-btn {
+    text-align: center;
+}
+
+#uploadAndConvert .btn-upload,
+#uploadAndConvert .post-upload .btn-upload-completed{
+    min-width: 100px;
+    width: initial;
+    font-size: 1.5rem;
+    padding: 10px 5px;
+    top: 3px;
+    max-height: 45px;
+    position: relative;
+}
+#uploadAndConvert .btn-upload img.iconBtnNext,
+#uploadAndConvert .post-upload .btn-upload-completed img.iconBtnNext{
+    top: 2px;
+    width: 40px;
+    height: 40px;
+}
+
+#uploadAndConvert label {
+    display: block;
+}
