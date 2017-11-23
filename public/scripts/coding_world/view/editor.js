@@ -2,8 +2,23 @@ var lang = 'fr';
 if(navigator.language || navigator.userLanguage){
     lang = navigator.language || navigator.userLanguage;
 };
+
 if(localStorage.getItem('lang')){
-    lang = localStorage.getItem('lang');
+
+    if (localStorage.getItem('lang') !== 'fr' || localStorage.getItem('lang').substring(0, 2) !== 'fr') {
+        if(localStorage.getItem('lang') !== 'en'){
+            localStorage.setItem('lang', 'en')
+            location.reload();
+        }
+    }
+
+    lang = localStorage.getItem('lang')
+}
+
+if (lang !== 'fr' || lang.substring(0, 2) !== 'fr') {
+    lang = 'en'
+} else {
+    lang = 'fr'
 }
 
 define([
@@ -56,8 +71,8 @@ define([
         $('#btn_next_question').addClass('invisible')
 
         /*$('#player_buttons').css({
-            display: 'inline-block'
-        })*/
+         display: 'inline-block'
+         })*/
 
         addCodeEditorCapabilities(codeEditor, {
             container: $('#code_editor'),
@@ -99,7 +114,7 @@ define([
      TODO:  integration css function initDomEvents ()  in comment
      */
     function initDomEvents () {
-       // $('#btn_execute').on('click', runCode)
+        // $('#btn_execute').on('click', runCode)
         $('#btn_reset').on('click', reset)
 
         //$('#btn_stop').on('click', stopLoop)
@@ -138,6 +153,11 @@ define([
             //TODO: pop-up de confirmation
             eventBus.emit('save creation requested')
         })
+
+        $('#upload-my-video').click(function () {
+            eventBus.emit('get code editor content', codeEditor.content())
+        })
+
     }
 
 
@@ -165,7 +185,7 @@ define([
 
 
     function showLoadPopin () {
-        
+
         var popin = $('<div class="popin">Choisissez la sauvegarde à charger<br></div>')
 
         if (lang !== 'fr'){
@@ -232,7 +252,7 @@ define([
             $('#btn_execute').removeClass('pause')
             runCode()
         }
-       
+
     }
 
     var editorChangeTimeout

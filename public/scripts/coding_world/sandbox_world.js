@@ -69,6 +69,10 @@ define([
             self.access_token = token;
         })
 
+        globalEventBus.on('get code editor content', function (code) {
+            startUpload(code)
+        })
+
 
         new World(globalEventBus, {
             exposed: initialCode.join('\n')
@@ -115,44 +119,37 @@ define([
             $('.blocBtnStatus div').removeClass('active')
             $(this).addClass('active')
         });
-
-
-
-        $('#upload-my-video').on('click', function(){
-            var notes = []
-
-            if (tunes.length > 0) {
-                for (var i in tunes) {
-                    var tune = tunes[i]
-                    browsePatterns(tune.patterns, notes)
-                }
-            } else {
-                browsePatterns(patterns, notes)
-            }
-
-
-            var data = {
-                title:$('.title-upload #title').val(),
-                description:'description',
-                tags:'codeDJ',
-                privacy:$('.blocBtnStatus .active').text(),
-                notes:notes,
-                token: self.access_token
-            }
-            uploadYoutube.shareVideoToYoutube(data,function(){
-                console.log('error');
-            },function () {
-                console.log('suuuuuuper!!!');
-            })
-        })
-
-
-
     }
 
     globalEventBus.on('save creation requested', saveCreation)
 
+    function startUpload(code){
+        var notes = []
 
+        if (tunes.length > 0) {
+            for (var i in tunes) {
+                var tune = tunes[i]
+                browsePatterns(tune.patterns, notes)
+            }
+        } else {
+            browsePatterns(patterns, notes)
+        }
+
+
+        var data = {
+            title:$('.title-upload #title').val(),
+            description: code,
+            tags:['codedj', 'tralalere', '78c2632450692db3e34b196f54b3988fa41727e0b20b6389000f38be90666d70'],
+            privacy:$('.blocBtnStatus .active').text(),
+            notes:notes,
+            token: self.access_token
+        }
+        uploadYoutube.shareVideoToYoutube(data,function(){
+            console.log('error');
+        },function () {
+            console.log('upload done');
+        })
+    }
     function saveCreation() {
         var notes = []
 
