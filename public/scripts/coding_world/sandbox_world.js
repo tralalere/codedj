@@ -63,12 +63,12 @@ define([
         })
         globalEventBus.on('new tune', function (tune) {
             tunes.push(tune)
-        })        
-        
+        })
+
         globalEventBus.on('load_token', function (token) {
             self.access_token = token;
         })
-        
+
 
         new World(globalEventBus, {
             exposed: initialCode.join('\n')
@@ -78,14 +78,36 @@ define([
         $('#uploadYt').on('click', function(){
             $('#blocPopUp-youtube').fadeIn();
             if(!self.access_token){
-                $('.disabled-bloc').addClass('active')
+
+                gapi.auth.authorize({
+                    client_id: '837989009437-clgij106bf9i993v4lssc9rt8hvcjajk.apps.googleusercontent.com',
+                    scope: 'https://www.googleapis.com/auth/youtube.upload https://www.googleapis.com/auth/youtube',
+                    immediate: true
+                }, function(rep){
+                    if (rep && !rep.error) {
+                        console.log('auth',rep);
+                        globalEventBus.emit('load_token', rep.access_token)
+                        $('.disabled-bloc').removeClass('active')
+                    } else{
+                        $('.disabled-bloc').addClass('active')
+                    }
+                });
+
             } else {
                 $('.disabled-bloc').removeClass('active')
             }
         })
-        
-        $('#uploadAndConvert .close-icon, .btn-upload-completed').on('click', function(){
+
+        $('#uploadAndConvert .close-icon').on('click', function(){
             $('#blocPopUp-youtube').fadeOut();
+        })
+
+        $('#uploadAndConvert .btn-upload-completed').on('click', function(){
+            $('#blocPopUp-youtube').fadeOut();
+            $('.title-upload #title').val('')
+            $('.wrap-btn').fadeIn();
+            $('.during-upload').fadeOut();
+            $('.post-upload').fadeOut();
         })
 
 
@@ -93,15 +115,12 @@ define([
             $('.blocBtnStatus div').removeClass('active')
             $(this).addClass('active')
         });
-        
 
 
 
-
-        
         $('#upload-my-video').on('click', function(){
             var notes = []
-            
+
             if (tunes.length > 0) {
                 for (var i in tunes) {
                     var tune = tunes[i]
@@ -110,8 +129,8 @@ define([
             } else {
                 browsePatterns(patterns, notes)
             }
-            
-            
+
+
             var data = {
                 title:$('.title-upload #title').val(),
                 description:'description',
@@ -126,14 +145,14 @@ define([
                 console.log('suuuuuuper!!!');
             })
         })
-        
+
 
 
     }
-    
+
     globalEventBus.on('save creation requested', saveCreation)
 
-        
+
     function saveCreation() {
         var notes = []
 

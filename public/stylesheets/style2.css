@@ -3117,6 +3117,8 @@ progress span{
 #signinButton >div{
     top:50%;
     transform: translateY(-50%);
+    margin:0 auto;
+    z-index: 99999;
 }
 
 .post-sign-in{
@@ -3179,9 +3181,6 @@ progress span{
     margin-bottom: 10px;
 }
 
-#signinButton > div{
-    margin:0 auto;
-}
 
 .description-upload{
     display: none;
