@@ -8,8 +8,8 @@ function exportSounds (params, callback) {
     var id = params.id
 
     var encodedWav = wav.encode(result.channelData, {sampleRate: result.sampleRate, float: true, bitDepth: 32})
-
     var path = './public/assets/sounds/export/'
+    
     fs.writeFileSync(path + 'output' + id + '.wav', encodedWav)
     exec('sox ' + path + 'output' + id + '.wav ' + path + 'output' + id + '.mp3', function (err) {
         if (err) {
@@ -18,7 +18,7 @@ function exportSounds (params, callback) {
             exec('rm ' + path + 'output' + id + '.wav')
             callback()
         }
-    });
+    })
 }
 
 function mixNotes (notes) {

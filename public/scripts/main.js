@@ -1,5 +1,26 @@
-var lang = 'fr'
-var token = null
+var lang = 'fr';
+if(navigator.language || navigator.userLanguage){
+    lang = navigator.language || navigator.userLanguage;
+};
+
+if(localStorage.getItem('lang')){
+
+    if (localStorage.getItem('lang') !== 'fr' || localStorage.getItem('lang').substring(0, 2) !== 'fr') {
+        if(localStorage.getItem('lang') !== 'en'){
+            localStorage.setItem('lang', 'en')
+            location.reload();
+        }
+    }
+    
+    lang = localStorage.getItem('lang')
+}
+
+if (lang !== 'fr' || lang.substring(0, 2) !== 'fr') {
+    lang = 'en'
+} else {
+    lang = 'fr'
+}
+
 
 var signinCallback = function (result) {
     if (result.access_token) {
@@ -30,14 +51,8 @@ function ready(accessToken) {
             }
         }.bind(this)
     });
-};
-
-if(navigator.language || navigator.userLanguage){
-    lang = navigator.language || navigator.userLanguage
-};
-if(localStorage.getItem('lang')){
-    lang = localStorage.getItem('lang');
 }
+
 require.config({
     urlArgs: (typeof window !== 'undefined' && (window.location.protocol === 'file:' || window.location.hostname === 'localhost')) ? 'bust=' + Date.now() : '',
     baseUrl: 'scripts',
@@ -80,32 +95,13 @@ require([
     'tether',
     'bootstrap',
     'perfectScrollbar',
-    'perfectScrollbarJQuery',
-    '//apis.google.com/js/client:plusone.js'
+    'perfectScrollbarJQuery'
 
 ], function ($, globalEventBus, getUrlParams, initHome, initWin, initSilentTeacherWorld, initCodingWorld, initSandboxWorld, jqueryUi) {
-    
+
     var urlParams = getUrlParams()
 
     $(function () {
-
-        var signinCallback = function (result) {
-            if (result.access_token) {
-                ready(result.access_token);
-            }
-        };
-            gapi.auth.authorize({
-                client_id: '837989009437-clgij106bf9i993v4lssc9rt8hvcjajk.apps.googleusercontent.com',
-                scope: 'https://www.googleapis.com/auth/youtube.upload https://www.googleapis.com/auth/youtube',
-                immediate: true
-            }, function(rep){
-                if (rep && !rep.error) {
-                    console.log('auth',rep);
-                    globalEventBus.emit('load_token', rep.access_token)
-                }
-            });
-
-        
         $('.translate-fr').on('click', function(){
             globalEventBus.emit('lang changed', 'fr')
         })
@@ -136,8 +132,17 @@ require([
             $('.sourcesGitHub').html(data['button']['sourcesGitHub'])
 
             $('.encart').html(data['partenaires'])
+            
+            
+            $('#finishedHour').html(data['finishedHour'])
+
+            $('.getCertificate a').html(data['getCertificate'])
 
 
+        })
+
+        $('#signinButton').on('click', function(){
+            $('#blocPopUp-youtube').fadeOut();
         })
 
         if (urlParams.monde === '1') {

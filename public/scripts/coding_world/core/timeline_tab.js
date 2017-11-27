@@ -2,9 +2,25 @@ var lang = 'fr';
 if(navigator.language || navigator.userLanguage){
     lang = navigator.language || navigator.userLanguage;
 };
+
 if(localStorage.getItem('lang')){
-    lang = localStorage.getItem('lang');
+
+    if (localStorage.getItem('lang') !== 'fr' || localStorage.getItem('lang').substring(0, 2) !== 'fr') {
+        if(localStorage.getItem('lang') !== 'en'){
+            localStorage.setItem('lang', 'en')
+            location.reload();
+        }
+    }
+
+    lang = localStorage.getItem('lang')
 }
+
+if (lang !== 'fr' || lang.substring(0, 2) !== 'fr') {
+    lang = 'en'
+} else {
+    lang = 'fr'
+}
+
 define([
 
 ], function () {
@@ -41,6 +57,7 @@ define([
 
             if (Object.keys(tabs).length === 0) {
                 this.view.addClass('default')
+                this.view.addClass('classTab')
             }
 
             tabs[this.name] = this

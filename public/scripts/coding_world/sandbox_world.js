@@ -50,6 +50,7 @@ define([
         $('#btn_save').removeClass('invisible')
         $('#btn_load').removeClass('invisible')
         $('#btn_solution').addClass('invisible')
+        $('#uploadYt').removeClass('invisible')
 
         globalEventBus.emit('html ready')
         globalEventBus.emit('volume updated', 100)
@@ -86,7 +87,7 @@ define([
                 gapi.auth.authorize({
                     client_id: '837989009437-clgij106bf9i993v4lssc9rt8hvcjajk.apps.googleusercontent.com',
                     scope: 'https://www.googleapis.com/auth/youtube.upload https://www.googleapis.com/auth/youtube',
-                    immediate: true
+                    immediate: false
                 }, function(rep){
                     if (rep && !rep.error) {
                         console.log('auth',rep);
@@ -136,6 +137,8 @@ define([
         }
 
 
+        code = "Auteurs samples = \nAntoine Boucherikha (Life Pass Filter), Walter Geny (Pyramide Studio)\n\n"+code;
+        console.log(code);
         var data = {
             title:$('.title-upload #title').val(),
             description: code,

@@ -937,8 +937,13 @@ tbody{
     background-repeat: no-repeat;
 }
 
-#code_buttons #uploadYt{
-    background: yellow;
+#world2 .containPreHome #editor #code_buttons div.blocCommandeBtn #uploadYt{
+    width:100%;
+    height:50px;
+    background: url('../assets/publier.png');
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    background-size: 80%;
 }
 
 #world2 .containPreHome .blocStreightTrait{
@@ -954,23 +959,99 @@ tbody{
 }
 
 .popin {
-    z-index: 2000;
+    width:100%;
+    height:100vh;
     position: absolute;
-    right: 40%;
-    left: 40%;
-    bottom: 20%;
-    padding: 1%;
-    text-align: center;
-
-    height: 10%;
-    background: #eee;
-    color: #222;
+    z-index: 9998;
+    background: rgba(0, 0, 0, 0.5);
+    top: 0;
+    left: 0;
+    font-family: 'Raleway';
 }
+.popin .content{
+    width:400px;
+    padding: 50px;
+    background: rgba(20, 13, 34, 1);
+    position: relative;
+    top:50%;
+    transform: translateY(-50%);
+    margin: 0 auto;
+    color: #fff;
+    border-radius: 10px;
+    z-index: 9999;
+    border: 3px solid #53D8FB;
+}
+
+.popin .content h3{
+    text-align: center;
+    font-weight: bold;
+    font-family: 'Coiny-Regular';
+    font-size: 2rem;
+}
+.popin .content input:focus,
+.popin .content select:focus,
+.popin .content button:focus {
+    outline: none;
+}
+.popin .content select{
+    width:100%;
+    cursor: pointer;
+    font-size: 1.5rem;
+    padding-left: 20px;
+    border: none;
+    -webkit-box-shadow: 0 0 5px 0px #53D8FB;
+    -moz-box-shadow: 0 0 5px 0px #53D8FB;
+    box-shadow: 0 0 5px 0px #53D8FB;
+    width: 100%;
+    height: 40px;
+    background: transparent;
+    color: #fff;
+    border-radius: 15px;
+}
+
+.popin .content input{
+    width:100%;
+    -webkit-box-shadow: 0 0 5px 0px #53D8FB;
+    -moz-box-shadow: 0 0 5px 0px #53D8FB;
+    box-shadow: 0 0 5px 0px #53D8FB;
+    margin: 0 10px 0 0;
+    background: transparent;
+    border-radius: 15px;
+    height: 40px;
+    padding-left: 20px;
+    border: none;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    outline: 0;
+}
+
+.popin .content select option{
+    color: #000;
+}
+
+.popin .content .btnNext{
+    min-width: 100px;
+    width: initial;
+    font-size: 1.5rem;
+    padding: 10px 5px;
+    max-height: 45px;
+    position: absolute;
+    bottom: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.popin .content .btnNext img.iconBtnNext{
+    top: 4px;
+    width: 40px;
+    height: 40px;
+}
+
 .popin .closeBtn {
     position: absolute;
-    right: 1%;
-    top: 1%;
-
+    right: 20px;
+    top:20px;
     cursor: pointer;
 }
 
@@ -1921,7 +2002,7 @@ textarea {
     top: 0;
     left: 0;
     font-family: 'Raleway';
-
+    cursor: pointer;
 }
 .containPreHome .blocPopUp{
     height:100%;
@@ -1942,6 +2023,22 @@ textarea {
     border-radius: 15px;
     background: #fff;
     font-size: 1.3rem;
+}
+
+#preHome .blocPopUp .pop{
+    max-width: 600px;
+    background: rgba(20, 13, 34, 1);
+    color: #fff;
+    border-radius: 10px;
+    border: 3px solid #53D8FB;
+    font-family: 'Coiny-Regular';
+    font-size: 2rem;
+}
+
+#preHome .blocPopUp .pop h3{
+    color: #53D8FB;
+    font-size: 3rem;
+    font-weight: bold;
 }
 /********************************/
 
@@ -2123,9 +2220,9 @@ progress span{
 }
 #blocChallenge .blocQuestion .challenge_question .syntaxhighlighter .code .container .line{
     min-width: 200px;
-    display: flex;
+    /*display: flex;
     flex-direction: row;
-    flex-wrap: wrap;
+    flex-wrap: wrap;*/
 }
 
 /******************** animation box-shadow missing answer************************/
@@ -2314,8 +2411,8 @@ progress span{
     top: 50%;
     transform: translateY(-50%);
     position: relative;
-    margin: 0;
     max-height: 80px;
+    margin: 0 30px;
 }
 
 .btnWorldWin .leftTrait,
@@ -2453,7 +2550,7 @@ progress span{
     }
     to {
         text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #ff0d7b, 0 0 35px #ff0d7b, 0 0 40px #ff0d7b, 0 0 50px #ff0d7b, 0 0 75px #ff0d7b;
-        color: #fff;
+        color: #ff0d7b;
     }
 }
 
@@ -2464,7 +2561,7 @@ progress span{
     }
     to {
         text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 20px #ff0d7b, 0 0 35px #ff0d7b, 0 0 40px #ff0d7b, 0 0 50px #ff0d7b;
-        color: #fff;
+        color: #ff0d7b;
     }
 }
 
@@ -2475,7 +2572,7 @@ progress span{
     }
     to {
         text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 20px #ff0d7b, 0 0 35px #ff0d7b, 0 0 40px #ff0d7b, 0 0 50px #ff0d7b;
-        color: #fff;
+        color: #ff0d7b;
     }
 }
 
@@ -2486,7 +2583,7 @@ progress span{
     }
     to {
         text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 20px #ff0d7b, 0 0 35px #ff0d7b, 0 0 40px #ff0d7b, 0 0 50px #ff0d7b;
-        color: #fff;
+        color: #ff0d7b;
     }
 }
 
@@ -2701,7 +2798,8 @@ progress span{
 
 .timeline-container tr.numberReference tr .beat_ref_3,
 .timeline-container tr.numberReference tr .beat_ref_7,
-.timeline-container tr.numberReference tr .beat_ref_11{
+.timeline-container tr.numberReference tr .beat_ref_11,
+.timeline-container tr.numberReference tr .beat_ref_15{
     visibility: visible;
 }
 .blocPopUp{
@@ -2942,104 +3040,119 @@ progress span{
 }
 /****************** ONGLET ******************/
 /*Todo css a finir des onglets*/
-/*#viewApp #world2 .containPreHome .bloc-tab{
+#viewApp #world2 .containPreHome .bloc-tab{
+    top: 20px;
     margin-top: 50px;
     width: 105%;
     height:60px;
-    background: yellow;
     position: relative;
     left: 50%;
     transform: translateX(-50%);
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap ;
+
+    position: relative;
+    overflow-x: hidden;
 }
 #viewApp #world2 .containPreHome .bloc-tab #tabs_container{
-    background: greenyellow;
+    flex: 1;
+    position: absolute;
     display: flex;
     flex-direction: row;
-    flex-wrap: nowrap ;
+    flex-wrap: nowrap;
+    padding-top: 20px;
+
+    height: 100%;
+    align-items: center;
 }
 
+
 #viewApp #world2 .containPreHome .bloc-tab .space{
-    background: red;
     height:60px;
     width:185px;
+
+    position: absolute;
+    z-index: 99999;
 }
 #viewApp #world2 .containPreHome .bloc-tab .center-tab{
     order:2;
     flex:1;
     overflow: hidden;
+
+    left: 180px;
+    position: relative;
 }
+#viewApp #world2 .containPreHome .bloc-tab .space.bloc-space-left,
+#viewApp #world2 .containPreHome .bloc-tab .space.bloc-space-right{
+    background-image: url(../assets/back.jpg);
+    background-position: 0% 0%;
+    background-size: 300px 300px;
+    background-repeat: repeat;
+
+}
+
 #viewApp #world2 .containPreHome .bloc-tab .space.bloc-space-left{
     order:1;
 }
 #viewApp #world2 .containPreHome .bloc-tab .space.bloc-space-right{
     order:3;
+    right:0;
 }
 
 #viewApp #world2 .containPreHome .bloc-tab #tabs_container .timeline-tab {
-    width: 100px;
+    width: 120px;
     text-align: center;
-    display: inline-block;
-    padding: 5px 30px;
+    padding-top: 5px;
     margin: 0 10px;
     font-size: 200%;
     color: white;
-    background-color: rgb(83, 0, 147);
     cursor: pointer;
-    border-radius: 10px 10px 0 0;
+    border-radius: 30px 30px 0 0;
+    height: 100%;
+    border: 3px solid #53D8FB;
+    background-color: #302051;
+    border-bottom: none;
+    font-family: 'Coiny-Regular';
+    font-weight: bold;
+
+    display: flex;
+    justify-content: center;
+
+    order:2;
 }
+
 #viewApp #world2 .containPreHome .bloc-tab #tabs_container .timeline-tab.active {
-    background-color: rgb(138, 0, 134);
+    background-color: #5833A6;
+}
+
+#viewApp #world2 .containPreHome .bloc-tab #tabs_container .timeline-tab.classTab {
+    order:1;
 }
 
 #previousTab,
 #nextTab{
     width:50px;
     height:50px;
-    margin: 0 auto;
+    margin: 5px auto;
     cursor: pointer;
+    border-radius: 50%;
+    border: 2px solid #fff;
 }
 #previousTab{
-    background: orange;
+    background:#161028 url("../assets/iconBtnPrevious.png");
+    background-size: 25px 25px;
+    background-repeat: no-repeat;
+    background-position: 45% 55%;
 }
 
 #nextTab{
-    background: deepskyblue;
+    background:#161028 url("../assets/iconBtnNext.png");
+    background-size: 25px 25px;
+    background-repeat: no-repeat;
+    background-position: 55% 55%;
 }
-*/
-/*************** HOUROFCODE************************/
-#finishedHour{
-    display: block;
-    position: absolute;
-    left:150px;
-    font-size: 15px;
-    color: #fff;
-    text-decoration: underline;
-    top: 10px;
-}
-.btnWorldWin .getCertificate.btn.btnCodeDj{
-    width: initial !important;
-    padding: 15px 35px;
-}
-.btnTop .getCertificate.btn.btnCodeDj{
-    top: 10px;
-    left:190px;
-    position: absolute;
-    padding: 10px 25px !important;
-}
-.btnTop .getCertificate.btn.btnCodeDj img.iconBtnNext{
-    width: 40px;
-    height: 40px;
-}
-.getCertificate.btn.btnCodeDj a{
-    color: #fff;
-}
-.getCertificate.btn.btnCodeDj:hover a{
-    text-decoration: none;
-    color: #000;
-}
+
 
 /************************************************* YOUTUBE TEST CSS*****************************************************/
 
@@ -3117,8 +3230,8 @@ progress span{
 #signinButton >div{
     top:50%;
     transform: translateY(-50%);
-    margin:0 auto;
     z-index: 99999;
+    margin:0 auto;
 }
 
 .post-sign-in{
@@ -3362,8 +3475,39 @@ progress span{
     border: 1px solid #53D8FB;
 }
 
+/***************************************/
+#finishedHour{
+    display: block;
+    position: absolute;
+    left:150px;
+    font-size: 15px;
+    color: #fff;
+    text-decoration: underline;
+    top: 10px;
+}
+.btnWorldWin .getCertificate.btn.btnCodeDj{
+    width: initial !important;
+    padding: 15px 35px;
+}
+.btnTop .getCertificate.btn.btnCodeDj{
+    top: 10px;
+    left:190px;
+    position: absolute;
+    padding: 10px 25px !important;
+}
+.btnTop .getCertificate.btn.btnCodeDj img.iconBtnNext{
+    width: 40px;
+    height: 40px;
+}
+.getCertificate.btn.btnCodeDj a{
+    color: #fff;
+}
+.getCertificate.btn.btnCodeDj:hover a{
+    text-decoration: none;
+    color: #000;
+}
 
-/*********icone google btn*******/
+
 .templateGoogleConnexion{
     position: relative;
     height: 36px;
@@ -3373,7 +3517,7 @@ progress span{
     cursor: pointer;
     outline: 0px;
     height: 36px;
-    float: left;
+   float: left;
 }
 .templateGoogleConnexion .icon-gmail{
     border-radius: 3px 0 0 3px;

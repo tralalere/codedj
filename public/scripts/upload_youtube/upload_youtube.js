@@ -74,7 +74,8 @@ define([
 
     function getVideoToShare(notes, callback)
     {
-        var uri = encodeURI('http://localhost:8000/video?notes=' + JSON.stringify(notes));
+        console.log(window.location.origin)
+        var uri = encodeURI(window.location.origin+'/video?notes=' + JSON.stringify(notes));
         //var uri = encodeURI('http://192.168.10.229:8000/video?notes=' + JSON.stringify(notes));
         //var uri = './assets/sounds/export/video.mp4';
         var xhr = new XMLHttpRequest();

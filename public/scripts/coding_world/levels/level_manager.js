@@ -2,9 +2,25 @@ var lang = 'fr';
 if(navigator.language || navigator.userLanguage){
     lang = navigator.language || navigator.userLanguage;
 };
+
 if(localStorage.getItem('lang')){
-    lang = localStorage.getItem('lang');
+
+    if (localStorage.getItem('lang') !== 'fr' || localStorage.getItem('lang').substring(0, 2) !== 'fr') {
+        if(localStorage.getItem('lang') !== 'en'){
+            localStorage.setItem('lang', 'en')
+            location.reload();
+        }
+    }
+
+    lang = localStorage.getItem('lang')
 }
+
+if (lang !== 'fr' || lang.substring(0, 2) !== 'fr') {
+    lang = 'en'
+} else {
+    lang = 'fr'
+}
+
 define([
     'toxilibs/event_bus_queued',
     'toxilibs/sound',
@@ -69,6 +85,7 @@ define([
             location.reload();
         })
 
+        console.log(levelsData[currentLevelIndex])
         setChallenge(levelsData[currentLevelIndex])
 
         globalEventBus.on('pattern beat played', function (pattern, beat) {
@@ -115,6 +132,7 @@ define([
         userAskedForSolution = false
 
         challenge.base.end.push('tune.play()')   // FIXME
+        console.log( challenge.base.end);
         new World(globalEventBus('solutionWorld'), challenge.solution)   // eslint-disable-line no-new
         new World(globalEventBus('userWorld'), challenge.base)      // eslint-disable-line no-new
     }
