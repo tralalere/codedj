@@ -9,6 +9,7 @@ var port = 8000
 
 var scriptsPath = './back'
 var exportSounds = require(scriptsPath + '/export.js')
+const scrapeService = require(scriptsPath + '/scrape_service.js');
 
 
 app.use(express.static('public'))
