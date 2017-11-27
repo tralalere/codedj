@@ -80,7 +80,7 @@ define(function () {
             ],
             base: [
                 '// Les boucles for permettent de ne pas réécrire plusieurs fois des lignes de code semblables. Mais ici la boucle for ne se répète pas assez souvent. Essaie d\'utiliser un nombre plus petit que 4 dans i = i + 4',
-                'for (var i = 1; i < 17; i = i + 4)',
+                'for (var i = 1; i < 16; i = i + 4)',
                 '{',
                 '    pattern.addSound(hh, i)',
                 '}',
