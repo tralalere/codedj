@@ -86,7 +86,7 @@ define(function () {
                 'pattern.addSound(conga3, 11)'
             ],
             base: [
-                '// Change les chiffres entre parenthèses pour jouer les sons au bon moment',
+                '//  les chiffres entre parenthèses pour jouer les sons au bon moment',
                 'pattern.addSound(conga3, 2)',
                 'pattern.addSound(conga3, 15)'
             ]

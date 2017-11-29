@@ -88,11 +88,49 @@ define([
             window.location.href = '.?monde=select'
             return false
         })
-        /*$('#previousTab').on('click', function(){
-            var elemWidth = elementWidth($('#tabs_container'))
+
+
+        $('#previousTab').on('click', function(){
+            var elemWidth = elementWidth($($tabContainer))
+            var widthItem = 140;
+            var cssPosition = parseInt($($tabContainer).css('left'), 10);
+            var translate = widthItem - cssPosition;
+            
+            if(elemWidth.parent < elemWidth.child){
+                if(elemWidth.parent - 370 < elemWidth.child + cssPosition){
+                    $('#tabs_container').css({'right': 'auto','left': '-'+translate+'px'})
+                }
+            }
+
+            
             console.log(elemWidth)
 
-        })*/
+
+        })
+
+        $('#nextTab').on('click', function(){
+            var elemWidth = elementWidth($($tabContainer))
+            var widthItem = 140;
+            var cssPosition = parseInt($($tabContainer).css('right'), 10);
+            var cssLeftPosition = parseInt($($tabContainer).css('left'), 10);
+            var translate = cssPosition - widthItem;
+
+            if(cssPosition !== 0) {
+                if (elemWidth.parent < elemWidth.child) {
+                    if (cssLeftPosition < 0) {
+                            if (elemWidth.parent - 370 < elemWidth.child + cssPosition) {
+                                $('#tabs_container').css({'left': 'auto','right': translate + 'px'})
+                            }
+                    }
+                }
+            }
+
+
+
+            console.log(elemWidth)
+
+
+        })
     }
 
     function elementWidth(elem) {

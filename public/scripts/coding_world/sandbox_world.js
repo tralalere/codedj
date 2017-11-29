@@ -3,12 +3,13 @@ define([
     'toxilibs/event_bus_queued',
     './core/world_main',
     './core/user_to_core',
+    '../upload_youtube/upload_youtube',
 
     './view/main',
     './view/editor',
     './user_code/user_code',
     'music_player/music_player'
-], function ($, globalEventBus, World, userToCoreKeys) {
+], function ($, globalEventBus, World, userToCoreKeys, uploadYoutube) {
 
     var initialCode = [
         'var pattern = new Pattern()',
@@ -43,12 +44,13 @@ define([
     var patterns = []
 
     var userToken
-
+    var self = this
     function init () {
         userToken = Date.now()
         $('#btn_save').removeClass('invisible')
         $('#btn_load').removeClass('invisible')
         $('#btn_solution').addClass('invisible')
+        $('#uploadYt').removeClass('invisible')
 
         globalEventBus.emit('html ready')
         globalEventBus.emit('volume updated', 100)
@@ -64,18 +66,93 @@ define([
             tunes.push(tune)
         })
 
+        globalEventBus.on('load_token', function (token) {
+            self.access_token = token;
+        })
+
+        globalEventBus.on('get code editor content', function (code) {
+            startUpload(code)
+        })
+
+
         new World(globalEventBus, {
             exposed: initialCode.join('\n')
         })
 
 
+        $('#uploadYt').on('click', function(){
+            $('#blocPopUp-youtube').fadeIn();
+            if(!self.access_token){
+
+                gapi.auth.authorize({
+                    client_id: '837989009437-clgij106bf9i993v4lssc9rt8hvcjajk.apps.googleusercontent.com',
+                    scope: 'https://www.googleapis.com/auth/youtube.upload https://www.googleapis.com/auth/youtube',
+                    immediate: false
+                }, function(rep){
+                    if (rep && !rep.error) {
+                        console.log('auth',rep);
+                        globalEventBus.emit('load_token', rep.access_token)
+                        $('.disabled-bloc').removeClass('active')
+                    } else{
+                        $('.disabled-bloc').addClass('active')
+                    }
+                });
+
+            } else {
+                $('.disabled-bloc').removeClass('active')
+            }
+        })
+
+        $('#uploadAndConvert .close-icon').on('click', function(){
+            $('#blocPopUp-youtube').fadeOut();
+        })
+
+        $('#uploadAndConvert .btn-upload-completed').on('click', function(){
+            $('#blocPopUp-youtube').fadeOut();
+            $('.title-upload #title').val('')
+            $('.wrap-btn').fadeIn();
+            $('.during-upload').fadeOut();
+            $('.post-upload').fadeOut();
+        })
 
 
+        $('.blocBtnStatus div').on('click',function(){
+            $('.blocBtnStatus div').removeClass('active')
+            $(this).addClass('active')
+        });
     }
-    
+
     globalEventBus.on('save creation requested', saveCreation)
 
+    function startUpload(code){
+        var notes = []
 
+        if (tunes.length > 0) {
+            for (var i in tunes) {
+                var tune = tunes[i]
+                browsePatterns(tune.patterns, notes)
+            }
+        } else {
+            browsePatterns(patterns, notes)
+        }
+
+
+        code = "Auteurs samples = \nAntoine Boucherikha (Life Pass Filter), Walter Geny (Pyramide Studio)\n\n"+code;
+        console.log(code);
+        var data = {
+            title:$('.title-upload #title').val(),
+            description: code,
+            tags:['codedj', 'tralalere', '78c2632450692db3e34b196f54b3988fa41727e0b20b6389000f38be90666d70'],
+            privacy:$('.blocBtnStatus .active').text(),
+            notes:notes,
+            token: self.access_token
+        }
+        uploadYoutube.shareVideoToYoutube(data,function(){
+            console.log('error');
+        },function () {
+            console.log('upload done');
+        })
+    }
     function saveCreation() {
         var notes = []
 

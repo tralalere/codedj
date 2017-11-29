@@ -937,6 +937,15 @@ tbody{
     background-repeat: no-repeat;
 }
 
+#world2 .containPreHome #editor #code_buttons div.blocCommandeBtn #uploadYt{
+    width:100%;
+    height:50px;
+    background: url('../assets/publier.png');
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    background-size: 80%;
+}
+
 #world2 .containPreHome .blocStreightTrait{
     height:20px;
     margin: 10px auto;
@@ -950,23 +959,99 @@ tbody{
 }
 
 .popin {
-    z-index: 2000;
+    width:100%;
+    height:100vh;
     position: absolute;
-    right: 40%;
-    left: 40%;
-    bottom: 20%;
-    padding: 1%;
-    text-align: center;
-
-    height: 10%;
-    background: #eee;
-    color: #222;
+    z-index: 9998;
+    background: rgba(0, 0, 0, 0.5);
+    top: 0;
+    left: 0;
+    font-family: 'Raleway';
 }
+.popin .content{
+    width:400px;
+    padding: 50px;
+    background: rgba(20, 13, 34, 1);
+    position: relative;
+    top:50%;
+    transform: translateY(-50%);
+    margin: 0 auto;
+    color: #fff;
+    border-radius: 10px;
+    z-index: 9999;
+    border: 3px solid #53D8FB;
+}
+
+.popin .content h3{
+    text-align: center;
+    font-weight: bold;
+    font-family: 'Coiny-Regular';
+    font-size: 2rem;
+}
+.popin .content input:focus,
+.popin .content select:focus,
+.popin .content button:focus {
+    outline: none;
+}
+.popin .content select{
+    width:100%;
+    cursor: pointer;
+    font-size: 1.5rem;
+    padding-left: 20px;
+    border: none;
+    -webkit-box-shadow: 0 0 5px 0px #53D8FB;
+    -moz-box-shadow: 0 0 5px 0px #53D8FB;
+    box-shadow: 0 0 5px 0px #53D8FB;
+    width: 100%;
+    height: 40px;
+    background: transparent;
+    color: #fff;
+    border-radius: 15px;
+}
+
+.popin .content input{
+    width:100%;
+    -webkit-box-shadow: 0 0 5px 0px #53D8FB;
+    -moz-box-shadow: 0 0 5px 0px #53D8FB;
+    box-shadow: 0 0 5px 0px #53D8FB;
+    margin: 0 10px 0 0;
+    background: transparent;
+    border-radius: 15px;
+    height: 40px;
+    padding-left: 20px;
+    border: none;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    outline: 0;
+}
+
+.popin .content select option{
+    color: #000;
+}
+
+.popin .content .btnNext{
+    min-width: 100px;
+    width: initial;
+    font-size: 1.5rem;
+    padding: 10px 5px;
+    max-height: 45px;
+    position: absolute;
+    bottom: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.popin .content .btnNext img.iconBtnNext{
+    top: 4px;
+    width: 40px;
+    height: 40px;
+}
+
 .popin .closeBtn {
     position: absolute;
-    right: 1%;
-    top: 1%;
-
+    right: 20px;
+    top:20px;
     cursor: pointer;
 }
 
@@ -1917,7 +2002,7 @@ textarea {
     top: 0;
     left: 0;
     font-family: 'Raleway';
-
+    cursor: pointer;
 }
 .containPreHome .blocPopUp{
     height:100%;
@@ -1938,6 +2023,22 @@ textarea {
     border-radius: 15px;
     background: #fff;
     font-size: 1.3rem;
+}
+
+#preHome .blocPopUp .pop{
+    max-width: 600px;
+    background: rgba(20, 13, 34, 1);
+    color: #fff;
+    border-radius: 10px;
+    border: 3px solid #53D8FB;
+    font-family: 'Coiny-Regular';
+    font-size: 2rem;
+}
+
+#preHome .blocPopUp .pop h3{
+    color: #53D8FB;
+    font-size: 3rem;
+    font-weight: bold;
 }
 /********************************/
 
@@ -2119,9 +2220,9 @@ progress span{
 }
 #blocChallenge .blocQuestion .challenge_question .syntaxhighlighter .code .container .line{
     min-width: 200px;
-    display: flex;
+    /*display: flex;
     flex-direction: row;
-    flex-wrap: wrap;
+    flex-wrap: wrap;*/
 }
 
 /******************** animation box-shadow missing answer************************/
@@ -2310,8 +2411,8 @@ progress span{
     top: 50%;
     transform: translateY(-50%);
     position: relative;
-    margin: 0;
     max-height: 80px;
+    margin: 0 30px;
 }
 
 .btnWorldWin .leftTrait,
@@ -2449,7 +2550,7 @@ progress span{
     }
     to {
         text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #ff0d7b, 0 0 35px #ff0d7b, 0 0 40px #ff0d7b, 0 0 50px #ff0d7b, 0 0 75px #ff0d7b;
-        color: #fff;
+        color: #ff0d7b;
     }
 }
 
@@ -2460,7 +2561,7 @@ progress span{
     }
     to {
         text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 20px #ff0d7b, 0 0 35px #ff0d7b, 0 0 40px #ff0d7b, 0 0 50px #ff0d7b;
-        color: #fff;
+        color: #ff0d7b;
     }
 }
 
@@ -2471,7 +2572,7 @@ progress span{
     }
     to {
         text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 20px #ff0d7b, 0 0 35px #ff0d7b, 0 0 40px #ff0d7b, 0 0 50px #ff0d7b;
-        color: #fff;
+        color: #ff0d7b;
     }
 }
 
@@ -2482,7 +2583,7 @@ progress span{
     }
     to {
         text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 20px #ff0d7b, 0 0 35px #ff0d7b, 0 0 40px #ff0d7b, 0 0 50px #ff0d7b;
-        color: #fff;
+        color: #ff0d7b;
     }
 }
 
@@ -2697,7 +2798,8 @@ progress span{
 
 .timeline-container tr.numberReference tr .beat_ref_3,
 .timeline-container tr.numberReference tr .beat_ref_7,
-.timeline-container tr.numberReference tr .beat_ref_11{
+.timeline-container tr.numberReference tr .beat_ref_11,
+.timeline-container tr.numberReference tr .beat_ref_15{
     visibility: visible;
 }
 .blocPopUp{
@@ -2938,70 +3040,501 @@ progress span{
 }
 /****************** ONGLET ******************/
 /*Todo css a finir des onglets*/
-/*#viewApp #world2 .containPreHome .bloc-tab{
+#viewApp #world2 .containPreHome .bloc-tab{
+    top: 20px;
     margin-top: 50px;
     width: 105%;
     height:60px;
-    background: yellow;
     position: relative;
     left: 50%;
     transform: translateX(-50%);
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap ;
+
+    position: relative;
+    overflow-x: hidden;
 }
 #viewApp #world2 .containPreHome .bloc-tab #tabs_container{
-    background: greenyellow;
+    flex: 1;
+    position: absolute;
     display: flex;
     flex-direction: row;
-    flex-wrap: nowrap ;
+    flex-wrap: nowrap;
+    padding-top: 20px;
+
+    height: 100%;
+    align-items: center;
 }
 
+
 #viewApp #world2 .containPreHome .bloc-tab .space{
-    background: red;
     height:60px;
     width:185px;
+
+    position: absolute;
+    z-index: 99999;
 }
 #viewApp #world2 .containPreHome .bloc-tab .center-tab{
     order:2;
     flex:1;
     overflow: hidden;
+
+    left: 180px;
+    position: relative;
 }
+#viewApp #world2 .containPreHome .bloc-tab .space.bloc-space-left,
+#viewApp #world2 .containPreHome .bloc-tab .space.bloc-space-right{
+    background-image: url(../assets/back.jpg);
+    background-position: 0% 0%;
+    background-size: 300px 300px;
+    background-repeat: repeat;
+
+}
+
 #viewApp #world2 .containPreHome .bloc-tab .space.bloc-space-left{
     order:1;
 }
 #viewApp #world2 .containPreHome .bloc-tab .space.bloc-space-right{
     order:3;
+    right:0;
 }
 
 #viewApp #world2 .containPreHome .bloc-tab #tabs_container .timeline-tab {
-    width: 100px;
+    width: 120px;
     text-align: center;
-    display: inline-block;
-    padding: 5px 30px;
+    padding-top: 5px;
     margin: 0 10px;
     font-size: 200%;
     color: white;
-    background-color: rgb(83, 0, 147);
     cursor: pointer;
-    border-radius: 10px 10px 0 0;
+    border-radius: 30px 30px 0 0;
+    height: 100%;
+    border: 3px solid #53D8FB;
+    background-color: #302051;
+    border-bottom: none;
+    font-family: 'Coiny-Regular';
+    font-weight: bold;
+
+    display: flex;
+    justify-content: center;
+
+    order:2;
 }
+
 #viewApp #world2 .containPreHome .bloc-tab #tabs_container .timeline-tab.active {
-    background-color: rgb(138, 0, 134);
+    background-color: #5833A6;
+}
+
+#viewApp #world2 .containPreHome .bloc-tab #tabs_container .timeline-tab.classTab {
+    order:1;
 }
 
 #previousTab,
 #nextTab{
     width:50px;
     height:50px;
-    margin: 0 auto;
+    margin: 5px auto;
     cursor: pointer;
+    border-radius: 50%;
+    border: 2px solid #fff;
 }
 #previousTab{
-    background: orange;
+    background:#161028 url("../assets/iconBtnPrevious.png");
+    background-size: 25px 25px;
+    background-repeat: no-repeat;
+    background-position: 45% 55%;
 }
 
 #nextTab{
-    background: deepskyblue;
+    background:#161028 url("../assets/iconBtnNext.png");
+    background-size: 25px 25px;
+    background-repeat: no-repeat;
+    background-position: 55% 55%;
 }
-*/
+
+
+/************************************************* YOUTUBE TEST CSS*****************************************************/
+
+#blocPopUp-youtube{
+    display: none;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 99999;
+    background: rgba(0, 0, 0,0.5);
+}
+
+#uploadAndConvert{
+    width: 500px;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    margin: 0 auto;
+    z-index: 99999;
+    background: rgba(20, 13, 34, 1);
+    color: #000;
+    -webkit-box-shadow: 0 0 15px 5px rgba(83, 216, 251, 0.5);
+    -moz-box-shadow: 0 0 15px 5px rgba(83, 216, 251, 0.5);
+    box-shadow: 0 0 15px 5px rgba(83, 216, 251, 0.5);
+    border-radius: 40px;
+}
+
+#uploadAndConvert .top-icon-upload{
+    width: 70px;
+    height: 70px;
+    top: -35px;
+    position: absolute;
+    z-index: 9999;
+    left: 50%;
+    transform: translateX(-50%);
+    background: url(../assets/top-icon-upload.png);
+    background-size: 70px 70px;
+    background-repeat: no-repeat;
+}
+#uploadAndConvert .close-icon{
+    width: 50px;
+    height:50px;
+    border-radius: 50%;
+    cursor: pointer;
+    top: 20px;
+    right: 20px;
+    position: absolute;
+    z-index: 9999;
+    background: url(../assets/close.png);
+    background-size: 50px 50px;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+}
+#uploadAndConvert input:focus,
+#uploadAndConvert select:focus,
+#uploadAndConvert textarea:focus,
+#uploadAndConvert button:focus {
+    outline: none;
+}
+
+#uploadAndConvert .bloc-sign-in{
+    height:120px;
+    width:100%;
+    position: relative;
+}
+#signinButton{
+    width: 100%;
+    height:100%;
+    display: block;
+    text-align: center;
+    padding: 25px;
+}
+#signinButton >div{
+    top:50%;
+    transform: translateY(-50%);
+    z-index: 99999;
+    margin:0 auto;
+}
+
+.post-sign-in{
+    width: 100%;
+    margin: 0px auto;
+    padding: 25px;
+}
+.post-sign-in #channel-name{
+    color: #fff;
+}
+
+.wrap-upload-config{
+    position: relative;
+    padding: 0px 0px 20px;
+    width: 100%;
+}
+.wrap-upload-config .upload-config{
+    width:80%;
+    margin: 0 auto;
+}
+
+.disabled-bloc.active{
+    z-index: 9999;
+    width:100%;
+    height:100%;
+    position: absolute;
+    background: rgba(0,0,0,0.8);
+}
+.wrap-upload-config div{
+    margin: 0px auto 20px;
+}
+
+.wrap-upload-config .disabled-bloc,
+.wrap-upload-config .upload-config{
+    border-bottom-right-radius: 40px;
+    border-bottom-left-radius: 40px;
+}
+
+
+.title-upload{
+    width:100%;
+}
+
+.title-upload label{
+    color: rgb(255, 13, 123);
+}
+.title-upload input{
+    font-size: 1.5rem;
+    padding-left: 20px;
+    border: none;
+    -webkit-box-shadow: 0 0 5px 0px #53D8FB;
+    -moz-box-shadow: 0 0 5px 0px #53D8FB;
+    box-shadow: 0 0 5px 0px #53D8FB;
+    margin: 0 10px 0 0;
+    background: transparent;
+    border-radius: 15px;
+    height: 40px;
+    color: #fff;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+
+.description-upload{
+    display: none;
+
+}
+.select_upload{
+    width:100%;
+
+}
+.select_upload select{
+    cursor: pointer;
+    font-size: 1.5rem;
+    padding-left: 20px;
+    border: none;
+    -webkit-box-shadow: 0 0 5px 0px #53D8FB;
+    -moz-box-shadow: 0 0 5px 0px #53D8FB;
+    box-shadow: 0 0 5px 0px #53D8FB;
+    width: 100%;
+    height: 40px;
+    background: transparent;
+    color: #fff;
+    border-radius: 15px;
+}
+
+.select_upload select option{
+    color: #000;
+}
+.title-upload label,
+#uploadAndConvert .post-upload .upload-completed,
+.select_upload label{
+    margin-bottom: 10px;
+    font-size: 2rem;
+    font-family: 'Raleway';
+    color: rgb(255, 13, 123);
+}
+
+
+#uploadAndConvert .disclamer-upload{
+    width:100%;
+    padding:10px;
+    margin: 20px auto 0;
+}
+
+#uploadAndConvert #channel-image {
+    width: 2em;
+    height: 2em;
+    vertical-align: middle;
+
+}
+
+#uploadAndConvert #channel-name {
+    margin-left: 0.2em;
+    margin-right: 0.2em;
+    display: inline-block;
+    height: 50px;
+    position: relative;
+    top: 5px;
+    font-size: 2rem;
+}
+
+#uploadAndConvert #disclaimer {
+    font-size: 1rem;
+    color: #aeaeae;
+    margin: 0 auto;
+}
+
+
+#uploadAndConvert .post-sign-in {
+    display: none;
+}
+
+#uploadAndConvert .post-sign-in div{
+    text-align: center;
+}
+#uploadAndConvert .post-sign-in .bloc-avatar-upload img{
+    max-width: 70px;
+}
+
+#uploadAndConvert .during-upload {
+    display: none;
+    padding: 10px 0;
+}
+#uploadAndConvert .during-upload #upload-progress{
+    display: block;
+    width: 80%;
+    margin: 0 auto;
+}
+
+#uploadAndConvert .post-upload {
+    text-align: center;
+    display: none;
+}
+
+#uploadAndConvert .post-upload .upload-completed{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    color: rgb(255, 13, 123);
+    font-size: 2rem;
+    margin: 10px auto;
+    justify-content: center;
+}
+
+#uploadAndConvert .post-upload .upload-completed .icon-star{
+    margin: 0;
+    background: url(../assets/icon-star.png);
+    background-size: 25px 25px;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    width:50px;
+    height:50px;
+}
+#uploadAndConvert .post-upload .upload-completed label{
+    position: relative;
+    top: 8px;
+    font-weight: bold;
+    font-family: 'Coiny-Regular';
+    font-size: 2.5rem;
+}
+
+#uploadAndConvert .wrap-btn .btn-upload,
+#uploadAndConvert .wrap-btn {
+    margin: 0;
+}
+
+#uploadAndConvert .wrap-btn {
+    text-align: center;
+}
+
+#uploadAndConvert .btn-upload,
+#uploadAndConvert .post-upload .btn-upload-completed{
+    min-width: 100px;
+    width: initial;
+    font-size: 1.5rem;
+    padding: 10px 5px;
+    top: 3px;
+    max-height: 45px;
+    position: relative;
+}
+#uploadAndConvert .btn-upload img.iconBtnNext,
+#uploadAndConvert .post-upload .btn-upload-completed img.iconBtnNext{
+    top: 2px;
+    width: 40px;
+    height: 40px;
+}
+
+#uploadAndConvert label {
+    display: block;
+}
+
+
+.blocBtnStatus{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+}
+
+.blocBtnStatus div{
+    width:100px;
+    height:40px;
+    background: rgba(20, 13, 34, 1);
+    margin: 0 10px;
+    border-radius: 10px;
+    color: #fff;
+    cursor: pointer;
+    text-align: center;
+    line-height: 34px;
+    font-size: 1.5rem;
+    -webkit-box-shadow: 0 0 5px 0px #53D8FB;
+    -moz-box-shadow: 0 0 5px 0px #53D8FB;
+    box-shadow: 0 0 5px 0px #53D8FB;
+}
+
+.blocBtnStatus div.active{
+    -webkit-box-shadow: 0 0 5px 3px #53D8FB;
+    -moz-box-shadow: 0 0 5px 3px #53D8FB;
+    box-shadow: 0 0 5px 3px #53D8FB;
+    border: 1px solid #53D8FB;
+}
+
+/***************************************/
+#finishedHour{
+    display: block;
+    position: absolute;
+    left:150px;
+    font-size: 15px;
+    color: #fff;
+    text-decoration: underline;
+    top: 10px;
+}
+.btnWorldWin .getCertificate.btn.btnCodeDj{
+    width: initial !important;
+    padding: 15px 35px;
+}
+.btnTop .getCertificate.btn.btnCodeDj{
+    top: 10px;
+    left:190px;
+    position: absolute;
+    padding: 10px 25px !important;
+}
+.btnTop .getCertificate.btn.btnCodeDj img.iconBtnNext{
+    width: 40px;
+    height: 40px;
+}
+.getCertificate.btn.btnCodeDj a{
+    color: #fff;
+}
+.getCertificate.btn.btnCodeDj:hover a{
+    text-decoration: none;
+    color: #000;
+}
+
+
+.templateGoogleConnexion{
+    position: relative;
+    height: 36px;
+    width: 137px;
+}
+.templateGoogleConnexion div{
+    cursor: pointer;
+    outline: 0px;
+    height: 36px;
+   float: left;
+}
+.templateGoogleConnexion .icon-gmail{
+    border-radius: 3px 0 0 3px;
+    width:36px;
+    background: #fff url(../assets/google.png);
+    background-size: 32px 32px;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+}
+
+.templateGoogleConnexion .link-connexion{
+    border-radius: 0 3px 3px 0;
+    text-align: center;
+    line-height: 36px;
+    font-size: 12px;
+    color: #fff;
+    background: #4285f4;
+    padding: 0 20px;
+    font-weight: bold;
+}

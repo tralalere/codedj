@@ -35,7 +35,10 @@
     <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
     <script src="./scripts/ext_libs/shCore.js"></script>
     <script src="./scripts/ext_libs/shBrushJScript.js"></script>
-    <script data-main="./scripts/main" src="./scripts/ext_libs/require.js"></script>
+    <script data-main="./scripts/main.js" src="./scripts/ext_libs/require.js"></script>
+
+    <script src="//apis.google.com/js/client:plusone.js"></script>
+
     <script>
         (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
                     (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -171,9 +174,16 @@
 
 
 <div class="container-fluid" id="preHome">
+    <div class="blocPopUp">
+        <div class="pop"></div>
+    </div>
     <div class="containPreHome center-block">
         <div class="row blocHead">
-            <div class="btnTop col-lg-4 col-md-4 col-sm-4 col-xs-4 "><div id="back" class="btnPrevious left btn btnCodeDj"><span>Retour</span><img class="iconBtnPrevious" src="assets/iconBtnPrevious.png"></div></div>
+            <div class="btnTop col-lg-4 col-md-4 col-sm-4 col-xs-4 ">
+                <div id="back" class="btnPrevious left btn btnCodeDj"><span>Retour</span><img class="iconBtnPrevious" src="assets/iconBtnPrevious.png"></div>
+
+                <div class="btn btnCodeDj getCertificate"><img class="iconBtnNext" src="assets/iconBtnNext.png"><a href="http://code.org/api/hour/finish" target="_blank">Obtenir mon certificat</a></div>
+            </div>
             <div class="logoTop col-lg-4 col-md-4 col-sm-4 col-xs-4"><div class="demiLogo logoImg shadow"></div></div>
             <div class="btnTop col-lg-4 col-md-4 col-sm-4 col-xs-4 ">
                 <div class="bloc-translate-btn">
@@ -301,9 +311,7 @@
             <div class="row">
                 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 infosBloc"></div>
             </div>
-            <div class="blocPopUp">
-                <div class="pop"></div>
-            </div>
+
         </div>
     </div>
 </div>
@@ -377,6 +385,95 @@
 
 <div class="container-fluid" id="world2">
 
+
+    <div id="blocPopUp-youtube">
+        <div id="uploadAndConvert">
+            <div class="top-icon-upload"></div>
+            <div class="close-icon"></div>
+            <div class="bloc-sign-in">
+
+
+              <span id="signinButton" class="pre-sign-in">
+
+                  <!--<div class="templateGoogleConnexion">
+                      <div class="icon-gmail"></div>
+                      <div class="link-connexion">Connexion</div>
+                  </div>-->
+
+                  <span
+                          class="g-signin"
+                          data-callback="signinCallback"
+                          data-clientid="837989009437-clgij106bf9i993v4lssc9rt8hvcjajk.apps.googleusercontent.com"
+                          data-cookiepolicy="single_host_origin"
+                          data-scope="https://www.googleapis.com/auth/youtube.upload https://www.googleapis.com/auth/youtube">
+                  </span>
+            </span>
+
+                <div class="post-sign-in">
+                    <div class="bloc-avatar-upload">
+                        <img class="img-circle" id="channel-thumbnail">
+                        <span id="channel-name"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="wrap-upload-config">
+                <div class="disabled-bloc"></div>
+                <div class="upload-config">
+                    <div class="title-upload">
+                        <label for="title">Titre:</label>
+                        <input id="title" type="text" value="Default Title">
+                    </div>
+                    <div class="description-upload">
+                        <label for="description">Description:</label>
+                        <textarea id="description">Default description</textarea>
+                    </div>
+
+                    <div class="select_upload">
+
+                        <label>Status :</label>
+                        <div class="blocBtnStatus">
+                            <div class="public active">public</div>
+                            <div class="unlisted">unlisted</div>
+                            <div class="private">private</div>
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="wrap-btn">
+                        <div id="upload-my-video" class="btn btnCodeDj btn-upload"><img class="iconBtnNext" src="assets/iconBtnNext.png"><span>Upload</span></div>
+
+                    </div>
+
+                    <div>
+                        <div class="during-upload">
+                            <progress id="upload-progress" max="1" value="0"></progress>
+                        </div>
+
+                        <div class="post-upload">
+
+                            <div class="upload-completed">
+                                <div class="icon-star"></div>
+                                <label>Upload Completed</label>
+                                <div class="icon-star"></div>
+                            </div>
+                            <div class="btn btnCodeDj btn-upload-completed"><img class="iconBtnNext" src="assets/iconBtnNext.png"><span>OK</span></div>
+                        </div>
+
+                        <div class="disclamer-upload">
+                            <p id="disclaimer">By uploading a video, you certify that you own all rights to the content or that you are authorized by the owner to make the content publicly available on YouTube, and that it otherwise complies with the YouTube Terms of Service located at <a href="http://www.youtube.com/t/terms" target="_blank">http://www.youtube.com/t/terms</a></p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+
     <div class="blocPopUp">
         <div class="pop shopPopPup">
             <div class="iconeBlocShop icon-shop icon-pack invisible"></div>
@@ -440,15 +537,16 @@
             </div>
         </div>
 
-       <!-- <div class="bloc-tab">
+        <div class="bloc-tab">
             <div class="space bloc-space-left"><div id="previousTab"></div></div>
             <div class="center-tab">
-                <div id="tabs_container"></div>
+                <div id="tabs_container">
+                </div>
             </div>
             <div class="space bloc-space-right"><div id="nextTab"></div></div>
-        </div>-->
+        </div>
 
-        <div id="tabs_container"></div>
+        <!--<div id="tabs_container"></div>-->
         <div class="top customTopBottom">
             <div class="pointLeft"></div>
             <div class="traitInterne"></div>
@@ -474,12 +572,13 @@
             <div id="code_buttons" class="col-lg-2 col-md-2 col-sm-2 col-xs-2 btnCustomPadding">
                 <div class="blocCommandeBtn">
                     <div id="btn_execute"></div>
-                    <div id="btn_reset"></div>
+                    <!--<div id="btn_reset"></div>-->
                     <div id="btn_solution"></div>
                     <div id="btn_next_question" class="btnNext btn btnCodeDj"><img class="iconBtnNext" src="assets/iconBtnNext.png"><span>Suivant</span></div>
                     <div id="btn_save" class="invisible"></div>
                     <div id="btn_load" class="invisible"></div>
                     <div id="mp3" class="btn-inactif invisible"></div>
+                    <div id="uploadYt" class="btn-inactif invisible"></div>
 
                 </div>
             </div>
@@ -515,13 +614,17 @@
         </div>
         <div class="btnWorldWin d-flex flex-row">
             <div class="leftTrait traitZigzag"></div>
-            <div id="btnGoMenu" class="btn btnCodeDj"><img class="iconBtnNext" src="assets/iconBtnNext.png"><span>Suivant</span></div>
+            <div id="btnGoMenu" class="btn btnCodeDj btnNext"><img class="iconBtnNext" src="assets/iconBtnNext.png"><span>Suivant</span></div>
+            <div class="btn btnCodeDj getCertificate"><img class="iconBtnNext" src="assets/iconBtnNext.png"><a href="http://code.org/api/hour/finish" target="_blank">Obtenir mon certificat</a></div>
             <div class="rightTrait traitZigzag"></div>
         </div>
     </div>
     <div class="containPreHome center-block">
         <div class="row blocHead">
-            <div class="btnTop col-lg-4 col-md-4 col-sm-4 col-xs-4 "><div class="btnPrevious left btn btnCodeDj"><span>Retour</span><img class="iconBtnPrevious" src="assets/iconBtnPrevious.png"></div></div>
+            <div class="btnTop col-lg-4 col-md-4 col-sm-4 col-xs-4 ">
+                <div class="btnPrevious left btn btnCodeDj"><span>Retour</span><img class="iconBtnPrevious" src="assets/iconBtnPrevious.png"></div>
+                <a id="finishedHour" href="http://code.org/api/hour/finish" target="_blank"></a>
+            </div>
             <div class="logoTop col-lg-4 col-md-4 col-sm-4 col-xs-4 "><div class="demiLogo logoImg shadow"></div></div>
             <div class="btnTop col-lg-4 col-md-4 col-sm-4 col-xs-4 ">
                 <div class="bloc-translate-btn">
@@ -639,6 +742,7 @@
     </div>
 
 </div>
+
 </body>
 
 </html>

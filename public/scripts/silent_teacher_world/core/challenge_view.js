@@ -54,7 +54,7 @@ define([
         $blocChallengesContainer.removeClass('invisible')
         $('.loader').addClass('invisible')
         $viewApp.empty()
-        $viewApp.prepend($('#world1')).find('.containPreHome').append($blocChallengesContainer)
+        $viewApp.prepend($('#world1')).find('.containPreHome').append('<img src="http://code.org/api/hour/begin_tralalere_code_dj.png">').append($blocChallengesContainer)
         $('.btnWorldWin #btnGoMenu').on('click', function () {
             window.location.href = '.?monde=select'
         })

@@ -84,7 +84,7 @@ define(function () {
                 '//	Here, the for loop does not repeat itself enough times.',
                 '//	Try putting a number a little smaller than 4 in i = i + 4',
                 '',
-                'for (var i = 1; i < 16; i = i + 4)',
+                'for (var i = 1; i < 17; i = i + 4)',
                 '{',
                 '    pattern.addSound(hh, i)',
                 '}',

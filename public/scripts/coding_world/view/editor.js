@@ -2,8 +2,23 @@ var lang = 'fr';
 if(navigator.language || navigator.userLanguage){
     lang = navigator.language || navigator.userLanguage;
 };
+
 if(localStorage.getItem('lang')){
-    lang = localStorage.getItem('lang');
+
+    if (localStorage.getItem('lang') !== 'fr' || localStorage.getItem('lang').substring(0, 2) !== 'fr') {
+        if(localStorage.getItem('lang') !== 'en'){
+            localStorage.setItem('lang', 'en')
+            location.reload();
+        }
+    }
+
+    lang = localStorage.getItem('lang')
+}
+
+if (lang !== 'fr' || lang.substring(0, 2) !== 'fr') {
+    lang = 'en'
+} else {
+    lang = 'fr'
 }
 
 define([
@@ -138,6 +153,11 @@ define([
             //TODO: pop-up de confirmation
             eventBus.emit('save creation requested')
         })
+
+        $('#upload-my-video').click(function () {
+            eventBus.emit('get code editor content', codeEditor.content())
+        })
+        
     }
 
 
@@ -147,32 +167,41 @@ define([
 
 
     function showSavePopin () {
-        var popin = $('<div class="popin">Choisissez un nom de sauvegarde <input id="filename" type="text"><button id="save">Sauvegarder</button></div>')
-        if (lang !== 'fr'){
-            popin = $('<div class="popin">Choose a save name<input id="filename" type="text"><button id="save">Save</button></div>')
-        }
+        var popin = $('<div class="popin"></div>')
+        var content = $('<div class="content"><h3>Choisissez un nom de sauvegarde </h3><br><input id="filename" type="text"><div class="btnNext btn btnCodeDj" id="save"><img class="iconBtnNext" src="assets/iconBtnNext.png"><span>Sauvegarder</span></div></div>')
 
-        popin.append('<div class="closeBtn">x</div>')
+        if (lang !== 'fr'){
+            popin = $('<div class="popin"></div>')
+            content = $('<div class="content"><h3>Choose a save name</h3><br><input id="filename" type="text"><div class="btnNext btn btnCodeDj" id="save"><img class="iconBtnNext" src="assets/iconBtnNext.png"><span>Save</span></div></div>')
+        }
+        popin.append(content)
+
 
         $('body').append(popin)
 
-        $('#save').click(function () {
+        $('#save').click(function (event) {
             saveCode($('#filename').val())
-            closePopin()
+            $('.popin').remove()
         })
-        $('.closeBtn').click(closePopin)
+        $('.popin').on('click',function(event){
+            event.stopImmediatePropagation()
+            if(event.target != this){ return true; }
+            $('.popin').remove()
+        })
     }
 
 
     function showLoadPopin () {
         
-        var popin = $('<div class="popin">Choisissez la sauvegarde à charger<br></div>')
+        var popin = $('<div class="popin"></div>')
+        var content = $('<div class="content"><h3>Choisissez la sauvegarde à charger</h3><br></div>')
 
         if (lang !== 'fr'){
-            popin =  $('<div class="popin">Choose a creation to load<br></div>')
+            popin =  $('<div class="popin"></div>')
+            content = $('<div class="content"><h3>Choose a creation to load</h3><br></div>')
         }
 
-        popin.append('<div class="closeBtn">x</div>')
+        popin.append(content)
 
         var select = $('<select id="saves"></select>')
         var saves = loadCodes()
@@ -181,30 +210,30 @@ define([
             select.append('<option values="' + i + '">' + i + '</option>')
         }
 
-        popin.append(select)
+        content.append(select)
 
         if(lang == 'fr'){
-            popin.append('<button id="load">Charger</button>')
+            content.append('<div class="btnNext btn btnCodeDj" id="load"><img class="iconBtnNext" src="assets/iconBtnNext.png"><span>Charger</span></div>')
         } else {
-            popin.append('<button id="load">Load</button>')
+            content.append('<div class="btnNext btn btnCodeDj" id="load"><img class="iconBtnNext" src="assets/iconBtnNext.png"><span>Load</span></div>')
         }
 
 
         $('body').append(popin)
 
-        $('#load').click(function () {
+        $('#load').click(function (event) {
             var selected = $('#saves').find(':selected').text()
             codeEditor.setContent(saves[selected])
-            closePopin()
+            $('.popin').remove()
         })
 
-        $('.closeBtn').click(closePopin)
+        $('.popin').on('click',function(event){
+            event.stopImmediatePropagation()
+            if(event.target != this){ return true; }
+            $('.popin').remove()
+        })
     }
 
-
-    function closePopin () {
-        $('.popin').remove()
-    }
 
 
     function saveCode (fileName) {

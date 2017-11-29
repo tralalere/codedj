@@ -2,9 +2,26 @@ var lang = 'fr';
 if(navigator.language || navigator.userLanguage){
     lang = navigator.language || navigator.userLanguage;
 };
+
 if(localStorage.getItem('lang')){
-    lang = localStorage.getItem('lang');
+
+    if (localStorage.getItem('lang') !== 'fr' || localStorage.getItem('lang').substring(0, 2) !== 'fr') {
+        if(localStorage.getItem('lang') !== 'en'){
+            localStorage.setItem('lang', 'en')
+            location.reload();
+        }
+    }
+
+    lang = localStorage.getItem('lang')
 }
+
+if (lang !== 'fr' || lang.substring(0, 2) !== 'fr') {
+    lang = 'en'
+} else {
+    lang = 'fr'
+}
+
+
 define([
     'jquery',
     'toxilibs/event_bus_queued',

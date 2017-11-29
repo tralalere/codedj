@@ -2,9 +2,57 @@ var lang = 'fr';
 if(navigator.language || navigator.userLanguage){
     lang = navigator.language || navigator.userLanguage;
 };
+
 if(localStorage.getItem('lang')){
-    lang = localStorage.getItem('lang');
+
+    if (localStorage.getItem('lang') !== 'fr' || localStorage.getItem('lang').substring(0, 2) !== 'fr') {
+        if(localStorage.getItem('lang') !== 'en'){
+            localStorage.setItem('lang', 'en')
+            location.reload();
+        }
+    }
+    
+    lang = localStorage.getItem('lang')
 }
+
+if (lang !== 'fr' || lang.substring(0, 2) !== 'fr') {
+    lang = 'en'
+} else {
+    lang = 'fr'
+}
+
+
+var signinCallback = function (result) {
+    if (result.access_token) {
+        ready(result.access_token);
+    }
+};
+
+function ready(accessToken) {
+    console.log(accessToken)
+    token = accessToken;
+    this.gapi = gapi;
+    this.authenticated = true;
+    this.gapi.client.request({
+        path: '/youtube/v3/channels',
+        params: {
+            part: 'snippet',
+            mine: true
+        },
+        callback: function (response) {
+            if (response.error) {
+                console.log(response.error.message)
+            } else {
+                $('#channel-name').text(response.items[0].snippet.title)
+                $('#channel-thumbnail').attr('src', response.items[0].snippet.thumbnails.default.url)
+
+                $('.pre-sign-in').hide()
+                $('.post-sign-in').show()
+            }
+        }.bind(this)
+    });
+}
+
 require.config({
     urlArgs: (typeof window !== 'undefined' && (window.location.protocol === 'file:' || window.location.hostname === 'localhost')) ? 'bust=' + Date.now() : '',
     baseUrl: 'scripts',
@@ -84,8 +132,17 @@ require([
             $('.sourcesGitHub').html(data['button']['sourcesGitHub'])
 
             $('.encart').html(data['partenaires'])
+            
+            
+            $('#finishedHour').html(data['finishedHour'])
+
+            $('.getCertificate a').html(data['getCertificate'])
 
 
+        })
+
+        $('#signinButton').on('click', function(){
+            $('#blocPopUp-youtube').fadeOut();
         })
 
         if (urlParams.monde === '1') {
