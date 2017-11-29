@@ -131,7 +131,7 @@ function constructor()
   doScrapeYoutube(undefined, undefined, function(err, success) {
     if(err)
     {
-      console.error('scrape_service :: scraping fail', e);
+      console.error('scrape_service :: scraping fail');
     }
     else
     {
