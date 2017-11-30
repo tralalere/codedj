@@ -79,9 +79,12 @@ define([
             exposed: initialCode.join('\n')
         })
 
-
         $('#uploadYt').on('click', function(){
             $('#blocPopUp-youtube').fadeIn();
+        })
+
+        $('.templateGoogleConnexion').on('click', function(){
+
             if(!self.access_token){
 
                 gapi.auth.authorize({
@@ -90,14 +93,34 @@ define([
                     immediate: false
                 }, function(rep){
                     if (rep && !rep.error) {
-                        console.log('auth',rep);
+
+                        this.gapi.client.request({
+                            path: '/youtube/v3/channels',
+                            params: {
+                                part: 'snippet',
+                                mine: true
+                            },
+                            callback: function (response) {
+                                if (response.error) {
+                                    console.log(response.error.message)
+                                } else {
+                                    $('#blocPopUp-youtube').fadeIn();
+                                    $('#channel-name').text(response.items[0].snippet.title)
+                                    $('#channel-thumbnail').attr('src', response.items[0].snippet.thumbnails.default.url)
+
+                                    $('.pre-sign-in').fadeOut()
+                                    $('.post-sign-in').fadeIn()
+                                }
+                            }.bind(this)})
+
                         globalEventBus.emit('load_token', rep.access_token)
+
                         $('.disabled-bloc').removeClass('active')
-                    } else{
+
+                    } else {
                         $('.disabled-bloc').addClass('active')
                     }
                 });
-
             } else {
                 $('.disabled-bloc').removeClass('active')
             }
