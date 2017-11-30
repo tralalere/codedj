@@ -70,9 +70,8 @@ define(function () {
     var portions = [
         {
             solution: [
-                '// The for loop did not repeat itself enough times. By adding 1 at each repetition of the for loop, with i = i + 1, the sound was played enough times to fix the rhythm.',
-                '',
-                'for (var i = 1; i < 17; i = i + 1)',
+                '// La boucle for ne se répétait pas assez de fois. En utilisant 16 comme limite dans i<=16, le son s\'est joué assez de fois pour composer la bonne musique.',
+                'for (var i = 1; i <= 16; i = i + 1)',
                 '{',
                 '    pattern.addSound(hh, i)',
                 '}',
@@ -80,11 +79,9 @@ define(function () {
                 'pattern.addSound(hh, 12.75)'
             ],
             base: [
-                '// For loops allow bit of code to be repeated, which means you do not have to write similar lines of code again and again.',
-                '//	Here, the for loop does not repeat itself enough times.',
-                '//	Try putting a number a little smaller than 4 in i = i + 4',
-                '',
-                'for (var i = 1; i < 17; i = i + 4)',
+                '// Les boucles for permettent de ne pas réécrire plusieurs fois des lignes de code semblables. Mais ici la boucle for ne se répète pas assez de fois. Essaie d\'utiliser un nombre un peu plus grand que 12 dans i <= 12',
+                '// Le signe <= veut dire que ce qu\'il y a à sa gauche doit être inférieur ou égal à ce qu\'il y a à sa droite, donc ici que i doit être inférieur ou égal à 12',
+                'for (var i = 1; i <= 12; i = i + 1)',
                 '{',
                 '    pattern.addSound(hh, i)',
                 '}',
@@ -94,8 +91,7 @@ define(function () {
         },
         {
             solution: [
-                '// The for loop repeated itself too many times. By adding 4 at each repetition of the for loop, with i = i + 4, the sound was played enough times to fix the rhythm.',
-                '',
+                '// La boucle for ne se répétait pas assez de fois. En utilisant 14 comme limite dans i<14, le son s\'est joué assez de fois pour composer la bonne musique.',
                 'for (var i = 1.75; i < 14; i = i + 4)',
                 '{',
                 '    pattern.addSound(kick, i)',
@@ -117,11 +113,9 @@ define(function () {
                 'pattern.addSound(kick, 16.25)'
             ],
             base: [
-                '// For loops allow bit of code to be repeated, which means you do not have to write similar lines of code again and again.',
-                '//	Here, the for loop repeats itself too often.',
-                '//	Try putting a number a little bigger than 2 in i = i + 2',
-                '',
-                'for (var i = 1.75; i < 14; i = i + 2)',
+                '// Les boucles for permettent de ne pas réécrire plusieurs fois des lignes de code semblables. Mais ici la boucle for ne se répète pas assez de fois. Essaie d\'utiliser un nombre un peu plus grand que 8 dans i < 8',
+                '// Le signe < veut dire que ce qu\'il y a à sa gauche doit être inférieur à ce qu\'il y a à sa droite, donc ici que i doit être inférieur à 8',
+                'for (var i = 1.75; i < 8; i = i + 4)',
                 '{',
                 '    pattern.addSound(kick, i)',
                 '}',
@@ -144,9 +138,8 @@ define(function () {
         },
         {
             solution: [
-                '// The for loop did not repeat itself enough times. By adding 1 at each repetition of the for loop, with i = i + 1, the sound was played enough times to fix the rhythm.',
-                '',
-                'for (var i = 1; i < 17; i = i + 1)',
+                '// La boucle for ne se répétait pas assez de fois. En utilisant 17 comme limite dans i<=16, le son s\'est joué assez de fois pour composer la bonne musique.',
+                'for (var i = 1; i <=16; i = i + 1)',
                 '{',
                 '    pattern.addSound(rim, i)',
                 '}',
@@ -154,11 +147,9 @@ define(function () {
                 'pattern.addSound(rim, 12.75)'
             ],
             base: [
-                '// For loops allow bit of code to be repeated, which means you do not have to write similar lines of code again and again.',
-                '//	Here, the for loop does not repeat itself enough times.',
-                '//	Try putting a number a little smaller than 3 in i = i + 3',
-                '',
-                'for (var i = 1; i < 17; i = i + 3)',
+                '// Les boucles for permettent de ne pas réécrire plusieurs fois des lignes de code semblables. Mais ici la boucle for ne se répète pas assez de fois. Essaie d\'utiliser un nombre un peu plus grand que 11 dans i<=11',
+                '// Le signe <= veut dire que ce qu\'il y a à sa gauche doit être inférieur ou égal à ce qu\'il y a à sa droite, donc ici que i doit être inférieur ou égal à 11',
+                'for (var i = 1; i <= 11; i = i + 1)',
                 '{',
                 '    pattern.addSound(rim, i)',
                 '}',
@@ -168,19 +159,16 @@ define(function () {
         },
         {
             solution: [
-                '// The for loop did not repeat itself enough times. By adding 1 at each repetition of the for loop, with i = i + 1, the sound was played enough times to fix the rhythm.',
-                '',
+                '// La boucle for ne se répétait pas assez de fois. En utilisant 16 comme limite dans i<16, le son s\'est joué assez de fois pour composer la bonne musique.',
                 'for (var i = 1.5; i < 16; i = i + 1)',
                 '{',
                 '    pattern.addSound(shaker1, i)',
                 '}'
             ],
             base: [
-                '// For loops allow bit of code to be repeated, which means you do not have to write similar lines of code again and again.',
-                '//	Here, the for loop does not repeat itself enough times.',
-                '//	Try putting a number a little smaller than 4 in i = i + 4',
-                '',
-                'for (var i = 1.5; i < 16; i = i + 4)',
+                '// Les boucles for permettent de ne pas réécrire plusieurs fois des lignes de code semblables. Mais ici la boucle for ne se répète pas assez de fois. Essaie d\'utiliser un nombre un peu plus grand que 10 dans i<10',
+                '// Le signe < veut dire que ce qu\'il y a à sa gauche doit être inférieur à ce qu\'il y a à sa droite, donc ici que i doit être inférieur à 10',
+                'for (var i = 1.5; i < 10; i = i + 1)',
                 '{',
                 '    pattern.addSound(shaker1, i)',
                 '}'
@@ -188,19 +176,15 @@ define(function () {
         },
         {
             solution: [
-                '// The for loop repeated itself too many times. By adding 4 at each repetition of the for loop, with i = i + 4, the sound was played enough times to fix the rhythm.',
-                '',
+                '// La boucle for ne se répétait pas assez de fois. En utilisant 16 comme limite dans i<16, le son s\'est joué assez de fois pour composer la bonne musique.',
                 'for (var i = 3; i < 16; i = i + 4)',
                 '{',
                 '    pattern.addSound(snare, i)',
                 '}'
             ],
             base: [
-                '// For loops allow bit of code to be repeated, which means you do not have to write similar lines of code again and again.',
-                '//	Here, the for loop repeats itself too often.',
-                '//	Try putting a number a little bigger than 1 in i = i + 1',
-                '',
-                'for (var i = 3; i < 16; i = i + 1)',
+                '// Les boucles for permettent de ne pas réécrire plusieurs fois des lignes de code semblables. Mais ici la boucle for ne se répète pas assez de fois. Essaie d\'utiliser un nombre un peu plus grand que 10 dans i<10',
+                'for (var i = 3; i < 10; i = i + 4)',
                 '{',
                 '    pattern.addSound(snare, i)',
                 '}'
@@ -208,11 +192,11 @@ define(function () {
         },
         {
             solution: [
-                '// You needed to put 16.75 instead of 12.75 to get the sound played at the right time.',
+                '// Il fallait mettre 16,75 entre parenthèse pour que le sample soit joué au bon moment.',
                 'pattern.addSound(tom, 16.75)'
             ],
             base: [
-                '// Take a deep breath! Play with the number below in order to get the sound to play at the right time.',
+                '//Respire ! Tu peux le faire. Et si tu changeais le nombre entre parenthèses ?',
                 'pattern.addSound(tom, 12.75)'
             ]
         }

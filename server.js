@@ -108,6 +108,10 @@ app.get('/video', function (req, res) {
 
 });
 
+app.get('/scrape', function (req, res) {
+    res.json(scrapeService.getData());
+});
+
 app.listen(port, function () {
     console.log('Server is running on port: ' + port)
 })
