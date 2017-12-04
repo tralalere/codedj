@@ -112,6 +112,10 @@ app.get('/scrape', function (req, res) {
     res.json(scrapeService.getData());
 });
 
+app.get('/health', function (req, res) {
+    res.json({status:'UP'});
+});
+
 app.listen(port, function () {
     console.log('Server is running on port: ' + port)
 })
