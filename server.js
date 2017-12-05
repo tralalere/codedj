@@ -24,6 +24,10 @@ app.get('/samples', function (req, res) {
 var tokenToID = {}
 var increment = 0
 
+app.get('/healthcheck', function (req, res) {
+    res.end()
+})
+
 app.get('/export', function (req, res) {
     var token = req.query.token
     var id    = String(Date.now()) + increment
