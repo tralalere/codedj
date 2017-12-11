@@ -2216,6 +2216,8 @@ progress span{
 #blocChallenge .blocQuestion .challenge_question .syntaxhighlighter .code .container{
     width:100%;
 }
+
+/*TODO => Amine , probleme d'espace sur le monde 1*/
 #blocChallenge .blocQuestion .challenge_question .syntaxhighlighter .code .container .line{
     min-width: 200px;
     /*display: flex;
