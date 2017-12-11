@@ -9,7 +9,7 @@ define([
     }
 
 
-    /*TODO : Ajout de mesure sous la timeline */
+    /*TODO : Ajout de mesure sous la timeline pour Amine*/
 
     Timeline.prototype.initView = function (params) {
         this.view = $('<tr>')
