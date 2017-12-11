@@ -7,15 +7,15 @@ define(function () {
     var sounds = [
         {
             soundName: 'G1_ARP1',
-            soundSource: 'loops/G1/1 - ARP 1.wav'
+            soundSource: 'loops/G1/1 - ARP 1.mp3'
         },
         {
             soundName: 'G1_PIANO',
-            soundSource: 'loops/G1/1 - PIANO.wav'
+            soundSource: 'loops/G1/1 - PIANO.mp3'
         },
         {
             soundName: 'G1_VOIX1',
-            soundSource: 'loops/G1/1 - VOIX 1.wav'
+            soundSource: 'loops/G1/1 - VOIX 1.mp3'
         }
     ]
 

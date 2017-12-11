@@ -4,19 +4,19 @@ define(function () {
     var musicLoops = [
         {
             loopName: 'G3_PIANO',
-            source:   'G3/1 - PIANO.wav'
+            source:   'G3/1 - PIANO.mp3'
         },
         {
             loopName: 'G3_SYNTH',
-            source:   'G3/1 - SYNTH.wav'
+            source:   'G3/1 - SYNTH.mp3'
         },
         {
             loopName: 'G3_2ARP',
-            source:   'G3/2 - ARP.wav'
+            source:   'G3/2 - ARP.mp3'
         },
         {
             loopName: 'G3_2VOIX',
-            source:   'G3/2 - VOIX.wav'
+            source:   'G3/2 - VOIX.mp3'
         }
     ]
 
@@ -24,11 +24,11 @@ define(function () {
     var sounds = [
         {
             soundName: 'G3_CLAP',
-            soundSource: 'samples/G3/CLAP.wav'
+            soundSource: 'samples/G3/CLAP.mp3'
         },
         {
             soundName: 'G3_KICK',
-            soundSource: 'samples/G3/KICK.wav'
+            soundSource: 'samples/G3/KICK.mp3'
         }
     ]
 

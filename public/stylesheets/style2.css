@@ -6,10 +6,10 @@
     font-style: normal;
 }
 .row:before {
-    content: none;
-}
+     content: none;
+ }
 .row:after {
-    content: '';
+     content: '';
 }
 tbody:before,
 tbody:after,
@@ -204,7 +204,7 @@ body.secondBack{
         transform: initial;
     }
     .container-fluid .containPreHome #editor .search{
-        /* right: 160px;*/
+       /* right: 160px;*/
     }
 }
 
@@ -378,8 +378,8 @@ body.secondBack{
     width:100%;
 }
 #postHome .containPostHome2 .containTraitTop .traitTop .trait{
-    /* top:73px;
-     position: relative;*/
+   /* top:73px;
+    position: relative;*/
 }
 
 .shadow{
@@ -770,11 +770,9 @@ tbody{
     -webkit-box-direction: normal;
     -ms-flex-direction: row;
     flex-direction: row;
-    /* height: 100%;*/
+   /* height: 100%;*/
 }
-.timeline-container tr.numberReference{
-    order:2;
-}
+
 .timeline-container tr:before,
 .timeline-container tr:after{
     content: '';
@@ -788,7 +786,7 @@ tbody{
 }
 
 #world2 .timeline-container tr>tr{
-    max-height: 70px;
+       max-height: 70px;
 }
 
 .timeline-container tr td{
@@ -802,7 +800,7 @@ tbody{
     border: 2px dotted rgba(242, 53, 114,0.8);
     border-radius: 5px;
     z-index: 9999;
-    /* background: #4049fb;*/
+   /* background: #4049fb;*/
     -webkit-animation: loadShadowMissing 1s ease-in-out infinite;
     animation: loadShadowMissing 1s ease-in-out infinite;
 }
@@ -1117,7 +1115,7 @@ tbody{
 }
 
 #world2 .containPreHome #editor #resizable #code_editor .ace_search .ace_search_options{
-    display: none;
+display: none;
 }
 
 #world2 .containPreHome #editor #resizable #code_editor .ace_search .ace_searchbtn_close{
@@ -1226,8 +1224,8 @@ tbody{
 
 /*************************************** WORLD 1****************************************/
 #world1 .containPreHome #challenges_container {
-    position: relative;
-    margin-top: 20px;
+     position: relative;
+     margin-top: 20px;
 }
 #world1 .containPreHome #challenges_container #challengeAfterAnswer{
     width:100%;
@@ -1236,9 +1234,9 @@ tbody{
     background: rgba(0, 0, 0,0.5);
     /*padding: 10px;*/
     border-radius: 15px;
-    /*  -webkit-box-shadow: 0 0 5px 15px rgba(0, 0, 0,0.5);
-      -moz-box-shadow: 0 0 5px 15px rgba(0, 0, 0,0.5);
-      box-shadow: 0 0 5px 15px rgba(0, 0, 0,0.5);*/
+  /*  -webkit-box-shadow: 0 0 5px 15px rgba(0, 0, 0,0.5);
+    -moz-box-shadow: 0 0 5px 15px rgba(0, 0, 0,0.5);
+    box-shadow: 0 0 5px 15px rgba(0, 0, 0,0.5);*/
 }
 
 #world1 .containPreHome #challenges_container #challengeAfterAnswer  #blocChallenge .blocStreightTrait{
@@ -1435,10 +1433,10 @@ tbody{
 }
 #world1 .containPreHome #challenges_container #blocChallenge .blocInputAnswer .answer .user_answer_and_correction{
     line-height: 1;
-    /* height: 50px;
-     width: 300px;
-     display: inline-block;
-     text-indent: 30px;*/
+   /* height: 50px;
+    width: 300px;
+    display: inline-block;
+    text-indent: 30px;*/
 }
 
 #world1 .containPreHome #challenges_container #blocChallenge.win .blocInputAnswer .answer .user_answer_and_correction .user_answer {
@@ -1885,15 +1883,15 @@ textarea {
     0%,
     100% {
         transform: scaleY(1);
-        /* background: rgba(60, 102, 183,0.6);*/
+       /* background: rgba(60, 102, 183,0.6);*/
     }
     16.67% {
         transform: scaleY(3);
-        /* background: rgba(60, 102, 183,0.6);*/
+       /* background: rgba(60, 102, 183,0.6);*/
     }
     33.33% {
         transform: scaleY(1);
-        /* background: rgba(60, 102, 183,0.6);*/
+       /* background: rgba(60, 102, 183,0.6);*/
     }
     50% {
         transform: scaleY(3);
@@ -2306,7 +2304,7 @@ progress span{
     width:20px;
     top: -50px;
     right: -20px;
-    z-index: -1;
+     z-index: -1;
 }
 
 .traitY .traitInterne{
@@ -2749,6 +2747,12 @@ progress span{
     bottom: 5px;
 }
 
+/*TODO : Ajout de mesure sous la timeline */
+
+.timeline-container tr.numberReference{
+    order:2;
+}
+
 #world1 .timeline-container tr.numberReference{
     display: none;
 }
@@ -2794,7 +2798,6 @@ progress span{
     position: relative;
     left: -25%;
 }
-
 
 .timeline-container tr.numberReference tr .beat_ref_3,
 .timeline-container tr.numberReference tr .beat_ref_7,
@@ -3517,7 +3520,7 @@ progress span{
     cursor: pointer;
     outline: 0px;
     height: 36px;
-    float: left;
+   float: left;
 }
 .templateGoogleConnexion .icon-gmail{
     border-radius: 3px 0 0 3px;

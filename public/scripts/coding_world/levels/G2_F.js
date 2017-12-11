@@ -7,11 +7,11 @@ define(function () {
     var sounds = [
         {
             soundName: 'G2_2SYNTH',
-            soundSource: 'loops/G2/2 - SYNTH.wav'
+            soundSource: 'loops/G2/2 - SYNTH.mp3'
         },
         {
             soundName: 'G2_2VOIX',
-            soundSource: 'loops/G2/2 - VOIX 1.wav'
+            soundSource: 'loops/G2/2 - VOIX 1.mp3'
         }
     ]
 

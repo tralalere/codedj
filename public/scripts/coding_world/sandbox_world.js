@@ -14,17 +14,17 @@ define([
     var initialCode = [
         'var pattern = new Pattern()',
         '',
-        'var hitHat = new Instrument(\'samples/G1/HH.wav\')',
-        'var kick   = new Instrument(\'samples/G1/KICK.wav\')',
-        'var rim    = new Instrument(\'samples/G1/RIM.wav\')',
-        'var shaker = new Instrument(\'samples/G1/SHAKER_1.wav\')',
-        'var snare  = new Instrument(\'samples/G1/SNARE.wav\')',
-        'var tom    = new Instrument(\'samples/G1/TOM.wav\')',
+        'var hitHat = new Instrument(\'samples/G1/HH.mp3\')',
+        'var kick   = new Instrument(\'samples/G1/KICK.mp3\')',
+        'var rim    = new Instrument(\'samples/G1/RIM.mp3\')',
+        'var shaker = new Instrument(\'samples/G1/SHAKER_1.mp3\')',
+        'var snare  = new Instrument(\'samples/G1/SNARE.mp3\')',
+        'var tom    = new Instrument(\'samples/G1/TOM.mp3\')',
         'var conga  = new Instrument()',
         '',
-        'conga.addSample(\'CongaA\',\'samples/G1/CONGA_1.wav\')',
-        'conga.addSample(\'CongaB\',\'samples/G1/CONGA_2.wav\')',
-        'conga.addSample(\'CongaC\',\'samples/G1/CONGA_3.wav\')',
+        'conga.addSample(\'CongaA\',\'samples/G1/CONGA_1.mp3\')',
+        'conga.addSample(\'CongaB\',\'samples/G1/CONGA_2.mp3\')',
+        'conga.addSample(\'CongaC\',\'samples/G1/CONGA_3.mp3\')',
         '',
         'pattern.addSound(rim, 2)',
         'pattern.addSound(rim, 4)',
@@ -84,7 +84,7 @@ define([
         })
 
         $('.templateGoogleConnexion').on('click', function(){
-
+            
             if(!self.access_token){
 
                 gapi.auth.authorize({
@@ -93,7 +93,7 @@ define([
                     immediate: false
                 }, function(rep){
                     if (rep && !rep.error) {
-
+                        
                         this.gapi.client.request({
                             path: '/youtube/v3/channels',
                             params: {
@@ -107,16 +107,16 @@ define([
                                     $('#blocPopUp-youtube').fadeIn();
                                     $('#channel-name').text(response.items[0].snippet.title)
                                     $('#channel-thumbnail').attr('src', response.items[0].snippet.thumbnails.default.url)
-
+                                    
                                     $('.pre-sign-in').fadeOut()
                                     $('.post-sign-in').fadeIn()
                                 }
                             }.bind(this)})
-
+                        
                         globalEventBus.emit('load_token', rep.access_token)
-
+                        
                         $('.disabled-bloc').removeClass('active')
-
+                        
                     } else {
                         $('.disabled-bloc').addClass('active')
                     }

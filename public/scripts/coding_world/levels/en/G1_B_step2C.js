@@ -3,23 +3,23 @@ define(function () {
     var musicLoops = [
         {
             loopName: 'G1_1arp1',
-            source:   'G1/1 - ARP 1.wav'
+            source:   'G1/1 - ARP 1.mp3'
         },
         {
             loopName: 'G1_1bass',
-            source:   'G1/1 - BASS.wav'
+            source:   'G1/1 - BASS.mp3'
         },
         {
             loopName: 'G1_1synth1',
-            source:   'G1/1 - SYNTH 1.wav'
+            source:   'G1/1 - SYNTH 1.mp3'
         },
         {
             loopName: 'G1_1voix1',
-            source:   'G1/1 - VOIX 1.wav'
+            source:   'G1/1 - VOIX 1.mp3'
         },
         {
             loopName: 'G1_2piano',
-            source:   'G1/2 - PIANO.wav'
+            source:   'G1/2 - PIANO.mp3'
         }
     ]
 
@@ -27,27 +27,27 @@ define(function () {
     var sounds = [
         {
             soundName: 'G1_HITHAT',
-            soundSource: 'samples/G1/HH.wav'
+            soundSource: 'samples/G1/HH.mp3'
         },
         {
             soundName: 'G1_KICK',
-            soundSource: 'samples/G1/KICK.wav'
+            soundSource: 'samples/G1/KICK.mp3'
         },
         {
             soundName: 'G1_RIM',
-            soundSource: 'samples/G1/RIM.wav'
+            soundSource: 'samples/G1/RIM.mp3'
         },
         {
             soundName: 'G1_SHAKER_1',
-            soundSource: 'samples/G1/SHAKER_1.wav'
+            soundSource: 'samples/G1/SHAKER_1.mp3'
         },
         {
             soundName: 'G1_SNARE',
-            soundSource: 'samples/G1/SNARE.wav'
+            soundSource: 'samples/G1/SNARE.mp3'
         },
         {
             soundName: 'G1_TOM',
-            soundSource: 'samples/G1/TOM.wav'
+            soundSource: 'samples/G1/TOM.mp3'
         }
     ]
 

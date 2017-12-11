@@ -54,6 +54,12 @@ define([
             exposed: challengedPortion.base,
             end:     portionsAfter.concat(this.challengeData.end)
         }
+        
+        console.log('challenge monde 2 get step',[
+            challengedPortion,
+            this.solution,
+            this.base
+        ])
     }
 
 

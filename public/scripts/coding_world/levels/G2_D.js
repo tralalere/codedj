@@ -4,23 +4,23 @@ define(function () {
     var musicLoops = [
         {
             loopName: 'G2_SYNTH2',
-            source:   'G2/1 - SYNTH 2.wav'
+            source:   'G2/1 - SYNTH 2.mp3'
         },
         {
             loopName: 'G2_SYNTH',
-            source:   'G2/1 - SYNTH.wav'
+            source:   'G2/1 - SYNTH.mp3'
         },
         {
             loopName: 'G2_VOIX2',
-            source:   'G2/1 - VOIX 2.wav'
+            source:   'G2/1 - VOIX 2.mp3'
         },
         {
             loopName: 'G2_2BASS',
-            source:   'G2/2 - BASS.wav'
+            source:   'G2/2 - BASS.mp3'
         },
         {
             loopName: 'G2_2VOIX',
-            source:   'G2/2 - VOIX 1.wav'
+            source:   'G2/2 - VOIX 1.mp3'
         }
     ]
 
@@ -28,11 +28,11 @@ define(function () {
     var sounds = [
         {
             soundName: 'G2_CLAP',
-            soundSource: 'samples/G2/CLAP.wav'
+            soundSource: 'samples/G2/CLAP.mp3'
         },
         {
             soundName: 'G2_KICK',
-            soundSource: 'samples/G2/KICK.wav'
+            soundSource: 'samples/G2/KICK.mp3'
         }
     ]
 

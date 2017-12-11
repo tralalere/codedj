@@ -9,6 +9,8 @@ define([
     }
 
 
+    /*TODO : Ajout de mesure sous la timeline */
+
     Timeline.prototype.initView = function (params) {
         this.view = $('<tr>')
         var soundName = params.sampleName.split('/')

@@ -7,23 +7,23 @@ define(function () {
     var sounds = [
         {
             soundName: 'G1_ARP2',
-            soundSource: 'loops/G1/1 - ARP 2.wav'
+            soundSource: 'loops/G1/1 - ARP 2.mp3'
         },
         {
             soundName: 'G1_PAD',
-            soundSource: 'loops/G1/1 - PAD.wav'
+            soundSource: 'loops/G1/1 - PAD.mp3'
         },
         {
             soundName: 'G1_SYNTH1',
-            soundSource: 'loops/G1/1 - SYNTH 1.wav'
+            soundSource: 'loops/G1/1 - SYNTH 1.mp3'
         },
         {
             soundName: 'G1_SYNTH2',
-            soundSource: 'loops/G1/1 - SYNTH 2.wav'
+            soundSource: 'loops/G1/1 - SYNTH 2.mp3'
         },
         {
             soundName: 'G1_2VOIX1',
-            soundSource: 'loops/G1/2 - VOIX 1.wav'
+            soundSource: 'loops/G1/2 - VOIX 1.mp3'
         }
     ]
 

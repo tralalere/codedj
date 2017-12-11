@@ -19,7 +19,8 @@ define([
     Sound.setFadeDuration(0)
 
 
-    var baseUrl = './assets/sounds/'
+    var baseUrl = 'https://static.code-dj.com/hourofcode/public/assets/sounds/'
+    //var baseUrl = './assets/sounds/'
 
     var loops = {}
     var loopsTimeout = {}

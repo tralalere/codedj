@@ -7,7 +7,7 @@ define(function () {
     var sounds = [
         {
             soundName: 'G3_2PIANO',
-            soundSource: 'loops/G3/2 - PIANO.wav'
+            soundSource: 'loops/G3/2 - PIANO.mp3'
         }
     ]
 

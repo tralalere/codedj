@@ -4,27 +4,27 @@ define(function () {
     var musicLoops = [
         {
             loopName: 'G1_PIANO',
-            source:   'G1/1 - PIANO.wav'
+            source:   'G1/1 - PIANO.mp3'
         },
         {
             loopName: 'G1_VOIX2',
-            source:   'G1/1 - VOIX 2.wav'
+            source:   'G1/1 - VOIX 2.mp3'
         },
         {
             loopName: 'G1_ARP2',
-            source:   'G1/2 - ARP 2.wav'
+            source:   'G1/2 - ARP 2.mp3'
         },
         {
             loopName: 'G1_2BASS',
-            source:   'G1/2 - BASS.wav'
+            source:   'G1/2 - BASS.mp3'
         },
         {
             loopName: 'G1_2SYNTH2',
-            source:   'G1/2 - SYNTH 2.wav'
+            source:   'G1/2 - SYNTH 2.mp3'
         },
         {
             loopName: 'G1_2VOIX1',
-            source:   'G1/2 - VOIX 1.wav'
+            source:   'G1/2 - VOIX 1.mp3'
         }
     ]
 
@@ -32,31 +32,31 @@ define(function () {
     var sounds = [
         {
             soundName: 'G1_HITHAT',
-            soundSource: 'samples/G1/HH.wav'
+            soundSource: 'samples/G1/HH.mp3'
         },
         {
             soundName: 'G1_KICK',
-            soundSource: 'samples/G1/KICK.wav'
+            soundSource: 'samples/G1/KICK.mp3'
         },
         {
             soundName: 'G1_RIM',
-            soundSource: 'samples/G1/RIM.wav'
+            soundSource: 'samples/G1/RIM.mp3'
         },
         {
             soundName: 'G1_SNARE',
-            soundSource: 'samples/G1/SNARE.wav'
+            soundSource: 'samples/G1/SNARE.mp3'
         },
         {
             soundName: 'G1_CONGA_1',
-            soundSource: 'samples/G1/CONGA_1.wav'
+            soundSource: 'samples/G1/CONGA_1.mp3'
         },
         {
             soundName: 'G1_CONGA_2',
-            soundSource: 'samples/G1/CONGA_2.wav'
+            soundSource: 'samples/G1/CONGA_2.mp3'
         },
         {
             soundName: 'G1_CONGA_3',
-            soundSource: 'samples/G1/CONGA_3.wav'
+            soundSource: 'samples/G1/CONGA_3.mp3'
         }
     ]
 
