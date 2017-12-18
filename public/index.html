@@ -36,9 +36,9 @@
     <script src="wav-scripts/ext_libs/shCore.js"></script>
     <script src="wav-scripts/ext_libs/shBrushJScript.js"></script>
 
-    <!--<script data-main="./scripts/main.js" src="./scripts/ext_libs/require.js"></script>-->
+    <script data-main="./scripts/main.js" src="./scripts/ext_libs/require.js"></script>
 
-  <script data-main="./scripts/main-built.js" src="wav-scripts/ext_libs/require.js"></script>
+  <!--<script data-main="./scripts/main-built.js" src="wav-scripts/ext_libs/require.js"></script>-->
 
     <script src="//apis.google.com/js/client:plusone.js"></script>
 
@@ -697,7 +697,29 @@
 
     <div id="answer_template">
         <div class="answer d-flex flex-row">
-            <input autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" />
+            <div id="roll-list-mobile">
+                <div class="hide-scroll">
+                    <ul id="list">
+                        <li>Link 1</li>
+                        <li>Link 2</li>
+                        <li>Link 3</li>
+                        <li>Link 4</li>
+                        <li>Link 5</li>
+                        <li>Link 6</li>
+                        <li>Link 7</li>
+                        <li>Link 8</li>
+                        <li>Link 9</li>
+                        <li>Link 10</li>
+                        <li>Link 11</li>
+                        <li>Link 13</li>
+                        <li>Link 13</li>
+
+                    </ul>
+                </div>
+
+            </div>
+
+            <input autocomplete="off" readonly="true" autocorrect="off" autocapitalize="off" spellcheck="false" />
             <div class="btnAnswer btn btnCodeDj">ok<img class="iconBtnNext" src="assets/iconBtnNext.png"></div>
 
         </div>

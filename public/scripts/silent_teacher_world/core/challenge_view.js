@@ -66,10 +66,43 @@ define([
             window.location.href = '.?monde=select'
             return false
         })
+
+        var scrollableElement = document.getElementById('list');
+        scrollableElement.addEventListener('wheel', function(event){
+            
+                var delta;
+
+                if (event.wheelDelta) {
+                    delta = event.wheelDelta;
+                } else {
+                    delta = -1 * event.deltaY;
+                }
+
+                if (delta < 0) {
+                    console.log("DOWN");
+                } else if (delta > 0) {
+                    console.log("UP");
+                }
+            
+        }, true);
+
+        /* document.addEventListener('scroll', function (event) {
+             if (event.target.id === 'list') {
+                 console.log('scrolling', event.target);
+             }
+         }, true);
+ */
+
+
+
+
+
+
         $blocChallengesContainer.find('.wrapChallengeTimeline').prepend(blocTimeline)
 
         $blocChallengesContainer.append($challengeAfterAnswer)
         counter = 1
+        
         EffectProgress()
     }
 
@@ -88,6 +121,23 @@ define([
         eventBus.emit('challenge view ready', $blocChallenge)
     }
 
+
+    function findScrollDirectionOtherBrowsers(event){
+        var delta;
+
+        if (event.wheelDelta){
+            delta = event.wheelDelta;
+        }else{
+            delta = -1 * event.deltaY;
+        }
+
+        if (delta < 0){
+            console.log("DOWN");
+        }else if (delta > 0){
+            console.log("UP");
+        }
+
+    }
 
     function addCorrection (challenge, userAnswer, win) {
         /*

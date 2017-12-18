@@ -110,6 +110,8 @@ require([
             globalEventBus.emit('lang changed', 'en')
         })
 
+
+        
         $('#resizable').resizable()
 
         $.getJSON('json/'+lang+'/text.json', function (data) {

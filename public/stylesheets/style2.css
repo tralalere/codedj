@@ -3543,3 +3543,49 @@ progress span{
     padding: 0 20px;
     font-weight: bold;
 }
+
+/************************/
+#roll-list-mobile{
+    height: 192px;
+    width: 216px;
+    border-radius: 8px;
+    background-color: #161026;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.5);
+    position: absolute;
+    top: 0;
+    z-index: 9999;
+}
+
+
+#roll-list-mobile .hide-scroll{
+    position: relative;
+    top:50%;
+    transform: translateY(-50%);
+    margin: 0 auto;
+    width:70px;
+    height:60px;
+    overflow: hidden;
+}
+
+#roll-list-mobile ul{
+    padding: 0;
+    position: relative;
+    width:80px;
+    height:100%;
+    overflow: hidden;
+    overflow-y:scroll;
+    border-top: 1px solid #53D8FB;
+    border-bottom: 1px solid #53D8FB;
+}
+
+#roll-list-mobile ul li{
+    display: block;
+    width:100%;
+    height:60px;
+    line-height: 60px;
+    text-align: center;
+    color: #53D8FB;
+    font-family: Roboto;
+    font-size: 16px;
+    font-weight: 900;
+}
