@@ -110,6 +110,10 @@ require([
             globalEventBus.emit('lang changed', 'en')
         })
 
+        $('.tab-mobile div').on('click',function(){
+            $('.tab-mobile div').removeClass('active')
+            $(this).addClass('active')
+        });
 
         
         $('#resizable').resizable()

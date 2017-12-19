@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <title>Code DJ</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="wav-scripts/ext_libs/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="scripts/ext_libs/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
     <!--<script src="./scripts/ext_libs/tether-1.4.0/dist/js/tether.min.js"></script>
     <script src="./scripts/ext_libs/bootstrap-4.0.0-alpha.6-dist/js/bootstrap.min.js"></script>-->
 
@@ -24,8 +24,8 @@
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 
 
-    <script src="wav-scripts/ext_libs/perfect-scrollbar/js/perfect-scrollbar.jquery.js"></script>
-    <link rel="stylesheet" href="wav-scripts/ext_libs/perfect-scrollbar/css/perfect-scrollbar.css" />
+    <script src="scripts/ext_libs/perfect-scrollbar/js/perfect-scrollbar.jquery.js"></script>
+    <link rel="stylesheet" href="scripts/ext_libs/perfect-scrollbar/css/perfect-scrollbar.css" />
 
     <!--<link href="./scripts/ext_libs/bootstrap-4.0.0-alpha.6-dist/css/bootstrap.min.css" rel="stylesheet">-->
     <link href="./stylesheets/shCore.css" rel="stylesheet">
@@ -33,12 +33,12 @@
     <link rel="stylesheet" href="./stylesheets/style.css">
     <link rel="stylesheet" href="./stylesheets/style2.css">
     <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
-    <script src="wav-scripts/ext_libs/shCore.js"></script>
-    <script src="wav-scripts/ext_libs/shBrushJScript.js"></script>
+    <script src="scripts/ext_libs/shCore.js"></script>
+    <script src="scripts/ext_libs/shBrushJScript.js"></script>
 
     <script data-main="./scripts/main.js" src="./scripts/ext_libs/require.js"></script>
 
-  <!--<script data-main="./scripts/main-built.js" src="wav-scripts/ext_libs/require.js"></script>-->
+  <!--<script data-main="./scripts/main-built.js" src="scripts/ext_libs/require.js"></script>-->
 
     <script src="//apis.google.com/js/client:plusone.js"></script>
 
@@ -698,28 +698,75 @@
     <div id="answer_template">
         <div class="answer d-flex flex-row">
             <div id="roll-list-mobile">
-                <div class="hide-scroll">
-                    <ul id="list">
-                        <li>Link 1</li>
-                        <li>Link 2</li>
-                        <li>Link 3</li>
-                        <li>Link 4</li>
-                        <li>Link 5</li>
-                        <li>Link 6</li>
-                        <li>Link 7</li>
-                        <li>Link 8</li>
-                        <li>Link 9</li>
-                        <li>Link 10</li>
-                        <li>Link 11</li>
-                        <li>Link 13</li>
-                        <li>Link 13</li>
-
-                    </ul>
+                <div class="bloc-result">
+                    <div class="result"></div>
+                    <div class="suppress"></div>
                 </div>
 
+
+                <div class="tab-content-mobile">
+                    <div class="pad">
+                        <div value="1">1</div>
+                        <div value="2">2</div>
+                        <div value="3">3</div>
+                        <div value="4">4</div>
+                        <div value="5">5</div>
+                        <div value="6">6</div>
+                        <div value="7">7</div>
+                        <div value="8">8</div>
+                        <div value="9">9</div>
+                        <div value="0">0</div>
+                    </div>
+                    <div class="keyboard">
+                        <div value="a">a</div>
+                        <div value="z">z</div>
+                        <div value="e">e</div>
+                        <div value="r">r</div>
+                        <div value="t">t</div>
+                        <div value="y">y</div>
+                        <div value="u">u</div>
+                        <div value="i">i</div>
+                        <div value="o">o</div>
+                        <div value="p">p</div>
+
+                        <div value="a">q</div>
+                        <div value="z">s</div>
+                        <div value="e">d</div>
+                        <div value="r">f</div>
+                        <div value="t">g</div>
+                        <div value="y">h</div>
+                        <div value="u">j</div>
+                        <div value="i">k</div>
+                        <div value="o">l</div>
+                        <div value="p">m</div>
+
+
+                        <div class="empty"></div>
+                        <div value="a">w</div>
+                        <div value="z">x</div>
+                        <div value="e">c</div>
+                        <div value="r">v</div>
+                        <div value="t">b</div>
+                        <div value="y">n</div>
+
+                        <div class="enter"></div>
+
+                    </div>
+                    <div class="boolean">
+                        <div value="true">true</div>
+                        <div value="false">false</div>
+                    </div>
+
+                </div>
+                <div class="tab-mobile">
+                    <div class="pad">123</div>
+                    <div class="keyboard">abc</div>
+                    <div class="boolean">T/F</div>
+                    <div class="sub">OK</div>
+                </div>
             </div>
 
-            <input autocomplete="off" readonly="true" autocorrect="off" autocapitalize="off" spellcheck="false" />
+            <input class="inputAnswer" autocomplete="off" readonly="true" autocorrect="off" autocapitalize="off" spellcheck="false" />
             <div class="btnAnswer btn btnCodeDj">ok<img class="iconBtnNext" src="assets/iconBtnNext.png"></div>
 
         </div>

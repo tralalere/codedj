@@ -1,3 +1,4 @@
+var selected = 'pad'
 define([
     'toxilibs/event_bus_queued',
     'jquery',
@@ -67,37 +68,11 @@ define([
             return false
         })
 
-        var scrollableElement = document.getElementById('list');
-        scrollableElement.addEventListener('wheel', function(event){
-            
-                var delta;
-
-                if (event.wheelDelta) {
-                    delta = event.wheelDelta;
-                } else {
-                    delta = -1 * event.deltaY;
-                }
-
-                if (delta < 0) {
-                    console.log("DOWN");
-                } else if (delta > 0) {
-                    console.log("UP");
-                }
-            
-        }, true);
-
-        /* document.addEventListener('scroll', function (event) {
-             if (event.target.id === 'list') {
-                 console.log('scrolling', event.target);
-             }
-         }, true);
- */
-
-
-
-
-
-
+        $('.tab-mobile div').on('click',function(){
+            $('.tab-mobile div').removeClass('active')
+            $(this).addClass('active')
+        });
+        
         $blocChallengesContainer.find('.wrapChallengeTimeline').prepend(blocTimeline)
 
         $blocChallengesContainer.append($challengeAfterAnswer)
@@ -119,6 +94,117 @@ define([
         previousChallenge = challenge
 
         eventBus.emit('challenge view ready', $blocChallenge)
+
+        $('.inputAnswer').on('click',function(){
+            $('#roll-list-mobile').fadeIn()
+        })
+
+        $('.tab-mobile div').on('click',function(){
+            $('.tab-mobile div').removeClass('active')
+
+            $(this).addClass('active')
+            
+
+            
+            var val = $('.result').val()
+            
+            switch($(this).text()){
+                
+                case '123':
+                    selected = 'pad'
+                    
+                    $('.result').val('')
+                    $('.result').text('')
+                    
+                    $('.tab-content-mobile div').removeClass('active')
+                    $('.tab-content-mobile .pad').addClass('active')
+                break
+
+                case 'abc':
+                    selected = 'keyboard'
+                    
+                    $('.result').val('')
+                    $('.result').text('')
+                    
+                    $('.tab-content-mobile div').removeClass('active')
+                    $('.tab-content-mobile .keyboard').addClass('active')
+                break
+
+                case 'T/F':
+                    selected = 'boolean'
+                    
+                    $('.result').val('')
+                    $('.result').text('')
+                    
+                    $('.tab-content-mobile div').removeClass('active')
+                    $('.tab-content-mobile .boolean').addClass('active')
+                break
+
+
+                case 'OK':
+                    selected = 'OK'
+                    $('.inputAnswer').val(val);
+                    $('#roll-list-mobile').fadeOut();
+                    //alert('OK')
+                break
+
+                default :
+                    console.log('error')
+            }
+        });
+
+        $('.tab-content-mobile > div > div').on('click',function(){
+
+            var str = $('.result').text();
+            var val = $('.result').val();
+            switch(selected){
+
+                case 'pad':
+                   // $('.result').text($(this).text())
+
+                    if(str == ""){
+                        $('.result').empty()
+                        $('.result').val($(this).text())
+                        $('.result').text($('.result').val())
+                        
+                    } else if(val.length == 1){
+                        $('.result').text(val + $(this).text())
+                        $('.result').val(val + $(this).text())
+                    }
+                break
+
+                case 'keyboard':
+                    $('.result').empty()
+                    $('.result').val($(this).text())
+                    $('.result').text($('.result').val())
+                break
+
+                case 'boolean':
+                    $('.result').empty()
+                    $('.result').val($(this).text())
+                    $('.result').text($('.result').val())
+                break
+
+                default:
+                console.log('no selected input')
+
+            }
+            console.log($(this).text())
+        })
+
+        $('.suppress').on('click',function(){
+
+            var str = $('.result').val();
+            var text = str.slice(0, -1);
+            console.log(str);
+            console.log(text);
+           
+            $('.result').text(text)
+            $('.result').val(text)
+        })
+        
+        
+        
     }
 
 
@@ -231,6 +317,9 @@ define([
         })
 
         $blocInputAnswer.find('.btnAnswer').click(function () {
+            if(selected !== 'OK'){
+                return
+            }
             if (!canSubmitAnwser(challenge)) {
                 return
             }
