@@ -136,7 +136,11 @@ require([
             $('.mentionText').html(data['button']['mentionText'])
             $('.faqText').html(data['button']['faqText'])
             $('.sourcesGitHub').html(data['button']['sourcesGitHub'])
-
+            
+            
+            $('#uploadYt div').html(data['button']['publish'])
+            $('#btn_solution div').html(data['button']['solution'])
+            
             $('.encart').html(data['partenaires'])
             
             

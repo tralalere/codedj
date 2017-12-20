@@ -16,7 +16,10 @@
     "creditText": "CREDITS",
     "mentionText": " LEGAL ",
     "faqText": " FAQ ",
-    "sourcesGitHub": " Sources "
+    "sourcesGitHub": " Sources ",
+
+    "publish": "Publish",
+    "solution": "Solution"
 
   },
   "woldWinBeats":"<div><span>Congratulations!</span><br>You've unlocked the <span class='worldUnlocked'>World of Beats!</span></div>",
