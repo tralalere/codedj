@@ -1,3 +1,4 @@
+var username = ''
 define([
     'jquery',
     'toxilibs/event_bus_queued',
@@ -104,6 +105,8 @@ define([
                                 if (response.error) {
                                     console.log(response.error.message)
                                 } else {
+                                    username = response.items[0].snippet.title
+
                                     $('#blocPopUp-youtube').fadeIn();
                                     $('#channel-name').text(response.items[0].snippet.title)
                                     $('#channel-thumbnail').attr('src', response.items[0].snippet.thumbnails.default.url)
@@ -160,7 +163,7 @@ define([
         }
 
 
-        code = "Auteurs samples = \nAntoine Boucherikha (Life Pass Filter), Walter Geny (Pyramide Studio)\n\n"+code;
+        code = "Auteur = \n" + username + "\n\nAuteurs samples = \nAntoine Boucherikha (Life Pass Filter), Walter Geny (Pyramide Studio)\n\n"+code;
         console.log(code);
         var data = {
             title:$('.title-upload #title').val(),

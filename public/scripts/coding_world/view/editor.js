@@ -25,8 +25,9 @@ define([
     'jquery',
     'toxilibs/event_bus_queued',
     'toxilibs/code_editor_capabilities',
-    'toxilibs/ace_custom_javascript'
-], function ($, globalEventBus, addCodeEditorCapabilities, aceCustomJavaScript) {
+    'toxilibs/ace_custom_javascript',
+    '../levels/level_manager'
+], function ($, globalEventBus, addCodeEditorCapabilities, aceCustomJavaScript, levelmanager) {
 
     var eventBus = globalEventBus('view')
 
@@ -48,6 +49,16 @@ define([
     var solutionCode
     var $textArea
     var $searchFieldButton
+    var $sampleButton
+
+    var $blocPopUp
+    var $pop
+    var $pack
+
+    var $blocPopUp = $('#world2 > .blocPopUp')
+    var $pop = $('#world2 > .blocPopUp > .shopPopPup')
+    var $pack = $('#pack-template').html()
+
 
     globalEventBus('solutionWorld').on('world ready', function (world) {
         solutionCode = world.exposedCode()
@@ -95,8 +106,13 @@ define([
         })
 
         $searchFieldButton = $('<div id="btn_search"></div>')
+        $sampleButton = $('<div id="btn_sample"></div>')
         $('#code_editor').append($searchFieldButton)
+        $('#code_editor').append($sampleButton)
         $searchFieldButton.click(openSearch)
+        $sampleButton.click(openSample)
+
+
 
         $('#resizable').resize(function () {
             codeEditor.aceEditor.resize()
@@ -108,6 +124,64 @@ define([
 
     function openSearch () {
         codeEditor.aceEditor.execCommand('find')
+    }
+
+    function openSample () {
+
+       /* function getMusicList(type, code, pathPrefix)
+        {
+            var alreadyUsedMusic = parseAlreadyExistantSamples(code);
+
+            var temp = lodash.flatMap(levelmanager.getLevelsData(), function(item) {
+                return item[type];
+            });
+
+            temp = lodash.flatMap(temp, function(item) {
+                return {
+                    name    : (item.loopName || item.soundName),
+                    source  : (pathPrefix ? pathPrefix : '') + (item.source || item.soundSource),
+                    used    : lodash.includes(alreadyUsedMusic, (pathPrefix ? pathPrefix : '') + (item.source || item.soundSource))
+                };
+            });
+
+            temp = lodash.uniqBy(temp, 'source');
+
+            return lodash.chunk(lodash.values(temp), 2);
+        };
+        function parseAlreadyExistantSamples(code)
+        {
+            try
+            {
+                var allMatchs = code.match(/[^'"\(\)]+\.mp3/g);
+                return (allMatchs && Array.isArray(allMatchs)) ? allMatchs : [];
+            }
+            catch (e)
+            {
+                return [];
+            }
+        };*/
+
+        $blocPopUp.fadeIn()
+
+        $pop.find('.bloc-pack').remove()
+
+        $pop.append($pack)
+
+        $('.icon-play-shop').on('click',function() {
+            $(this).addClass('pause')
+                 if ($(this).children()[0].paused == false) {
+                     $(this).children()[0].pause();
+                     console.log('music paused');
+                 } else {
+                     $(this).children()[0].play();
+                     console.log('music playing');
+                 }
+
+            $(this).children()[0].addEventListener("ended", function(){
+                this.currentTime = 0;
+                $('.icon-play-shop').removeClass('pause')
+            });
+        });
     }
 
     /*

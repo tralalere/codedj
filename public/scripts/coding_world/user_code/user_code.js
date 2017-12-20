@@ -19,7 +19,7 @@ define([
             var userToCoreCode = userToCoreKeysCode()
             sourceCode = userToCoreCode.declaration.concat(worldRef.startCode(), sourceCode, userToCoreCode.assignation, worldRef.endCode()).join('\n')
 
-            console.log('code editor', sourceCode);
+            //console.log('code editor', sourceCode);
             execute({
                 source: sourceCode,
                 scope:  worldRef.api

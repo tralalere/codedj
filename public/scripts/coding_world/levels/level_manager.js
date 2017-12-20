@@ -77,6 +77,8 @@ define([
     var userAskedForSolution
     var consecutiveGoodAnswers
 
+    console.log(levelsData)
+
 
 
     function init () {

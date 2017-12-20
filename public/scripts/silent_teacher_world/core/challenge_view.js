@@ -99,15 +99,11 @@ define([
             $('#roll-list-mobile').fadeIn()
         })
 
-        $('.tab-mobile div').on('click',function(){
+        $('.tab-mobile .select div').on('click',function(){
             $('.tab-mobile div').removeClass('active')
 
             $(this).addClass('active')
-            
 
-            
-            var val = $('.result').val()
-            
             switch($(this).text()){
                 
                 case '123':
@@ -140,18 +136,20 @@ define([
                     $('.tab-content-mobile .boolean').addClass('active')
                 break
 
-
-                case 'OK':
-                    selected = 'OK'
-                    $('.inputAnswer').val(val);
-                    $('#roll-list-mobile').fadeOut();
-                    //alert('OK')
-                break
-
                 default :
                     console.log('error')
             }
         });
+
+        $('.sub').on('click',function(){
+
+            var val = $('.result').val()
+
+            selected = 'OK'
+
+            $('.inputAnswer').val(val);
+            $('#roll-list-mobile').fadeOut();
+        })
 
         $('.tab-content-mobile > div > div').on('click',function(){
 
