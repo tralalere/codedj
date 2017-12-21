@@ -21,6 +21,7 @@
     "expect.js": "^0.3.1",
     "express": "^4.16.1",
     "fluent-ffmpeg": "^2.1.2",
+    "lodash": "^4.17.4",
     "node-cache": "^4.1.1",
     "node-wav": "0.0.2",
     "requirejs": "^2.3.3",

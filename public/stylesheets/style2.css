@@ -3021,9 +3021,34 @@ progress span{
     transform: initial;
 }
 
+.blocPopUp .shopPopPup .bloc-pack .pack-item .bloc-btn-shop .add-to-script.used{
+    background: #191a46;
+    color: #fff;
+}
+
 .row-pack{
     margin: 50px auto 20px;
 }
+
+
+.row-pack #bloc-sample,
+.row-pack #bloc-loop{
+    width: 100%;  }
+
+.row-pack #bloc-sample .bloc-item,
+.row-pack #bloc-loop .bloc-item{
+    margin-bottom: 10px;
+}
+
+.row-pack #bloc-sample{
+
+}
+
+.row-pack #bloc-loop{
+    display: none;
+}
+
+
 
 .blocPopUp .shopPopPup .bloc-shop .row-shop{
     margin-top: 30px;
@@ -3645,7 +3670,7 @@ progress span{
     line-height: 38px;
 
     color: #53D8FB;
-    font-family: Roboto;
+    font-family: 'Raleway';
     font-size: 20px;
     font-weight: bold;
 }
@@ -3749,7 +3774,7 @@ progress span{
     margin: 0 auto;
 
     color: #161026;
-    font-family: Roboto;
+    font-family: 'Raleway';
     font-size: 24px;
     font-weight: bold;
     text-align: center;
@@ -3798,7 +3823,7 @@ progress span{
     margin-right: 5px;
 
     color: #416A93;
-    font-family: Roboto;
+    font-family: 'Raleway';
     font-size: 22px;
     font-weight: bold;
 }

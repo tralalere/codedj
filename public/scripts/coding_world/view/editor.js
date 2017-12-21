@@ -26,8 +26,9 @@ define([
     'toxilibs/event_bus_queued',
     'toxilibs/code_editor_capabilities',
     'toxilibs/ace_custom_javascript',
-    '../levels/level_manager'
-], function ($, globalEventBus, addCodeEditorCapabilities, aceCustomJavaScript, levelmanager) {
+    '../levels/level_manager',
+    'ext_libs/lodash/lodash'
+], function ($, globalEventBus, addCodeEditorCapabilities, aceCustomJavaScript, levelmanager, lodash) {
 
     var eventBus = globalEventBus('view')
 
@@ -59,12 +60,13 @@ define([
     var $pop = $('#world2 > .blocPopUp > .shopPopPup')
     var $pack = $('#pack-template').html()
 
+    var $blocSound = $('#bloc-sound').html()
+
 
     globalEventBus('solutionWorld').on('world ready', function (world) {
         solutionCode = world.exposedCode()
     })
-
-
+    
     /*
      TODO:  integration css function initDom () in comment
      */
@@ -109,9 +111,12 @@ define([
         $sampleButton = $('<div id="btn_sample"></div>')
         $('#code_editor').append($searchFieldButton)
         $('#code_editor').append($sampleButton)
+
+
         $searchFieldButton.click(openSearch)
         $sampleButton.click(openSample)
 
+        initPack()
 
 
         $('#resizable').resize(function () {
@@ -126,46 +131,96 @@ define([
         codeEditor.aceEditor.execCommand('find')
     }
 
+
+    function includeSound(sounds, type){
+
+        sounds.forEach(function(val,key){
+            for(var i=0; i< sounds[key].length;i++){
+
+                console.log(sounds[key][i])
+
+                var div = '<div class="col-md-6 bloc-item">'
+                div += '<div class="pack-item">'
+                div += '<div class="row include-sound">'
+
+                div += '<div class="col-md-4">'
+                div += '<div class="icon-play-shop">'
+                div += '<audio preload>'
+                div += '<source src="./assets/sounds/'+sounds[key][i].source+'"></audio>'
+                div +='</div>'
+                div +='</div>'
+
+                div += '<div class="bloc-btn-shop col-md-8">'
+                div += '<h3>'+sounds[key][i].name+'</h3>'
+
+                if(sounds[key][i].used){
+
+                    div += '<div data-used="'+sounds[key][i].used+'" data-source="'+sounds[key][i].source+'" data-name="'+sounds[key][i].name+'" class="btn-shop white-btn add-to-script used">Ajouter au script</div>'
+                } else{
+
+                    div += '<div data-used="'+sounds[key][i].used+'"  data-source="'+sounds[key][i].source+'" data-name="'+sounds[key][i].name+'" class="btn-shop white-btn add-to-script">Ajouter au script</div>'
+                }
+
+                div += '</div>'
+
+                div += '</div>'
+                div += '</div>'
+                div += '</div>'
+                
+                
+                if(type == 'sample'){
+
+                    $('.shopPopPup #bloc-sample').append(div)
+                } else{
+
+                    $('.shopPopPup #bloc-loop').append(div)
+                }
+                
+            }
+        })
+
+
+
+
+    }
+
+    function initPack(){
+        $pop.find('.bloc-pack').remove()
+        $pop.append($pack)
+
+        var samples = getMusicList('sounds',codeEditor.content())
+        var loops =  getMusicList('musicLoops',codeEditor.content(),'loops/')
+
+        includeSound(samples, 'sample')
+        includeSound(loops, 'loop')
+
+
+
+    }
+
     function openSample () {
-
-       /* function getMusicList(type, code, pathPrefix)
-        {
-            var alreadyUsedMusic = parseAlreadyExistantSamples(code);
-
-            var temp = lodash.flatMap(levelmanager.getLevelsData(), function(item) {
-                return item[type];
-            });
-
-            temp = lodash.flatMap(temp, function(item) {
-                return {
-                    name    : (item.loopName || item.soundName),
-                    source  : (pathPrefix ? pathPrefix : '') + (item.source || item.soundSource),
-                    used    : lodash.includes(alreadyUsedMusic, (pathPrefix ? pathPrefix : '') + (item.source || item.soundSource))
-                };
-            });
-
-            temp = lodash.uniqBy(temp, 'source');
-
-            return lodash.chunk(lodash.values(temp), 2);
-        };
-        function parseAlreadyExistantSamples(code)
-        {
-            try
-            {
-                var allMatchs = code.match(/[^'"\(\)]+\.mp3/g);
-                return (allMatchs && Array.isArray(allMatchs)) ? allMatchs : [];
-            }
-            catch (e)
-            {
-                return [];
-            }
-        };*/
-
         $blocPopUp.fadeIn()
 
-        $pop.find('.bloc-pack').remove()
+        var allMatchs = codeEditor.content().match(/[^'"\(\)]+\.Pattern/g);
+        console.log(allMatchs)
+        
+        $('.add-to-script').on('click',function() {
+            console.log($(this).data())
+            if(!$(this).data().used){
+                console.log('not used')
+            }
 
-        $pop.append($pack)
+        })        
+        $('#sound').on('click',function() {
+            $('.shopPopPup #bloc-loop').hide()
+            $('.shopPopPup #bloc-sample').show()
+        })
+
+        $('#loop').on('click',function() {
+            $('.shopPopPup #bloc-sample').hide()
+            $('.shopPopPup #bloc-loop').show()
+        })
+
 
         $('.icon-play-shop').on('click',function() {
             $(this).addClass('pause')
@@ -183,6 +238,41 @@ define([
             });
         });
     }
+
+    function getMusicList(type, code, pathPrefix)
+    {
+        var alreadyUsedMusic = parseAlreadyExistantSamples(code);
+
+
+        var temp = lodash.flatMap(levelmanager.getLevelsData(), function(item) {
+            return item[type];
+        });
+
+        temp = lodash.flatMap(temp, function(item) {
+            return {
+                name    : (item.loopName || item.soundName),
+                source  : (pathPrefix ? pathPrefix : '') + (item.source || item.soundSource),
+                used    : lodash.includes(alreadyUsedMusic, (pathPrefix ? pathPrefix : '') + (item.source || item.soundSource))
+            };
+        });
+
+        temp = lodash.uniqBy(temp, 'source');
+
+        return lodash.chunk(lodash.values(temp), 2);
+    }
+
+    function parseAlreadyExistantSamples(code)
+    {
+        try
+        {
+            var allMatchs = code.match(/[^'"\(\)]+\.mp3/g);
+            return (allMatchs && Array.isArray(allMatchs)) ? allMatchs : [];
+        }
+        catch (e)
+        {
+            return [];
+        }
+    };
 
     /*
      TODO:  integration css function initDomEvents ()  in comment

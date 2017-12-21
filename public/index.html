@@ -344,38 +344,24 @@
 <div id="pack-template">
     <div class="bloc-shop bloc-pack">
         <div class="row row-btn-top">
-            <div class="col-md-8">
+            <div class="col-md-7">
                 <div class="bloc-btn-shop mobile-only">
                     <div class="btn-shop grey-btn">Mes packs</div>
                     <div class="btn-shop">Plus de packs</div>
                 </div>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-5">
                 <div class="bloc-btn-shop btn-small">
-                    <div class="btn-shop grey-btn pull-right">Sons</div>
-                    <div class="btn-shop grey-btn pull-right">Boucles</div>
+                    <div id="sound" class="btn-shop grey-btn pull-right">Sons</div>
+                    <div id="loop" class="btn-shop grey-btn pull-right">Boucles</div>
                 </div>
             </div>
         </div>
         <div class="row row-pack">
-            <div class="col-md-6">
-                <div class="pack-item">
-                    <div class=" row">
-                        <div class="col-md-4">
-                            <div class="icon-play-shop">
-                                <audio preload>
-                                    <source src="https://static.code-dj.com/hourofcode/public/assets/sounds/samples/G1/CONGA_1.mp3">
-                                </audio>
-                            </div>
-                        </div>
-                        <div class="bloc-btn-shop col-md-8">
-                            <h3>Nom du sample</h3>
-                            <div class="btn-shop white-btn">Ajouter au script</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6">
+            <div id="bloc-sample"></div>
+            <div id="bloc-loop"></div>
+
+            <!--<div class="col-md-6">
                 <div class="pack-item">
                     <div class=" row">
                         <div class="col-md-4">
@@ -391,10 +377,12 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div>-->
+
         </div>
     </div>
 </div>
+
 
 
 <div class="container-fluid" id="world2">
@@ -684,6 +672,28 @@
 </div>
 
 <div id="templates">
+
+    <div id="bloc-sound">
+        <div class="col-md-6">
+            <div class="pack-item">
+                <div class="row include-sound">
+                    <div class="col-md-4">
+                        <div class="icon-play-shop">
+                            <audio preload>
+                                <source src="https://static.code-dj.com/hourofcode/public/assets/sounds/samples/G1/CONGA_1.mp3">
+                            </audio>
+                        </div>
+                    </div>
+                    <div class="bloc-btn-shop col-md-8">
+                        <h3>Nom du sample</h3>
+                        <div class="btn-shop white-btn add-to-script">Ajouter au script</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
     <div id="home_template">
         <h1>Code Dj</h1>
         <div class="button" id="btn_world1">Monde 1</div>

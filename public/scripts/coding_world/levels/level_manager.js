@@ -156,7 +156,9 @@ define([
         return consecutiveGoodAnswers >= challenge.minimumGoodAnswers()
     }
 
-
+    function getLevelsData(){
+        return levelsData;
+    }
 
     return {
         init:            init,
@@ -164,7 +166,8 @@ define([
         nextQuestion:    nextQuestion,
         launchQuestion:  launchQuestion,
         userFinishLevel: userFinishLevel,
-        validateGoodAnswer: validateGoodAnswer
+        validateGoodAnswer: validateGoodAnswer,
+        getLevelsData: getLevelsData
     }
 
 })
