@@ -179,9 +179,6 @@ define([
             }
         })
 
-
-
-
     }
 
     function initPack(){
@@ -193,24 +190,26 @@ define([
 
         includeSound(samples, 'sample')
         includeSound(loops, 'loop')
-
-
-
     }
 
     function openSample () {
         $blocPopUp.fadeIn()
 
-        var allMatchs = codeEditor.content().match(/[^'"\(\)]+\.Pattern/g);
-        console.log(allMatchs)
-        
         $('.add-to-script').on('click',function() {
+
             console.log($(this).data())
+
             if(!$(this).data().used){
                 console.log('not used')
             }
 
-        })        
+            var newString = "\nvar "+$(this).data().name+" = new Instrument('"+$(this).data().source+"')"
+            
+            //codeEditor.insertText(newString)
+            codeEditor.aceEditor.session.insert({row:1, column: 10}, newString)
+
+        })
+
         $('#sound').on('click',function() {
             $('.shopPopPup #bloc-loop').hide()
             $('.shopPopPup #bloc-sample').show()
@@ -223,14 +222,18 @@ define([
 
 
         $('.icon-play-shop').on('click',function() {
-            $(this).addClass('pause')
-                 if ($(this).children()[0].paused == false) {
-                     $(this).children()[0].pause();
-                     console.log('music paused');
-                 } else {
-                     $(this).children()[0].play();
-                     console.log('music playing');
-                 }
+
+
+            var audios = $('.icon-play-shop').children()
+            for(var i = 0, len = audios.length; i < len;i++){
+                    audios[i].pause();
+            }
+
+            $(this).children()[0].play()
+
+            $(this).children()[0].addEventListener("playing", function(){
+                $(this).addClass('pause')
+            });
 
             $(this).children()[0].addEventListener("ended", function(){
                 this.currentTime = 0;
@@ -253,20 +256,20 @@ define([
                 name    : (item.loopName || item.soundName),
                 source  : (pathPrefix ? pathPrefix : '') + (item.source || item.soundSource),
                 used    : lodash.includes(alreadyUsedMusic, (pathPrefix ? pathPrefix : '') + (item.source || item.soundSource))
-            };
-        });
+            }
+        })
 
-        temp = lodash.uniqBy(temp, 'source');
+        temp = lodash.uniqBy(temp, 'source')
 
-        return lodash.chunk(lodash.values(temp), 2);
+        return lodash.chunk(lodash.values(temp), 2)
     }
 
     function parseAlreadyExistantSamples(code)
     {
         try
         {
-            var allMatchs = code.match(/[^'"\(\)]+\.mp3/g);
-            return (allMatchs && Array.isArray(allMatchs)) ? allMatchs : [];
+            var allMatchs = code.match(/[^'"\(\)]+\.mp3/g)
+            return (allMatchs && Array.isArray(allMatchs)) ? allMatchs : []
         }
         catch (e)
         {
