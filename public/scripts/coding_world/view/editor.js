@@ -120,9 +120,7 @@ define([
         })
 
         codeEditor.aceEditor.setOptions({enableBasicAutocompletion: false, enableLiveAutocompletion: false});
-
-
-
+        
     }
 
     function openSearch () {

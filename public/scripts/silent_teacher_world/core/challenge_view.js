@@ -97,6 +97,10 @@ define([
 
         $('.inputAnswer').on('click',function(){
             $('#roll-list-mobile').fadeIn()
+            $('.pad').addClass('active')
+            $('.result').val('')
+            $('.result').text('')
+            selected = 'pad'
         })
 
         $('.tab-mobile .select div').on('click',function(){
@@ -321,6 +325,8 @@ define([
             if (!canSubmitAnwser(challenge)) {
                 return
             }
+
+            $('#roll-list-mobile').fadeOut();
             submitAnswer(challenge)
         })
     }
