@@ -67,9 +67,7 @@ define([
         solutionCode = world.exposedCode()
     })
     
-    /*
-     TODO:  integration css function initDom () in comment
-     */
+
     function initDom () {
 
         globalEventBus.on('change focus', function (hidden) {
@@ -116,14 +114,14 @@ define([
         $searchFieldButton.click(openSearch)
         $sampleButton.click(openSample)
 
-        initPack()
-
 
         $('#resizable').resize(function () {
             codeEditor.aceEditor.resize()
         })
 
         codeEditor.aceEditor.setOptions({enableBasicAutocompletion: false, enableLiveAutocompletion: false});
+
+
 
     }
 
@@ -136,9 +134,7 @@ define([
 
         sounds.forEach(function(val,key){
             for(var i=0; i< sounds[key].length;i++){
-
-                console.log(sounds[key][i])
-
+                
                 var div = '<div class="col-md-6 bloc-item">'
                 div += '<div class="pack-item">'
                 div += '<div class="row include-sound">'
@@ -154,11 +150,19 @@ define([
                 div += '<h3>'+sounds[key][i].name+'</h3>'
 
                 if(sounds[key][i].used){
+                    if(lang == 'fr'){
+                        div += '<div data-type="'+type+'" data-used="'+sounds[key][i].used+'" data-source="'+sounds[key][i].source+'" data-name="'+sounds[key][i].name+'" class="btn-shop white-btn add-to-script used">Ajouté</div>'
 
-                    div += '<div data-used="'+sounds[key][i].used+'" data-source="'+sounds[key][i].source+'" data-name="'+sounds[key][i].name+'" class="btn-shop white-btn add-to-script used">Ajouter au script</div>'
+                    } else{
+                        div += '<div data-type="'+type+'" data-used="'+sounds[key][i].used+'" data-source="'+sounds[key][i].source+'" data-name="'+sounds[key][i].name+'" class="btn-shop white-btn add-to-script used">Already added</div>'
+                    }
                 } else{
+                    if(lang == 'fr'){
+                        div += '<div data-type="'+type+'" data-used="'+sounds[key][i].used+'"  data-source="'+sounds[key][i].source+'" data-name="'+sounds[key][i].name+'" class="btn-shop white-btn add-to-script">Ajouter au script</div>'
 
-                    div += '<div data-used="'+sounds[key][i].used+'"  data-source="'+sounds[key][i].source+'" data-name="'+sounds[key][i].name+'" class="btn-shop white-btn add-to-script">Ajouter au script</div>'
+                    } else{
+                        div += '<div data-type="'+type+'" data-used="'+sounds[key][i].used+'"  data-source="'+sounds[key][i].source+'" data-name="'+sounds[key][i].name+'" class="btn-shop white-btn add-to-script">Add to script</div>'
+                    }
                 }
 
                 div += '</div>'
@@ -169,11 +173,11 @@ define([
                 
                 
                 if(type == 'sample'){
-
                     $('.shopPopPup #bloc-sample').append(div)
-                } else{
 
+                } else{
                     $('.shopPopPup #bloc-loop').append(div)
+
                 }
                 
             }
@@ -190,10 +194,6 @@ define([
 
         includeSound(samples, 'sample')
         includeSound(loops, 'loop')
-    }
-
-    function openSample () {
-        $blocPopUp.fadeIn()
 
         $('.add-to-script').on('click',function() {
 
@@ -204,12 +204,53 @@ define([
             }
 
             var newString = "\nvar "+$(this).data().name+" = new Instrument('"+$(this).data().source+"')"
-            
+
             //codeEditor.insertText(newString)
             codeEditor.aceEditor.session.insert({row:1, column: 10}, newString)
 
         })
 
+        $('.icon-play-shop').on('click', function(){
+            var t =  $(this);
+
+            $('.icon-play-shop').removeClass('pause')
+
+            var audios = $('.icon-play-shop').children()
+
+            for(var i = 0, len = audios.length; i < len;i++){
+                audios[i].pause();
+            }
+            
+            if(!$(this).children().hasClass('active')){
+                
+                $(this).children().addClass('active')
+                
+                $(this).children()[0].play()
+                
+                t.addClass('pause')
+                
+            } else{
+                
+                $('.icon-play-shop audio').removeClass('active')
+            }
+
+            $(this).children()[0].addEventListener("ended", function(){
+                this.currentTime = 0;
+                $('.icon-play-shop').removeClass('pause')
+                $('.icon-play-shop audio').removeClass('active')
+            });
+        })
+
+        $('.pack-item').on('click',function(){
+            $('.pack-item').removeClass('active')
+            $(this).addClass('active')
+        });
+    }
+
+    
+    function openSample () {
+        $blocPopUp.fadeIn()
+        
         $('#sound').on('click',function() {
             $('.shopPopPup #bloc-loop').hide()
             $('.shopPopPup #bloc-sample').show()
@@ -219,33 +260,12 @@ define([
             $('.shopPopPup #bloc-sample').hide()
             $('.shopPopPup #bloc-loop').show()
         })
-
-
-        $('.icon-play-shop').on('click',function() {
-
-
-            var audios = $('.icon-play-shop').children()
-            for(var i = 0, len = audios.length; i < len;i++){
-                    audios[i].pause();
-            }
-
-            $(this).children()[0].play()
-
-            $(this).children()[0].addEventListener("playing", function(){
-                $(this).addClass('pause')
-            });
-
-            $(this).children()[0].addEventListener("ended", function(){
-                this.currentTime = 0;
-                $('.icon-play-shop').removeClass('pause')
-            });
-        });
+        
     }
 
     function getMusicList(type, code, pathPrefix)
     {
         var alreadyUsedMusic = parseAlreadyExistantSamples(code);
-
 
         var temp = lodash.flatMap(levelmanager.getLevelsData(), function(item) {
             return item[type];
@@ -273,9 +293,9 @@ define([
         }
         catch (e)
         {
-            return [];
+            return []
         }
-    };
+    }
 
     /*
      TODO:  integration css function initDomEvents ()  in comment
@@ -418,7 +438,7 @@ define([
     function initEditor (world) {
         initialCode = world.exposedCode()
         codeEditor.setContent(initialCode)
-
+        initPack()
     }
     function switchPlay (hidden) {
         if(hidden){

@@ -2890,6 +2890,12 @@ progress span{
     background-repeat: no-repeat;
 }
 
+.blocPopUp .iconeBlocShop.icon-sample{
+    background: url('../assets/sample.png');
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+}
+
 .blocPopUp .shopPopPup .bloc-shop .avatar{
     background: red;
     width:95px;
@@ -2935,7 +2941,7 @@ progress span{
     margin: 0 auto 10px;
     text-align: center;
     padding:5px 15px;
-    border-radius: 20px;
+    border-radius: 8px;
     cursor: pointer;
     color: #FFFFFF;
     font-family: 'Coiny-Regular';
@@ -2993,6 +2999,10 @@ progress span{
     box-shadow: 0 0 15px 5px rgba(255, 255, 255, 0.5);
 }
 
+.blocPopUp .shopPopPup .bloc-pack .pack-item.active{
+    box-shadow: 0 0 15px 5px rgba(255, 255, 255, 0.5);
+}
+
 .blocPopUp .shopPopPup .bloc-pack .pack-item .icon-play-shop{
     margin: 0 auto;
     position: relative;
@@ -3022,9 +3032,17 @@ progress span{
 }
 
 .blocPopUp .shopPopPup .bloc-pack .pack-item .bloc-btn-shop .add-to-script.used{
-    background: #191a46;
+    background: #5B6072;
     color: #fff;
+    cursor: not-allowed;
 }
+.blocPopUp .shopPopPup .bloc-pack .pack-item .bloc-btn-shop .add-to-script{
+    background: #5B6072;
+    color: #fff;
+    cursor: not-allowed;
+    width: 125px;
+}
+
 
 .row-pack{
     margin: 50px auto 20px;
@@ -3848,7 +3866,7 @@ progress span{
 }
 
 #btn_sample {
-    background: red url('../assets/iconMagnifier.png');
+    background: url('../assets/sample.png');
     background-size: 30px 30px;
     background-repeat:no-repeat;
     right: 70px;
