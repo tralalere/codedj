@@ -3632,7 +3632,7 @@ progress span{
     font-weight: bold;
 }
 
-/************************/
+/***********TODO: INSERTION TEMPLATE MOBILE*************/
 #roll-list-mobile{
     display: none;
     height: 280px;
@@ -3847,7 +3847,7 @@ progress span{
 }
 
 
-/***********/
+/****** FIN INSERTION TEMPLATE MOBILE*****/
 #btn_sample,
 #btn_search {
     cursor: pointer;

@@ -95,6 +95,8 @@ define([
 
         eventBus.emit('challenge view ready', $blocChallenge)
 
+
+        // TODO : insertion mobile template
         $('.inputAnswer').on('click',function(){
             $('#roll-list-mobile').fadeIn()
             $('.pad').addClass('active')
