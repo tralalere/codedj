@@ -76,8 +76,7 @@ define([
     var nextChallenge
     var userAskedForSolution
     var consecutiveGoodAnswers
-
-    console.log(levelsData)
+    
 
 
 

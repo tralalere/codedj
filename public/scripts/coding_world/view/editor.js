@@ -196,13 +196,6 @@ define([
         includeSound(loops, 'loop')
 
         $('.add-to-script').on('click',function() {
-
-            console.log($(this).data())
-
-            if(!$(this).data().used){
-                console.log('not used')
-            }
-
             var newString = "\nvar "+$(this).data().name+" = new Instrument('"+$(this).data().source+"')"
 
             //codeEditor.insertText(newString)
