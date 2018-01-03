@@ -72,12 +72,12 @@ define([
             $('.tab-mobile div').removeClass('active')
             $(this).addClass('active')
         });
-        
+
         $blocChallengesContainer.find('.wrapChallengeTimeline').prepend(blocTimeline)
 
         $blocChallengesContainer.append($challengeAfterAnswer)
         counter = 1
-        
+
         EffectProgress()
     }
 
@@ -111,36 +111,36 @@ define([
             $(this).addClass('active')
 
             switch($(this).text()){
-                
+
                 case '123':
                     selected = 'pad'
-                    
+
                     $('.result').val('')
                     $('.result').text('')
-                    
+
                     $('.tab-content-mobile div').removeClass('active')
                     $('.tab-content-mobile .pad').addClass('active')
-                break
+                    break
 
                 case 'abc':
                     selected = 'keyboard'
-                    
+
                     $('.result').val('')
                     $('.result').text('')
-                    
+
                     $('.tab-content-mobile div').removeClass('active')
                     $('.tab-content-mobile .keyboard').addClass('active')
-                break
+                    break
 
                 case 'T/F':
                     selected = 'boolean'
-                    
+
                     $('.result').val('')
                     $('.result').text('')
-                    
+
                     $('.tab-content-mobile div').removeClass('active')
                     $('.tab-content-mobile .boolean').addClass('active')
-                break
+                    break
 
                 default :
                     console.log('error')
@@ -164,33 +164,33 @@ define([
             switch(selected){
 
                 case 'pad':
-                   // $('.result').text($(this).text())
+                    // $('.result').text($(this).text())
 
                     if(str == ""){
                         $('.result').empty()
                         $('.result').val($(this).text())
                         $('.result').text($('.result').val())
-                        
+
                     } else if(val.length == 1){
                         $('.result').text(val + $(this).text())
                         $('.result').val(val + $(this).text())
                     }
-                break
+                    break
 
                 case 'keyboard':
                     $('.result').empty()
                     $('.result').val($(this).text())
                     $('.result').text($('.result').val())
-                break
+                    break
 
                 case 'boolean':
                     $('.result').empty()
                     $('.result').val($(this).text())
                     $('.result').text($('.result').val())
-                break
+                    break
 
                 default:
-                console.log('no selected input')
+                    console.log('no selected input')
 
             }
             console.log($(this).text())
@@ -202,13 +202,13 @@ define([
             var text = str.slice(0, -1);
             console.log(str);
             console.log(text);
-           
+
             $('.result').text(text)
             $('.result').val(text)
         })
-        
-        
-        
+
+
+
     }
 
 
