@@ -210,6 +210,13 @@ define([
             //codeEditor.insertText(newString)
             codeEditor.aceEditor.session.insert({row:1, column: 10}, newString)
 
+            $(this).addClass('used');
+            if(lang == 'fr'){
+                $(this).text('Ajouté')
+            } else {
+                $(this).text('Already added')
+            }
+
         })
 
         $('.icon-play-shop').on('click', function(){

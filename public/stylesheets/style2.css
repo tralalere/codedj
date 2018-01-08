@@ -3037,9 +3037,8 @@ progress span{
     cursor: not-allowed;
 }
 .blocPopUp .shopPopPup .bloc-pack .pack-item .bloc-btn-shop .add-to-script{
-    background: #5B6072;
-    color: #fff;
-    cursor: not-allowed;
+    background: #fff;
+    color: #5B6072;
     width: 125px;
 }
 
