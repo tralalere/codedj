@@ -86,7 +86,7 @@ define([
             location.reload();
         })
 
-        console.log(levelsData[currentLevelIndex])
+      
         setChallenge(levelsData[currentLevelIndex])
 
         globalEventBus.on('pattern beat played', function (pattern, beat) {
@@ -133,7 +133,7 @@ define([
         userAskedForSolution = false
 
         challenge.base.end.push('tune.play()')   // FIXME
-        console.log( challenge.base.end);
+        
         new World(globalEventBus('solutionWorld'), challenge.solution)   // eslint-disable-line no-new
         new World(globalEventBus('userWorld'), challenge.base)      // eslint-disable-line no-new
     }

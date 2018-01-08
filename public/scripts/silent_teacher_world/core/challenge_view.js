@@ -97,13 +97,13 @@ define([
 
 
         // TODO : insertion mobile template
-        $('.inputAnswer').on('click',function(){
+        /*$('.inputAnswer').on('click',function(){
             $('#roll-list-mobile').fadeIn()
             $('.pad').addClass('active')
             $('.result').val('')
             $('.result').text('')
             selected = 'pad'
-        })
+        })*/
 
         $('.tab-mobile .select div').on('click',function(){
             $('.tab-mobile div').removeClass('active')
@@ -321,14 +321,14 @@ define([
         })
 
         $blocInputAnswer.find('.btnAnswer').click(function () {
-            if(selected !== 'OK'){
+            /*if(selected !== 'OK'){
                 return
             }
             if (!canSubmitAnwser(challenge)) {
                 return
             }
 
-            $('#roll-list-mobile').fadeOut();
+            $('#roll-list-mobile').fadeOut();*/
             submitAnswer(challenge)
         })
     }

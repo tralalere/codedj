@@ -27,8 +27,11 @@ define([
     'toxilibs/code_editor_capabilities',
     'toxilibs/ace_custom_javascript',
     '../levels/level_manager',
-    'ext_libs/lodash/lodash'
-], function ($, globalEventBus, addCodeEditorCapabilities, aceCustomJavaScript, levelmanager, lodash) {
+    'ext_libs/lodash/lodash',
+    'toxilibs/url_params'
+], function ($, globalEventBus, addCodeEditorCapabilities, aceCustomJavaScript, levelmanager, lodash,getUrlParams) {
+
+    var urlParams = getUrlParams()
 
     var eventBus = globalEventBus('view')
 
@@ -106,13 +109,21 @@ define([
         })
 
         $searchFieldButton = $('<div id="btn_search"></div>')
-        $sampleButton = $('<div id="btn_sample"></div>')
+
+        if (urlParams.monde === '3') {
+            $sampleButton = $('<div id="btn_sample"></div>')
+        }
+
         $('#code_editor').append($searchFieldButton)
         $('#code_editor').append($sampleButton)
 
 
         $searchFieldButton.click(openSearch)
-        $sampleButton.click(openSample)
+
+        if($sampleButton){
+            $sampleButton.click(openSample)
+
+        }
 
 
         $('#resizable').resize(function () {

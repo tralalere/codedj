@@ -52,6 +52,7 @@ define([
         $('#btn_load').removeClass('invisible')
         $('#btn_solution').addClass('invisible')
         $('#uploadYt').removeClass('invisible')
+        
 
         globalEventBus.emit('html ready')
         globalEventBus.emit('volume updated', 100)
