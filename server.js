@@ -1,4 +1,7 @@
+require('module-alias/register')
 var express = require('express')
+var expressCtrl = require('express-controllers-loader')
+var path = require('path')
 var app = express()
 var bodyParser = require('body-parser')
 var exec = require('child_process').exec
@@ -9,11 +12,21 @@ var port = 8000
 
 var scriptsPath = './back'
 var exportSounds = require(scriptsPath + '/export.js')
-const scrapeService = require(scriptsPath + '/scrape_service.js')
+//const scrapeService = require(scriptsPath + '/scrape_service.js')
 
 
 app.use(express.static('public'))
 app.use(bodyParser.urlencoded({extended: true}))
+
+app.use(bodyParser.json());
+
+expressCtrl.load(app, {
+    verbose : true,
+    preURL : '/api',
+    permissions: require('@api_utils/auth.js'),
+    controllers_path : path.join(__dirname, './back/store/api/controllers'),
+    level: "public"
+});
 
 app.get('/samples', function (req, res) {
     var list = require(scriptsPath + '/get_samples.js')
@@ -109,7 +122,7 @@ app.get('/video', function (req, res) {
 });
 
 app.get('/scrape', function (req, res) {
-    res.json(scrapeService.getData());
+    //res.json(scrapeService.getData());
 });
 
 app.get('/health', function (req, res) {
