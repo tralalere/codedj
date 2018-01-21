@@ -64,10 +64,10 @@ var _TIME_ZONE      = 'Europe/Paris';
 * @documentation https://developers.google.com/youtube/v3/docs/videos/list
 * @property _QUERY
 * @type String
-* @default codedj+tralalere+78c2632450692db3e34b196f54b3988fa41727e0b20b6389000f38be90666d70
+* @default Pyramide Studio Life Pass Filter new Pattern() new Instrument( addSample( pattern.play()
 * @readonly
 **/
-var _QUERY         = 'codedj+tralalere+78c2632450692db3e34b196f54b3988fa41727e0b20b6389000f38be90666d70';
+var _QUERY         = 'Pyramide Studio Life Pass Filter new Pattern() new Instrument( addSample( pattern.play()';
 /**
 * Max resultat fetched by scrape service
 *
@@ -75,7 +75,7 @@ var _QUERY         = 'codedj+tralalere+78c2632450692db3e34b196f54b3988fa41727e0b
 * @type number
 * @default 100
 **/
-var _MAX_RESULT_SIZE  = 5;
+var _MAX_RESULT_SIZE  = 100;
 /**
 * Cron job instance
 *
@@ -110,7 +110,7 @@ var _CRON_RUN_COUNTER     = 0;
 var params         = {
   part          : 'snippet',
   maxResults    : (_MAX_RESULT_SIZE > 50) ? '50' : ('' + _MAX_RESULT_SIZE),
-  order         : 'viewCount',
+  order         : 'date',
   type          : 'video',
   q             : _QUERY
 };
@@ -135,7 +135,8 @@ function constructor()
     }
     else
     {
-      console.log('scrape_service :: scraping sucess');
+      resolveCompleteData();
+      console.log('scrape_service :: scraping success');
     }
   });
   createOrRecreateCron();
@@ -200,9 +201,11 @@ function doScrapeYoutube(scrapedData, nextPageToken, cb)
 {
   try
   {
+    console.log('scrape_service :: doScrapeYoutube[' + scrapedData + ',' + nextPageToken + ']');
+
     if(!scrapedData)
     {
-      scrapedData = [];
+      scrapedData = new Array();
     }
 
     var _params = Object.assign({}, params);
@@ -210,6 +213,7 @@ function doScrapeYoutube(scrapedData, nextPageToken, cb)
     if(nextPageToken)
     {
       _params = Object.assign(_params, {pageToken : nextPageToken});
+      console.log('scrape_service :: fetch next page ' + nextPageToken);
     }
     else
     {
@@ -231,10 +235,18 @@ function doScrapeYoutube(scrapedData, nextPageToken, cb)
 
           for(var i = 0; i < data.items.length ; i++)
           {
-            scrapedData.push(data.items[i].snippet.description);
+            var videoInfos = {
+              id: data.items[i].id.videoId,
+              title: data.items[i].snippet.title,
+              script: data.items[i].snippet.description,
+              scriptPromise: retrieveCompleteData(data.items[i].id.videoId, scrapedData.length),
+              order: scrapedData.length
+            };
+            scrapedData.push(videoInfos);
+
           }
 
-          if(scrapedData && scrapedData.length < _MAX_RESULT_SIZE)
+          if(scrapedData && scrapedData.length < _MAX_RESULT_SIZE && data.nextPageToken)
           {
             doScrapeYoutube(scrapedData, data.nextPageToken, cb);
           }
@@ -262,6 +274,59 @@ function doScrapeYoutube(scrapedData, nextPageToken, cb)
     console.error('scrape_service :: exception', e);
     cb(e, undefined);
   }
+
+};
+/**
+* complete data from video
+**/
+function retrieveCompleteData(videoId, index) {
+
+  return new Promise(function(resolve, reject) {
+
+    //console.log('scrape_service :: youtube-sdk :: retrieve complete data for videoId=' + videoId);
+
+    let params = {
+      id: videoId,
+      part: 'snippet'
+    };
+
+    YT.get('videos', params, function (err, data) {
+      if (err)
+      {
+        console.error('scrape_service :: youtube-sdk :: exception : can\'t retrieve complete data', err);
+        resolve({idx:-1, value:''});
+      }
+      else
+      {
+        console.log('scrape_service :: youtube-sdk :: success to retrieve complete data for videoId=' + videoId);
+        resolve({idx:index, value:data.items[0].snippet.description});
+      }
+    });
+
+  });
+
+};
+/**
+* resolve all promises off complete data
+**/
+function resolveCompleteData()
+{
+
+  var data = cacheInstance.get('scrapedData');
+  var promises = [];
+  for(var i=0; i<data.length; i++)
+  {
+    promises.push(data[i].scriptPromise);
+  }
+  Promise.all(promises).then(function(values) {
+    let scrapedData = cacheInstance.get('scrapedData');
+    for(var j=0; j<values.length; j++)
+    {
+      scrapedData[values[j].idx].script = values[j].value;
+      delete scrapedData[values[j].idx].scriptPromise;
+    }
+    cacheInstance.set('scrapedData', scrapedData);
+  });
 
 };
 /**
@@ -311,6 +376,7 @@ function createOrRecreateCron()
           }
           else
           {
+            resolveCompleteData();
             console.log('scrape_service :: scraping success');
           }
         });

@@ -24,8 +24,9 @@
     "express-controllers-loader": "1.0.8",
     "fluent-ffmpeg": "^2.1.2",
     "https": "^1.0.0",
-    "module-alias": "2.0.0",
+    "in-app-purchase": "^1.0.4",
     "lodash": "^4.17.4",
+    "module-alias": "2.0.0",
     "node-cache": "^4.1.1",
     "node-wav": "0.0.2",
     "requirejs": "^2.3.3",
@@ -33,8 +34,8 @@
     "sox-audio": "^0.3.0",
     "unique-string": "^1.0.0",
     "wav": "^1.0.1",
-    "youtube-sdk": "^0.2.0",
-    "in-app-purchase": "^1.0.4"
+    "youtube-audio-stream": "0.0.50",
+    "youtube-sdk": "^0.2.0"
   },
   "devDependencies": {
     "chai": "^4.1.2",

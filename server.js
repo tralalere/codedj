@@ -5,6 +5,7 @@ var path = require('path')
 var app = express()
 var bodyParser = require('body-parser')
 var exec = require('child_process').exec
+var youtubeStream = require('youtube-audio-stream');
 var mp4converter = require('./back/exporter/mp4_exporter');
 const uniqueString = require('unique-string');
 const fs = require('fs');
@@ -12,7 +13,7 @@ var port = 8000
 
 var scriptsPath = './back'
 var exportSounds = require(scriptsPath + '/export.js')
-//const scrapeService = require(scriptsPath + '/scrape_service.js')
+const scrapeService = require(scriptsPath + '/scrape_service.js')
 
 
 app.use(express.static('public'))
@@ -122,7 +123,18 @@ app.get('/video', function (req, res) {
 });
 
 app.get('/scrape', function (req, res) {
-    //res.json(scrapeService.getData());
+    res.json(scrapeService.getData());
+});
+
+app.get('/ytmp3/:videoid', function (req, res) {
+  try
+  {
+    youtubeStream('https://youtube.com/watch?v=' + req.params.videoid).pipe(res);
+  }
+  catch (exception)
+  {
+    res.status(500).end();
+  }
 });
 
 app.get('/health', function (req, res) {
