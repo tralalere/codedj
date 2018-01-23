@@ -302,9 +302,7 @@ body{
 }
 
 
-.exoBloc >div{
-    min-height: 100px;
-}
+
 /*
 #blocChallenge .exoBloc .challenge_question{
     margin-left: 0;

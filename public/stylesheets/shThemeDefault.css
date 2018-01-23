@@ -77,10 +77,10 @@
   color: #008200;
 }
 .syntaxhighlighter .string, .syntaxhighlighter .string a {
-  color: blue;
+  color: #6a8dd0;
 }
 .syntaxhighlighter .keyword {
-  color: #006699;
+  color: #6a8dd0;
 }
 .syntaxhighlighter .preprocessor {
   color: gray;
@@ -98,7 +98,7 @@
   color: #0066cc;
 }
 .syntaxhighlighter .number {
-  color: #008812;
+  color: #83982f;
 }
 .syntaxhighlighter .script {
   font-weight: bold;

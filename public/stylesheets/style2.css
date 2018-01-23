@@ -113,7 +113,8 @@ body.secondBack{
 .containPostHome2 .containTraitTop{
     /*overflow-x: hidden;*/
     margin: 0 auto;
-    top:10%;
+    /*top:10%;*/
+    top:0%;
 }
 .containPostHome2 .containTraitTop .blocHideBtn{
     width:100%;
@@ -544,6 +545,7 @@ body.secondBack{
     position: absolute;
     bottom:0;
 }
+
 .blockListWorld{
     min-width: 500px;
     width: 80%;
@@ -553,6 +555,7 @@ body.secondBack{
     top: 50%;
     transform: translateY(-50%);
 }
+
 .blockListWorld .itemWorld{
     padding:0;
     height:300px;
@@ -731,6 +734,7 @@ tbody{
 
 
 #world2 tbody{
+    height: 250px;
     max-height: 300px;
     position: relative;
 }
@@ -783,6 +787,7 @@ tbody{
     padding:0;
     color: transparent;
     border: 1px solid #53D8FB;
+    position: relative;
 }
 
 #world2 .timeline-container tr>tr{
@@ -791,6 +796,9 @@ tbody{
 
 .timeline-container tr td{
     width: 25%;
+    position: absolute;
+    top:0;
+    bottom:0;
 }
 .timeline-container tr td.correct{
     /*background: #fb4f4f;*/
@@ -1327,6 +1335,11 @@ tbody{
     height:100%;
 }
 
+.exoBloc >div{
+    min-height: 100px;
+    height: 100px;
+}
+
 #world1 .containPreHome #challenges_container #challengeAfterAnswer #blocChallenge .exoBloc{
     border-top: none;
 }
@@ -1385,6 +1398,9 @@ tbody{
     vertical-align: middle;
 }
 
+#challengeAfterAnswer #blocChallenge.lose .exoBloc .blocQuestion .challenge_question{
+    z-index: 9999;
+}
 #blocChallenge .exoBloc .blocQuestion .challenge_question{
     margin-left: 0;
     width:100%;
@@ -3119,14 +3135,83 @@ progress span{
 
 
 #postHome .containPostHome2 .bloc-translate-btn{
-    position: absolute;
-    top: 40px;
-    right: 20px;
-    width:100%;
+    width: 80%;
+    min-height: 50px;
+    margin: 40px auto 0;
 }
+
+#postHome .containPostHome2 .bloc-translate-btn .bloc-dl-store{
+    margin-left: 30px;
+    display: block;
+}
+
+#postHome .containPostHome .bloc-store  {
+    display: none;
+    position: relative;
+    margin: 0 auto;
+    width:80%;
+    top: -20px;
+}
+
+#postHome .containPostHome .dl-ios,
+#postHome .containPostHome .dl-android{
+    width: 100%;
+    height: 60px;
+    background: blueviolet;
+    margin-top: 20px;
+}
+
+#postHome .containPostHome .bloc-dl-store{
+    position: absolute;
+    width:200px;
+    height:200px;
+    background: yellow;
+    top:50%;
+    transform:translateY(-50%);
+}
+
+#postHome .containPostHome2 .bloc-translate-btn .dl-ios{
+    margin-right: 5px;
+}
+#postHome .containPostHome2 .bloc-translate-btn .dl-ios,
+#postHome .containPostHome2 .bloc-translate-btn .dl-android{
+    display: block;
+    width:150px;
+    height:50px;
+    float: left;
+    background: blueviolet;
+}
+
+/*
+#postHome .containPostHome2 .bloc-translate-btn .dl-ios-fr{
+    background: url('../assets/icon-ios-fr.png');
+    background-position: 50% 50%;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+}
+#postHome .containPostHome2 .bloc-translate-btn .dl-ios-en{
+    background: url('../assets/icon-ios-en.png');
+    background-position: 50% 50%;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+}
+
+#postHome .containPostHome2 .bloc-translate-btn .dl-android-fr{
+    background: url('../assets/icon-android-fr.png');
+    background-position: 50% 50%;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+}
+#postHome .containPostHome2 .bloc-translate-btn .dl-android-en{
+    background: url('../assets/icon-android-en.png');
+    background-position: 50% 50%;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+}*/
+
 #postHome .containPostHome2 .bloc-translate-btn .translate-fr,
 #postHome .containPostHome2 .bloc-translate-btn .translate-en{
-    right: 10%;
+    right: 10px;
 }
 /****************** ONGLET ******************/
 /*Todo css a finir des onglets*/
@@ -3870,3 +3955,33 @@ progress span{
     background-repeat:no-repeat;
     right: 70px;
 }
+
+
+/*********IE11**********/
+
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+    .blockListWorld {
+        min-width: 500px;
+        margin: 0 auto;
+        width: initial;
+        position: static;
+        min-height: 0;
+        top: 0;
+        transform: none;
+    }
+}
+
+@media all and (max-width:768px){
+    #postHome .containPostHome2 .bloc-translate-btn .bloc-dl-store{
+        display: block;
+    }
+}
+/*
+@media all and (max-width:950px){
+    #postHome .containPostHome2 .bloc-translate-btn .bloc-dl-store{
+        display: block;
+    }
+    #postHome .containPostHome .bloc-dl-store{
+        display: none;
+    }
+}*/

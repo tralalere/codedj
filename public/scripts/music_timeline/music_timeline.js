@@ -30,8 +30,10 @@ define([
             this.view.append($beat)
             this.beatReference.append($beatForRef)
 
+            
             for (var j = 0; j < 1; j += 0.25) {
-                $beat.append('<td class="beat_' +  beatToClass(i + j + 1) + '"></td>')
+                var k = j*100;
+                $beat.append('<td style="left:'+k+'%" class=" beat_' +  beatToClass(i + j + 1) + '"></td>')
             }
 
             $beatForRef.append('<td class="beat_ref_' + i + ' beat_ref"><div>' + (i + 1) + '</div></td>')

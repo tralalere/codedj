@@ -36,6 +36,7 @@ define([
                     }, 10)
                 })
             }).addClass('animateBigLogo')
+            
             $('#viewApp').perfectScrollbar('update')
         })
         eventBus.on('world select', function () {
@@ -102,6 +103,7 @@ define([
             $('#progress').fadeOut(function () {
                 $('.blocLogo').animate({top: 0}, 800)
             })
+            //$('.bloc-store').fadeIn()
             $('.blocAnimation').delay(1500).fadeIn()
             $('.encart').delay(1500).fadeOut()
             $('.blocAnimationBefore').delay(1500).fadeIn('slow', function () {
