@@ -309,14 +309,7 @@ body{
 }*/
 
 
-.challenge_question,
-.answer,
-.exoBloc >.blocCount,
-.exoBloc >.blocQuestion,
-.exoBloc >.blocInputAnswer,
-.exoBloc >.blocIcon>div{
-    margin:auto;
-}
+
 
 .blocIcon>div{
     width:50px;

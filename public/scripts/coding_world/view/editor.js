@@ -198,7 +198,7 @@ define([
         $pop.find('.bloc-pack').remove()
         $pop.append($pack)
 
-        var samples = getMusicList('sounds',codeEditor.content())
+        var samples = getMusicList('sounds',codeEditor.content(),'')
         var loops =  getMusicList('musicLoops',codeEditor.content(),'loops/')
 
         includeSound(samples, 'sample')
@@ -272,7 +272,7 @@ define([
         
     }
 
-    function getMusicList(type, code, pathPrefix)
+    function getMusicList(type, code, pathPrefix, detect)
     {
         var alreadyUsedMusic = parseAlreadyExistantSamples(code);
 
@@ -290,7 +290,14 @@ define([
 
         temp = lodash.uniqBy(temp, 'source')
 
-        return lodash.chunk(lodash.values(temp), 2)
+        if(!detect){
+            return lodash.chunk(lodash.values(temp), 2)
+        } else{
+            
+            return temp
+        }
+        
+        
     }
 
     function parseAlreadyExistantSamples(code)
@@ -327,8 +334,25 @@ define([
 
         $('#btn_execute').on('click', function () {
             if ($(this).hasClass('pause')) {
-                $(this).removeClass('pause')
-                runCode()
+                console.log(detectInstrument())
+                
+                if (urlParams.monde === '3' && detectInstrument()) {
+                    
+                    console.log(detectInstrument())
+                    
+                    $('#world2 .blocPopUp.blocPopUp-store .pop').empty()
+                    
+                    $.getJSON('json/'+lang+'/text.json', function (data) {
+                        
+                        $('#world2 .blocPopUp.blocPopUp-store .pop').html(data['goToStore'])
+                    })
+                    
+                    $('#world2 .blocPopUp.blocPopUp-store').fadeIn()
+                    
+                } else{
+                    $(this).removeClass('pause')
+                    runCode()
+                }
             } else {
                 $(this).addClass('pause')
                 stopLoop()
@@ -454,6 +478,7 @@ define([
             $('#btn_execute').addClass('pause')
             stopLoop()
         }else {
+
             $('#btn_execute').removeClass('pause')
             runCode()
         }
@@ -486,6 +511,29 @@ define([
         codeEditor.setContent(initialCode)
         runCode()
 
+    }
+
+    function detectInstrument(){
+        var sampleUsed = parseAlreadyExistantSamples(codeEditor.content());
+
+       /* var samples = getMusicList('sounds',codeEditor.content(),'',true)
+        var loops =  getMusicList('musicLoops',codeEditor.content(),'loops/',true)
+
+        var samplesOnly = lodash.flatMap(samples, function(item) {
+            return item['source'];
+        });
+        var loopsOnly = lodash.flatMap(loops, function(item) {
+            return item['soundSource'];
+        });*/
+
+        const resultSamples = sampleUsed.filter(item => item.indexOf('samples') == -1)
+        const resultLoops = resultSamples.filter(item => item.indexOf('loops') == -1)
+
+        if(resultLoops.length > 0){
+           return resultLoops
+        }
+
+        return false
     }
 
 })

@@ -147,6 +147,9 @@ require([
             $('#finishedHour').html(data['finishedHour'])
 
             $('.getCertificate a').html(data['getCertificate'])
+            
+            
+            $('.bloc-dl-store').html(data['dlStore'])
 
 
         })

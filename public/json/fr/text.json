@@ -30,6 +30,10 @@
   "partenaires": "<img src='assets/partenaires-fr.png'>",
 
   "finishedHour": "J'ai terminé mon Heure de Code",
-  "getCertificate": "Obtenir mon certificat"
+  "getCertificate": "Obtenir mon certificat",
+
+  "dlStore":"<a href='https://itunes.apple.com/fr/app/code-dj/id1317337791?mt=8' target='_blank' class='dl-ios dl-ios-fr'></a><a href='https://play.google.com/store/apps/details?id=com.tralalere.codedj' target='_blank' class='dl-android dl-android-fr'></a>",
+
+  "goToStore": "<label>Désolé, ce morceau ne peut pas être utilisé sur la version web de Code DJ.<br/> Il contient des samples uniquement accessibles sur l'application Code DJ en version tablette,<br/>téléchargeable gratuitement sur <a href='https://itunes.apple.com/fr/app/code-dj/id1317337791?mt=8' target='_blank'>l'Apple Appstore</a> ou sur <a href='https://play.google.com/store/apps/details?id=com.tralalere.codedj' target='_blank'>Google Play.</a><label>"
 
 }

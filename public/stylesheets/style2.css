@@ -288,6 +288,15 @@ body.secondBack{
     position: absolute;
 }
 
+.challenge_question,
+.answer,
+.exoBloc >.blocCount,
+.exoBloc >.blocQuestion,
+.exoBloc >.blocInputAnswer,
+.exoBloc >.blocIcon>div{
+    margin:auto;
+}
+
 #world1 .containPreHome #challenges_container .exoBloc .answer .btnAnswer:hover img.iconBtnNext{
     left: -40px;
     position: absolute;
@@ -1337,7 +1346,6 @@ tbody{
 
 .exoBloc >div{
     min-height: 100px;
-    height: 100px;
 }
 
 #world1 .containPreHome #challenges_container #challengeAfterAnswer #blocChallenge .exoBloc{
@@ -3137,7 +3145,7 @@ progress span{
 #postHome .containPostHome2 .bloc-translate-btn{
     width: 80%;
     min-height: 50px;
-    margin: 40px auto 0;
+    margin: 40px auto 20px;
 }
 
 #postHome .containPostHome2 .bloc-translate-btn .bloc-dl-store{
@@ -3159,6 +3167,11 @@ progress span{
     height: 60px;
     background: blueviolet;
     margin-top: 20px;
+    display: block;
+}
+#postHome .containPostHome .dl-ios:hover,
+#postHome .containPostHome .dl-android:hover{
+    text-decoration: none;
 }
 
 #postHome .containPostHome .bloc-dl-store{
@@ -3176,13 +3189,18 @@ progress span{
 #postHome .containPostHome2 .bloc-translate-btn .dl-ios,
 #postHome .containPostHome2 .bloc-translate-btn .dl-android{
     display: block;
-    width:150px;
-    height:50px;
+    width:200px;
+    height:60px;
     float: left;
-    background: blueviolet;
+    cursor: pointer;
 }
 
-/*
+#postHome .containPostHome2 .bloc-translate-btn .dl-ios:hover,
+#postHome .containPostHome2 .bloc-translate-btn .dl-android:hover{
+    text-decoration: none;
+}
+
+
 #postHome .containPostHome2 .bloc-translate-btn .dl-ios-fr{
     background: url('../assets/icon-ios-fr.png');
     background-position: 50% 50%;
@@ -3207,7 +3225,7 @@ progress span{
     background-position: 50% 50%;
     background-size: 100% 100%;
     background-repeat: no-repeat;
-}*/
+}
 
 #postHome .containPostHome2 .bloc-translate-btn .translate-fr,
 #postHome .containPostHome2 .bloc-translate-btn .translate-en{
@@ -3956,6 +3974,45 @@ progress span{
     right: 70px;
 }
 
+
+/*******popUp sample unitilisé*******/
+
+#world2  .blocPopUp-store{
+    width:100%;
+    height:100%;
+    position: absolute;
+    bottom:0;
+    z-index: 9998;
+    background: rgba(0, 0, 0, 0.5);
+    top: 0;
+    left: 0;
+    font-family: 'Raleway';
+    cursor: pointer;
+    display: none;
+}
+
+#world2  .blocPopUp-store .pop{
+    max-width: 600px;
+    background: rgba(20, 13, 34, 1);
+    color: #fff;
+    border-radius: 10px;
+    border: 3px solid #53D8FB;
+    font-family: 'Coiny-Regular';
+    font-size: 2rem;
+}
+
+#world2  .blocPopUp-store .pop h3{
+    color: #53D8FB;
+    font-size: 3rem;
+    font-weight: bold;
+}
+
+#world2  .blocPopUp-store .pop label a,
+#world2  .blocPopUp-store .pop label a:hover{
+    color: #53D8FB;
+    text-decoration: none;
+
+}
 
 /*********IE11**********/
 
