@@ -25,6 +25,7 @@ define([
                 scope:  worldRef.api
             })
             worldRef.eventBus.emit('code executed')
+            
         } catch (e) {
             console.error(e)
         }

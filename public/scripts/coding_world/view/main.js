@@ -76,6 +76,7 @@ define([
 
         eventBus.on('pattern beat played', launchTimelineBar)
         eventBus.on('loop stop requested', stopTimelineBar)
+
     }
 
 
@@ -109,6 +110,7 @@ define([
         })
 
         $('#nextTab').on('click', function(){
+            displaySounds()
             var elemWidth = elementWidth($($tabContainer))
             var widthItem = 140;
             var cssPosition = parseInt($($tabContainer).css('right'), 10);
@@ -311,17 +313,19 @@ define([
             var samplesPath = data.samples
             for (var i = 0; i < samplesPath; i++) {
                 var path = samplesPath[i]
-
+                console.log(path)
                 //TODO: display all samples path
             }
 
             var loopsPath = data.loops
             for (var j = 0; j < loopsPath; j++) {
                 var path = loopsPath[j]
-
+                console.log(path)
                 //TODO: display all loops path
             }
         })
     }
+
+
 
 })

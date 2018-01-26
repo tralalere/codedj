@@ -424,14 +424,56 @@ define([
         popin.append(content)
 
         var select = $('<select id="saves"></select>')
+        var selectBeats = $('<select id="selectBeat"></select>')
+
         var saves = loadCodes()
 
+
+        if(lang == 'fr'){
+            select.append('<option>'+'Mes morceaux :'+'</option>')
+        } else {
+            select.append('<option>'+'My tracks:'+'</option>')
+        }
         for (var i in saves) {
             select.append('<option values="' + i + '">' + i + '</option>')
         }
 
-        content.append(select)
+        $.getJSON('json/data/beats.json', function (data) {
+            console.log(data)
 
+            if(lang == 'fr'){
+                selectBeats.append('<option>'+'Exemples :'+'</option>')
+            } else {
+                selectBeats.append('<option>'+'Examples:'+'</option>')
+            }
+
+            for (const beat in data) {
+                selectBeats.append('<option values="' + beat + '">' + beat + '</option>')
+            }
+
+            content.append(selectBeats)
+
+            if(lang == 'fr'){
+                content.append('<div class="btnNext btn btnCodeDj" id="loadBeat"><img class="iconBtnNext" src="assets/iconBtnNext.png"><span>Charger</span></div>')
+            } else {
+                content.append('<div class="btnNext btn btnCodeDj" id="loadBeat"><img class="iconBtnNext" src="assets/iconBtnNext.png"><span>Load</span></div>')
+            }
+
+
+            $('#loadBeat').click(function (event) {
+                var selected = $('#selectBeat').find(':selected').text()
+                codeEditor.setContent(data[selected])
+                $('.popin').remove()
+            })
+        })
+
+
+
+       
+
+
+        content.append(select)
+        
         if(lang == 'fr'){
             content.append('<div class="btnNext btn btnCodeDj" id="load"><img class="iconBtnNext" src="assets/iconBtnNext.png"><span>Charger</span></div>')
         } else {
@@ -446,6 +488,7 @@ define([
             codeEditor.setContent(saves[selected])
             $('.popin').remove()
         })
+
 
         $('.popin').on('click',function(event){
             event.stopImmediatePropagation()
@@ -466,8 +509,7 @@ define([
     function loadCodes () {
         return JSON.parse(localStorage.getItem('tune'))
     }
-
-
+    
     function initEditor (world) {
         initialCode = world.exposedCode()
         codeEditor.setContent(initialCode)
@@ -516,18 +558,9 @@ define([
     function detectInstrument(){
         var sampleUsed = parseAlreadyExistantSamples(codeEditor.content());
 
-       /* var samples = getMusicList('sounds',codeEditor.content(),'',true)
-        var loops =  getMusicList('musicLoops',codeEditor.content(),'loops/',true)
-
-        var samplesOnly = lodash.flatMap(samples, function(item) {
-            return item['source'];
-        });
-        var loopsOnly = lodash.flatMap(loops, function(item) {
-            return item['soundSource'];
-        });*/
-
         const resultSamples = sampleUsed.filter(item => item.indexOf('samples') == -1)
-        const resultLoops = resultSamples.filter(item => item.indexOf('loops') == -1)
+        const resultBeats = resultSamples.filter(item => item.indexOf('beats') == -1)
+        const resultLoops = resultBeats.filter(item => item.indexOf('loops') == -1)
 
         if(resultLoops.length > 0){
            return resultLoops
