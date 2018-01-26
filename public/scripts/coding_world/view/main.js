@@ -165,7 +165,7 @@ define([
         }
     }
 
-
+//TODO : morceaux existant => affiche les notes de la timeline
     function displayNote (note) {
         var timeline = timelines[note.soundName() + note.pattern.id]
         if (!timeline) {
