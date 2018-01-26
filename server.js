@@ -1,7 +1,11 @@
+require('module-alias/register')
 var express = require('express')
+var expressCtrl = require('express-controllers-loader')
+var path = require('path')
 var app = express()
 var bodyParser = require('body-parser')
 var exec = require('child_process').exec
+var youtubeStream = require('youtube-audio-stream');
 var mp4converter = require('./back/exporter/mp4_exporter');
 const uniqueString = require('unique-string');
 const fs = require('fs');
@@ -14,6 +18,16 @@ const scrapeService = require(scriptsPath + '/scrape_service.js')
 
 app.use(express.static('public'))
 app.use(bodyParser.urlencoded({extended: true}))
+
+app.use(bodyParser.json());
+
+expressCtrl.load(app, {
+    verbose : true,
+    preURL : '/api',
+    permissions: require('@api_utils/auth.js'),
+    controllers_path : path.join(__dirname, './back/store/api/controllers'),
+    level: "public"
+});
 
 app.get('/samples', function (req, res) {
     var list = require(scriptsPath + '/get_samples.js')
@@ -110,6 +124,17 @@ app.get('/video', function (req, res) {
 
 app.get('/scrape', function (req, res) {
     res.json(scrapeService.getData());
+});
+
+app.get('/ytmp3/:videoid', function (req, res) {
+  try
+  {
+    youtubeStream('https://youtube.com/watch?v=' + req.params.videoid).pipe(res);
+  }
+  catch (exception)
+  {
+    res.status(500).end();
+  }
 });
 
 app.get('/health', function (req, res) {
