@@ -335,8 +335,9 @@ define([
         $('#btn_execute').on('click', function () {
             if ($(this).hasClass('pause')) {
                 console.log(detectInstrument())
-                
+
                 if (urlParams.monde === '3' && detectInstrument()) {
+                    
                     
                     console.log(detectInstrument())
                     

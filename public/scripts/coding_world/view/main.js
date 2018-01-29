@@ -179,6 +179,7 @@ define([
             beat: note.start,
             class: htmlClass(note)
         })
+        console.log('display note')
     }
 
 
@@ -242,6 +243,9 @@ define([
 
 
     function associateInstrumentWithTab (params) {
+        console.log(params)
+        console.log(patterns)
+
         for (var patternID in patterns) {
             var timeline = timelines[params.soundName + patternID]
             var tabsList = tabsBySound[params.soundName]
@@ -309,7 +313,10 @@ define([
 
 
     function displaySounds () {
+        
         getAvailablesSounds(function (data) {
+            console.log(data.samples)
+            console.log(data.loops)
             var samplesPath = data.samples
             for (var i = 0; i < samplesPath; i++) {
                 var path = samplesPath[i]

@@ -37,6 +37,7 @@ define([], function () {
             pattern.play()
 
             if (!this.loop && patternId + 1 >= this.patterns.length) {
+               // eventBus.emit('loop stop requested')
                 return
             }
 

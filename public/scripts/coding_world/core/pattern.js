@@ -1,9 +1,11 @@
 define([
     './note',
-    './user_to_core'
-], function (Note, userToCoreKeys) {
-
-
+    './user_to_core',
+    'toxilibs/event_bus_queued',
+    './timeline_tab'
+], function (Note, userToCoreKeys,globalEventBus,createTabConstructor) {
+    var eventBus = globalEventBus('view')
+    var Tab = createTabConstructor(eventBus)
     function createPatternConstructor (eventBus) {
         var IDCounter = 0
 
@@ -19,6 +21,14 @@ define([
             this.loopLimit      = params.loopLimit
             this.loopTimes      = 0
 
+            console.log(params)
+            this.name           = (typeof params !== 'undefined' && typeof params !== 'object') ? params : 'pattern'+this.id
+            if(this.id !== 0){
+                this.tab            = new Tab(this.name)
+            }
+
+
+
             var pattern = this
             eventBus.on('reset', function () {
                 pattern.stop()
@@ -30,6 +40,7 @@ define([
             })
 
             eventBus.emit('new pattern', this)
+            console.log(this)
         }
 
 
@@ -46,9 +57,17 @@ define([
                 transpose: params.transpose,
                 duration:  params.duration
             })
+
             this.notes.push(note)
 
             eventBus.emit('note added', note)
+            
+            if(this.tab){
+                this.tab.add(note.sample)
+            }
+            
+
+
         }
 
 

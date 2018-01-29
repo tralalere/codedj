@@ -29,7 +29,7 @@ define([
 
 
     function createTabConstructor (eventBus) {
-
+        console.log(eventBus)
         function TimelineTab (name) {
             if(lang == 'fr'){
                 this.name = name || 'Global'
@@ -83,6 +83,7 @@ define([
 
 
         TimelineTab.prototype.add = function (instrument) {
+            console.log(instrument)
             if (instrument.soundName) {
                 eventBus.emit('add instrument to tab', {
                     tab: this,
@@ -100,7 +101,9 @@ define([
 
 
         TimelineTab.prototype.addTimeline = function (timeline) {
+            console.log(timeline)
             this.timelines[timeline.sampleName] = timeline
+        
             if (!this.active) {
                 timeline.hide()
             }

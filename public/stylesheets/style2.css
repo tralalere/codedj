@@ -743,7 +743,7 @@ tbody{
 
 
 #world2 tbody{
-    height: 250px;
+   /* height: 250px;*/
     max-height: 300px;
     position: relative;
 }
@@ -754,7 +754,8 @@ tbody{
     content: normal;
 }
 #world2 #view.customHeightTimeline .pattern{
-    min-height: 70px;
+    /*min-height: 70px;*/
+    min-height: initial;
 }
 /*
 #world2 tbody{
