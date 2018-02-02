@@ -6,7 +6,7 @@ define([], function () {
             params = params || {}
 
             this.patterns = params.patterns || []
-            this.loop     = (typeof params.loop !== 'undefined') ? params.loop : true
+            this.loop     = (typeof params.loop !== 'undefined') ? params.loop : false
 
             var tune = this
             eventBus.on('reset', function () {
@@ -36,15 +36,23 @@ define([], function () {
 
             pattern.play()
 
+            eventBus.emit('switch view tab',pattern.id)
+
             if (!this.loop && patternId + 1 >= this.patterns.length) {
-               // eventBus.emit('loop stop requested')
+                //eventBus.emit('loop stop requested')
+                tune.stop()
+                console.log('Tune terminer')
                 return
             }
+
+
 
             var nextId  = ((patternId + 1) % this.patterns.length)
 
             this.playTimer = setTimeout(function () {
                 tune.playPattern(nextId)
+                eventBus.emit('pattern finished',nextId)
+                console.log('pattern terminer')
             }, pattern.duration())
         }
 

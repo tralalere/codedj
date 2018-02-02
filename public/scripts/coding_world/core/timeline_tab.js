@@ -22,26 +22,48 @@ if (lang !== 'fr' || lang.substring(0, 2) !== 'fr') {
 }
 
 define([
-
-], function () {
+    'toxilibs/event_bus_queued',
+], function (globalEventBus) {
+    var globalEventBus = globalEventBus('view')
 
     var tabs = {}
 
 
     function createTabConstructor (eventBus) {
-        console.log(eventBus)
+
+        globalEventBus.on('switch view tab',function (id) {
+            console.log('pattern ended')
+            for (var tab in tabs) {
+                if(tabs[tab].id == id){
+                    tabClickSimulate(tabs[tab])
+                }
+            }
+        })
         function TimelineTab (name) {
+
             if(lang == 'fr'){
                 this.name = name || 'Global'
             } else{
                 this.name = name || 'Default'
             }
 
+            if(typeof name == 'undefined') {
+               this.id = 0
+           } else{
+                if(!tabs[this.name]){
+                    this.id = Object.keys(tabs).length;
+                }
+            }
+
+
+
+
 
             if (tabs[this.name]) {
                 var copiedTab = tabs[this.name]
                 this.timelines   = copiedTab.timelines
                 this.instruments = copiedTab.instruments
+                this.id = copiedTab.id
                 eventBus.emit('tab copied', {
                     old: copiedTab,
                     new: this
@@ -51,6 +73,8 @@ define([
                 this.instruments = {}
             }
 
+
+
             createView(this)
             registerClick(this)
             eventBus.emit('new tab', this)
@@ -58,6 +82,7 @@ define([
             if (Object.keys(tabs).length === 0) {
                 this.view.addClass('default')
                 this.view.addClass('classTab')
+
             }
 
             tabs[this.name] = this
@@ -83,7 +108,7 @@ define([
 
 
         TimelineTab.prototype.add = function (instrument) {
-            console.log(instrument)
+
             if (instrument.soundName) {
                 eventBus.emit('add instrument to tab', {
                     tab: this,
@@ -101,24 +126,37 @@ define([
 
 
         TimelineTab.prototype.addTimeline = function (timeline) {
-            console.log(timeline)
             this.timelines[timeline.sampleName] = timeline
         
-            if (!this.active) {
+            /*if (!this.active) {
                 timeline.hide()
-            }
+            }*/
         }
 
 
         function createView (tab) {
-            tab.view = $('<div class="timeline-tab"></div>')
+            console.log('tab crée',tab)
+            tab.view = $('<div data-id="'+tab.id+'" class="timeline-tab"></div>')
             tab.view.text(tab.name)
         }
 
+        function tabClickSimulate(tab){
+            console.log(tab)
+            desactivateTable(tab.id)
+            deactivateAll()
+            $('.timeline-tab').removeClass('active')
+            $('.timeline-tab[data-id='+tab.id+']').addClass('active')
+            tab.setActive(true)
+            eventBus.emit('timeline tab changed', tab)
+
+        }
 
         function registerClick (tab) {
             tab.view.on('click', function () {
+                console.log(tab)
+                desactivateTable(tab.id)
                 if (!tab.active) {
+
                     deactivateAll()
                     tab.setActive(true)
                     eventBus.emit('timeline tab changed', tab)
@@ -126,6 +164,10 @@ define([
             })
         }
 
+        function desactivateTable(id){
+            $(".pattern").hide()
+           $(".pattern[data-id="+id+"]").show()
+        }
 
         function deactivateAll () {
             for (var name in tabs) {

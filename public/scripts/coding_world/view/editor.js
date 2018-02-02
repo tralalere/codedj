@@ -144,7 +144,7 @@ define([
         sounds.forEach(function(val,key){
             for(var i=0; i< sounds[key].length;i++){
                 
-                var div = '<div class="col-md-6 bloc-item">'
+                var div = '<div class="col-xs-6 bloc-item">'
                 div += '<div class="pack-item">'
                 div += '<div class="row include-sound">'
 

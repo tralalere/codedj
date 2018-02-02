@@ -152,7 +152,7 @@ define([
     //=============Patterns=============
 
     function addPattern (pattern) {
-        patterns[pattern.id] = $('<table class="pattern">')
+        patterns[pattern.id] = $('<table data-id="'+pattern.id+'" class="pattern">')
 
         $view.append(patterns[pattern.id])
     }
@@ -243,8 +243,6 @@ define([
 
 
     function associateInstrumentWithTab (params) {
-        console.log(params)
-        console.log(patterns)
 
         for (var patternID in patterns) {
             var timeline = timelines[params.soundName + patternID]

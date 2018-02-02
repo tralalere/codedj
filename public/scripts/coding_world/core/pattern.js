@@ -17,14 +17,14 @@ define([
             this.beatsPerMesure = params.beatsPerMesure || 4
             this.notes          = []
             this.beatDuration   = (60 * 1000) / userToCoreKeys.tempo
-            this.loop           = (typeof params.loop !== 'undefined') ? params.loop : true
+            this.loop           = (typeof params.loop !== 'undefined') ? params.loop : false
             this.loopLimit      = params.loopLimit
             this.loopTimes      = 0
 
             console.log(params)
             this.name           = (typeof params !== 'undefined' && typeof params !== 'object') ? params : 'pattern'+this.id
             if(this.id !== 0){
-                this.tab            = new Tab(this.name)
+                this.tab        = new Tab(this.name)
             }
 
 

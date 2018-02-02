@@ -2859,8 +2859,8 @@ progress span{
 .blocPopUp .shopPopPup{
     overflow-y: initial;
     background: #191a46;
-    width:600px;
-    max-width: initial;
+    min-width:500px;
+    max-width: 600px;
     max-height: initial;
     padding: 0;
 }
