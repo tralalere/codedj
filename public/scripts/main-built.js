@@ -4579,6 +4579,7 @@ define('silent_teacher_world/view/main',[
     }
 
 
+    //TODO : morceaux existant monde 1
     function updateTimeline (sample) {
         clearTimelines()
         var timeline = new Timeline({
@@ -15065,6 +15066,7 @@ define('coding_world/view/main',[
 
         eventBus.on('pattern beat played', launchTimelineBar)
         eventBus.on('loop stop requested', stopTimelineBar)
+
     }
 
 
@@ -15098,6 +15100,7 @@ define('coding_world/view/main',[
         })
 
         $('#nextTab').on('click', function(){
+            displaySounds()
             var elemWidth = elementWidth($($tabContainer))
             var widthItem = 140;
             var cssPosition = parseInt($($tabContainer).css('right'), 10);
@@ -15154,7 +15157,7 @@ define('coding_world/view/main',[
         }
     }
 
-
+//TODO : morceaux existant => affiche les notes de la timeline
     function displayNote (note) {
         var timeline = timelines[note.soundName() + note.pattern.id]
         if (!timeline) {
@@ -15300,18 +15303,20 @@ define('coding_world/view/main',[
             var samplesPath = data.samples
             for (var i = 0; i < samplesPath; i++) {
                 var path = samplesPath[i]
-
+                console.log(path)
                 //TODO: display all samples path
             }
 
             var loopsPath = data.loops
             for (var j = 0; j < loopsPath; j++) {
                 var path = loopsPath[j]
-
+                console.log(path)
                 //TODO: display all loops path
             }
         })
     }
+
+
 
 })
 ;
@@ -33195,14 +33200,56 @@ define('coding_world/view/editor',[
         popin.append(content)
 
         var select = $('<select id="saves"></select>')
+        var selectBeats = $('<select id="selectBeat"></select>')
+
         var saves = loadCodes()
 
+
+        if(lang == 'fr'){
+            select.append('<option>'+'Mes morceaux :'+'</option>')
+        } else {
+            select.append('<option>'+'My tracks:'+'</option>')
+        }
         for (var i in saves) {
             select.append('<option values="' + i + '">' + i + '</option>')
         }
 
-        content.append(select)
+        $.getJSON('json/data/beats.json', function (data) {
+            console.log(data)
 
+            if(lang == 'fr'){
+                selectBeats.append('<option>'+'Exemples :'+'</option>')
+            } else {
+                selectBeats.append('<option>'+'Examples:'+'</option>')
+            }
+
+            for (const beat in data) {
+                selectBeats.append('<option values="' + beat + '">' + beat + '</option>')
+            }
+
+            content.append(selectBeats)
+
+            if(lang == 'fr'){
+                content.append('<div class="btnNext btn btnCodeDj" id="loadBeat"><img class="iconBtnNext" src="assets/iconBtnNext.png"><span>Charger</span></div>')
+            } else {
+                content.append('<div class="btnNext btn btnCodeDj" id="loadBeat"><img class="iconBtnNext" src="assets/iconBtnNext.png"><span>Load</span></div>')
+            }
+
+
+            $('#loadBeat').click(function (event) {
+                var selected = $('#selectBeat').find(':selected').text()
+                codeEditor.setContent(data[selected])
+                $('.popin').remove()
+            })
+        })
+
+
+
+       
+
+
+        content.append(select)
+        
         if(lang == 'fr'){
             content.append('<div class="btnNext btn btnCodeDj" id="load"><img class="iconBtnNext" src="assets/iconBtnNext.png"><span>Charger</span></div>')
         } else {
@@ -33217,6 +33264,7 @@ define('coding_world/view/editor',[
             codeEditor.setContent(saves[selected])
             $('.popin').remove()
         })
+
 
         $('.popin').on('click',function(event){
             event.stopImmediatePropagation()
@@ -33237,8 +33285,7 @@ define('coding_world/view/editor',[
     function loadCodes () {
         return JSON.parse(localStorage.getItem('tune'))
     }
-
-
+    
     function initEditor (world) {
         initialCode = world.exposedCode()
         codeEditor.setContent(initialCode)
@@ -33287,18 +33334,9 @@ define('coding_world/view/editor',[
     function detectInstrument(){
         var sampleUsed = parseAlreadyExistantSamples(codeEditor.content());
 
-       /* var samples = getMusicList('sounds',codeEditor.content(),'',true)
-        var loops =  getMusicList('musicLoops',codeEditor.content(),'loops/',true)
-
-        var samplesOnly = lodash.flatMap(samples, function(item) {
-            return item['source'];
-        });
-        var loopsOnly = lodash.flatMap(loops, function(item) {
-            return item['soundSource'];
-        });*/
-
         const resultSamples = sampleUsed.filter(item => item.indexOf('samples') == -1)
-        const resultLoops = resultSamples.filter(item => item.indexOf('loops') == -1)
+        const resultBeats = resultSamples.filter(item => item.indexOf('beats') == -1)
+        const resultLoops = resultBeats.filter(item => item.indexOf('loops') == -1)
 
         if(resultLoops.length > 0){
            return resultLoops

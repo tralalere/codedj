@@ -1,4 +1,4 @@
-var piano_a_g1 = new Instrument("beats/monde-2/G1/A/1-PIANO.wav")
+var piano_a_g1 = new Instrument("beats/monde-2/G1/A/1 - PIANO.mp3")
 
 var drum_b_g1 = new Instrument("beats/monde-1/B/1-DRUMS.wav")
 

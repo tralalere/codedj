@@ -10,18 +10,20 @@ define([
         var IDCounter = 0
 
         function Pattern (params) {
+            console.log('tempo', userToCoreKeys.tempo)
+
             this.id             = IDCounter++
 
             params              = params                || {}
             this.mesuresCount   = params.mesuresCount   || 4
             this.beatsPerMesure = params.beatsPerMesure || 4
             this.notes          = []
-            this.beatDuration   = (60 * 1000) / userToCoreKeys.tempo
+            this.beatDuration   = params.beatDuration || (60 * 1000) / userToCoreKeys.tempo
             this.loop           = (typeof params.loop !== 'undefined') ? params.loop : false
             this.loopLimit      = params.loopLimit
             this.loopTimes      = 0
 
-            console.log(params)
+
             this.name           = (typeof params !== 'undefined' && typeof params !== 'object') ? params : 'pattern'+this.id
             if(this.id !== 0){
                 this.tab        = new Tab(this.name)
@@ -40,7 +42,6 @@ define([
             })
 
             eventBus.emit('new pattern', this)
-            console.log(this)
         }
 
 
@@ -72,7 +73,7 @@ define([
 
 
         Pattern.prototype.play = function () {
-            this.beatDuration = (60 * 1000) / userToCoreKeys.tempo
+            //this.beatDuration = (60 * 1000) / userToCoreKeys.tempo
             var pattern = this
             pattern.playBeat(1)
         }
@@ -86,7 +87,7 @@ define([
 
 
         Pattern.prototype.playBeat = function (beat, delay) {
-            this.beatDuration = (60 * 1000) / userToCoreKeys.tempo
+           // this.beatDuration = (60 * 1000) / userToCoreKeys.tempo
             delay = delay || 0
             if (beat === 1) {
                 this.startTime = Date.now()

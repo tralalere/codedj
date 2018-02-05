@@ -47,7 +47,8 @@ define([
     eventBus.on('pattern has reached loop limit', function () {
         $('#btn_execute').click()
     })
-
+    
+    
     var codeEditor = {}
     var initialCode
     var solutionCode

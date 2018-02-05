@@ -5,6 +5,7 @@ define([], function () {
         function Tune (params) {
             params = params || {}
 
+            this.end = false
             this.patterns = params.patterns || []
             this.loop     = (typeof params.loop !== 'undefined') ? params.loop : false
 
@@ -27,6 +28,7 @@ define([], function () {
         }
 
         Tune.prototype.play = function () {
+            this.end = false
             this.playPattern(0)
         }
 
@@ -38,22 +40,24 @@ define([], function () {
 
             eventBus.emit('switch view tab',pattern.id)
 
-            if (!this.loop && patternId + 1 >= this.patterns.length) {
-                //eventBus.emit('loop stop requested')
-                tune.stop()
-                console.log('Tune terminer')
-                return
+            if(patternId + 1 == this.patterns.length){
+                tune.end =  true
             }
-
-
 
             var nextId  = ((patternId + 1) % this.patterns.length)
 
-            this.playTimer = setTimeout(function () {
-                tune.playPattern(nextId)
-                eventBus.emit('pattern finished',nextId)
-                console.log('pattern terminer')
-            }, pattern.duration())
+                this.playTimer = setTimeout(function () {
+                    if(tune.end){
+                        eventBus.emit('pattern has reached loop limit')
+                        tune.stop()
+                        console.log('Tune terminer')
+                        return
+                    }
+                    eventBus.emit('pattern finished',nextId)
+                    tune.playPattern(nextId)
+                    console.log('pattern terminer')
+                }, pattern.duration())
+            
         }
 
         Tune.prototype.stop = function () {
