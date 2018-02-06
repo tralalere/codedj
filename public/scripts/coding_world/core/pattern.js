@@ -10,7 +10,6 @@ define([
         var IDCounter = 0
 
         function Pattern (params) {
-            console.log('tempo', userToCoreKeys.tempo)
 
             this.id             = IDCounter++
 

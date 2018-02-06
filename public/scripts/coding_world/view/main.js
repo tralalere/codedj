@@ -179,7 +179,7 @@ define([
             beat: note.start,
             class: htmlClass(note)
         })
-        console.log('display note')
+
     }
 
 
@@ -203,7 +203,6 @@ define([
 
 
     function addTimeline (sampleName, pattern) {
-        console.log(sampleName,pattern)
         var timeline = new Timeline({
             sampleName: sampleName,
             beats: pattern.totalBeats(),

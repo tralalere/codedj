@@ -772,7 +772,7 @@ tbody{
 }*/
 
 .timeline-container tr{
-    min-height: 40px;
+   /* min-height: 40px;*/
     -webkit-box-flex: 1;
     -ms-flex: 1;
     flex: 1;
@@ -1112,7 +1112,6 @@ tbody{
 
 .pattern{
     min-height: 70px;
-    max-height: 300px;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;

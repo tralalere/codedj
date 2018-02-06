@@ -32,7 +32,6 @@ define([
     function createTabConstructor (eventBus) {
 
         globalEventBus.on('switch view tab',function (id) {
-            console.log('pattern ended')
             for (var tab in tabs) {
                 if(tabs[tab].id == id){
                     tabClickSimulate(tabs[tab])
@@ -135,13 +134,11 @@ define([
 
 
         function createView (tab) {
-            console.log('tab crée',tab)
             tab.view = $('<div data-id="'+tab.id+'" class="timeline-tab"></div>')
             tab.view.text(tab.name)
         }
 
         function tabClickSimulate(tab){
-            console.log(tab)
             desactivateTable(tab.id)
             deactivateAll()
             $('.timeline-tab').removeClass('active')
@@ -153,7 +150,6 @@ define([
 
         function registerClick (tab) {
             tab.view.on('click', function () {
-                console.log(tab)
                 desactivateTable(tab.id)
                 if (!tab.active) {
 
