@@ -105,17 +105,17 @@ morceau_1.play()
 
 /*********************** VERSION 2***************************/
 
-var pattern = new Pattern({beatsPerMesure :4, mesuresCount:4})
-var pattern1 = new Pattern({beatsPerMesure :4, mesuresCount:4})
-var pattern2 = new Pattern({beatsPerMesure :4, mesuresCount:4})
-var pattern3 = new Pattern({beatsPerMesure :4, mesuresCount:4})
-var pattern4 = new Pattern({beatsPerMesure :4, mesuresCount:4})
-var pattern5 = new Pattern({beatsPerMesure :4, mesuresCount:4})
-var pattern6 = new Pattern({beatsPerMesure :4, mesuresCount:4})
-var pattern7 = new Pattern({beatsPerMesure :4, mesuresCount:4})
-var pattern8 = new Pattern({beatsPerMesure :4, mesuresCount:4})
-var pattern9 = new Pattern({beatsPerMesure :4, mesuresCount:4})
-var patternVide = new Pattern({beatsPerMesure :4, mesuresCount:4, beatDuration:405})
+var pattern = new Pattern()
+var pattern1 = new Pattern()
+var pattern2 = new Pattern()
+var pattern3 = new Pattern()
+var pattern4 = new Pattern()
+var pattern5 = new Pattern()
+var pattern6 = new Pattern()
+var pattern7 = new Pattern()
+var pattern8 = new Pattern()
+var pattern9 = new Pattern()
+var patternVide = new Pattern('vide')
 
 var morceau_1 = new Tune()
 
