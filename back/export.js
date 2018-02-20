@@ -60,7 +60,7 @@ function loadSamples (notes) {
 }
 
 function loadSample (soundPath) {
-    return wav.decode(fs.readFileSync('./public/assets/sounds/' + soundPath))
+    return wav.decode(fs.readFileSync('./public/assets/sounds/sounds_wav/' + soundPath))
 }
 
 function findFinalLength (loadedSamples, notes) {
