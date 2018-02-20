@@ -72,7 +72,7 @@ define([
 
 
         Pattern.prototype.play = function () {
-            //this.beatDuration = (60 * 1000) / userToCoreKeys.tempo
+            this.beatDuration = (60 * 1000) / userToCoreKeys.tempo
             var pattern = this
             pattern.playBeat(1)
         }
@@ -86,7 +86,7 @@ define([
 
 
         Pattern.prototype.playBeat = function (beat, delay) {
-           // this.beatDuration = (60 * 1000) / userToCoreKeys.tempo
+            this.beatDuration = (60 * 1000) / userToCoreKeys.tempo
             delay = delay || 0
             if (beat === 1) {
                 this.startTime = Date.now()

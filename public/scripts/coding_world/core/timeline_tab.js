@@ -38,6 +38,7 @@ define([
                 }
             }
         })
+        
         function TimelineTab (name) {
 
             if(lang == 'fr'){

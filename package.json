@@ -27,6 +27,7 @@
     "in-app-purchase": "^1.0.4",
     "lodash": "^4.17.4",
     "module-alias": "2.0.0",
+    "fs-jetpack": "^1.2.0",
     "node-cache": "^4.1.1",
     "node-wav": "0.0.2",
     "requirejs": "^2.3.3",

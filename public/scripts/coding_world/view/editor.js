@@ -335,7 +335,6 @@ define([
 
         $('#btn_execute').on('click', function () {
             if ($(this).hasClass('pause')) {
-                console.log(detectInstrument())
 
                 if (urlParams.monde === '3' && detectInstrument()) {
                     
@@ -476,7 +475,7 @@ define([
 
         content.append(select)
         
-        if(lang == 'fr'){
+        if (lang === 'fr') {
             content.append('<div class="btnNext btn btnCodeDj" id="load"><img class="iconBtnNext" src="assets/iconBtnNext.png"><span>Charger</span></div>')
         } else {
             content.append('<div class="btnNext btn btnCodeDj" id="load"><img class="iconBtnNext" src="assets/iconBtnNext.png"><span>Load</span></div>')
