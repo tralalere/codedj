@@ -1,10 +1,9 @@
 define([
     'jquery',
-    'toxilibs/request_animation_frame_polyfill',
-    'toxilibs/event_bus_queued',
+    'toxilibs/request_animation_frame_polyfill'
 ], function ($, requestAnimationFramePolyfill) {
-   
-    
+
+
     function TimelineBar (params) {
         this.init(params)
         this.moving = false
@@ -15,7 +14,6 @@ define([
         this.loopTime   = params.loopTime
         this.$container = params.container
         this.initDom()
-        var t = this
         this.$container.append(this.$bar)
     }
 

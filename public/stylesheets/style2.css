@@ -743,7 +743,7 @@ tbody{
 
 
 #world2 tbody{
-   /* height: 250px;*/
+    /* height: 250px;*/
     max-height: 300px;
     position: relative;
 }
@@ -772,7 +772,7 @@ tbody{
 }*/
 
 .timeline-container tr{
-   /* min-height: 40px;*/
+    /* min-height: 40px;*/
     -webkit-box-flex: 1;
     -ms-flex: 1;
     flex: 1;
@@ -3107,7 +3107,23 @@ progress span{
     color: #FFFFFF;
     font-family: 'Coiny-Regular';
     font-size: 12px;
+
+    min-width: 90px;
+    height: 30px;
+    line-height: 26px;
+    vertical-align: middle;
+    padding: 0;
+    text-align: center;
+    border: 2px solid transparent;
 }
+
+.blocPopUp .shopPopPup .bloc-pack .row-btn-top .bloc-btn-shop.btn-small  #sound.active,
+.blocPopUp .shopPopPup .bloc-pack .row-btn-top .bloc-btn-shop.btn-small  #loop.active,
+.blocPopUp .shopPopPup .bloc-pack .row-btn-top .bloc-btn-shop.btn-small  #sound:hover,
+.blocPopUp .shopPopPup .bloc-pack .row-btn-top .bloc-btn-shop.btn-small  #loop:hover{
+    border:2px solid #fff;
+}
+
 
 #world1 .bloc-translate-btn{
     position: relative;
@@ -3294,7 +3310,7 @@ progress span{
 }
 
 #viewApp #world2 .containPreHome .bloc-tab #tabs_container .timeline-tab {
-    width: 120px;
+    width: 150px;
     text-align: center;
     padding-top: 5px;
     margin: 0 10px;

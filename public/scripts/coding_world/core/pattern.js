@@ -2,42 +2,52 @@ define([
     './note',
     './user_to_core',
     'toxilibs/event_bus_queued',
-    './timeline_tab'
-], function (Note, userToCoreKeys,globalEventBus,createTabConstructor) {
+    './timeline_tab',
+    '../../ext_libs/lodash/lodash',
+], function (Note, userToCoreKeys,globalEventBus,createTabConstructor,lodash) {
     var eventBus = globalEventBus('view')
     var Tab = createTabConstructor(eventBus)
+
+
     function createPatternConstructor (eventBus) {
         var IDCounter = 0
-
+        
         function Pattern (params) {
-
             this.id             = IDCounter++
 
             params              = params                || {}
             this.mesuresCount   = params.mesuresCount   || 4
             this.beatsPerMesure = params.beatsPerMesure || 4
             this.notes          = []
-            this.beatDuration   = params.beatDuration || (60 * 1000) / userToCoreKeys.tempo
-            this.loop           = (typeof params.loop !== 'undefined') ? params.loop : false
+            this.beatDuration   = (60 * 1000) / userToCoreKeys.tempo
+            this.loop           = (typeof params.loop !== 'undefined') ? params.loop : true
             this.loopLimit      = params.loopLimit
             this.loopTimes      = 0
 
-
-            this.name           = (typeof params !== 'undefined' && typeof params !== 'object') ? params : 'pattern'+this.id
+            this.name           = (typeof params !== 'undefined' && typeof params !== 'object') ? params : 'pattern id:'+this.id
+            
+            if(params.name){
+                this.name = params.name
+            }
+            
             if(this.id !== 0){
                 this.tab        = new Tab(this.name)
+            } else{
+                if(params.name){
+                    eventBus.emit('change name first Tab', this)
+
+                }
             }
 
 
 
             var pattern = this
+            
+            
+            
             eventBus.on('reset', function () {
                 pattern.stop()
                 IDCounter = 0
-            })
-
-            eventBus.on('loop stop requested', function () {
-                pattern.stop()
             })
 
             eventBus.emit('new pattern', this)
@@ -52,6 +62,7 @@ define([
             var note = new Note({
                 pattern:   this,
                 sample:    sample,
+                soundName: params.soundName,
                 start:     start,
                 volume:    params.volume,
                 transpose: params.transpose,
@@ -65,7 +76,7 @@ define([
             if(this.tab){
                 this.tab.add(note.sample)
             }
-            
+
 
 
         }
@@ -76,8 +87,6 @@ define([
             var pattern = this
             pattern.playBeat(1)
         }
-
-
 
 
         Pattern.prototype.stop = function () {
@@ -91,7 +100,7 @@ define([
             if (beat === 1) {
                 this.startTime = Date.now()
             }
-            eventBus.emit('pattern beat played', this, beat)
+            eventBus.emit('pattern beat played', beat)
             playNotes(this.notesAtTime(beat), delay, this.beatDuration)
             var nextTime = this.startTime + beat * this.beatDuration
             var pattern  = this
@@ -102,7 +111,8 @@ define([
             var nextBeat = (beat % this.totalBeats()) + 1
             this.playTimer = setTimeout(function () {
                 if (beat >= pattern.totalBeats()) {
-                    eventBus.emit('loop stop requested', {samples: true})
+                    eventBus.emit('samples loop stop requested', {samples: true})
+                    eventBus.emit('reset')
                     if (pattern.loopLimit) {
                         pattern.loopTimes++
                         if (pattern.loopTimes >= pattern.loopLimit) {
@@ -145,6 +155,69 @@ define([
                 }
             }
             return notes
+        }
+
+
+        Pattern.prototype.export = function () {
+
+            // TODO : extraction des notes à refaire plus proprement, objet recrée pour le stringify.
+            
+            var myObjectNotes = {}
+
+            var test = lodash.cloneDeep(this.notes)
+
+
+            test.forEach(function (val, key) {
+                myObjectNotes[key] = {
+                    soundName:  lodash.cloneDeep(val.soundName),
+                    start:      lodash.cloneDeep(val.start),
+                    volume:     lodash.cloneDeep(val.volume),
+                    transpose:  lodash.cloneDeep(val.transpose),
+                    isCorrect:  lodash.cloneDeep(val.isCorrect),
+                    isSolutionNote: lodash.cloneDeep(val.isSolutionNote),
+                    sample: lodash.cloneDeep(val.sample),
+                    duration: lodash.cloneDeep(val.duration)
+                }
+
+                for(var item in  myObjectNotes[key].sample.samples){
+
+                    var instrument = lodash.cloneDeep(myObjectNotes[key].sample.samples[item].instrument)
+
+
+                    var newInstrument = {
+                        sound:instrument.sound,
+                        soundName:instrument.soundName,
+                        volume:instrument.volume,
+                        play:instrument.play,
+                        mainSample:{
+                            eventBus:instrument.mainSample.eventBus,
+                            ownVolume:instrument.mainSample.ownVolume,
+                            soundName:instrument.mainSample.soundName,
+                            soundSource:instrument.mainSample.soundSource,
+                        }
+                    }
+
+
+
+                    myObjectNotes[key].sample.samples[item].instrument = lodash.cloneDeep(newInstrument)
+                    myObjectNotes[key].sample[item].instrument = lodash.cloneDeep(newInstrument)
+                }
+
+            }, this)
+
+            var myPattern = JSON.stringify(myObjectNotes)
+
+
+
+            return {
+                id: this.id,
+                totalBeats: this.totalBeats(),
+                name:this.name,
+                notes: myPattern,
+                duration:this.duration()
+
+            }
+
         }
 
 

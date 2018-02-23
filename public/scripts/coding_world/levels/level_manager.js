@@ -76,7 +76,6 @@ define([
     var nextChallenge
     var userAskedForSolution
     var consecutiveGoodAnswers
-    
 
 
 
@@ -86,10 +85,9 @@ define([
             location.reload();
         })
 
-      
         setChallenge(levelsData[currentLevelIndex])
 
-        globalEventBus.on('pattern beat played', function (pattern, beat) {
+        globalEventBus.on('pattern beat played', function (beat) {
             if (beat === 1) {
                 challenge.launchLoops()
                 challenge.loopsPlaying = true
@@ -131,11 +129,11 @@ define([
 
     function launchQuestion () {
         userAskedForSolution = false
+        challenge.base.end.push('tune.play()') // FIXME
 
-        challenge.base.end.push('tune.play()')   // FIXME
-        
-        new World(globalEventBus('solutionWorld'), challenge.solution)   // eslint-disable-line no-new
-        new World(globalEventBus('userWorld'), challenge.base)      // eslint-disable-line no-new
+        globalEventBus.emit('world creation requested', 'solutionWorld', challenge.solution)
+
+        globalEventBus.emit('world creation requested', 'userWorld', challenge.base)
     }
 
 

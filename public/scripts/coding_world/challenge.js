@@ -54,7 +54,7 @@ define([
             exposed: challengedPortion.base,
             end:     portionsAfter.concat(this.challengeData.end)
         }
-        
+
     }
 
 

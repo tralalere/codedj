@@ -1,62 +1,22 @@
-var lang = 'fr';
-if(navigator.language || navigator.userLanguage){
-    lang = navigator.language || navigator.userLanguage;
-};
-
-if(localStorage.getItem('lang')){
-
-    if (localStorage.getItem('lang') !== 'fr' || localStorage.getItem('lang').substring(0, 2) !== 'fr') {
-        if(localStorage.getItem('lang') !== 'en'){
-            localStorage.setItem('lang', 'en')
-            location.reload();
-        }
-    }
-
-    lang = localStorage.getItem('lang')
-}
-
-if (lang !== 'fr' || lang.substring(0, 2) !== 'fr') {
-    lang = 'en'
-} else {
-    lang = 'fr'
-}
-
 define([
-    'toxilibs/event_bus_queued',
-], function (globalEventBus) {
-    var globalEventBus = globalEventBus('view')
+
+], function () {
 
     var tabs = {}
 
 
     function createTabConstructor (eventBus) {
 
-        globalEventBus.on('switch view tab',function (id) {
-            for (var tab in tabs) {
-                if(tabs[tab].id == id){
-                    tabClickSimulate(tabs[tab])
-                }
-            }
-        })
-        
         function TimelineTab (name) {
-
-            if(lang == 'fr'){
-                this.name = name || 'Global'
+            this.name = name
+            
+            if(name == 'Global' || name == 'Default' || Object.keys(tabs).length == 0) {
+                this.id = 0
             } else{
-                this.name = name || 'Default'
-            }
-
-            if(typeof name == 'undefined') {
-               this.id = 0
-           } else{
                 if(!tabs[this.name]){
                     this.id = Object.keys(tabs).length;
                 }
             }
-
-
-
 
 
             if (tabs[this.name]) {
@@ -73,19 +33,21 @@ define([
                 this.instruments = {}
             }
 
+            eventBus.emit('new tab', this)
+
+            tabs[this.name] = this
+        }
 
 
+        TimelineTab.prototype.init = function () {
             createView(this)
             registerClick(this)
-            eventBus.emit('new tab', this)
 
             if (Object.keys(tabs).length === 0) {
                 this.view.addClass('default')
                 this.view.addClass('classTab')
-
             }
 
-            tabs[this.name] = this
             deactivateAll()
             this.setActive(true)
         }
@@ -94,30 +56,29 @@ define([
         TimelineTab.prototype.setActive = function (active) {
             this.view.toggleClass('active', active)
 
-            for (var name in this.timelines) {
+           /* for (var name in this.timelines) {
                 var timeline = this.timelines[name]
                 if (active) {
                     timeline.show()
                 } else {
                     timeline.hide()
                 }
-            }
+            }*/
 
             this.active = active
         }
 
 
         TimelineTab.prototype.add = function (instrument) {
-
             if (instrument.soundName) {
                 eventBus.emit('add instrument to tab', {
-                    tab: this,
+                    tabName: this.name,
                     soundName: instrument.soundName
                 })
             } else {
                 for (var name in instrument.samples) {
                     eventBus.emit('add instrument to tab', {
-                        tab: this,
+                        tabName: this.name,
                         soundName: name
                     })
                 }
@@ -127,7 +88,6 @@ define([
 
         TimelineTab.prototype.addTimeline = function (timeline) {
             this.timelines[timeline.sampleName] = timeline
-        
             /*if (!this.active) {
                 timeline.hide()
             }*/
@@ -139,21 +99,11 @@ define([
             tab.view.text(tab.name)
         }
 
-        function tabClickSimulate(tab){
-            desactivateTable(tab.id)
-            deactivateAll()
-            $('.timeline-tab').removeClass('active')
-            $('.timeline-tab[data-id='+tab.id+']').addClass('active')
-            tab.setActive(true)
-            eventBus.emit('timeline tab changed', tab)
-
-        }
 
         function registerClick (tab) {
             tab.view.on('click', function () {
                 desactivateTable(tab.id)
                 if (!tab.active) {
-
                     deactivateAll()
                     tab.setActive(true)
                     eventBus.emit('timeline tab changed', tab)
@@ -181,6 +131,8 @@ define([
                 tab.setActive(true)
             }
         })
+
+
 
 
         return TimelineTab

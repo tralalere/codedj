@@ -20,7 +20,6 @@ define([
 
 
 
-    //var baseUrl = 'https://static.code-dj.com/hourofcode/public/assets/sounds/'
     var baseUrl = './assets/sounds/'
 
     var loops = {}
@@ -73,13 +72,9 @@ define([
     }
 
 
-    var isFading = false
-
     function fade (params) {
-        isFading = true
-
         params.duration   = params.duration || defaultFadeDuration
-        var currentVolume = (typeof params.initialVolume !== 'undefined') ? params.initialVolume : globalVolume
+        var currentVolume = (typeof params.initialVolume === 'undefined') ? globalVolume : params.initialVolume
         var elapsedTime   = 0
 
         var timeStep      = 16
@@ -112,7 +107,7 @@ define([
 
     function playNote (params) {
         Sound.onAllSoundsLoaded(function () {
-            Sound.play(params.note.sample.soundName, {
+            Sound.play(params.note.soundName, {
                 durationRatio: params.note.duration,
                 start: params.delay || 0,
                 volume: params.volume

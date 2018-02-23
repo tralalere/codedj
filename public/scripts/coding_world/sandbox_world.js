@@ -1,4 +1,3 @@
-var username = ''
 define([
     'jquery',
     'toxilibs/event_bus_queued',
@@ -8,7 +7,6 @@ define([
 
     './view/main',
     './view/editor',
-    './user_code/user_code',
     'music_player/music_player'
 ], function ($, globalEventBus, World, userToCoreKeys, uploadYoutube) {
 
@@ -52,50 +50,53 @@ define([
         $('#btn_load').removeClass('invisible')
         $('#btn_solution').addClass('invisible')
         $('#uploadYt').removeClass('invisible')
-        
 
         globalEventBus.emit('html ready')
         globalEventBus.emit('volume updated', 100)
         globalEventBus.emit('monde3')
-        globalEventBus.on('reset', function () {
+        
+        globalEventBus.on('code execution requested',  function () {
             tunes    = []
             patterns = []
+
+
         })
+
         globalEventBus.on('new pattern', function (pattern) {
             patterns.push(pattern)
+
         })
+        
         globalEventBus.on('new tune', function (tune) {
             tunes.push(tune)
+
         })
 
         globalEventBus.on('load_token', function (token) {
-            self.access_token = token;
+            self.access_token = token
         })
 
         globalEventBus.on('get code editor content', function (code) {
             startUpload(code)
         })
 
+        globalEventBus.emit('world creation requested', 'sandboxWorld', {exposed: initialCode})
 
-        new World(globalEventBus, {
-            exposed: initialCode.join('\n')
+        $('#uploadYt').on('click', function () {
+            $('#blocPopUp-youtube').fadeIn()
         })
 
-        $('#uploadYt').on('click', function(){
-            $('#blocPopUp-youtube').fadeIn();
-        })
+        $('.templateGoogleConnexion').on('click', function () {
 
-        $('.templateGoogleConnexion').on('click', function(){
-            
-            if(!self.access_token){
+            if (!self.access_token) {
 
                 gapi.auth.authorize({
                     client_id: '837989009437-clgij106bf9i993v4lssc9rt8hvcjajk.apps.googleusercontent.com',
                     scope: 'https://www.googleapis.com/auth/youtube.upload https://www.googleapis.com/auth/youtube',
                     immediate: false
-                }, function(rep){
+                }, function (rep) {
                     if (rep && !rep.error) {
-                        
+
                         this.gapi.client.request({
                             path: '/youtube/v3/channels',
                             params: {
@@ -106,52 +107,50 @@ define([
                                 if (response.error) {
                                     console.log(response.error.message)
                                 } else {
-                                    username = response.items[0].snippet.title
-
-                                    $('#blocPopUp-youtube').fadeIn();
+                                    $('#blocPopUp-youtube').fadeIn()
                                     $('#channel-name').text(response.items[0].snippet.title)
                                     $('#channel-thumbnail').attr('src', response.items[0].snippet.thumbnails.default.url)
-                                    
+
                                     $('.pre-sign-in').fadeOut()
                                     $('.post-sign-in').fadeIn()
                                 }
                             }.bind(this)})
-                        
+
                         globalEventBus.emit('load_token', rep.access_token)
-                        
+
                         $('.disabled-bloc').removeClass('active')
-                        
+
                     } else {
                         $('.disabled-bloc').addClass('active')
                     }
-                });
+                })
             } else {
                 $('.disabled-bloc').removeClass('active')
             }
         })
 
-        $('#uploadAndConvert .close-icon').on('click', function(){
-            $('#blocPopUp-youtube').fadeOut();
+        $('#uploadAndConvert .close-icon').on('click', function () {
+            $('#blocPopUp-youtube').fadeOut()
         })
 
-        $('#uploadAndConvert .btn-upload-completed').on('click', function(){
-            $('#blocPopUp-youtube').fadeOut();
+        $('#uploadAndConvert .btn-upload-completed').on('click', function () {
+            $('#blocPopUp-youtube').fadeOut()
             $('.title-upload #title').val('')
-            $('.wrap-btn').fadeIn();
-            $('.during-upload').fadeOut();
-            $('.post-upload').fadeOut();
+            $('.wrap-btn').fadeIn()
+            $('.during-upload').fadeOut()
+            $('.post-upload').fadeOut()
         })
 
 
-        $('.blocBtnStatus div').on('click',function(){
+        $('.blocBtnStatus div').on('click', function () {
             $('.blocBtnStatus div').removeClass('active')
             $(this).addClass('active')
-        });
+        })
     }
 
     globalEventBus.on('save creation requested', saveCreation)
 
-    function startUpload(code){
+    function startUpload (code) {
         var notes = []
 
         if (tunes.length > 0) {
@@ -164,29 +163,31 @@ define([
         }
 
 
-        code = "Auteur = \n" + username + "\n\nAuteurs samples = \nAntoine Boucherikha (Life Pass Filter), Walter Geny (Pyramide Studio)\n\n"+code;
-        console.log(code);
+        code = 'Auteurs samples = \nAntoine Boucherikha (Life Pass Filter), Walter Geny (Pyramide Studio)\n\n' + code
         var data = {
-            title:$('.title-upload #title').val(),
+            title: $('.title-upload #title').val(),
             description: code,
-            tags:['codedj', 'tralalere', '78c2632450692db3e34b196f54b3988fa41727e0b20b6389000f38be90666d70'],
-            privacy:$('.blocBtnStatus .active').text(),
-            notes:notes,
+            tags: ['codedj', 'tralalere', '78c2632450692db3e34b196f54b3988fa41727e0b20b6389000f38be90666d70'],
+            privacy: $('.blocBtnStatus .active').text(),
+            notes: notes,
             token: self.access_token
         }
-        uploadYoutube.shareVideoToYoutube(data,function(){
-            console.log('error');
-        },function () {
-            console.log('upload done');
+        uploadYoutube.shareVideoToYoutube(data, function () {
+            console.log('error')
+        }, function () {
+            console.log('upload done')
         })
     }
-    function saveCreation() {
+
+
+    function saveCreation () {
         var notes = []
 
         if (tunes.length > 0) {
             for (var i in tunes) {
                 var tune = tunes[i]
                 browsePatterns(tune.patterns, notes)
+
             }
         } else {
             browsePatterns(patterns, notes)
@@ -195,26 +196,27 @@ define([
             notes: JSON.stringify(notes),
             token: userToken
         }, function () {
-            window.location = document.location.origin + document.location.pathname + '/download?token=' + userToken
+            window.location = document.location.origin + document.location.pathname + 'download?token=' + userToken
         })
     }
 
 
-    function browsePatterns (patterns, notes) {
-        for (var i in patterns) {
-            var pattern = patterns[i]
+    function browsePatterns (patternsToBrowse, notes) {
+        for (var i in patternsToBrowse) {
+            var pattern = patternsToBrowse[i]
             extractNotes(pattern, i, notes)
         }
     }
 
 
     function extractNotes (pattern, patternIndex, notes) {
-        for (var i in pattern.notes) {
-            var note = pattern.notes[i]
-            var patternDuration = Math.floor(pattern.duration() * patternIndex)
+        var patternNotes = JSON.parse(pattern.notes)
+        for (var i in patternNotes) {
+            var note = patternNotes[i]
+            var patternDuration = Math.floor(pattern.duration * patternIndex)
             notes.push({
                 start: (note.start - 1) * Math.floor((60 * 1000) / userToCoreKeys.tempo) + patternDuration,
-                soundName: note.soundSource()
+                soundName: note.soundSource || note.soundName
             })
         }
     }

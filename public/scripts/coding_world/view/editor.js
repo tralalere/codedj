@@ -36,7 +36,8 @@ define([
     var eventBus = globalEventBus('view')
 
     eventBus.on('html ready',  initDom)
-    eventBus.on('world ready', initEditor)
+    eventBus.on('userWorld code ready', initEditor)
+    eventBus.on('sandboxWorld code ready', initEditor)
     eventBus.on('user want to go next', function () {
         $('#btn_execute').removeClass('pause')
         $('#btn_next_question').addClass('invisible')
@@ -47,8 +48,7 @@ define([
     eventBus.on('pattern has reached loop limit', function () {
         $('#btn_execute').click()
     })
-    
-    
+
     var codeEditor = {}
     var initialCode
     var solutionCode
@@ -65,13 +65,15 @@ define([
     var $pack = $('#pack-template').html()
 
     var $blocSound = $('#bloc-sound').html()
-
-
-    globalEventBus('solutionWorld').on('world ready', function (world) {
-        solutionCode = world.exposedCode()
-    })
     
+    globalEventBus.on('solutionWorld code ready', function (code) {
+        solutionCode = code
+    })
 
+
+    /*
+     TODO:  integration css function initDom () in comment
+     */
     function initDom () {
 
         globalEventBus.on('change focus', function (hidden) {
@@ -132,7 +134,7 @@ define([
         })
 
         codeEditor.aceEditor.setOptions({enableBasicAutocompletion: false, enableLiveAutocompletion: false});
-        
+
     }
 
     function openSearch () {
@@ -260,7 +262,8 @@ define([
     
     function openSample () {
         $blocPopUp.fadeIn()
-        
+        $('#sound').addClass('active')
+
         $('#sound').on('click',function() {
             $('.shopPopPup #bloc-loop').hide()
             $('.shopPopPup #bloc-sample').show()
@@ -270,6 +273,12 @@ define([
             $('.shopPopPup #bloc-sample').hide()
             $('.shopPopPup #bloc-loop').show()
         })
+        
+        $('div.selectPanel').click(function() {
+            $('div.selectPanel').removeClass('active')
+            $( this ).toggleClass( "active" )
+        })
+       
         
     }
 
@@ -352,7 +361,7 @@ define([
                     
                 } else{
                     $(this).removeClass('pause')
-                    runCode()
+                runCode()
                 }
             } else {
                 $(this).addClass('pause')
@@ -371,14 +380,13 @@ define([
             }
         })
         $('#mp3').click(function () {
-            //TODO: pop-up de confirmation
             eventBus.emit('save creation requested')
         })
 
         $('#upload-my-video').click(function () {
             eventBus.emit('get code editor content', codeEditor.content())
         })
-        
+
     }
 
 
@@ -413,7 +421,7 @@ define([
 
 
     function showLoadPopin () {
-        
+
         var popin = $('<div class="popin"></div>')
         var content = $('<div class="content"><h3>Choisissez la sauvegarde à charger</h3><br></div>')
 
@@ -440,7 +448,6 @@ define([
         }
 
         $.getJSON('json/data/beats.json', function (data) {
-            console.log(data)
 
             if(lang == 'fr'){
                 selectBeats.append('<option>'+'Exemples :'+'</option>')
@@ -474,7 +481,7 @@ define([
 
 
         content.append(select)
-        
+
         if (lang === 'fr') {
             content.append('<div class="btnNext btn btnCodeDj" id="load"><img class="iconBtnNext" src="assets/iconBtnNext.png"><span>Charger</span></div>')
         } else {
@@ -489,7 +496,6 @@ define([
             codeEditor.setContent(saves[selected])
             $('.popin').remove()
         })
-
 
         $('.popin').on('click',function(event){
             event.stopImmediatePropagation()
@@ -510,22 +516,23 @@ define([
     function loadCodes () {
         return JSON.parse(localStorage.getItem('tune'))
     }
-    
-    function initEditor (world) {
-        initialCode = world.exposedCode()
-        codeEditor.setContent(initialCode)
+
+
+    function initEditor (code) {
+        initialCode = code
+        codeEditor.setContent(code)
         initPack()
     }
+
     function switchPlay (hidden) {
         if(hidden){
             $('#btn_execute').addClass('pause')
             stopLoop()
         }else {
-
             $('#btn_execute').removeClass('pause')
             runCode()
         }
-       
+
     }
 
     var editorChangeTimeout
@@ -540,13 +547,15 @@ define([
 
     function runCode () {
         stopLoop()
-        eventBus.emit('reset')
+
+        // eventBus.emit('reset')
         eventBus.emit('code execution requested', codeEditor.content())
     }
 
 
     function stopLoop () {
         eventBus.emit('loop stop requested', {stopAll: true})
+        eventBus.emit('reset')
     }
 
 

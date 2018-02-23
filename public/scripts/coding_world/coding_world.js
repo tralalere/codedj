@@ -1,14 +1,14 @@
-var lang = 'fr';
-if(navigator.language || navigator.userLanguage){
-    lang = navigator.language || navigator.userLanguage;
-};
+var lang = 'fr'
+if (navigator.language || navigator.userLanguage) {
+    lang = navigator.language || navigator.userLanguage
+}
 
-if(localStorage.getItem('lang')){
+if (localStorage.getItem('lang')) {
 
     if (localStorage.getItem('lang') !== 'fr' || localStorage.getItem('lang').substring(0, 2) !== 'fr') {
-        if(localStorage.getItem('lang') !== 'en'){
+        if (localStorage.getItem('lang') !== 'en') {
             localStorage.setItem('lang', 'en')
-            location.reload();
+            location.reload()
         }
     }
 
@@ -28,8 +28,6 @@ define([
 
     './view/main',
     './view/editor',
-    './goal/comparer',
-    './user_code/user_code',
     'music_player/music_player'
 ], function (globalEventBus, levelManager, Sound) {
 
@@ -75,9 +73,9 @@ define([
 
 
     function onAllLevelsComplete () {
-        if(lang == 'fr'){
+        if (lang == 'fr') {
             $('#world2 .wonWorld .worldUnlocked').html('monde des morceaux')
-        } else{
+        } else {
             $('#world2 .wonWorld .worldUnlocked').html('world of Tracks!')
         }
         $('.wonWorld').removeClass('invisible')
@@ -86,13 +84,13 @@ define([
 
     function setAccess (world) {
         var worlds = localStorage.getItem('accessToWorld')
-        if (!worlds) {
-            worlds = []
-        } else {
+        if (worlds) {
             worlds = worlds.split(',')
+        } else {
+            worlds = []
         }
 
-        if (worlds.indexOf(world.toString()) == -1) {
+        if (worlds.indexOf(world.toString()) === -1) {
             worlds.push(world)
             localStorage.setItem('accessToWorld', worlds)
         }

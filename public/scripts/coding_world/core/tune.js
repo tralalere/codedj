@@ -14,10 +14,6 @@ define([], function () {
                 tune.stop()
             })
 
-            eventBus.on('loop stop requested', function () {
-                tune.stop()
-            })
-
             eventBus.emit('new tune', this)
         }
 
@@ -29,7 +25,7 @@ define([], function () {
 
         Tune.prototype.play = function () {
             this.end = false
-            this.playPattern(0)
+            this.playPattern(this.patterns[0].id)
         }
 
         Tune.prototype.playPattern = function (patternId) {
@@ -46,24 +42,22 @@ define([], function () {
 
             var nextId  = ((patternId + 1) % this.patterns.length)
 
-                this.playTimer = setTimeout(function () {
+            this.playTimer = setTimeout(function () {
                     if(tune.end){
                         eventBus.emit('pattern has reached loop limit')
                         tune.stop()
                         console.log('Tune terminer')
                         return
                     }
-                    eventBus.emit('pattern finished',nextId)
-                    tune.playPattern(nextId)
-                    console.log('pattern terminer')
-                }, pattern.duration())
-            
+                 
+                tune.playPattern(nextId)
+            }, pattern.duration())
         }
 
         Tune.prototype.stop = function () {
             clearTimeout(this.playTimer)
         }
-
+        
         return Tune
 
     }

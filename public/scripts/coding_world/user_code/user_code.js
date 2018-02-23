@@ -12,6 +12,7 @@ define([
         run(world.exposedCode())
     })
 
+
     globalEventBus.on('code execution requested', run)
 
     function run (sourceCode) {
@@ -19,17 +20,17 @@ define([
             var userToCoreCode = userToCoreKeysCode()
             sourceCode = userToCoreCode.declaration.concat(worldRef.startCode(), sourceCode, userToCoreCode.assignation, worldRef.endCode()).join('\n')
 
-            //console.log('code editor', sourceCode);
             execute({
                 source: sourceCode,
                 scope:  worldRef.api
             })
+            worldRef.eventBus.emit('user to core values updated', worldRef.api.userToCoreKeys)
             worldRef.eventBus.emit('code executed')
-            
         } catch (e) {
             console.error(e)
         }
     }
+
 
     function userToCoreKeysCode () {
         var declarationCode = []

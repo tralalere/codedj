@@ -110,7 +110,6 @@ define([
     }
 
 
-    //TODO : morceaux existant monde 1
     function updateTimeline (sample) {
         clearTimelines()
         var timeline = new Timeline({

@@ -23,6 +23,7 @@ define([
     var patterns    = {}
     var timelines   = {}
     var tabsBySound = {}
+    var tabs        = {}
     var defaultTimelineTab
     var lastSelectedTabName
 
@@ -36,17 +37,27 @@ define([
 
     eventBus.on('html ready',  init)
     eventBus.on('monde3',  worldThree)
-    eventBus.on('world ready', clearView)
+
+    eventBus.on('userWorld code ready', clearView)
+    eventBus.on('sandboxWorld code ready', clearView)
     eventBus.on('new pattern', addPattern)
     eventBus.on('ready to display notes', updateTimelines)
     eventBus.on('code execution requested', clearView)
     eventBus.on('patterns compared', displayEndScreen)
-    eventBus.on('new tab', addTab)
+    eventBus.on('tab creation requested', addTab)
     eventBus.on('add instrument to tab', associateInstrumentWithTab)
     eventBus.on('tab copied', replaceTab)
     eventBus.on('timeline tab changed', onTabChanged)
+    eventBus.on('user to core values updated', updateUserToCore)
 
+    eventBus.on('switch view tab', function (tabId) {
+        $('.timeline-tab[data-id="'+tabId+'"]').click()
+    })
 
+    eventBus.on('change name first Tab', function (pattern) {
+        console.log('switch view tab', pattern)
+        $('.timeline-tab[data-id="'+pattern.id+'"]').text(pattern.name)
+    })
 
     //=============Initialization=============
 
@@ -76,7 +87,7 @@ define([
 
         eventBus.on('pattern beat played', launchTimelineBar)
         eventBus.on('loop stop requested', stopTimelineBar)
-
+        clearView()
     }
 
 
@@ -91,26 +102,21 @@ define([
         })
 
 
-        $('#previousTab').on('click', function(){
+        $('#previousTab').on('click', function () {
             var elemWidth = elementWidth($($tabContainer))
             var widthItem = 140;
             var cssPosition = parseInt($($tabContainer).css('left'), 10);
             var translate = widthItem - cssPosition;
-            
+
             if(elemWidth.parent < elemWidth.child){
                 if(elemWidth.parent - 370 < elemWidth.child + cssPosition){
                     $('#tabs_container').css({'right': 'auto','left': '-'+translate+'px'})
                 }
             }
-
-            
-            console.log(elemWidth)
-
-
         })
 
-        $('#nextTab').on('click', function(){
-            displaySounds()
+
+        $('#nextTab').on('click', function () {
             var elemWidth = elementWidth($($tabContainer))
             var widthItem = 140;
             var cssPosition = parseInt($($tabContainer).css('right'), 10);
@@ -126,12 +132,6 @@ define([
                     }
                 }
             }
-
-
-
-            console.log(elemWidth)
-
-
         })
     }
 
@@ -141,7 +141,7 @@ define([
             child : elem[0].clientWidth
         }
     }
-    
+
     function worldThree () {
         $('#view').addClass('customHeightTimeline')
         $('#mp3').removeClass('invisible')
@@ -167,11 +167,11 @@ define([
         }
     }
 
-//TODO : morceaux existant => affiche les notes de la timeline
+
     function displayNote (note) {
-        var timeline = timelines[note.soundName() + note.pattern.id]
+        var timeline = timelines[note.soundName + note.pattern.id]
         if (!timeline) {
-            timeline = addTimeline(note.soundName(), note.pattern)
+            timeline = addTimeline(note.soundName, note.pattern)
             refreshTimelineBar()
         }
 
@@ -179,7 +179,6 @@ define([
             beat: note.start,
             class: htmlClass(note)
         })
-
     }
 
 
@@ -205,7 +204,7 @@ define([
     function addTimeline (sampleName, pattern) {
         var timeline = new Timeline({
             sampleName: sampleName,
-            beats: pattern.totalBeats(),
+            beats: pattern.totalBeats,
             container: patterns[pattern.id]
         })
         timelines[sampleName + pattern.id] = timeline
@@ -219,8 +218,15 @@ define([
 
     //=============Tabs=============
 
-    function addTab (tab) {
+    function addTab (tabName) {
+        var tab = new Tab(tabName)
+        tab.init()
+
         $tabContainer.append(tab.view)
+
+        tabs[tabName] = tab
+
+        return tab
     }
 
 
@@ -243,19 +249,19 @@ define([
 
 
     function associateInstrumentWithTab (params) {
-
+        var tab = tabs[params.tabName]
         for (var patternID in patterns) {
             var timeline = timelines[params.soundName + patternID]
             var tabsList = tabsBySound[params.soundName]
 
             if (tabsList) {
-                tabsList.push(params.tab)
+                tabsList.push(tab)
             } else {
-                tabsBySound[params.soundName] = [params.tab]
+                tabsBySound[params.soundName] = [tab]
             }
 
             if (timeline) {
-                params.tab.addTimeline(timeline)
+                tab.addTimeline(timeline)
             }
         }
     }
@@ -296,9 +302,10 @@ define([
         patterns    = {}
         timelines   = {}
         tabsBySound = {}
+        tabs        = {}
         $view.find('.pattern').remove()
         $tabContainer.find('.timeline-tab').remove()
-        defaultTimelineTab = new Tab()
+        defaultTimelineTab = addTab(lang === 'fr' ? 'Global' : 'Default')
         if (lastSelectedTabName) {
             eventBus.emit('tab switch requested', lastSelectedTabName)
         }
@@ -311,26 +318,26 @@ define([
 
 
     function displaySounds () {
-        
         getAvailablesSounds(function (data) {
-            console.log(data.samples)
-            console.log(data.loops)
             var samplesPath = data.samples
             for (var i = 0; i < samplesPath; i++) {
                 var path = samplesPath[i]
-                console.log(path)
+
                 //TODO: display all samples path
             }
 
             var loopsPath = data.loops
             for (var j = 0; j < loopsPath; j++) {
                 var path = loopsPath[j]
-                console.log(path)
+
                 //TODO: display all loops path
             }
         })
     }
 
 
+    function updateUserToCore (keys) {
+        userToCoreKeys = keys
+    }
 
 })

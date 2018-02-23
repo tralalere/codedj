@@ -23,7 +23,7 @@ define([
         globalEventBus.emit('page loaded')
         globalEventBus.emit('user ready to start')
         globalEventBus.emit('change volume custom', 100)
-        
+
         $('.wonWorld').on('click', function(event){
             event.isImmediatePropagationStopped()
             $('.wonWorld').addClass('invisible')
@@ -34,6 +34,7 @@ define([
     function initEvents () {
         globalEventBus.on('level changed', launchNewLevel)
         globalEventBus.on('all levels complete', onAllLevelsComplete)
+        globalEventBus.on('worlds unlocked', unlockWorlds)
     }
 
 
@@ -49,8 +50,13 @@ define([
         setTimeout(function () {
             $('.wonWorld').removeClass('invisible')
         }, 5000);
-       
+
         setAccess(2)
+    }
+
+    function unlockWorlds () {
+        setAccess(2)
+        setAccess(3)
     }
 
     function setAccess (world) {
@@ -58,10 +64,10 @@ define([
         if (!worlds) {
             worlds = []
         } else {
-            worlds.split(',')
+            worlds = worlds.split(',')
         }
 
-        if (worlds.indexOf(world.toString()) == -1) {
+        if (worlds.indexOf(world.toString()) === -1) {
             worlds.push(world)
             localStorage.setItem('accessToWorld', worlds)
         }

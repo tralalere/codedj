@@ -102,6 +102,20 @@ require([
         })
     })
 
+    eventBus.on('switch view tab', function (params) {
+        postMessage({
+            eventName: 'switch view tab',
+            args: [params]
+        })
+    })
+    
+    eventBus.on('change name first Tab', function (pattern) {
+        postMessage({
+            eventName: 'change name first Tab',
+            args: [pattern.export()]
+        })
+    })
+
 
     eventBus.on('patterns compared', function (errors) {
         postMessage({
@@ -147,6 +161,6 @@ require([
             }]
         })
     })
-
+    
 
 })
