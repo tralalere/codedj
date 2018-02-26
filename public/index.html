@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <title>Code DJ</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="scripts/ext_libs/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="./scripts/ext_libs/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
     <!--<script src="./scripts/ext_libs/tether-1.4.0/dist/js/tether.min.js"></script>
     <script src="./scripts/ext_libs/bootstrap-4.0.0-alpha.6-dist/js/bootstrap.min.js"></script>-->
 
@@ -18,14 +18,14 @@
             integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn"
             crossorigin="anonymous"></script>
     <link   rel="stylesheet"
-            href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css"
-            integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ"
-            crossorigin="anonymous">
+        href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css"
+        integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ"
+        crossorigin="anonymous">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 
 
-    <script src="scripts/ext_libs/perfect-scrollbar/js/perfect-scrollbar.jquery.js"></script>
-    <link rel="stylesheet" href="scripts/ext_libs/perfect-scrollbar/css/perfect-scrollbar.css" />
+    <script src="./scripts/ext_libs/perfect-scrollbar/js/perfect-scrollbar.jquery.js"></script>
+    <link rel="stylesheet" href="./scripts/ext_libs/perfect-scrollbar/css/perfect-scrollbar.css" />
 
     <!--<link href="./scripts/ext_libs/bootstrap-4.0.0-alpha.6-dist/css/bootstrap.min.css" rel="stylesheet">-->
     <link href="./stylesheets/shCore.css" rel="stylesheet">
@@ -33,12 +33,12 @@
     <link rel="stylesheet" href="./stylesheets/style.css">
     <link rel="stylesheet" href="./stylesheets/style2.css">
     <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
-    <script src="scripts/ext_libs/shCore.js"></script>
-    <script src="scripts/ext_libs/shBrushJScript.js"></script>
+    <script src="./scripts/ext_libs/shCore.js"></script>
+    <script src="./scripts/ext_libs/shBrushJScript.js"></script>
 
-    <!--<script data-main="./scripts/main.js" src="./scripts/ext_libs/require.js"></script>-->
+    <script data-main="./scripts/main.js" src="./scripts/ext_libs/require.js"></script>
 
-    <script data-main="./scripts/main-built.js" src="scripts/ext_libs/require.js"></script>
+    <!--<script data-main="./scripts/main-built.js" src="scripts/ext_libs/require.js"></script>-->
 
     <script src="//apis.google.com/js/client:plusone.js"></script>
 
@@ -144,24 +144,10 @@
                 </div>
             </div>
         </div>
-
-        <div class="bloc-store">
-            <div class="bloc-dl-store">
-                <div class="dl-ios dl-ios-fr"></div>
-                <div class="dl-android dl-android-fr"></div>
-            </div>
-        </div>
-
-
     </div>
     <div class="containPostHome2">
         <div class="encart"></div>
         <div class="bloc-translate-btn">
-            <div class="bloc-dl-store">
-                <div class="dl-ios dl-ios-en"></div>
-                <div class="dl-android dl-android-en"></div>
-            </div>
-
             <div class="translate-en"></div>
             <div class="translate-fr"></div>
         </div>
@@ -181,7 +167,7 @@
             <div class="traitBottom right traitZigzag"></div>
         </div>
         <div class="blocCredit">
-            <div class="credit"><span class="faqText">  À PROPOS </span> -<span class="mentionText"> MENTIONS </span> -<span class="creditText">CRÉDITS</span> -<a class="sourcesGitHub" href="https://github.com/tralalere/codedj" target="_blank">Sources</a></div>
+            <div class="credit"><span class="creditText">CRÉDITS</span> -<span class="mentionText"> MENTIONS </span> -<span class="faqText"> FAQ </span> -<a class="sourcesGitHub" href="https://github.com/tralalere/codedj" target="_blank">Sources</a></div>
         </div>
     </div>
     <div class="blocPopUp">
@@ -198,6 +184,8 @@
         <div class="row blocHead">
             <div class="btnTop col-lg-4 col-md-4 col-sm-4 col-xs-4 ">
                 <div id="back" class="btnPrevious left btn btnCodeDj"><span>Retour</span><img class="iconBtnPrevious" src="assets/iconBtnPrevious.png"></div>
+
+                <div class="btn btnCodeDj getCertificate"><img class="iconBtnNext" src="assets/iconBtnNext.png"><a href="https://code.org/api/hour/finish" target="_blank">Obtenir mon certificat</a></div>
             </div>
             <div class="logoTop col-lg-4 col-md-4 col-sm-4 col-xs-4"><div class="demiLogo logoImg shadow"></div></div>
             <div class="btnTop col-lg-4 col-md-4 col-sm-4 col-xs-4 ">
@@ -353,36 +341,53 @@
     </div>
 </div>
 
-<div id="pack-template">
-    <div class="bloc-shop bloc-pack">
-        <div class="row row-btn-top">
-            <div class="col-md-7">
-                <div class="bloc-btn-shop mobile-only">
-                    <div class="btn-shop grey-btn">Mes packs</div>
-                    <div class="btn-shop">Plus de packs</div>
-                </div>
+<div class="bloc-shop bloc-pack invisible">
+    <div class="row row-btn-top">
+        <div class="col-md-8">
+            <div class="bloc-btn-shop">
+                <div class="btn-shop grey-btn">Mes packs</div>
+                <div class="btn-shop">Plus de packs</div>
             </div>
-            <div class="col-md-5">
-                <div class="bloc-btn-shop btn-small">
-                    <div id="sound" class="btn-shop grey-btn pull-right">Sons</div>
-                    <div id="loop" class="btn-shop grey-btn pull-right">Boucles</div>
+        </div>
+        <div class="col-md-4">
+            <div class="bloc-btn-shop btn-small">
+                <div class="btn-shop grey-btn pull-right">Sons</div>
+                <div class="btn-shop grey-btn pull-right">Boucles</div>
+            </div>
+        </div>
+    </div>
+    <div class="row row-pack">
+        <div class="col-md-6">
+            <div class="pack-item">
+                <div class=" row">
+                    <div class="col-md-4">
+                        <div class="icon-play-shop"></div>
+                    </div>
+                    <div class="bloc-btn-shop col-md-8">
+                        <h3>Nom du sample</h3>
+                        <div class="btn-shop white-btn">Ajouter au script</div>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="row row-pack">
-            <div id="bloc-sample"></div>
-            <div id="bloc-loop"></div>
+        <div class="col-md-6">
+            <div class="pack-item">
+                <div class=" row">
+                    <div class="col-md-4">
+                        <div class="icon-play-shop"></div>
+                    </div>
+                    <div class="bloc-btn-shop col-md-8">
+                        <h3>Nom du sample</h3>
+                        <div class="btn-shop white-btn">Ajouter au script</div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
 
-
-
 <div class="container-fluid" id="world2">
 
-    <div class="blocPopUp blocPopUp-store">
-        <div class="pop"></div>
-    </div>
 
     <div id="blocPopUp-youtube">
         <div id="uploadAndConvert">
@@ -397,6 +402,14 @@
                       <div class="icon-gmail"></div>
                       <div class="link-connexion">Connexion</div>
                   </div>
+
+                  <!--<span
+                          class="g-signin"
+                          data-callback="signinCallback"
+                          data-clientid="837989009437-clgij106bf9i993v4lssc9rt8hvcjajk.apps.googleusercontent.com"
+                          data-cookiepolicy="single_host_origin"
+                          data-scope="https://www.googleapis.com/auth/youtube.upload https://www.googleapis.com/auth/youtube">
+                  </span>-->
             </span>
 
                 <div class="post-sign-in">
@@ -466,7 +479,7 @@
 
     <div class="blocPopUp">
         <div class="pop shopPopPup">
-            <div class="iconeBlocShop icon-shop icon-pack icon-sample"></div>
+            <div class="iconeBlocShop icon-shop icon-pack invisible"></div>
             <div class="offerPack invisible">Ton premier pack de samples est offert, choisis celui que tu veux !</div>
         </div>
     </div>
@@ -563,16 +576,12 @@
                 <div class="blocCommandeBtn">
                     <div id="btn_execute"></div>
                     <!--<div id="btn_reset"></div>-->
-                    <div id="btn_solution">
-                        <div>Solution</div>
-                    </div>
+                    <div id="btn_solution"></div>
                     <div id="btn_next_question" class="btnNext btn btnCodeDj"><img class="iconBtnNext" src="assets/iconBtnNext.png"><span>Suivant</span></div>
                     <div id="btn_save" class="invisible"></div>
                     <div id="btn_load" class="invisible"></div>
                     <div id="mp3" class="btn-inactif invisible"></div>
-                    <div id="uploadYt" class="btn-inactif invisible">
-                        <div>Publier</div>
-                    </div>
+                    <div id="uploadYt" class="btn-inactif invisible"></div>
 
                 </div>
             </div>
@@ -609,7 +618,7 @@
         <div class="btnWorldWin d-flex flex-row">
             <div class="leftTrait traitZigzag"></div>
             <div id="btnGoMenu" class="btn btnCodeDj btnNext"><img class="iconBtnNext" src="assets/iconBtnNext.png"><span>Suivant</span></div>
-           <!-- <div class="btn btnCodeDj getCertificate"><img class="iconBtnNext" src="assets/iconBtnNext.png"><a href="https://code.org/api/hour/finish" target="_blank">Obtenir mon certificat</a></div>-->
+            <div class="btn btnCodeDj getCertificate"><img class="iconBtnNext" src="assets/iconBtnNext.png"><a href="https://code.org/api/hour/finish" target="_blank">Obtenir mon certificat</a></div>
             <div class="rightTrait traitZigzag"></div>
         </div>
     </div>
@@ -617,7 +626,7 @@
         <div class="row blocHead">
             <div class="btnTop col-lg-4 col-md-4 col-sm-4 col-xs-4 ">
                 <div class="btnPrevious left btn btnCodeDj"><span>Retour</span><img class="iconBtnPrevious" src="assets/iconBtnPrevious.png"></div>
-                <!--<a id="finishedHour" href="https://code.org/api/hour/finish" target="_blank"></a>-->
+                <a id="finishedHour" href="https://code.org/api/hour/finish" target="_blank"></a>
             </div>
             <div class="logoTop col-lg-4 col-md-4 col-sm-4 col-xs-4 "><div class="demiLogo logoImg shadow"></div></div>
             <div class="btnTop col-lg-4 col-md-4 col-sm-4 col-xs-4 ">
@@ -668,28 +677,6 @@
 </div>
 
 <div id="templates">
-
-    <div id="bloc-sound">
-        <div class="col-md-6">
-            <div class="pack-item">
-                <div class="row include-sound">
-                    <div class="col-md-4">
-                        <div class="icon-play-shop">
-                            <audio preload>
-                                <source src="https://static.code-dj.com/hourofcode/public/assets/sounds/samples/G1/CONGA_1.mp3">
-                            </audio>
-                        </div>
-                    </div>
-                    <div class="bloc-btn-shop col-md-8">
-                        <h3>Nom du sample</h3>
-                        <div class="btn-shop white-btn add-to-script">Ajouter au script</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
     <div id="home_template">
         <h1>Code Dj</h1>
         <div class="button" id="btn_world1">Monde 1</div>
@@ -710,80 +697,7 @@
 
     <div id="answer_template">
         <div class="answer d-flex flex-row">
-            <div id="roll-list-mobile">
-                <div class="bloc-result">
-                    <div class="result"></div>
-                    <div class="sub">OK</div>
-                </div>
-
-                <!--TODO : template mobile insertion-->
-                <div class="tab-content-mobile">
-                    <div class="pad">
-                        <div value="1">1</div>
-                        <div value="2">2</div>
-                        <div value="3">3</div>
-                        <div value="4">4</div>
-                        <div value="5">5</div>
-                        <div value="6">6</div>
-                        <div value="7">7</div>
-                        <div value="8">8</div>
-                        <div value="9">9</div>
-                        <div value="0">0</div>
-                    </div>
-                    <div class="keyboard">
-                        <div value="a">a</div>
-                        <div value="z">z</div>
-                        <div value="e">e</div>
-                        <div value="r">r</div>
-                        <div value="t">t</div>
-                        <div value="y">y</div>
-                        <div value="u">u</div>
-                        <div value="i">i</div>
-                        <div value="o">o</div>
-                        <div value="p">p</div>
-
-                        <div value="a">q</div>
-                        <div value="z">s</div>
-                        <div value="e">d</div>
-                        <div value="r">f</div>
-                        <div value="t">g</div>
-                        <div value="y">h</div>
-                        <div value="u">j</div>
-                        <div value="i">k</div>
-                        <div value="o">l</div>
-                        <div value="p">m</div>
-
-
-                        <div class="empty"></div>
-                        <div value="a">w</div>
-                        <div value="z">x</div>
-                        <div value="e">c</div>
-                        <div value="r">v</div>
-                        <div value="t">b</div>
-                        <div value="y">n</div>
-
-                        <div class="enter"></div>
-
-                    </div>
-                    <div class="boolean">
-                        <div value="true">true</div>
-                        <div value="false">false</div>
-                    </div>
-
-                </div>
-
-                <div class="tab-mobile">
-                    <div class="select">
-                        <div class="pad">123</div>
-                        <div class="keyboard">abc</div>
-                        <div class="boolean">T/F</div>
-                    </div>
-
-                    <div class="suppress"></div>
-                </div>
-            </div>
-            <!--TODO fin insertion-->
-            <input class="inputAnswer" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" />
+            <input autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" />
             <div class="btnAnswer btn btnCodeDj">ok<img class="iconBtnNext" src="assets/iconBtnNext.png"></div>
 
         </div>

@@ -2,7 +2,7 @@ define([], function() {
     var samplesPack = {
         "A": [{
             "loopName": "1 - PIANO",
-            "source": "1 - PIANO.mp3",
+            "source": "1 - PIANO.wav",
             "instrument": "PIANO",
             "notes": [{
                 "timeStart": 0,
@@ -295,7 +295,7 @@ define([], function() {
             }]
         }, {
             "loopName": "1 - VOIX 1",
-            "source": "1 - VOIX 1.mp3",
+            "source": "1 - VOIX 1.wav",
             "instrument": "VOIX 1",
             "notes": [{
                 "timeStart": 3.09375,
@@ -313,7 +313,7 @@ define([], function() {
         }],
         "B": [{
             "loopName": "1 - BASS",
-            "source": "1 - BASS.mp3",
+            "source": "1 - BASS.wav",
             "instrument": "BASS",
             "notes": [{
                 "timeStart": 0,
@@ -462,7 +462,7 @@ define([], function() {
             }]
         }, {
             "loopName": "1 - DRUMS",
-            "source": "1 - DRUMS.mp3",
+            "source": "1 - DRUMS.wav",
             "instrument": "DRUMS",
             "notes": [{
                 "timeStart": 0,
@@ -659,7 +659,7 @@ define([], function() {
             }]
         }, {
             "loopName": "1 - PIANO",
-            "source": "1 - PIANO.mp3",
+            "source": "1 - PIANO.wav",
             "instrument": "PIANO",
             "notes": [{
                 "timeStart": 0,
@@ -952,7 +952,7 @@ define([], function() {
             }]
         }, {
             "loopName": "1 - VOIX 1",
-            "source": "1 - VOIX 1.mp3",
+            "source": "1 - VOIX 1.wav",
             "instrument": "VOIX 1",
             "notes": [{
                 "timeStart": 3.09375,
@@ -969,7 +969,7 @@ define([], function() {
             }]
         }, {
             "loopName": "1 - VOIX 2",
-            "source": "1 - VOIX 2.mp3",
+            "source": "1 - VOIX 2.wav",
             "instrument": "VOIX 2",
             "notes": [{
                 "timeStart": 0,
@@ -999,7 +999,7 @@ define([], function() {
         }],
         "C": [{
             "loopName": "1 - ARP",
-            "source": "1 - ARP.mp3",
+            "source": "1 - ARP.wav",
             "instrument": "ARP",
             "notes": [{
                 "timeStart": 0,
@@ -1160,7 +1160,7 @@ define([], function() {
             }]
         }, {
             "loopName": "1 - VOIX 1",
-            "source": "1 - VOIX 1.mp3",
+            "source": "1 - VOIX 1.wav",
             "instrument": "VOIX 1",
             "notes": [{
                 "timeStart": 3.09375,
@@ -1177,7 +1177,7 @@ define([], function() {
             }]
         }, {
             "loopName": "2 - PIANO",
-            "source": "2 - PIANO.mp3",
+            "source": "2 - PIANO.wav",
             "instrument": "PIANO",
             "notes": [{
                 "timeStart": 0,
@@ -1471,7 +1471,7 @@ define([], function() {
         }],
         "D": [{
             "loopName": "1 - ARP",
-            "source": "1 - ARP.mp3",
+            "source": "1 - ARP.wav",
             "instrument": "ARP",
             "notes": [{
                 "timeStart": 0,
@@ -1632,7 +1632,7 @@ define([], function() {
             }]
         }, {
             "loopName": "1 - VOIX 1",
-            "source": "1 - VOIX 1.mp3",
+            "source": "1 - VOIX 1.wav",
             "instrument": "VOIX 1",
             "notes": [{
                 "timeStart": 3.09375,
@@ -1649,7 +1649,7 @@ define([], function() {
             }]
         }, {
             "loopName": "2 - BASS",
-            "source": "2 - BASS.mp3",
+            "source": "2 - BASS.wav",
             "instrument": "BASS",
             "notes": [{
                 "timeStart": 0,
@@ -1846,7 +1846,7 @@ define([], function() {
             }]
         }, {
             "loopName": "2 - DRUMS",
-            "source": "2 - DRUMS.mp3",
+            "source": "2 - DRUMS.wav",
             "instrument": "DRUMS",
             "notes": [{
                 "timeStart": 0,
@@ -2535,7 +2535,7 @@ define([], function() {
             }]
         }, {
             "loopName": "2 - PIANO",
-            "source": "2 - PIANO.mp3",
+            "source": "2 - PIANO.wav",
             "instrument": "PIANO",
             "notes": [{
                 "timeStart": 0,
@@ -2828,7 +2828,7 @@ define([], function() {
             }]
         }, {
             "loopName": "2 - VOIX 2",
-            "source": "2 - VOIX 2.mp3",
+            "source": "2 - VOIX 2.wav",
             "instrument": "VOIX 2",
             "notes": [{
                 "timeStart": 0,
@@ -2894,7 +2894,7 @@ define([], function() {
         }],
         "E": [{
             "loopName": "1 - ARP",
-            "source": "1 - ARP.mp3",
+            "source": "1 - ARP.wav",
             "instrument": "ARP",
             "notes": [{
                 "timeStart": 0,
@@ -3055,7 +3055,7 @@ define([], function() {
             }]
         }, {
             "loopName": "1 - VOIX 1",
-            "source": "1 - VOIX 1.mp3",
+            "source": "1 - VOIX 1.wav",
             "instrument": "VOIX 1",
             "notes": [{
                 "timeStart": 3.09375,
@@ -3072,7 +3072,7 @@ define([], function() {
             }]
         }, {
             "loopName": "2 - PIANO",
-            "source": "2 - PIANO.mp3",
+            "source": "2 - PIANO.wav",
             "instrument": "PIANO",
             "notes": [{
                 "timeStart": 0,
@@ -3366,7 +3366,7 @@ define([], function() {
         }],
         "F": [{
             "loopName": "3 - PIANO",
-            "source": "3 - PIANO.mp3",
+            "source": "3 - PIANO.wav",
             "instrument": "PIANO",
             "notes": [{
                 "timeStart": 0,
@@ -3623,7 +3623,7 @@ define([], function() {
             }]
         }, {
             "loopName": "3 - VOIX 2",
-            "source": "3 - VOIX 2.mp3",
+            "source": "3 - VOIX 2.wav",
             "instrument": "VOIX 2",
             "notes": [{
                 "timeStart": 0,
@@ -3683,7 +3683,7 @@ define([], function() {
         }],
         "G": [{
             "loopName": "1 - SYNTH",
-            "source": "1 - SYNTH.mp3",
+            "source": "1 - SYNTH.wav",
             "instrument": "SYNTH",
             "notes": [{
                 "timeStart": 0,
@@ -4096,7 +4096,7 @@ define([], function() {
             }]
         }, {
             "loopName": "1 - VOIX 3",
-            "source": "1 - VOIX 3.mp3",
+            "source": "1 - VOIX 3.wav",
             "instrument": "VOIX 3",
             "notes": [{
                 "timeStart": 0,
@@ -4299,7 +4299,7 @@ define([], function() {
             }]
         }, {
             "loopName": "2 - VOIX 1",
-            "source": "2 - VOIX 1.mp3",
+            "source": "2 - VOIX 1.wav",
             "instrument": "VOIX 1",
             "notes": [{
                 "timeStart": 3.09375,
@@ -4358,7 +4358,7 @@ define([], function() {
             }]
         }, {
             "loopName": "3 - BASS",
-            "source": "3 - BASS.mp3",
+            "source": "3 - BASS.wav",
             "instrument": "BASS",
             "notes": [{
                 "timeStart": 0,
@@ -4843,7 +4843,7 @@ define([], function() {
             }]
         }, {
             "loopName": "3 - DRUMS",
-            "source": "3 - DRUMS.mp3",
+            "source": "3 - DRUMS.wav",
             "instrument": "DRUMS",
             "notes": [{
                 "timeStart": 0,
@@ -5748,7 +5748,7 @@ define([], function() {
             }]
         }, {
             "loopName": "4 - PIANO",
-            "source": "4 - PIANO.mp3",
+            "source": "4 - PIANO.wav",
             "instrument": "PIANO",
             "notes": [{
                 "timeStart": 0,
@@ -5969,7 +5969,7 @@ define([], function() {
             }]
         }, {
             "loopName": "4 - VOIX 2",
-            "source": "4 - VOIX 2.mp3",
+            "source": "4 - VOIX 2.wav",
             "instrument": "VOIX 2",
             "notes": [{
                 "timeStart": 2,
@@ -6071,7 +6071,7 @@ define([], function() {
         }],
         "H": [{
             "loopName": "5 - PIANO",
-            "source": "5 - PIANO.mp3",
+            "source": "5 - PIANO.wav",
             "instrument": "PIANO",
             "notes": [{
                 "timeStart": 0,

@@ -1,17 +1,17 @@
-var lang = 'fr';
-if(navigator.language || navigator.userLanguage){
-    lang = navigator.language || navigator.userLanguage;
-};
+var lang = 'fr'
+if (navigator.language || navigator.userLanguage) {
+    lang = navigator.language || navigator.userLanguage
+}
 
-if(localStorage.getItem('lang')){
+if (localStorage.getItem('lang')) {
 
     if (localStorage.getItem('lang') !== 'fr' || localStorage.getItem('lang').substring(0, 2) !== 'fr') {
-        if(localStorage.getItem('lang') !== 'en'){
+        if (localStorage.getItem('lang') !== 'en') {
             localStorage.setItem('lang', 'en')
-            location.reload();
+            location.reload()
         }
     }
-    
+
     lang = localStorage.getItem('lang')
 }
 
@@ -24,15 +24,15 @@ if (lang !== 'fr' || lang.substring(0, 2) !== 'fr') {
 
 var signinCallback = function (result) {
     if (result.access_token) {
-        ready(result.access_token);
+        ready(result.access_token)
     }
-};
+}
 
-function ready(accessToken) {
+function ready (accessToken) {
     console.log(accessToken)
-    token = accessToken;
-    this.gapi = gapi;
-    this.authenticated = true;
+    token = accessToken
+    this.gapi = gapi
+    this.authenticated = true
     this.gapi.client.request({
         path: '/youtube/v3/channels',
         params: {
@@ -50,7 +50,7 @@ function ready(accessToken) {
                 $('.post-sign-in').show()
             }
         }.bind(this)
-    });
+    })
 }
 
 require.config({
@@ -95,67 +95,55 @@ require([
     'tether',
     'bootstrap',
     'perfectScrollbar',
-    'perfectScrollbarJQuery'
+    'perfectScrollbarJQuery',
+    'sandbox_bridge'
 
 ], function ($, globalEventBus, getUrlParams, initHome, initWin, initSilentTeacherWorld, initCodingWorld, initSandboxWorld, jqueryUi) {
 
     var urlParams = getUrlParams()
 
     $(function () {
-        $('.translate-fr').on('click', function(){
+        $('.translate-fr').on('click', function () {
             globalEventBus.emit('lang changed', 'fr')
         })
 
-        $('.translate-en').on('click', function(){
+        $('.translate-en').on('click', function () {
             globalEventBus.emit('lang changed', 'en')
         })
 
-        $('.tab-mobile div').on('click',function(){
-            $('.tab-mobile div').removeClass('active')
-            $(this).addClass('active')
-        });
-
-        
         $('#resizable').resizable()
 
-        $.getJSON('json/'+lang+'/text.json', function (data) {
-            $('.btnNext span').html(data['button']['next'])
-            $('.btnPrevious span').html(data['button']['previous'])
-            $('.btnWorld span').html(data['button']['begin'])
-            $('.goToSelectWorld span').html(data['button']['play'])
-            $('#world1 .titleWorldWin').html(data['woldWinBeats'])
-            $('#world2 .titleWorldWin').html(data['woldWinTracks'])
-            $('.missionCompleted').html(data['missionCompleted'])
-            $('.levelWon').html(data['levelWon'])
+        $.getJSON('json/' + lang + '/text.json', function (data) {
+            $('.btnNext span').html(data.button.next)
+            $('.btnPrevious span').html(data.button.previous)
+            $('.btnWorld span').html(data.button.begin)
+            $('.goToSelectWorld span').html(data.button.play)
+            $('#world1 .titleWorldWin').html(data.woldWinBeats)
+            $('#world2 .titleWorldWin').html(data.woldWinTracks)
+            $('.missionCompleted').html(data.missionCompleted)
+            $('.levelWon').html(data.levelWon)
 
-            $('.titleWorld.samples span').html(data['button']['titleWorld-samples'])
-            $('.titleWorld.rythmes span').html(data['button']['titleWorld-rhytmes'])
-            $('.titleWorld.morceaux span').html(data['button']['titleWorld-morceaux'])
+            $('.titleWorld.samples span').html(data.button['titleWorld-samples'])
+            $('.titleWorld.rythmes span').html(data.button['titleWorld-rhytmes'])
+            $('.titleWorld.morceaux span').html(data.button['titleWorld-morceaux'])
 
-            $('.creditText').html(data['button']['creditText'])
-            $('.mentionText').html(data['button']['mentionText'])
-            $('.faqText').html(data['button']['faqText'])
-            $('.sourcesGitHub').html(data['button']['sourcesGitHub'])
-            
-            
-            $('#uploadYt div').html(data['button']['publish'])
-            $('#btn_solution div').html(data['button']['solution'])
-            
-            $('.encart').html(data['partenaires'])
-            
-            
-            $('#finishedHour').html(data['finishedHour'])
+            $('.creditText').html(data.button.creditText)
+            $('.mentionText').html(data.button.mentionText)
+            $('.faqText').html(data.button.faqText)
+            $('.sourcesGitHub').html(data.button.sourcesGitHub)
 
-            $('.getCertificate a').html(data['getCertificate'])
-            
-            
-            $('.bloc-dl-store').html(data['dlStore'])
+            $('.encart').html(data.partenaires)
+
+
+            $('#finishedHour').html(data.finishedHour)
+
+            $('.getCertificate a').html(data.getCertificate)
 
 
         })
 
-        $('#signinButton').on('click', function(){
-            $('#blocPopUp-youtube').fadeOut();
+        $('#signinButton').on('click', function () {
+            $('#blocPopUp-youtube').fadeOut()
         })
 
         if (urlParams.monde === '1') {
@@ -197,8 +185,8 @@ require([
 
 
 
-// If the page is hidden, pause the sound;
-// if the page is shown, play the sound
+        // If the page is hidden, pause the sound;
+        // if the page is shown, play the sound
         function handleVisibilityChange () {
             if (urlParams.monde === '1') {
                 if (document[hidden]) {
@@ -208,20 +196,19 @@ require([
                 }
             } else if (urlParams.monde === '2' || urlParams.monde === '3') {
 
-                globalEventBus.emit('change focus',document[hidden]);
+                globalEventBus.emit('change focus', document[hidden])
 
             }
 
         }
 
-// Warn if the browser doesn't support addEventListener or the Page Visibility API
+        // Warn if the browser doesn't support addEventListener or the Page Visibility API
         if (typeof document.addEventListener === 'undefined' || typeof document[hidden] === 'undefined') {
             console.log('This application requires a browser, such as Google Chrome or Firefox, that supports the Page Visibility API.')
         } else {
             // Handle page visibility change
             document.addEventListener(visibilityChange, handleVisibilityChange, false)
         }
-
 
     })
 })

@@ -14,7 +14,6 @@ define([
         this.loopTime   = params.loopTime
         this.$container = params.container
         this.initDom()
-        var t = this
         this.$container.append(this.$bar)
     }
 

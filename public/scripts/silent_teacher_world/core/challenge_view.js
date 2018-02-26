@@ -1,4 +1,3 @@
-var selected = 'pad'
 define([
     'toxilibs/event_bus_queued',
     'jquery',
@@ -67,17 +66,10 @@ define([
             window.location.href = '.?monde=select'
             return false
         })
-
-        $('.tab-mobile div').on('click',function(){
-            $('.tab-mobile div').removeClass('active')
-            $(this).addClass('active')
-        });
-
         $blocChallengesContainer.find('.wrapChallengeTimeline').prepend(blocTimeline)
 
         $blocChallengesContainer.append($challengeAfterAnswer)
         counter = 1
-
         EffectProgress()
     }
 
@@ -94,140 +86,8 @@ define([
         previousChallenge = challenge
 
         eventBus.emit('challenge view ready', $blocChallenge)
-
-
-        // TODO : insertion mobile template
-        /*$('.inputAnswer').on('click',function(){
-            $('#roll-list-mobile').fadeIn()
-            $('.pad').addClass('active')
-            $('.result').val('')
-            $('.result').text('')
-            selected = 'pad'
-        })*/
-
-        $('.tab-mobile .select div').on('click',function(){
-            $('.tab-mobile div').removeClass('active')
-
-            $(this).addClass('active')
-
-            switch($(this).text()){
-
-                case '123':
-                    selected = 'pad'
-
-                    $('.result').val('')
-                    $('.result').text('')
-
-                    $('.tab-content-mobile div').removeClass('active')
-                    $('.tab-content-mobile .pad').addClass('active')
-                    break
-
-                case 'abc':
-                    selected = 'keyboard'
-
-                    $('.result').val('')
-                    $('.result').text('')
-
-                    $('.tab-content-mobile div').removeClass('active')
-                    $('.tab-content-mobile .keyboard').addClass('active')
-                    break
-
-                case 'T/F':
-                    selected = 'boolean'
-
-                    $('.result').val('')
-                    $('.result').text('')
-
-                    $('.tab-content-mobile div').removeClass('active')
-                    $('.tab-content-mobile .boolean').addClass('active')
-                    break
-
-                default :
-                    console.log('error')
-            }
-        });
-
-        $('.sub').on('click',function(){
-
-            var val = $('.result').val()
-
-            selected = 'OK'
-
-            $('.inputAnswer').val(val);
-            $('#roll-list-mobile').fadeOut();
-        })
-
-        $('.tab-content-mobile > div > div').on('click',function(){
-
-            var str = $('.result').text();
-            var val = $('.result').val();
-            switch(selected){
-
-                case 'pad':
-                    // $('.result').text($(this).text())
-
-                    if(str == ""){
-                        $('.result').empty()
-                        $('.result').val($(this).text())
-                        $('.result').text($('.result').val())
-
-                    } else if(val.length == 1){
-                        $('.result').text(val + $(this).text())
-                        $('.result').val(val + $(this).text())
-                    }
-                    break
-
-                case 'keyboard':
-                    $('.result').empty()
-                    $('.result').val($(this).text())
-                    $('.result').text($('.result').val())
-                    break
-
-                case 'boolean':
-                    $('.result').empty()
-                    $('.result').val($(this).text())
-                    $('.result').text($('.result').val())
-                    break
-
-                default:
-                    console.log('no selected input')
-
-            }
-            console.log($(this).text())
-        })
-
-        $('.suppress').on('click',function(){
-
-            var str = $('.result').val();
-            var text = str.slice(0, -1);
-            console.log(str);
-            console.log(text);
-
-            $('.result').text(text)
-            $('.result').val(text)
-        })
-
-
-
     }
 
-
-    function findScrollDirectionOtherBrowsers(event){
-        var delta;
-
-        if (event.wheelDelta){
-            delta = event.wheelDelta;
-        }else{
-            delta = -1 * event.deltaY;
-        }
-
-        if (delta < 0){
-            console.log("DOWN");
-        }else if (delta > 0){
-            console.log("UP");
-        }
-
-    }
 
     function addCorrection (challenge, userAnswer, win) {
         /*
@@ -321,14 +181,9 @@ define([
         })
 
         $blocInputAnswer.find('.btnAnswer').click(function () {
-            /*if(selected !== 'OK'){
-                return
-            }
             if (!canSubmitAnwser(challenge)) {
                 return
             }
-
-            $('#roll-list-mobile').fadeOut();*/
             submitAnswer(challenge)
         })
     }

@@ -13,10 +13,6 @@ define([], function () {
                 tune.stop()
             })
 
-            eventBus.on('loop stop requested', function () {
-                tune.stop()
-            })
-
             eventBus.emit('new tune', this)
         }
 

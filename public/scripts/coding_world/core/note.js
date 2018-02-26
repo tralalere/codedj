@@ -5,6 +5,7 @@ define([], function () {
         params         = params || {}
         this.pattern   = params.pattern
         this.sample    = params.sample
+        this.soundName = params.soundName || this.sample.soundName
         this.start     = params.start     || 1
         this.transpose = params.transpose || 0
         this.volume    = (typeof params.volume   === 'undefined') ? 1 : params.volume
@@ -12,9 +13,9 @@ define([], function () {
     }
 
 
-    Note.prototype.soundName = function () {
-        return this.sample.soundName
-    }
+    // Note.prototype.soundName = function () {
+    //     return this.sample.soundName
+    // }
 
 
     Note.prototype.soundSource = function () {
@@ -28,10 +29,23 @@ define([], function () {
 
 
     Note.prototype.isSimilarTo = function (otherNote) {
-        return  otherNote.soundName() === this.soundName() &&
+        return  otherNote.soundName   === this.soundName &&
                 otherNote.start       === this.start &&
                 otherNote.volume      === this.volume &&
                 otherNote.transpose   === this.transpose
+    }
+
+
+    Note.prototype.export = function () {
+        return {
+            pattern:    this.pattern.export(),
+            soundName:  this.soundName,
+            start:      this.start,
+            volume:     this.volume,
+            transpose:  this.transpose,
+            isCorrect:  this.isCorrect,
+            isSolutionNote: this.isSolutionNote
+        }
     }
 
 

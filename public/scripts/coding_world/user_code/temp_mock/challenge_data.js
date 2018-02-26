@@ -18,7 +18,7 @@ define(function () {
         'var tune     = new Tune({ loop:true })',
         'var bass     = new Instrument()',
         'var drum     = new Instrument()',
-        'var clap     = new Instrument(\'clap.mp3\')',
+        'var clap     = new Instrument(\'clap.wav\')',
         'tune.add(pattern)',
 
         // 'tune.add(pattern, patternB)',
@@ -26,10 +26,10 @@ define(function () {
         'bass.addSample(\'A\', \'bass_1.ogg\')',
         'bass.addSample(\'B\', \'bass_2.ogg\')',
         '',
-        'drum.addSample(\'kick\',\'electro_drum/kick.mp3\')',
-        'drum.addSample(\'snare\',\'electro_drum/snare.mp3\')',
-        'drum.addSample(\'hithat\',\'electro_drum/hithat.mp3\')',
-        'var snare = new Instrument("SNARE.mp3")',
+        'drum.addSample(\'kick\',\'electro_drum/kick.wav\')',
+        'drum.addSample(\'snare\',\'electro_drum/snare.wav\')',
+        'drum.addSample(\'hithat\',\'electro_drum/hithat.wav\')',
+        'var snare = new Instrument("SNARE.wav")',
 
         'pattern.addSound(snare, 2)',
         'pattern.addSound(snare, 5.9)',

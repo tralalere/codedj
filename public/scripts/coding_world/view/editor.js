@@ -25,18 +25,14 @@ define([
     'jquery',
     'toxilibs/event_bus_queued',
     'toxilibs/code_editor_capabilities',
-    'toxilibs/ace_custom_javascript',
-    '../levels/level_manager',
-    'ext_libs/lodash/lodash',
-    'toxilibs/url_params'
-], function ($, globalEventBus, addCodeEditorCapabilities, aceCustomJavaScript, levelmanager, lodash,getUrlParams) {
-
-    var urlParams = getUrlParams()
+    'toxilibs/ace_custom_javascript'
+], function ($, globalEventBus, addCodeEditorCapabilities, aceCustomJavaScript) {
 
     var eventBus = globalEventBus('view')
 
     eventBus.on('html ready',  initDom)
-    eventBus.on('world ready', initEditor)
+    eventBus.on('userWorld code ready', initEditor)
+    eventBus.on('sandboxWorld code ready', initEditor)
     eventBus.on('user want to go next', function () {
         $('#btn_execute').removeClass('pause')
         $('#btn_next_question').addClass('invisible')
@@ -53,24 +49,15 @@ define([
     var solutionCode
     var $textArea
     var $searchFieldButton
-    var $sampleButton
 
-    var $blocPopUp
-    var $pop
-    var $pack
-
-    var $blocPopUp = $('#world2 > .blocPopUp')
-    var $pop = $('#world2 > .blocPopUp > .shopPopPup')
-    var $pack = $('#pack-template').html()
-
-    var $blocSound = $('#bloc-sound').html()
-
-
-    globalEventBus('solutionWorld').on('world ready', function (world) {
-        solutionCode = world.exposedCode()
+    globalEventBus.on('solutionWorld code ready', function (code) {
+        solutionCode = code
     })
-    
 
+
+    /*
+     TODO:  integration css function initDom () in comment
+     */
     function initDom () {
 
         globalEventBus.on('change focus', function (hidden) {
@@ -109,208 +96,19 @@ define([
         })
 
         $searchFieldButton = $('<div id="btn_search"></div>')
-
-        if (urlParams.monde === '3') {
-            $sampleButton = $('<div id="btn_sample"></div>')
-        }
-
         $('#code_editor').append($searchFieldButton)
-        $('#code_editor').append($sampleButton)
-
-
         $searchFieldButton.click(openSearch)
-
-        if($sampleButton){
-            $sampleButton.click(openSample)
-
-        }
-
 
         $('#resizable').resize(function () {
             codeEditor.aceEditor.resize()
         })
 
         codeEditor.aceEditor.setOptions({enableBasicAutocompletion: false, enableLiveAutocompletion: false});
-        
+
     }
 
     function openSearch () {
         codeEditor.aceEditor.execCommand('find')
-    }
-
-
-    function includeSound(sounds, type){
-
-        sounds.forEach(function(val,key){
-            for(var i=0; i< sounds[key].length;i++){
-                
-                var div = '<div class="col-md-6 bloc-item">'
-                div += '<div class="pack-item">'
-                div += '<div class="row include-sound">'
-
-                div += '<div class="col-md-4">'
-                div += '<div class="icon-play-shop">'
-                div += '<audio preload>'
-                div += '<source src="./assets/sounds/'+sounds[key][i].source+'"></audio>'
-                div +='</div>'
-                div +='</div>'
-
-                div += '<div class="bloc-btn-shop col-md-8">'
-                div += '<h3>'+sounds[key][i].name+'</h3>'
-
-                if(sounds[key][i].used){
-                    if(lang == 'fr'){
-                        div += '<div data-type="'+type+'" data-used="'+sounds[key][i].used+'" data-source="'+sounds[key][i].source+'" data-name="'+sounds[key][i].name+'" class="btn-shop white-btn add-to-script used">Ajouté</div>'
-
-                    } else{
-                        div += '<div data-type="'+type+'" data-used="'+sounds[key][i].used+'" data-source="'+sounds[key][i].source+'" data-name="'+sounds[key][i].name+'" class="btn-shop white-btn add-to-script used">Already added</div>'
-                    }
-                } else{
-                    if(lang == 'fr'){
-                        div += '<div data-type="'+type+'" data-used="'+sounds[key][i].used+'"  data-source="'+sounds[key][i].source+'" data-name="'+sounds[key][i].name+'" class="btn-shop white-btn add-to-script">Ajouter au script</div>'
-
-                    } else{
-                        div += '<div data-type="'+type+'" data-used="'+sounds[key][i].used+'"  data-source="'+sounds[key][i].source+'" data-name="'+sounds[key][i].name+'" class="btn-shop white-btn add-to-script">Add to script</div>'
-                    }
-                }
-
-                div += '</div>'
-
-                div += '</div>'
-                div += '</div>'
-                div += '</div>'
-                
-                
-                if(type == 'sample'){
-                    $('.shopPopPup #bloc-sample').append(div)
-
-                } else{
-                    $('.shopPopPup #bloc-loop').append(div)
-
-                }
-                
-            }
-        })
-
-    }
-
-    function initPack(){
-        $pop.find('.bloc-pack').remove()
-        $pop.append($pack)
-
-        var samples = getMusicList('sounds',codeEditor.content(),'')
-        var loops =  getMusicList('musicLoops',codeEditor.content(),'loops/')
-
-        includeSound(samples, 'sample')
-        includeSound(loops, 'loop')
-
-        $('.add-to-script').on('click',function() {
-            var newString = "\nvar "+$(this).data().name+" = new Instrument('"+$(this).data().source+"')"
-
-            //codeEditor.insertText(newString)
-            codeEditor.aceEditor.session.insert({row:1, column: 10}, newString)
-
-            $(this).addClass('used');
-            if(lang == 'fr'){
-                $(this).text('Ajouté')
-            } else {
-                $(this).text('Already added')
-            }
-
-        })
-
-        $('.icon-play-shop').on('click', function(){
-            var t =  $(this);
-
-            $('.icon-play-shop').removeClass('pause')
-
-            var audios = $('.icon-play-shop').children()
-
-            for(var i = 0, len = audios.length; i < len;i++){
-                audios[i].pause();
-            }
-            
-            if(!$(this).children().hasClass('active')){
-                
-                $(this).children().addClass('active')
-                
-                $(this).children()[0].play()
-                
-                t.addClass('pause')
-                
-            } else{
-                
-                $('.icon-play-shop audio').removeClass('active')
-            }
-
-            $(this).children()[0].addEventListener("ended", function(){
-                this.currentTime = 0;
-                $('.icon-play-shop').removeClass('pause')
-                $('.icon-play-shop audio').removeClass('active')
-            });
-        })
-
-        $('.pack-item').on('click',function(){
-            $('.pack-item').removeClass('active')
-            $(this).addClass('active')
-        });
-    }
-
-    
-    function openSample () {
-        $blocPopUp.fadeIn()
-        
-        $('#sound').on('click',function() {
-            $('.shopPopPup #bloc-loop').hide()
-            $('.shopPopPup #bloc-sample').show()
-        })
-
-        $('#loop').on('click',function() {
-            $('.shopPopPup #bloc-sample').hide()
-            $('.shopPopPup #bloc-loop').show()
-        })
-        
-    }
-
-    function getMusicList(type, code, pathPrefix, detect)
-    {
-        var alreadyUsedMusic = parseAlreadyExistantSamples(code);
-
-        var temp = lodash.flatMap(levelmanager.getLevelsData(), function(item) {
-            return item[type];
-        });
-
-        temp = lodash.flatMap(temp, function(item) {
-            return {
-                name    : (item.loopName || item.soundName),
-                source  : (pathPrefix ? pathPrefix : '') + (item.source || item.soundSource),
-                used    : lodash.includes(alreadyUsedMusic, (pathPrefix ? pathPrefix : '') + (item.source || item.soundSource))
-            }
-        })
-
-        temp = lodash.uniqBy(temp, 'source')
-
-        if(!detect){
-            return lodash.chunk(lodash.values(temp), 2)
-        } else{
-            
-            return temp
-        }
-        
-        
-    }
-
-    function parseAlreadyExistantSamples(code)
-    {
-        try
-        {
-            var allMatchs = code.match(/[^'"\(\)]+\.mp3/g)
-            return (allMatchs && Array.isArray(allMatchs)) ? allMatchs : []
-        }
-        catch (e)
-        {
-            return []
-        }
     }
 
     /*
@@ -334,25 +132,7 @@ define([
 
         $('#btn_execute').on('click', function () {
             if ($(this).hasClass('pause')) {
-                console.log(detectInstrument())
-                
-                if (urlParams.monde === '3' && detectInstrument()) {
-                    
-                    console.log(detectInstrument())
-                    
-                    $('#world2 .blocPopUp.blocPopUp-store .pop').empty()
-                    
-                    $.getJSON('json/'+lang+'/text.json', function (data) {
-                        
-                        $('#world2 .blocPopUp.blocPopUp-store .pop').html(data['goToStore'])
-                    })
-                    
-                    $('#world2 .blocPopUp.blocPopUp-store').fadeIn()
-                    
-                } else{
-                    $(this).removeClass('pause')
-                    runCode()
-                }
+                runCode()
             } else {
                 $(this).addClass('pause')
                 stopLoop()
@@ -377,7 +157,7 @@ define([
         $('#upload-my-video').click(function () {
             eventBus.emit('get code editor content', codeEditor.content())
         })
-        
+
     }
 
 
@@ -412,7 +192,7 @@ define([
 
 
     function showLoadPopin () {
-        
+
         var popin = $('<div class="popin"></div>')
         var content = $('<div class="content"><h3>Choisissez la sauvegarde à charger</h3><br></div>')
 
@@ -432,7 +212,7 @@ define([
 
         content.append(select)
 
-        if(lang == 'fr'){
+        if (lang === 'fr') {
             content.append('<div class="btnNext btn btnCodeDj" id="load"><img class="iconBtnNext" src="assets/iconBtnNext.png"><span>Charger</span></div>')
         } else {
             content.append('<div class="btnNext btn btnCodeDj" id="load"><img class="iconBtnNext" src="assets/iconBtnNext.png"><span>Load</span></div>')
@@ -468,21 +248,20 @@ define([
     }
 
 
-    function initEditor (world) {
-        initialCode = world.exposedCode()
-        codeEditor.setContent(initialCode)
-        initPack()
+    function initEditor (code) {
+        initialCode = code
+        codeEditor.setContent(code)
     }
+
     function switchPlay (hidden) {
         if(hidden){
             $('#btn_execute').addClass('pause')
             stopLoop()
         }else {
-
             $('#btn_execute').removeClass('pause')
             runCode()
         }
-       
+
     }
 
     var editorChangeTimeout
@@ -496,14 +275,17 @@ define([
 
 
     function runCode () {
+        $('#btn_execute').removeClass('pause')
         stopLoop()
-        eventBus.emit('reset')
+
+        // eventBus.emit('reset')
         eventBus.emit('code execution requested', codeEditor.content())
     }
 
 
     function stopLoop () {
         eventBus.emit('loop stop requested', {stopAll: true})
+        eventBus.emit('reset')
     }
 
 
@@ -511,29 +293,6 @@ define([
         codeEditor.setContent(initialCode)
         runCode()
 
-    }
-
-    function detectInstrument(){
-        var sampleUsed = parseAlreadyExistantSamples(codeEditor.content());
-
-       /* var samples = getMusicList('sounds',codeEditor.content(),'',true)
-        var loops =  getMusicList('musicLoops',codeEditor.content(),'loops/',true)
-
-        var samplesOnly = lodash.flatMap(samples, function(item) {
-            return item['source'];
-        });
-        var loopsOnly = lodash.flatMap(loops, function(item) {
-            return item['soundSource'];
-        });*/
-
-        const resultSamples = sampleUsed.filter(item => item.indexOf('samples') == -1)
-        const resultLoops = resultSamples.filter(item => item.indexOf('loops') == -1)
-
-        if(resultLoops.length > 0){
-           return resultLoops
-        }
-
-        return false
     }
 
 })

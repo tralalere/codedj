@@ -51,7 +51,7 @@ define(function () {
                 url:    filePath
             })
         } else {
-            //console.warn('A sound named: ' + name + ' already exists')
+            console.warn('A sound named: ' + name + ' already exists')
         }
     }
 

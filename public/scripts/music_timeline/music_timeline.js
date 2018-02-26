@@ -9,8 +9,6 @@ define([
     }
 
 
-    /*TODO : Ajout de mesure sous la timeline pour Amine*/
-
     Timeline.prototype.initView = function (params) {
         this.view = $('<tr>')
         var soundName = params.sampleName.split('/')
@@ -30,10 +28,8 @@ define([
             this.view.append($beat)
             this.beatReference.append($beatForRef)
 
-            
             for (var j = 0; j < 1; j += 0.25) {
-                var k = j*100;
-                $beat.append('<td style="left:'+k+'%" class=" beat_' +  beatToClass(i + j + 1) + '"></td>')
+                $beat.append('<td class="beat_' +  beatToClass(i + j + 1) + '"></td>')
             }
 
             $beatForRef.append('<td class="beat_ref_' + i + ' beat_ref"><div>' + (i + 1) + '</div></td>')

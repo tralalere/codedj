@@ -1,12 +1,18 @@
 define([
+    'toxilibs/event_bus_queued',
     './instrument',
     './pattern',
     './tune',
     './timeline_tab'
-], function (createInstrumentConstructor, createPatternConstructor, createTuneConstructor, createTabConstructor) {
+], function (globalEventBus, createInstrumentConstructor, createPatternConstructor, createTuneConstructor, createTabConstructor) {
 
 
-    function World (eventBus, challengeCode) {
+    function World (name, challengeCode) {
+
+        var eventBus = globalEventBus(name)
+
+        this.name = name
+
         this.api = {
             Tune:       createTuneConstructor(eventBus),
             Instrument: createInstrumentConstructor(eventBus),
@@ -16,6 +22,7 @@ define([
         }
         this.eventBus = eventBus
         this.code     = challengeCode
+
         eventBus.emit('world ready', this)
     }
 

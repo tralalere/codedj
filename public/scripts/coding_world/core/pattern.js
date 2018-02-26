@@ -25,10 +25,6 @@ define([
                 IDCounter = 0
             })
 
-            eventBus.on('loop stop requested', function () {
-                pattern.stop()
-            })
-
             eventBus.emit('new pattern', this)
         }
 
@@ -41,6 +37,7 @@ define([
             var note = new Note({
                 pattern:   this,
                 sample:    sample,
+                soundName: params.soundName,
                 start:     start,
                 volume:    params.volume,
                 transpose: params.transpose,
@@ -59,8 +56,6 @@ define([
         }
 
 
-
-
         Pattern.prototype.stop = function () {
             clearTimeout(this.playTimer)
         }
@@ -72,7 +67,7 @@ define([
             if (beat === 1) {
                 this.startTime = Date.now()
             }
-            eventBus.emit('pattern beat played', this, beat)
+            eventBus.emit('pattern beat played', beat)
             playNotes(this.notesAtTime(beat), delay, this.beatDuration)
             var nextTime = this.startTime + beat * this.beatDuration
             var pattern  = this
@@ -83,7 +78,8 @@ define([
             var nextBeat = (beat % this.totalBeats()) + 1
             this.playTimer = setTimeout(function () {
                 if (beat >= pattern.totalBeats()) {
-                    eventBus.emit('loop stop requested', {samples: true})
+                    eventBus.emit('samples loop stop requested', {samples: true})
+                    eventBus.emit('reset')
                     if (pattern.loopLimit) {
                         pattern.loopTimes++
                         if (pattern.loopTimes >= pattern.loopLimit) {
@@ -126,6 +122,14 @@ define([
                 }
             }
             return notes
+        }
+
+
+        Pattern.prototype.export = function () {
+            return {
+                id: this.id,
+                totalBeats: this.totalBeats()
+            }
         }
 
 

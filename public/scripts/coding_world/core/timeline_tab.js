@@ -1,26 +1,3 @@
-var lang = 'fr';
-if(navigator.language || navigator.userLanguage){
-    lang = navigator.language || navigator.userLanguage;
-};
-
-if(localStorage.getItem('lang')){
-
-    if (localStorage.getItem('lang') !== 'fr' || localStorage.getItem('lang').substring(0, 2) !== 'fr') {
-        if(localStorage.getItem('lang') !== 'en'){
-            localStorage.setItem('lang', 'en')
-            location.reload();
-        }
-    }
-
-    lang = localStorage.getItem('lang')
-}
-
-if (lang !== 'fr' || lang.substring(0, 2) !== 'fr') {
-    lang = 'en'
-} else {
-    lang = 'fr'
-}
-
 define([
 
 ], function () {
@@ -31,12 +8,7 @@ define([
     function createTabConstructor (eventBus) {
 
         function TimelineTab (name) {
-            if(lang == 'fr'){
-                this.name = name || 'Global'
-            } else{
-                this.name = name || 'Default'
-            }
-
+            this.name = name
 
             if (tabs[this.name]) {
                 var copiedTab = tabs[this.name]
@@ -51,16 +23,21 @@ define([
                 this.instruments = {}
             }
 
+            eventBus.emit('new tab', this)
+
+            tabs[this.name] = this
+        }
+
+
+        TimelineTab.prototype.init = function () {
             createView(this)
             registerClick(this)
-            eventBus.emit('new tab', this)
 
             if (Object.keys(tabs).length === 0) {
                 this.view.addClass('default')
                 this.view.addClass('classTab')
             }
 
-            tabs[this.name] = this
             deactivateAll()
             this.setActive(true)
         }
@@ -85,13 +62,13 @@ define([
         TimelineTab.prototype.add = function (instrument) {
             if (instrument.soundName) {
                 eventBus.emit('add instrument to tab', {
-                    tab: this,
+                    tabName: this.name,
                     soundName: instrument.soundName
                 })
             } else {
                 for (var name in instrument.samples) {
                     eventBus.emit('add instrument to tab', {
-                        tab: this,
+                        tabName: this.name,
                         soundName: name
                     })
                 }

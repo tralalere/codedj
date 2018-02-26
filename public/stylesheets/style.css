@@ -302,14 +302,23 @@ body{
 }
 
 
-
+.exoBloc >div{
+    min-height: 100px;
+}
 /*
 #blocChallenge .exoBloc .challenge_question{
     margin-left: 0;
 }*/
 
 
-
+.challenge_question,
+.answer,
+.exoBloc >.blocCount,
+.exoBloc >.blocQuestion,
+.exoBloc >.blocInputAnswer,
+.exoBloc >.blocIcon>div{
+    margin:auto;
+}
 
 .blocIcon>div{
     width:50px;
@@ -477,7 +486,18 @@ button {
     opacity: 0.2;
 }*/
 
+#btn_search {
+    background: url('../assets/iconMagnifier.png');
+    background-size: 30px 30px;
+    cursor: pointer;
+    height: 30px;
+    width: 30px;
 
+    position: absolute;
+    z-index: 10;
+    top: 5px;
+    right: 30px;
+}
 
 .btn-next{
     opacity : 0.5;

@@ -25,6 +25,13 @@ define([], function () {
     }
 
 
+    Sample.prototype.export = function () {
+        return {
+            soundName: this.soundName
+        }
+    }
+
+
     return Sample
 
 })

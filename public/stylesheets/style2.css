@@ -6,10 +6,10 @@
     font-style: normal;
 }
 .row:before {
-    content: none;
-}
+     content: none;
+ }
 .row:after {
-    content: '';
+     content: '';
 }
 tbody:before,
 tbody:after,
@@ -113,8 +113,7 @@ body.secondBack{
 .containPostHome2 .containTraitTop{
     /*overflow-x: hidden;*/
     margin: 0 auto;
-    /*top:10%;*/
-    top:0%;
+    top:10%;
 }
 .containPostHome2 .containTraitTop .blocHideBtn{
     width:100%;
@@ -205,7 +204,7 @@ body.secondBack{
         transform: initial;
     }
     .container-fluid .containPreHome #editor .search{
-        /* right: 160px;*/
+       /* right: 160px;*/
     }
 }
 
@@ -286,15 +285,6 @@ body.secondBack{
 .btn.btnCodeDj:hover img.iconBtnPrevious{
     right: -45px;
     position: absolute;
-}
-
-.challenge_question,
-.answer,
-.exoBloc >.blocCount,
-.exoBloc >.blocQuestion,
-.exoBloc >.blocInputAnswer,
-.exoBloc >.blocIcon>div{
-    margin:auto;
 }
 
 #world1 .containPreHome #challenges_container .exoBloc .answer .btnAnswer:hover img.iconBtnNext{
@@ -388,8 +378,8 @@ body.secondBack{
     width:100%;
 }
 #postHome .containPostHome2 .containTraitTop .traitTop .trait{
-    /* top:73px;
-     position: relative;*/
+   /* top:73px;
+    position: relative;*/
 }
 
 .shadow{
@@ -554,7 +544,6 @@ body.secondBack{
     position: absolute;
     bottom:0;
 }
-
 .blockListWorld{
     min-width: 500px;
     width: 80%;
@@ -564,7 +553,6 @@ body.secondBack{
     top: 50%;
     transform: translateY(-50%);
 }
-
 .blockListWorld .itemWorld{
     padding:0;
     height:300px;
@@ -743,7 +731,6 @@ tbody{
 
 
 #world2 tbody{
-    height: 250px;
     max-height: 300px;
     position: relative;
 }
@@ -783,9 +770,11 @@ tbody{
     -webkit-box-direction: normal;
     -ms-flex-direction: row;
     flex-direction: row;
-    /* height: 100%;*/
+   /* height: 100%;*/
 }
-
+.timeline-container tr.numberReference{
+    order:2;
+}
 .timeline-container tr:before,
 .timeline-container tr:after{
     content: '';
@@ -796,18 +785,14 @@ tbody{
     padding:0;
     color: transparent;
     border: 1px solid #53D8FB;
-    position: relative;
 }
 
 #world2 .timeline-container tr>tr{
-    max-height: 70px;
+       max-height: 70px;
 }
 
 .timeline-container tr td{
     width: 25%;
-    position: absolute;
-    top:0;
-    bottom:0;
 }
 .timeline-container tr td.correct{
     /*background: #fb4f4f;*/
@@ -817,7 +802,7 @@ tbody{
     border: 2px dotted rgba(242, 53, 114,0.8);
     border-radius: 5px;
     z-index: 9999;
-    /* background: #4049fb;*/
+   /* background: #4049fb;*/
     -webkit-animation: loadShadowMissing 1s ease-in-out infinite;
     animation: loadShadowMissing 1s ease-in-out infinite;
 }
@@ -925,35 +910,15 @@ tbody{
     background-repeat: no-repeat;
 
 }
-#world2 .containPreHome #editor #code_buttons div.blocCommandeBtn #uploadYt,
 #world2 .containPreHome #editor #code_buttons div.blocCommandeBtn #btn_solution{
     width: 100px;
     height: 60px;
-    border-radius:initial;
+    background: url('../assets/solution.png');
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    background-size: 100px 60px;
+
 }
-
-
-
-#world2 .containPreHome #editor #code_buttons div.blocCommandeBtn #uploadYt div,
-#world2 .containPreHome #editor #code_buttons div.blocCommandeBtn #btn_solution div{
-    width: 100px;
-    border-radius: 20px;
-    height: 40px;
-    background: #CD4246;
-    margin: 0 auto;
-    position: relative;
-    top: 50%;
-    transform: translateY(-50%);
-    color: #fff;
-    text-align: center;
-    line-height: 40px;
-    vertical-align: middle;
-    font-size: 18px;
-    font-family: 'Coiny-Regular';
-    font-weight: bold;
-}
-
-
 #code_buttons #btn_save{
     background: url('../assets/save.png');
     background-position: 50% 50%;
@@ -971,7 +936,7 @@ tbody{
     background-position: 50% 50%;
     background-repeat: no-repeat;
 }
-/*
+
 #world2 .containPreHome #editor #code_buttons div.blocCommandeBtn #uploadYt{
     width:100%;
     height:50px;
@@ -979,7 +944,7 @@ tbody{
     background-position: 50% 50%;
     background-repeat: no-repeat;
     background-size: 80%;
-}*/
+}
 
 #world2 .containPreHome .blocStreightTrait{
     height:20px;
@@ -1059,7 +1024,6 @@ tbody{
     -moz-box-sizing: border-box;
     box-sizing: border-box;
     outline: 0;
-    font-size: 1.5rem;
 }
 
 .popin .content select option{
@@ -1153,7 +1117,7 @@ tbody{
 }
 
 #world2 .containPreHome #editor #resizable #code_editor .ace_search .ace_search_options{
-    display: none;
+display: none;
 }
 
 #world2 .containPreHome #editor #resizable #code_editor .ace_search .ace_searchbtn_close{
@@ -1262,8 +1226,8 @@ tbody{
 
 /*************************************** WORLD 1****************************************/
 #world1 .containPreHome #challenges_container {
-    position: relative;
-    margin-top: 20px;
+     position: relative;
+     margin-top: 20px;
 }
 #world1 .containPreHome #challenges_container #challengeAfterAnswer{
     width:100%;
@@ -1272,9 +1236,9 @@ tbody{
     background: rgba(0, 0, 0,0.5);
     /*padding: 10px;*/
     border-radius: 15px;
-    /*  -webkit-box-shadow: 0 0 5px 15px rgba(0, 0, 0,0.5);
-      -moz-box-shadow: 0 0 5px 15px rgba(0, 0, 0,0.5);
-      box-shadow: 0 0 5px 15px rgba(0, 0, 0,0.5);*/
+  /*  -webkit-box-shadow: 0 0 5px 15px rgba(0, 0, 0,0.5);
+    -moz-box-shadow: 0 0 5px 15px rgba(0, 0, 0,0.5);
+    box-shadow: 0 0 5px 15px rgba(0, 0, 0,0.5);*/
 }
 
 #world1 .containPreHome #challenges_container #challengeAfterAnswer  #blocChallenge .blocStreightTrait{
@@ -1344,10 +1308,6 @@ tbody{
     height:100%;
 }
 
-.exoBloc >div{
-    min-height: 100px;
-}
-
 #world1 .containPreHome #challenges_container #challengeAfterAnswer #blocChallenge .exoBloc{
     border-top: none;
 }
@@ -1406,9 +1366,6 @@ tbody{
     vertical-align: middle;
 }
 
-#challengeAfterAnswer #blocChallenge.lose .exoBloc .blocQuestion .challenge_question{
-    z-index: 9999;
-}
 #blocChallenge .exoBloc .blocQuestion .challenge_question{
     margin-left: 0;
     width:100%;
@@ -1478,10 +1435,10 @@ tbody{
 }
 #world1 .containPreHome #challenges_container #blocChallenge .blocInputAnswer .answer .user_answer_and_correction{
     line-height: 1;
-    /* height: 50px;
-     width: 300px;
-     display: inline-block;
-     text-indent: 30px;*/
+   /* height: 50px;
+    width: 300px;
+    display: inline-block;
+    text-indent: 30px;*/
 }
 
 #world1 .containPreHome #challenges_container #blocChallenge.win .blocInputAnswer .answer .user_answer_and_correction .user_answer {
@@ -1928,15 +1885,15 @@ textarea {
     0%,
     100% {
         transform: scaleY(1);
-        /* background: rgba(60, 102, 183,0.6);*/
+       /* background: rgba(60, 102, 183,0.6);*/
     }
     16.67% {
         transform: scaleY(3);
-        /* background: rgba(60, 102, 183,0.6);*/
+       /* background: rgba(60, 102, 183,0.6);*/
     }
     33.33% {
         transform: scaleY(1);
-        /* background: rgba(60, 102, 183,0.6);*/
+       /* background: rgba(60, 102, 183,0.6);*/
     }
     50% {
         transform: scaleY(3);
@@ -2261,8 +2218,6 @@ progress span{
 #blocChallenge .blocQuestion .challenge_question .syntaxhighlighter .code .container{
     width:100%;
 }
-
-/*TODO => Amine , probleme d'espace sur le monde 1*/
 #blocChallenge .blocQuestion .challenge_question .syntaxhighlighter .code .container .line{
     min-width: 200px;
     /*display: flex;
@@ -2351,7 +2306,7 @@ progress span{
     width:20px;
     top: -50px;
     right: -20px;
-    z-index: -1;
+     z-index: -1;
 }
 
 .traitY .traitInterne{
@@ -2794,12 +2749,6 @@ progress span{
     bottom: 5px;
 }
 
-/*TODO : Ajout de mesure sous la timeline  pour Amine */
-
-.timeline-container tr.numberReference{
-    order:2;
-}
-
 #world1 .timeline-container tr.numberReference{
     display: none;
 }
@@ -2846,6 +2795,7 @@ progress span{
     left: -25%;
 }
 
+
 .timeline-container tr.numberReference tr .beat_ref_3,
 .timeline-container tr.numberReference tr .beat_ref_7,
 .timeline-container tr.numberReference tr .beat_ref_11,
@@ -2867,10 +2817,6 @@ progress span{
     max-height: 550px;
     overflow-x: hidden;
     padding: 20px 20px 0;
-}
-
-#pack-template{
-    display: none;
 }
 
 .blocPopUp .shopPopPup .bloc-pack{
@@ -2914,12 +2860,6 @@ progress span{
     background-repeat: no-repeat;
 }
 
-.blocPopUp .iconeBlocShop.icon-sample{
-    background: url('../assets/sample.png');
-    background-position: 50% 50%;
-    background-repeat: no-repeat;
-}
-
 .blocPopUp .shopPopPup .bloc-shop .avatar{
     background: red;
     width:95px;
@@ -2952,20 +2892,13 @@ progress span{
     border-radius: 50%;
     cursor: pointer;
 }
-.blocPopUp .shopPopPup .bloc-pack .icon-play-shop.pause{
-    background: url('../assets/pause.png');
-    background-position: 50% 50%;
-    background-repeat: no-repeat;
-}
-
-
 
 .blocPopUp .shopPopPup .bloc-shop .btn-shop{
     background: #C9434A;
     margin: 0 auto 10px;
     text-align: center;
     padding:5px 15px;
-    border-radius: 8px;
+    border-radius: 20px;
     cursor: pointer;
     color: #FFFFFF;
     font-family: 'Coiny-Regular';
@@ -2993,20 +2926,9 @@ progress span{
     border-radius: 20px;
     border:2px solid #fff;
 }
-
-.bloc-pack .pack-item .icon-play-shop audio{
-    display: none;
-    position: absolute;
-    top: -50px;
-}
-
 .bloc-pack .bloc-btn-shop .btn-shop{
     float: left;
     margin: 0 5px 0 0;
-}
-
-.bloc-pack .bloc-btn-shop.mobile-only{
-    display: none;
 }
 
 .bloc-pack .bloc-btn-shop.btn-small .btn-shop{
@@ -3020,10 +2942,6 @@ progress span{
 }
 
 .blocPopUp .shopPopPup .bloc-pack .pack-item:hover{
-    box-shadow: 0 0 15px 5px rgba(255, 255, 255, 0.5);
-}
-
-.blocPopUp .shopPopPup .bloc-pack .pack-item.active{
     box-shadow: 0 0 15px 5px rgba(255, 255, 255, 0.5);
 }
 
@@ -3055,41 +2973,9 @@ progress span{
     transform: initial;
 }
 
-.blocPopUp .shopPopPup .bloc-pack .pack-item .bloc-btn-shop .add-to-script.used{
-    background: #5B6072;
-    color: #fff;
-    cursor: not-allowed;
-}
-.blocPopUp .shopPopPup .bloc-pack .pack-item .bloc-btn-shop .add-to-script{
-    background: #fff;
-    color: #5B6072;
-    width: 125px;
-}
-
-
 .row-pack{
     margin: 50px auto 20px;
 }
-
-
-.row-pack #bloc-sample,
-.row-pack #bloc-loop{
-    width: 100%;  }
-
-.row-pack #bloc-sample .bloc-item,
-.row-pack #bloc-loop .bloc-item{
-    margin-bottom: 10px;
-}
-
-.row-pack #bloc-sample{
-
-}
-
-.row-pack #bloc-loop{
-    display: none;
-}
-
-
 
 .blocPopUp .shopPopPup .bloc-shop .row-shop{
     margin-top: 30px;
@@ -3143,93 +3029,14 @@ progress span{
 
 
 #postHome .containPostHome2 .bloc-translate-btn{
-    width: 80%;
-    min-height: 50px;
-    margin: 40px auto 20px;
-}
-
-#postHome .containPostHome2 .bloc-translate-btn .bloc-dl-store{
-    margin-left: 30px;
-    display: block;
-}
-
-#postHome .containPostHome .bloc-store  {
-    display: none;
-    position: relative;
-    margin: 0 auto;
-    width:80%;
-    top: -20px;
-}
-
-#postHome .containPostHome .dl-ios,
-#postHome .containPostHome .dl-android{
-    width: 100%;
-    height: 60px;
-    background: blueviolet;
-    margin-top: 20px;
-    display: block;
-}
-#postHome .containPostHome .dl-ios:hover,
-#postHome .containPostHome .dl-android:hover{
-    text-decoration: none;
-}
-
-#postHome .containPostHome .bloc-dl-store{
     position: absolute;
-    width:200px;
-    height:200px;
-    background: yellow;
-    top:50%;
-    transform:translateY(-50%);
+    top: 40px;
+    right: 20px;
+    width:100%;
 }
-
-#postHome .containPostHome2 .bloc-translate-btn .dl-ios{
-    margin-right: 5px;
-}
-#postHome .containPostHome2 .bloc-translate-btn .dl-ios,
-#postHome .containPostHome2 .bloc-translate-btn .dl-android{
-    display: block;
-    width:200px;
-    height:60px;
-    float: left;
-    cursor: pointer;
-}
-
-#postHome .containPostHome2 .bloc-translate-btn .dl-ios:hover,
-#postHome .containPostHome2 .bloc-translate-btn .dl-android:hover{
-    text-decoration: none;
-}
-
-
-#postHome .containPostHome2 .bloc-translate-btn .dl-ios-fr{
-    background: url('../assets/icon-ios-fr.png');
-    background-position: 50% 50%;
-    background-size: 100% 100%;
-    background-repeat: no-repeat;
-}
-#postHome .containPostHome2 .bloc-translate-btn .dl-ios-en{
-    background: url('../assets/icon-ios-en.png');
-    background-position: 50% 50%;
-    background-size: 100% 100%;
-    background-repeat: no-repeat;
-}
-
-#postHome .containPostHome2 .bloc-translate-btn .dl-android-fr{
-    background: url('../assets/icon-android-fr.png');
-    background-position: 50% 50%;
-    background-size: 100% 100%;
-    background-repeat: no-repeat;
-}
-#postHome .containPostHome2 .bloc-translate-btn .dl-android-en{
-    background: url('../assets/icon-android-en.png');
-    background-position: 50% 50%;
-    background-size: 100% 100%;
-    background-repeat: no-repeat;
-}
-
 #postHome .containPostHome2 .bloc-translate-btn .translate-fr,
 #postHome .containPostHome2 .bloc-translate-btn .translate-en{
-    right: 10px;
+    right: 10%;
 }
 /****************** ONGLET ******************/
 /*Todo css a finir des onglets*/
@@ -3706,14 +3513,12 @@ progress span{
     height: 36px;
     width: 137px;
 }
-
 .templateGoogleConnexion div{
     cursor: pointer;
     outline: 0px;
     height: 36px;
-    float: left;
+   float: left;
 }
-
 .templateGoogleConnexion .icon-gmail{
     border-radius: 3px 0 0 3px;
     width:36px;
@@ -3733,312 +3538,3 @@ progress span{
     padding: 0 20px;
     font-weight: bold;
 }
-
-/***********TODO: INSERTION TEMPLATE MOBILE*************/
-#roll-list-mobile{
-    display: none;
-    height: 280px;
-    width: 400px;
-    background-color: #161026;
-    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.5);
-    position: absolute;
-    top: 0;
-    z-index: 9999;
-    border-radius: 15px;
-    overflow: hidden;
-    padding: 10px;
-    left:0;
-
-}
-
-.bloc-result{
-    position: relative;
-    width:100%;
-    height:20%;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-}
-
-.result{
-    flex:1;
-    height:80%;
-    background: #161026;
-    text-align: center;
-    line-height: 40px;
-    vertical-align: middle;
-    font-size: 20px;
-    font-weight: bold;
-    margin: 0 10px;
-    border-radius: 15px;
-
-    color: #53D8FB;
-    -webkit-box-shadow: 0 0 5px 0px #53D8FB;
-    -moz-box-shadow: 0 0 5px 0px #53D8FB;
-    box-shadow: 0 0 5px 0px #53D8FB;
-}
-
-.sub{
-    position: relative;
-    width:50px;
-    height:80%;
-    border: 2px solid #53D8FB;
-    border-radius: 7px;
-    cursor: pointer;
-    text-align: center;
-    line-height: 38px;
-
-    color: #53D8FB;
-    font-family: 'Raleway';
-    font-size: 20px;
-    font-weight: bold;
-}
-
-.suppress{
-    width:15%;
-    height:100%;
-    background: url(../assets/suppbtn.png);
-    background-size: 40px 40px;
-    background-repeat: no-repeat;
-    background-position: 30% 50%;
-    cursor: pointer;
-}
-
-#roll-list-mobile .tab-content-mobile{
-    position: relative;
-    margin: 0 auto;
-    width:100%;
-    height:65%;
-    overflow: hidden;
-}
-
-#roll-list-mobile .tab-content-mobile .pad,
-#roll-list-mobile .tab-content-mobile .keyboard,
-#roll-list-mobile .tab-content-mobile .boolean{
-    position: absolute;
-    margin: 0 auto;
-    width:100%;
-    height:100%;
-    top:0;
-    left:0;
-    display: flex;
-    flex-wrap: wrap;
-    z-index: 998;
-    background-color: #161026;
-    padding: 10px;
-}
-
-#roll-list-mobile .tab-content-mobile div.active{
-    z-index: 9999;
-}
-
-#roll-list-mobile .tab-content-mobile .pad{
-    justify-content: center;
-    align-items: center;
-    z-index: 999;
-}
-
-#roll-list-mobile .tab-content-mobile .keyboard{
-    justify-content: center;
-}
-
-#roll-list-mobile .tab-content-mobile .pad div{
-    height:35px;
-    width:26%;
-    text-align: center;
-    line-height: 35px;
-    cursor: pointer;
-
-    color: #fff;
-    font-size: 20px;
-    font-weight: bold;
-}
-
-#roll-list-mobile .tab-content-mobile .keyboard div{
-    width:8%;
-    height:45px;
-    text-align: center;
-    line-height: 45px;
-    cursor: pointer;
-    font-size: 18px;
-    margin:0 1% 5px;
-
-
-    font-weight: bold;
-    color: #161026;
-    border-radius: 5px;
-    background-color: #FFFFFF;
-    box-shadow: 0 1px 0 0 rgba(0,0,0,0.3);
-}
-
-#roll-list-mobile .tab-content-mobile .keyboard .empty,
-#roll-list-mobile .tab-content-mobile .keyboard .enter{
-    flex:1;
-    height:45px;
-    border-color: transparent;
-    background: transparent;
-}
-
-#roll-list-mobile .tab-content-mobile .boolean{
-    justify-content: center;
-    align-items: center;
-}
-
-#roll-list-mobile .tab-content-mobile .boolean div{
-    width:40%;
-    height: 45px;
-    border:1px solid #fff;
-    line-height: 45px;
-    cursor: pointer;
-    margin: 0 auto;
-
-    color: #161026;
-    font-family: 'Raleway';
-    font-size: 24px;
-    font-weight: bold;
-    text-align: center;
-    border-radius: 12px;
-    background-color: #FFFFFF;
-}
-
-#roll-list-mobile .tab-mobile{
-    position: relative;
-    margin: 0 auto;
-    width:100%;
-    height:15%;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    justify-content: center;
-    align-items: center;
-}
-
-#roll-list-mobile .tab-mobile .select{
-    position: relative;
-    width:45%;
-    height:100%;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-}
-
-
-#roll-list-mobile .tab-mobile .select div.active{
-    border: 2px solid #53D8FB;
-    border-radius: 4px;
-    color: #53D8FB;
-
-}
-
-#roll-list-mobile .tab-mobile .pad,
-#roll-list-mobile .tab-mobile .keyboard,
-#roll-list-mobile .tab-mobile .boolean{
-    margin: 0 auto;
-    flex: 1;
-    height:100%;
-    text-align: center;
-    line-height: 40px;
-    cursor: pointer;
-    margin-right: 5px;
-
-    color: #416A93;
-    font-family: 'Raleway';
-    font-size: 22px;
-    font-weight: bold;
-}
-
-
-/****** FIN INSERTION TEMPLATE MOBILE*****/
-#btn_sample,
-#btn_search {
-    cursor: pointer;
-    height: 30px;
-    width: 30px;
-    position: absolute;
-    z-index: 10;
-    top: 5px;
-    right: 30px;
-}
-
-#btn_search {
-    background: url('../assets/iconMagnifier.png');
-    background-size: 30px 30px;
-    background-repeat:no-repeat;
-}
-
-#btn_sample {
-    background: url('../assets/sample.png');
-    background-size: 30px 30px;
-    background-repeat:no-repeat;
-    right: 70px;
-}
-
-
-/*******popUp sample unitilisé*******/
-
-#world2  .blocPopUp-store{
-    width:100%;
-    height:100%;
-    position: absolute;
-    bottom:0;
-    z-index: 9998;
-    background: rgba(0, 0, 0, 0.5);
-    top: 0;
-    left: 0;
-    font-family: 'Raleway';
-    cursor: pointer;
-    display: none;
-}
-
-#world2  .blocPopUp-store .pop{
-    max-width: 600px;
-    background: rgba(20, 13, 34, 1);
-    color: #fff;
-    border-radius: 10px;
-    border: 3px solid #53D8FB;
-    font-family: 'Coiny-Regular';
-    font-size: 2rem;
-}
-
-#world2  .blocPopUp-store .pop h3{
-    color: #53D8FB;
-    font-size: 3rem;
-    font-weight: bold;
-}
-
-#world2  .blocPopUp-store .pop label a,
-#world2  .blocPopUp-store .pop label a:hover{
-    color: #53D8FB;
-    text-decoration: none;
-
-}
-
-/*********IE11**********/
-
-@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
-    .blockListWorld {
-        min-width: 500px;
-        margin: 0 auto;
-        width: initial;
-        position: static;
-        min-height: 0;
-        top: 0;
-        transform: none;
-    }
-}
-
-@media all and (max-width:768px){
-    #postHome .containPostHome2 .bloc-translate-btn .bloc-dl-store{
-        display: block;
-    }
-}
-/*
-@media all and (max-width:950px){
-    #postHome .containPostHome2 .bloc-translate-btn .bloc-dl-store{
-        display: block;
-    }
-    #postHome .containPostHome .bloc-dl-store{
-        display: none;
-    }
-}*/
