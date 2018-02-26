@@ -134,11 +134,13 @@ require([
 
             $('.encart').html(data.partenaires)
 
+            $('#uploadYt div').html(data.button.publish)
+            $('#btn_solution div').html(data.button.solution)
 
             $('#finishedHour').html(data.finishedHour)
 
             $('.getCertificate a').html(data.getCertificate)
-
+            $('.bloc-dl-store').html(data.dlStore)
 
         })
 
