@@ -28,10 +28,8 @@ var send_sound = function(sound_path, res){
 
     try{
         console.log("=== uploading: "+sound_path);
-        var stat = fs.statSync(sound_path);
         fs.readFile(sound_path, 'binary', function(err, data) {
           if(data) {
-            res.setHeader('Content-Length', stat.size);
             res.setHeader('Content-Type', 'application/zip');
             res.setHeader('Content-Disposition', 'attachment; filename=pack.zip');
             res.write(data, 'binary');
