@@ -126,12 +126,12 @@ function constructor()
     _YT_API_KEY = process.env.YT_API_KEY;
   }
   // assert _YT_API_KEY is provided
-  assert(typeof _YT_API_KEY === 'string', 'Missing Youtube API KEY');
+  assert(typeof _YT_API_KEY === 'string' && _YT_API_KEY.length > 0, 'Missing Youtube API KEY. do export YT_API_KEY={Google API Key} before to start.');
   YT.use(_YT_API_KEY);
   doScrapeYoutube(undefined, undefined, function(err, success) {
     if(err)
     {
-      console.error('scrape_service :: scraping fail', err);
+      console.error('scrape_service :: scraping fail', JSON.stringify(err));
     }
     else
     {
@@ -223,7 +223,7 @@ function doScrapeYoutube(scrapedData, nextPageToken, cb)
     YT.get('search', params, function (err, data) {
       if (err)
       {
-        console.error('scrape_service :: youtube-sdk :: exception', err);
+        console.error('scrape_service :: youtube-sdk :: exception', JSON.stringify(err));
         cb(err, undefined);
       }
       else
@@ -271,7 +271,7 @@ function doScrapeYoutube(scrapedData, nextPageToken, cb)
   }
   catch(e)
   {
-    console.error('scrape_service :: exception', e);
+    console.error('scrape_service :: exception', JSON.stringify(e));
     cb(e, undefined);
   }
 
@@ -293,7 +293,7 @@ function retrieveCompleteData(videoId, index) {
     YT.get('videos', params, function (err, data) {
       if (err)
       {
-        console.error('scrape_service :: youtube-sdk :: exception : can\'t retrieve complete data', err);
+        console.error('scrape_service :: youtube-sdk :: exception : can\'t retrieve complete data', JSON.stringify(err));
         resolve({idx:-1, value:''});
       }
       else
@@ -372,7 +372,7 @@ function createOrRecreateCron()
         doScrapeYoutube(undefined, undefined, function(err, success) {
           if(err)
           {
-            console.error('scrape_service :: scraping fail', err);
+            console.error('scrape_service :: scraping fail', JSON.stringify(err));
           }
           else
           {
