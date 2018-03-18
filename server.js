@@ -5,7 +5,7 @@ var path = require('path')
 var app = express()
 var bodyParser = require('body-parser')
 var exec = require('child_process').exec
-var youtubeStream = require('youtube-audio-stream');
+var ytdl = require('ytdl-core');
 var mp4converter = require('./back/exporter/mp4_exporter');
 const uniqueString = require('unique-string');
 const fs = require('fs');
@@ -129,7 +129,7 @@ app.get('/scrape', function (req, res) {
 app.get('/ytmp3/:videoid', function (req, res) {
   try
   {
-    youtubeStream('https://youtube.com/watch?v=' + req.params.videoid).pipe(res);
+      ytdl('https://youtube.com/watch?v=' + req.params.videoid, {filter: 'audioonly', quality: 'lowest'}).pipe(res);
   }
   catch (exception)
   {
