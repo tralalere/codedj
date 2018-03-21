@@ -17,6 +17,7 @@
   "dependencies": {
     "audiobuffer-to-wav": "^1.0.0",
     "body-parser": "^1.18.2",
+    "btoa": "^1.1.2",
     "cron": "^1.3.0",
     "dependency-injection-es6": "^1.2.1",
     "expect.js": "^0.3.1",
@@ -24,8 +25,8 @@
     "express-controllers-loader": "1.0.8",
     "fluent-ffmpeg": "^2.1.2",
     "https": "^1.0.0",
-    "in-app-purchase": "^1.0.4",
-    "lodash": "^4.17.4",
+    "in-app-purchase": "^1.8.9",
+    "jsonwebtoken": "^8.2.0",
     "module-alias": "2.0.0",
     "node-cache": "^4.1.1",
     "node-wav": "0.0.2",
@@ -34,6 +35,7 @@
     "sox-audio": "^0.3.0",
     "unique-string": "^1.0.0",
     "wav": "^1.0.1",
+    "youtube-audio-stream": "0.0.50",
     "youtube-sdk": "^0.2.0",
     "ytdl-core": "^0.20.2"
   },
@@ -42,6 +44,7 @@
     "mocha": "^4.0.1"
   },
   "_moduleAliases": {
+    "@back": "./back",
     "@api": "./back/store/api",
     "@api_utils": "./back/store/utils",
     "@api_controllers": "./back/store/api/controllers",

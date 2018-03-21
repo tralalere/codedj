@@ -1,4 +1,5 @@
 require('module-alias/register')
+
 var express = require('express')
 var expressCtrl = require('express-controllers-loader')
 var path = require('path')
@@ -131,7 +132,7 @@ app.get('/ytmp3/:videoid', function (req, res) {
   {
       ytdl('https://youtube.com/watch?v=' + req.params.videoid, {filter: 'audioonly', quality: 'lowest'}).pipe(res);
   }
-  catch (exception)
+  catch (err)
   {
     res.status(500).end();
   }

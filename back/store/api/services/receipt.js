@@ -6,7 +6,9 @@ class Receipt {
 
     constructor() { }
 
-    iapValidationPlugin(prd_id, store_type, receipt, cb_error, cb_succes) {
+    async validate(prd_id, store_type, receipt) {
+
+        try {
 
         if (store_type === "android-playstore") {
             iap.config({
@@ -21,28 +23,28 @@ class Receipt {
                 verbose: false
             });
         }
-        else {
-            cb_error("Miss store type", 400)
+            else
+            {
+                throw new ApiException({
+                    "status": 400,
+                    "error": "Uknown store type"
+                });
         }
 
-        iap.setup(function (error) {
+            await iap.setup();
+            let res = await iap.validate(receipt);
+            console.log("Valid receipt");
+            return res;
 
-            if (error) {
-                cb_error("Erreur start validation: " + JSON.stringify(error),500)
+        } catch (err) {
+            console.error("receipt validation error ", err);
+            throw new ApiException({
+                "status": err.status ? err.status : 500,
+                "error": err.message ? err.message : err
+            });
             }
 
-            iap.validate(receipt, function (error, response) {
-
-                if (error) {
-                    cb_error("Erreur validation: " + error, 500)
-                }
-                if (iap.isValidated(response)) {
-                    //console.log(" ============ Validation: " + JSON.stringify(response, null, "\t"));
-                    cb_succes(response)
-                }
-            });
-        });
     }
 };
 
-module.exports = Receipt
+module.exports = new Receipt();
