@@ -10,6 +10,7 @@ var ytdl = require('ytdl-core');
 var mp4converter = require('./back/exporter/mp4_exporter');
 const uniqueString = require('unique-string');
 const fs = require('fs');
+const NodeCache  = require('node-cache');
 var port = 8000
 
 var scriptsPath = './back'
@@ -17,7 +18,15 @@ var exportSounds = require(scriptsPath + '/export.js')
 const scrapeService = require(scriptsPath + '/scrape_service.js')
 
 
-app.use(express.static('public'))
+var traceCacheInstance = new NodeCache({
+    stdTTL: 300,
+    checkperiod: 100,
+    errorOnMissing: false
+});
+
+
+app.use(express.static('public'));
+
 app.use(bodyParser.urlencoded({extended: true}))
 
 app.use(bodyParser.json());
@@ -136,6 +145,14 @@ app.get('/ytmp3/:videoid', function (req, res) {
   {
     res.status(500).end();
   }
+});
+
+app.post('/trace', function (req, res) {
+    traceCacheInstance.set(new Date().getTime() + ' - ' +req.body.msg, '');
+});
+
+app.get('/trace', function (req, res) {
+    res.json(traceCacheInstance.keys());
 });
 
 app.get('/health', function (req, res) {
