@@ -164,10 +164,9 @@ define([
             
             var myObjectNotes = {}
 
-            var test = lodash.cloneDeep(this.notes)
+            var notesCloned = lodash.cloneDeep(this.notes)
 
-
-            test.forEach(function (val, key) {
+            notesCloned.forEach(function (val, key) {
                 myObjectNotes[key] = {
                     soundName:  lodash.cloneDeep(val.soundName),
                     start:      lodash.cloneDeep(val.start),
@@ -179,29 +178,64 @@ define([
                     duration: lodash.cloneDeep(val.duration)
                 }
 
-                for(var item in  myObjectNotes[key].sample.samples){
+                if (myObjectNotes[key].soundName === "CongaA" || myObjectNotes[key].soundName === "CongaB" || myObjectNotes[key].soundName === "CongaC" )
+                {
 
-                    var instrument = lodash.cloneDeep(myObjectNotes[key].sample.samples[item].instrument)
+                    var newInstrumentConga = {}
 
+                    var nameFieldConga = ["CongaA","CongaB","CongaC"]
 
-                    var newInstrument = {
-                        sound:instrument.sound,
-                        soundName:instrument.soundName,
-                        volume:instrument.volume,
-                        play:instrument.play,
-                        mainSample:{
-                            eventBus:instrument.mainSample.eventBus,
-                            ownVolume:instrument.mainSample.ownVolume,
-                            soundName:instrument.mainSample.soundName,
-                            soundSource:instrument.mainSample.soundSource,
-                        }
+                    var instrumentFromConga = lodash.cloneDeep(myObjectNotes[key].sample.instrument)
+
+                    newInstrumentConga = {
+                        soundSource:newInstrumentConga.soundSource,
+                        soundName:newInstrumentConga.soundName,
+                        ownVolume:newInstrumentConga.ownVolume,
+                        __proto__:newInstrumentConga.__proto__,
+                        volume: newInstrumentConga.volume,
+                        samples:{},
                     }
 
+                    for(const name of nameFieldConga){
+                        newInstrumentConga[name] = {
+                            eventBus:instrumentFromConga[name].eventBus,
+                            soundSource:instrumentFromConga[name].soundSource,
+                            soundName:instrumentFromConga[name].soundName,
+                            ownVolume:instrumentFromConga[name].ownVolume,
+                        }
 
+                        newInstrumentConga.samples[name] = newInstrumentConga[name]
+                    }
 
-                    myObjectNotes[key].sample.samples[item].instrument = lodash.cloneDeep(newInstrument)
-                    myObjectNotes[key].sample[item].instrument = lodash.cloneDeep(newInstrument)
+                    myObjectNotes[key].sample.instrument = lodash.cloneDeep(newInstrumentConga)
+
+                } else{
+                    for(var item in  myObjectNotes[key].sample.samples){
+
+                        var instrument = lodash.cloneDeep(myObjectNotes[key].sample.samples[item].instrument)
+
+                        var newInstrument = {}
+
+                        newInstrument = {
+                            sound:instrument.sound,
+                            soundName:instrument.soundName,
+                            volume:instrument.volume,
+                            play:instrument.play,
+                            mainSample:{
+                                eventBus:instrument.mainSample.eventBus,
+                                ownVolume:instrument.mainSample.ownVolume,
+                                soundName:instrument.mainSample.soundName,
+                                soundSource:instrument.mainSample.soundSource,
+                            }
+                        }
+
+                        myObjectNotes[key].sample.samples[item].instrument = lodash.cloneDeep(newInstrument)
+                        myObjectNotes[key].sample[item].instrument = lodash.cloneDeep(newInstrument)
+
+                    }
                 }
+
+
 
             }, this)
 

@@ -192,8 +192,21 @@ define([
         } else {
             browsePatterns(patterns, notes)
         }
+
+        var notesNotFiltered = JSON.stringify(notes)
+
+        if(notesNotFiltered.includes('CongaA')){
+            notesNotFiltered = notesNotFiltered.replace(/CongaA/g,'samples/G1/CONGA_1.mp3')
+        }
+        if(notesNotFiltered.includes('CongaB')){
+            notesNotFiltered = notesNotFiltered.replace(/CongaB/g,'samples/G1/CONGA_2.mp3')
+        }
+        if(notesNotFiltered.includes('CongaC')){
+            notesNotFiltered = notesNotFiltered.replace(/CongaC/g,'samples/G1/CONGA_3.mp3')
+        }
+
         $.get(document.location.origin + document.location.pathname + 'export', {
-            notes: JSON.stringify(notes),
+            notes: notesNotFiltered,
             token: userToken
         }, function () {
             window.location = document.location.origin + document.location.pathname + 'download?token=' + userToken

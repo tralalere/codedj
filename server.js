@@ -43,8 +43,7 @@ app.get('/export', function (req, res) {
     var id    = String(Date.now()) + increment
     increment++
     tokenToID[token] = id
-    var notesList = JSON.parse(req.query.notes.replace(/mp3/g,'wav'));
-    console.log(notesList);
+    var notesList = JSON.parse(req.query.notes.replace(/mp3/g,'wav'))
     exportSounds({
         notes: notesList,
         id: id
