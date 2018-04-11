@@ -111,11 +111,13 @@ body.secondBack{
 }
 
 .containPostHome2 .containTraitTop{
-    /*overflow-x: hidden;*/
     margin: 0 auto;
-    /*top:10%;*/
-    top:0%;
+    top: 12%;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
 }
+
 .containPostHome2 .containTraitTop .blocHideBtn{
     width:100%;
     height:80px;
@@ -153,7 +155,30 @@ body.secondBack{
     top:20px;
 }
 
-.logoTop{
+@media (min-width: 769px) and (max-width: 992px) {
+    .containPostHome2 .containTraitTop {
+        top: 14%;
+        min-height: 50px;
+    }
+}
+@media (min-width: 993px) and (max-width: 1200px) {
+    .containPostHome2 .containTraitTop {
+        top: 14%;
+        min-height: 60px;
+    }
+}
+
+@media (min-width: 1201px) and (max-width: 1600px) {
+    .containPostHome2 .containTraitTop {
+        top: 14%;
+        min-height: 70px;
+    }
+}
+@media (min-width: 1600px) {
+    .containPostHome2 .containTraitTop {
+        top: 14%;
+        min-height: 90px;
+    }
 }
 
 @media (max-width: 576px) {
@@ -184,6 +209,10 @@ body.secondBack{
 }
 
 @media (max-width: 768px) {
+    .containPostHome2 .containTraitTop{
+        top: 14%;
+        min-height: 50px;
+    }
     .container-fluid .containPostHome{
         margin-left:0px;
         margin-right: 0px;
@@ -3167,6 +3196,7 @@ progress span{
 #postHome .containPostHome2 .bloc-translate-btn .bloc-dl-store{
     margin-left: 30px;
     display: block;
+    position: absolute;
 }
 
 #postHome .containPostHome .bloc-store  {
@@ -4055,17 +4085,19 @@ progress span{
     }
 }
 
+@media all and (max-width:660px){
+    #postHome .containPostHome2 .bloc-translate-btn .bloc-dl-store{
+        width: 205px;
+    }
+
+    .containPostHome2 .containTraitTop{
+        display: none;
+    }
+}
+
+
 @media all and (max-width:768px){
     #postHome .containPostHome2 .bloc-translate-btn .bloc-dl-store{
         display: block;
     }
 }
-/*
-@media all and (max-width:950px){
-    #postHome .containPostHome2 .bloc-translate-btn .bloc-dl-store{
-        display: block;
-    }
-    #postHome .containPostHome .bloc-dl-store{
-        display: none;
-    }
-}*/

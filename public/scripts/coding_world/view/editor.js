@@ -346,19 +346,9 @@ define([
             if ($(this).hasClass('pause')) {
 
                 if (urlParams.monde === '3' && detectInstrument()) {
-                    
-                    
-                    console.log(detectInstrument())
-                    
-                    $('#world2 .blocPopUp.blocPopUp-store .pop').empty()
-                    
-                    $.getJSON('json/'+lang+'/text.json', function (data) {
-                        
-                        $('#world2 .blocPopUp.blocPopUp-store .pop').html(data['goToStore'])
-                    })
-                    
-                    $('#world2 .blocPopUp.blocPopUp-store').fadeIn()
-                    
+
+                    showPopUpWarningStore()
+
                 } else{
                     $(this).removeClass('pause')
                 runCode()
@@ -387,6 +377,18 @@ define([
             eventBus.emit('get code editor content', codeEditor.content())
         })
 
+    }
+
+    function showPopUpWarningStore(){
+
+        $('#world2 .blocPopUp.blocPopUp-store .pop').empty()
+
+        $.getJSON('json/'+lang+'/text.json', function (data) {
+
+            $('#world2 .blocPopUp.blocPopUp-store .pop').html(data['goToStore'])
+        })
+
+        $('#world2 .blocPopUp.blocPopUp-store').fadeIn()
     }
 
 
@@ -472,6 +474,18 @@ define([
                 var selected = $('#selectBeat').find(':selected').text()
                 codeEditor.setContent(data[selected])
                 $('.popin').remove()
+
+                if (detectInstrument()) {
+                    showPopUpWarningStore()
+                } else{
+                    $('#btn_execute').addClass('pause')
+                    stopLoop()
+
+                    $('#btn_execute').removeClass('pause')
+                    runCode()
+
+                }
+
             })
         })
 
@@ -573,9 +587,19 @@ define([
         sampleUsed.forEach(function(val) {
             var urlSplit = val.split('/')
 
-            if(urlSplit[0] !== 'samples' || urlSplit[0] !== 'beats' || urlSplit[0] !== 'loops'){
-                errorContent.push(urlSplit)
-            }
+                switch (urlSplit[0]){
+                    case 'samples':
+
+                    break
+                    case 'beats':
+
+                    break
+                    case 'loops':
+
+                    break
+                    default :
+                        errorContent.push(urlSplit)
+                }
         })
 
         if(errorContent.length > 0){
