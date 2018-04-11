@@ -568,12 +568,18 @@ define([
     function detectInstrument(){
         var sampleUsed = parseAlreadyExistantSamples(codeEditor.content());
 
-        const resultSamples = sampleUsed.filter(item => item.indexOf('samples') == -1)
-        const resultBeats = resultSamples.filter(item => item.indexOf('beats') == -1)
-        const resultLoops = resultBeats.filter(item => item.indexOf('loops') == -1)
+        var errorContent = []
 
-        if(resultLoops.length > 0){
-           return resultLoops
+        sampleUsed.forEach(function(val) {
+            var urlSplit = val.split('/')
+
+            if(urlSplit[0] !== 'samples' || urlSplit[0] !== 'beats' || urlSplit[0] !== 'loops'){
+                errorContent.push(urlSplit)
+            }
+        })
+
+        if(errorContent.length > 0){
+            return errorContent
         }
 
         return false
