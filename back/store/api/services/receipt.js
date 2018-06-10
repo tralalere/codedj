@@ -13,14 +13,14 @@ class Receipt {
         if (store_type === "android-playstore") {
             iap.config({
                 test: false,
-                verbose: true,
+                    verbose: false,
                 googlePublicKeyStrLive: process.env.GOOGLE_IAB_PUBLICKEY_LIVE
             });
         }
         else if (store_type === "ios-appstore") {
             iap.config({
                 test: false,
-                verbose: true
+                    verbose: false
             });
         }
             else

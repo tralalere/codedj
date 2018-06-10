@@ -31,9 +31,41 @@ var authorize = async (req, res) => {
                 "message": err.error ? err.error : e
             });
     };
-}
+};
+
+var preauthorize = async (req, res) => {
+
+    console.log("In preauthorize");
+    try {
+
+        let token = jwt.sign({id: req.params.sku}, "codedjsignkey");
+        await cacheManager.set(token, token);
+
+        await NotifUtil.sendFreeToken(req.body.fcm, token, req.params.sku);
+
+        res.status(200)
+            .json({
+                "status": true,
+                "data": ""
+            });
+
+    } catch (err) {
+        console.error("preauthorize fail " ,err);
+        res.status(err.status ? err.status : 500)
+            .json({
+                "status": false,
+                "message": err.error ? err.error : e
+            });
+    }
+};
 
 module.exports = {
+    '/:sku/preauthorize': {
+        post: {
+            action: preauthorize,
+            level: 'public'
+        }
+    },
     '/': {
         post: {
             action: authorize,
