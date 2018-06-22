@@ -839,6 +839,19 @@ tbody{
     top:0;
     bottom:0;
 }
+
+.position_0{
+    left: 0%;
+}
+.position_25{
+    left: 25%;
+}
+.position_50{
+    left: 50%;
+}
+.position_75{
+    left: 75%;
+}
 .timeline-container tr td.correct{
     /*background: #fb4f4f;*/
     background: #4049fb;

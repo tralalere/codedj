@@ -138,6 +138,10 @@ define(['ace'], function (ace) {
             this.aceEditor.setReadOnly(bool)
         }
 
+        object.addSpace = function () {
+            var rowLength = this.aceEditor.session.getLength() + 1
+            this.aceEditor.session.insert({row : rowLength, column: 0}, '\n\n')
+        }
 
         init()
 

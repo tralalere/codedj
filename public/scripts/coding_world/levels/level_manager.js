@@ -88,7 +88,7 @@ define([
         setChallenge(levelsData[currentLevelIndex])
 
         globalEventBus.on('pattern beat played', function (beat) {
-            if (beat === 1) {
+            if (beat.beat === 1) {
                 challenge.launchLoops()
                 challenge.loopsPlaying = true
             }

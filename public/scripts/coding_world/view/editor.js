@@ -327,10 +327,8 @@ define([
      TODO:  integration css function initDomEvents ()  in comment
      */
     function initDomEvents () {
-       // $('#btn_execute').on('click', runCode)
         $('#btn_reset').on('click', reset)
 
-        //$('#btn_stop').on('click', stopLoop)
         $('#btn_solution').on('click', function () {
             codeEditor.setContent(solutionCode)
             runCode()

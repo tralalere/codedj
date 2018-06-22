@@ -182,7 +182,9 @@ define([
     }
 
 
-    function launchTimelineBar () {
+    function launchTimelineBar (beat) {
+        $('.pattern').hide();
+        $('.pattern[data-id="'+beat.patternId+'"]').show();
         timelineBar.loopTime = 16 * 60 / userToCoreKeys.tempo * 1000
         if (!timelineBar.moving) {
             timelineBar.play()

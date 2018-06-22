@@ -29,9 +29,11 @@ define([], function () {
         }
 
         Tune.prototype.playPattern = function (patternId) {
-            var pattern = this.patterns[patternId]
+            //var pattern = this.patterns[patternId]
+            var pattern = this.patterns.find(function(pattern){
+                return pattern.id == patternId;
+            })
             var tune    = this
-
             pattern.play()
 
             eventBus.emit('switch view tab',pattern.id)

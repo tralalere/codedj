@@ -100,7 +100,8 @@ define([
             if (beat === 1) {
                 this.startTime = Date.now()
             }
-            eventBus.emit('pattern beat played', beat)
+            var beatAndPattern = {beat : beat, patternId : this.id}
+            eventBus.emit('pattern beat played',beatAndPattern)
             playNotes(this.notesAtTime(beat), delay, this.beatDuration)
             var nextTime = this.startTime + beat * this.beatDuration
             var pattern  = this

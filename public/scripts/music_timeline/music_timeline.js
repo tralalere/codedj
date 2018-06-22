@@ -29,7 +29,7 @@ define([
             this.beatReference.append($beatForRef)
 
             for (var j = 0; j < 1; j += 0.25) {
-                $beat.append('<td class="beat_' +  beatToClass(i + j + 1) + '"></td>')
+                $beat.append('<td class="beat_' +  beatToClass(i + j + 1) + positionNote(i + j + 1) + '"></td>')
             }
 
             $beatForRef.append('<td class="beat_ref_' + i + ' beat_ref"><div>' + (i + 1) + '</div></td>')
@@ -64,6 +64,12 @@ define([
         var int = Math.floor(beat)
         var decimal = (beat - int) * 100
         return int + '_' + decimal
+    }
+
+    function positionNote (beat) {
+        var int = Math.floor(beat)
+        var decimal = (beat - int) * 100
+        return ' position_'+ decimal
     }
 
 

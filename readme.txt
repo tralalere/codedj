@@ -10,3 +10,8 @@ deploy : aws s3 sync . s3://code-dj --exclude ".git/*"
 
 
 http://code-dj.s3-website-eu-west-1.amazonaws.com/index.html
+
+/****** generate script MIDI file *******/
+
+command => node midiToJSCode.js <cheminDuFichierMIDI>
+
