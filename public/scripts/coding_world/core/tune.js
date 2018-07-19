@@ -29,10 +29,8 @@ define([], function () {
         }
 
         Tune.prototype.playPattern = function (patternId) {
-            //var pattern = this.patterns[patternId]
-            var pattern = this.patterns.find(function(pattern){
-                return pattern.id == patternId;
-            })
+            var pattern = this.patterns[patternId]
+
             var tune    = this
             pattern.play()
 

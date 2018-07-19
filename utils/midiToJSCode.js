@@ -54,7 +54,7 @@ function midiToCode (midi) {
     var instrument
     var regexCleanName = new RegExp('.*- +', 'i')
 
-    code.push('\'var pattern = new Pattern()\',')
+    //code.push('\'var pattern = new Pattern()\'')
 
     for (var i = 0; i < midi.tracks[0].length; i++) {
         var currentLine = midi.tracks[0][i]
@@ -71,15 +71,15 @@ function midiToCode (midi) {
         var time = Math.round((timeCode / tickRate) * 100) / 100
 
         var line = "'pattern.addSound(" + instrument.toLowerCase() + ', ' + (time + 1) + ")'"
-        if (i < midi.tracks[0].length - 1) {
+        /*if (i < midi.tracks[0].length - 1) {
             line += ','
-        }
+        }*/
 
         code.push(line)
 
     }
 
-    var init = '\'var ' + instrument.toLowerCase() + ' = new Instrument("' + instrument + '.wav")\','
+    var init = '\'var ' + instrument.toLowerCase() + ' = new Instrument("' + instrument + '.wav")\''
     code.splice(1, 0, '')
     code.splice(1, 0, init)
 
