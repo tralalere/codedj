@@ -1,11 +1,13 @@
 // npm install --global mocha
 // npm install
 // mocha .\tests\scrape_service_test.js
+require('module-alias/register')
+
 const fs               = require('fs');
 const os               = require('os');
 const assert           = require('assert');
 const expect           = require('chai').expect;
-const mp4_exporter     = require('../back/exporter/mp4_exporter');
+const mp4_exporter     = require('@back/exporter/mp4_exporter');
 
 
 describe('convert mp3 + jpg to video by passing path of audio', function () {
@@ -15,7 +17,7 @@ describe('convert mp3 + jpg to video by passing path of audio', function () {
   it('Should run success', function (done) {
 
     var mp3_path        = fs.createReadStream(__dirname + '/../public/assets/sounds/export/output.mp3');
-    var mp4_path        = '/codedj/public/assets/sounds/export/youtube';
+    var mp4_path        = '/codedj/public/assets/sounds/export/youtube.mp4';
 
     mp4_exporter.doExport(mp3_path, mp4_path, function(err, success) {
       if(err)
@@ -26,9 +28,9 @@ describe('convert mp3 + jpg to video by passing path of audio', function () {
       else
       {
         console.log('mp4_exporter :: export success : ' +  mp4_path);
-        expect(fs.existsSync(mp4_path + '.mp4')).to.be.true;
+        expect(fs.existsSync(mp4_path)).to.be.true;
 
-        var stats = fs.statSync(mp4_path + '.mp4');
+        var stats = fs.statSync(mp4_path);
         console.log(stats);
         expect(stats.size).to.be.at.least(100);
       }

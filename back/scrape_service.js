@@ -1,214 +1,155 @@
 const assert        = require('assert');
-/**
-* @documentation https://www.npmjs.com/package/node-cache
-**/
 const NodeCache     = require('node-cache');
-/**
-* @documentation https://www.npmjs.com/package/cron
-**/
 const Cron          = require('cron');
-/**
-* @documentation https://www.npmjs.com/package/youtube-sdk
-**/
 const Youtube       = require('youtube-sdk');
+const CdjError        = require('@back/cdj_error');
 /**
-* The node cache instance holding scraped data
 *
-* @property cacheInstance
-* @type require('node-cache')
-**/
-const cacheInstance = new NodeCache();
+ */
+class ScrapeService {
 /**
-* Youtube Http client instance
 *
-* @property YT
-* @type require('youtube-sdk')
-**/
-const YT            = new Youtube();
-/**
-* The API KEY used to authenticate CodeDj within Youtube API
-* Can overwritten by environment process.env.YT_API_KEY for production
-*
-* @property _YT_API_KEY
-* @type String
-**/
-var _YT_API_KEY     = '';
-/**
-* Cron expression
-*
-* Example :
-*   - *\/1 00 * * * * : every second
-*   - 00 *\/1 * * * * : every minute
-*   - 00 00 *\/1 * * * : every hour
-*   - etc
-*
-* @documentation https://www.npmjs.com/package/cron
-* @property _CRON_TIME
-* @type String
-* @default 00 00 *\/1 * * * every hour
-**/
-var _CRON_TIME      = '00 00 */1 * * *';
-/**
-* Timezone of cron
-*
-* @documentation https://www.npmjs.com/package/cron
-* @property _CRON_TIME
-* @type String
-* @default Europe/Paris
-**/
-var _TIME_ZONE      = 'Europe/Paris';
-/**
-* Youtube seach query string
-* A sha256 of "Code DJ est jeu d'initiation au code à travers la création musicale (par Tralalere)" is added to query to be more precise when fetch results
-*
-* @documentation https://developers.google.com/youtube/v3/docs/videos/list
-* @property _QUERY
-* @type String
-* @default Pyramide Studio Life Pass Filter new Pattern() new Instrument( addSample( pattern.play()
-* @readonly
-**/
-var _QUERY         = 'Pyramide Studio Life Pass Filter new Pattern() new Instrument( addSample( pattern.play()';
-/**
-* Max resultat fetched by scrape service
-*
-* @property _MAX_RESULT_SIZE
-* @type number
-* @default 100
-**/
-var _MAX_RESULT_SIZE  = 100;
-/**
-* Cron job instance
-*
-* @documentation https://www.npmjs.com/package/cron
-* @property _CRON_JOB
-* @type require('cron').CronJob
-* @internal
-**/
-var _CRON_JOB         = undefined;
-/**
-* Flag that enable (or not) cron job
-*
-* @property _ENABLE_CRON_JOB
-* @type require('cron').CronJob
-* @default true
-**/
-var _ENABLE_CRON_JOB     = true;
-/**
-* Counter of cron run
-*
-* @property _CRON_RUN_COUNTER
-* @default true
-**/
-var _CRON_RUN_COUNTER     = 0;
-/**
-* Youtube seach params
-*
-* @documentation https://developers.google.com/youtube/v3/docs/search/list#parameters
-* @property params
-* @type object
-**/
-var params         = {
+   */
+  constructor() {
+    var self = this;
+    this._QUERY                 = 'Pyramide Studio Life Pass Filter new Pattern() new Instrument( addSample( pattern.play()';
+    this._CRON_TIME             = '00 00 */1 * * *';
+    this._TIME_ZONE             = 'Europe/Paris';
+    this.cacheInstance          = new NodeCache();
+    this.YT                     = new Youtube();
+    this._YT_API_KEY            = '';
+    this.cronJob                = undefined;
+    this._MAX_RESULT_SIZE       = 100;
+    this._CRON_RUN_COUNTER      = 0;
+    this._ENABLEcronJob         = true;
+    this.params                 = {
   part          : 'snippet',
-  maxResults    : (_MAX_RESULT_SIZE > 50) ? '50' : ('' + _MAX_RESULT_SIZE),
+      maxResults    : (this._MAX_RESULT_SIZE > 50) ? '50' : ('' + this._MAX_RESULT_SIZE),
   order         : 'date',
   type          : 'video',
-  q             : _QUERY
+      q             : this._QUERY
 };
-/**
- * constructor of the service
- * @constructor
- */
-function constructor()
-{
-  // overwrite _YT_API_KEY from environment
+
   if(process.env.YT_API_KEY)
   {
-    _YT_API_KEY = process.env.YT_API_KEY;
+      this._YT_API_KEY = process.env.YT_API_KEY;
   }
-  // assert _YT_API_KEY is provided
-  assert(typeof _YT_API_KEY === 'string', 'Missing Youtube API KEY');
-  YT.use(_YT_API_KEY);
-  doScrapeYoutube(undefined, undefined, function(err, success) {
-    if(err)
-    {
-      console.error('scrape_service :: scraping fail', err);
-    }
-    else
-    {
-      resolveCompleteData();
+    assert(typeof this._YT_API_KEY === 'string' && this._YT_API_KEY.length > 0, 'Missing Youtube API KEY. do export YT_API_KEY={Google API Key} before to start.');
+    this.YT.use(this._YT_API_KEY);
+
+    this.doScrapeYoutube(undefined, undefined)
+      .then(() => {
       console.log('scrape_service :: scraping success');
-    }
+      })
+      .catch((err) => {
+        console.error('scrape_service :: scraping fail \n' + err.stack);
   });
-  createOrRecreateCron();
+
+    this.createOrRecreateCron();
+
 }
 /**
- * set TIME_ZONE
- * @setter
+   *
+   * @param {*} TIME_ZONE
  */
-function setCronTimeZone(TIME_ZONE)
+  setCronTimeZone(TIME_ZONE) {
+    this._TIME_ZONE = TIME_ZONE;
+    this.createOrRecreateCron();
+  }
+/**
+   *
+   * @param {*} CRON_TIME
+ */
+  setCronExpression(CRON_TIME) {
+    this._CRON_TIME = CRON_TIME;
+    this.createOrRecreateCron();
+  }
+/**
+   *
+   * @param {*} API_KEY
+ */
+  setYoutubeApiKey(API_KEY) {
+    this. _YT_API_KEY = API_KEY;
+    this.YT.use(this._YT_API_KEY);
+  }
+/**
+   *
+   * @param {*} MAX_RESULT_SIZE
+ */
+  setMaxResultSize(MAX_RESULT_SIZE) {
+    this._MAX_RESULT_SIZE = MAX_RESULT_SIZE;
+    this.params = Object.assign(this.params, {maxResults: (this._MAX_RESULT_SIZE > 50) ? '50' : ('' + this._MAX_RESULT_SIZE)});
+  }
+/**
+   *
+   * @param {*} ENABLEcronJob
+ */
+  setEnableCronJob(ENABLEcronJob) {
+    this._ENABLEcronJob = ENABLEcronJob;
+  }
+/**
+   *
+   * @param {*} QUERY
+ */
+  setQueryString(QUERY)
 {
-  _TIME_ZONE = TIME_ZONE;
-  createOrRecreateCron();
+    this._QUERY = QUERY;
+    this.params = Object.assign(this.params, {q: this._QUERY});
+  }
+  /**
+   *
+   */
+  getData()  {
+    console.log('scrape_service :: cache hit');
+    return this.cacheInstance.get('scrapedData');
+  }
+  /**
+   *
+   */
+  getCronCounter(){
+    return this._CRON_RUN_COUNTER;
 };
 /**
- * set CRON_TIME
- * @setter
- */
-function setCronExpression(CRON_TIME)
+   *
+   */
+  stopCron() {
+    if(this.cronJob)
 {
-  _CRON_TIME = CRON_TIME;
-  createOrRecreateCron();
-};
-/**
- * set API_KEY
- * @setter
- */
-function setYoutubeApiKey(API_KEY)
-{
-  _YT_API_KEY = API_KEY;
-  YT.use(_YT_API_KEY);
-};
-/**
- * set MAX_RESULT_SIZE
- * @setter
- */
-function setMaxResultSize(MAX_RESULT_SIZE)
-{
-  _MAX_RESULT_SIZE = MAX_RESULT_SIZE;
-  params = Object.assign(params, {maxResults: (_MAX_RESULT_SIZE > 50) ? '50' : ('' + _MAX_RESULT_SIZE)});
-};
-/**
- * set _ENABLE_CRON_JOB
- * @setter
- */
-function setEnableCronJob(ENABLE_CRON_JOB)
-{
-  _ENABLE_CRON_JOB = ENABLE_CRON_JOB;
-};
-/**
- * set _QUERY
- * @setter
- */
-function setQueryString(QUERY)
-{
-  _QUERY = QUERY;
-  params = Object.assign(params, {q: _QUERY});
-};
-/**
-* Scraping method
-**/
-function doScrapeYoutube(scrapedData, nextPageToken, cb)
-{
+      this.cronJob.stop();
+      console.log('scrape_service :: cron stopped');
+    }
+  }
+  /**
+   *
+   * @param {*} params
+   */
+  searchOnYoutube(params) {
+    return new Promise((resolve, reject) => {
+      this.YT.get('search', params, function (err, data) {
+        if(err && !data) {
+          reject(err);
+        } else {
+          resolve(data);
+        }
+      });
+    });
+  }
+  /**
+   *
+   * @param {*} scrapedData
+   * @param {*} nextPageToken
+   */
+  async doScrapeYoutube(scrapedData, nextPageToken) {
   try
   {
-    console.log('scrape_service :: doScrapeYoutube[' + scrapedData + ',' + nextPageToken + ']');
+      console.log('scrape_service :: doScrapeYoutube()');
 
     if(!scrapedData)
     {
       scrapedData = new Array();
     }
 
-    var _params = Object.assign({}, params);
+      var _params = Object.assign({}, this.params);
 
     if(nextPageToken)
     {
@@ -220,187 +161,113 @@ function doScrapeYoutube(scrapedData, nextPageToken, cb)
       console.log('scrape_service :: searching');
     }
 
-    YT.get('search', params, function (err, data) {
-      if (err)
-      {
-        console.error('scrape_service :: youtube-sdk :: exception', err);
-        cb(err, undefined);
-      }
-      else
-      {
-        if(data.items && data.items.length > 0)
-        {
+      let response = await this.searchOnYoutube(_params);
 
-          console.log('scrape_service :: fetch ' + data.items.length + ' results');
+      if(response.items && response.items.length > 0) {
 
-          for(var i = 0; i < data.items.length ; i++)
+        console.log('scrape_service :: fetch ' + response.items.length + ' results');
+
+        for(var i = 0; i < response.items.length ; i++)
           {
             var videoInfos = {
-              id: data.items[i].id.videoId,
-              title: data.items[i].snippet.title,
-              script: data.items[i].snippet.description,
-              scriptPromise: retrieveCompleteData(data.items[i].id.videoId, scrapedData.length),
+            id: response.items[i].id.videoId,
+            title: response.items[i].snippet.title,
+            script: await this.retrieveCompleteData(response.items[i]),
               order: scrapedData.length
             };
             scrapedData.push(videoInfos);
 
           }
 
-          if(scrapedData && scrapedData.length < _MAX_RESULT_SIZE && data.nextPageToken)
+        if(scrapedData && scrapedData.length < this._MAX_RESULT_SIZE && response.nextPageToken)
           {
-            doScrapeYoutube(scrapedData, data.nextPageToken, cb);
+          await this.doScrapeYoutube(scrapedData, response.nextPageToken);
           }
           else
           {
-            cacheInstance.set('scrapedData', scrapedData);
-            cb(undefined, scrapedData);
+          this.cacheInstance.set('scrapedData', scrapedData);
+          return scrapedData;
           }
         }
         else
         {
           if(scrapedData && scrapedData.length > 0)
           {
-            cacheInstance.set('scrapedData', scrapedData);
+          this.cacheInstance.set('scrapedData', scrapedData);
           }
-          cb(undefined, scrapedData);
+        return scrapedData;
         }
-
-      }
-    });
 
   }
   catch(e)
   {
-    console.error('scrape_service :: exception', e);
-    cb(e, undefined);
+      throw new CdjError(500, 'scrape_service :: exception', e);
   }
 
-};
+  }
 /**
-* complete data from video
-**/
-function retrieveCompleteData(videoId, index) {
-
+   *
+   * @param {*} videoId
+   */
+  retrieveCompleteData(video) {
+    var self = this;
   return new Promise(function(resolve, reject) {
-
-    //console.log('scrape_service :: youtube-sdk :: retrieve complete data for videoId=' + videoId);
-
     let params = {
-      id: videoId,
+        id: video.id.videoId,
       part: 'snippet'
     };
 
-    YT.get('videos', params, function (err, data) {
+      self.YT.get('videos', params, function (err, data) {
       if (err)
       {
-        console.error('scrape_service :: youtube-sdk :: exception : can\'t retrieve complete data', err);
-        resolve({idx:-1, value:''});
+        console.error('scrape_service :: youtube-sdk :: exception : can\'t retrieve complete data', JSON.stringify(err));
+          resolve(video.snippet.description);
       }
       else
       {
-        console.log('scrape_service :: youtube-sdk :: success to retrieve complete data for videoId=' + videoId);
-        resolve({idx:index, value:data.items[0].snippet.description});
+          console.log('scrape_service :: youtube-sdk :: success to retrieve complete data for videoId=' + video.id.videoId);
+          resolve(data.items[0].snippet.description);
       }
     });
 
   });
-
-};
-/**
-* resolve all promises off complete data
-**/
-function resolveCompleteData()
-{
-
-  var data = cacheInstance.get('scrapedData');
-  var promises = [];
-  for(var i=0; i<data.length; i++)
-  {
-    promises.push(data[i].scriptPromise);
   }
-  Promise.all(promises).then(function(values) {
-    let scrapedData = cacheInstance.get('scrapedData');
-    for(var j=0; j<values.length; j++)
-    {
-      scrapedData[values[j].idx].script = values[j].value;
-      delete scrapedData[values[j].idx].scriptPromise;
-    }
-    cacheInstance.set('scrapedData', scrapedData);
-  });
-
-};
 /**
- * get cached data
- * @getter
+   *
+   * @param {*} videoId
  */
-function getData()
-{
-  console.log('scrape_service :: cache hit');
-  return cacheInstance.get('scrapedData');
-};
-/**
- * get cron counter
- * @getter
- */
-function getCronCounter()
-{
-  return _CRON_RUN_COUNTER;
-};
-/**
-* stop Cron
-**/
-function stopCron()
-{
-  if(_CRON_JOB)
-  {
-    _CRON_JOB.stop();
-    console.log('scrape_service :: cron stopped');
-  }
+  getMps3(videoId){
+    return this.cacheInstance.get('mp3map')[videoId];
 }
 /**
-* Create or reacreate Cron
-**/
-function createOrRecreateCron()
-{
-  stopCron();
-  _CRON_RUN_COUNTER = 0;
-  _CRON_JOB = new Cron.CronJob({
-    cronTime: _CRON_TIME,
+   *
+   */
+  createOrRecreateCron() {
+    var self = this;
+    this.stopCron();
+    this._CRON_RUN_COUNTER = 0;
+    this.cronJob = new Cron.CronJob({
+      cronTime: self._CRON_TIME,
     onTick: function() {
-      if(_ENABLE_CRON_JOB)
+        if(self._ENABLEcronJob)
       {
-        doScrapeYoutube(undefined, undefined, function(err, success) {
-          if(err)
-          {
-            console.error('scrape_service :: scraping fail', err);
-          }
-          else
-          {
-            resolveCompleteData();
+          self.doScrapeYoutube(undefined, undefined)
+            .then(() => {
             console.log('scrape_service :: scraping success');
-          }
-        });
-        _CRON_RUN_COUNTER++;
         console.log('scrape_service :: cron runned at ' + new Date().toUTCString());
+            })
+            .catch((error) => {
+              console.error(error.stack);
+            });
+
+          self._CRON_RUN_COUNTER++;
       }
     },
     start: true,
-    timeZone: _TIME_ZONE
+      timeZone: self._TIME_ZONE
   });
-  console.log('scrape_service :: cron started [cronTime:' + _CRON_TIME + ', timeZone:' + _TIME_ZONE + ']');
-};
+    console.log('scrape_service :: cron started [cronTime:' + self._CRON_TIME + ', timeZone:' + self._TIME_ZONE + ']');
+  }
+}
 
-constructor();
-
-module.exports = {
-  getData           : getData,
-  getCronCounter    : getCronCounter,
-  doScrapeYoutube   : doScrapeYoutube,
-  setYoutubeApiKey  : setYoutubeApiKey,
-  setCronTimeZone   : setCronTimeZone,
-  setCronExpression : setCronExpression,
-  setMaxResultSize  : setMaxResultSize,
-  setEnableCronJob  : setEnableCronJob,
-  setQueryString    : setQueryString,
-  stopCron          : stopCron
-};
+module.exports = new ScrapeService();

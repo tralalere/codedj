@@ -1,8 +1,3 @@
-# Configuration
-
-## Variables d'environnement
-* GOOGLE_IAB_PUBLICKEY_LIVE : clé public du compte marchand Google Play
-
 # Ressources:
 
 # products list (SKU List)
