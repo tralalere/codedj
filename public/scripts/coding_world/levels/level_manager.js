@@ -1,7 +1,7 @@
 var lang = 'fr'
 if(navigator.language || navigator.userLanguage){
     lang = navigator.language || navigator.userLanguage
-    if (lang !== 'fr' || lang.substring(0, 2) !== 'fr') {
+    if (lang !== 'fr' && lang.substring(0, 2) !== 'fr') {
         lang = 'en'
     } else {
         lang = 'fr'
@@ -13,7 +13,7 @@ if(localStorage.getItem('lang')){
         localStorage.setItem('lang', 'en')
         location.reload();
     } else{
-        lang = localStorage.getItem('fr')
+        lang = localStorage.getItem('lang')
     }
 }
 
