@@ -1,24 +1,20 @@
-var lang = 'fr';
+var lang = 'fr'
 if(navigator.language || navigator.userLanguage){
-    lang = navigator.language || navigator.userLanguage;
-};
-
+    lang = navigator.language || navigator.userLanguage
+    if (lang !== 'fr' || lang.substring(0, 2) !== 'fr') {
+        lang = 'en'
+    } else {
+        lang = 'fr'
+    }
+}
 if(localStorage.getItem('lang')){
 
     if (localStorage.getItem('lang') !== 'fr' || localStorage.getItem('lang').substring(0, 2) !== 'fr') {
-        if(localStorage.getItem('lang') !== 'en'){
-            localStorage.setItem('lang', 'en')
-            location.reload();
-        }
+        localStorage.setItem('lang', 'en')
+        location.reload();
+    } else{
+        lang = localStorage.getItem('fr')
     }
-
-    lang = localStorage.getItem('lang')
-}
-
-if (lang !== 'fr' || lang.substring(0, 2) !== 'fr') {
-    lang = 'en'
-} else {
-    lang = 'fr'
 }
 
 define([
@@ -52,28 +48,18 @@ define([
     var codeEditor = {}
     var initialCode
     var solutionCode
-    var $textArea
     var $searchFieldButton
     var $sampleButton
-
-    var $blocPopUp
-    var $pop
-    var $pack
 
     var $blocPopUp = $('#world2 > .blocPopUp')
     var $pop = $('#world2 > .blocPopUp > .shopPopPup')
     var $pack = $('#pack-template').html()
 
-    var $blocSound = $('#bloc-sound').html()
     
     globalEventBus.on('solutionWorld code ready', function (code) {
         solutionCode = code
     })
 
-
-    /*
-     TODO:  integration css function initDom () in comment
-     */
     function initDom () {
 
         globalEventBus.on('change focus', function (hidden) {
@@ -87,16 +73,10 @@ define([
 
         $('#btn_next_question').addClass('invisible')
 
-        /*$('#player_buttons').css({
-            display: 'inline-block'
-        })*/
-
         addCodeEditorCapabilities(codeEditor, {
             container: $('#code_editor'),
             content:   '',
             fontSize: 20
-
-            // onChange: onEditorChanges
         })
 
         aceCustomJavaScript({
@@ -133,7 +113,7 @@ define([
             codeEditor.aceEditor.resize()
         })
 
-        codeEditor.aceEditor.setOptions({enableBasicAutocompletion: false, enableLiveAutocompletion: false});
+        codeEditor.aceEditor.setOptions({enableBasicAutocompletion: false, enableLiveAutocompletion: false})
 
     }
 
@@ -178,7 +158,6 @@ define([
                 }
 
                 div += '</div>'
-
                 div += '</div>'
                 div += '</div>'
                 div += '</div>'
@@ -191,7 +170,6 @@ define([
                     $('.shopPopPup #bloc-loop').append(div)
 
                 }
-                
             }
         })
 
@@ -210,7 +188,6 @@ define([
         $('.add-to-script').on('click',function() {
             var newString = "\nvar "+$(this).data().name+" = new Instrument('"+$(this).data().source+"')"
 
-            //codeEditor.insertText(newString)
             codeEditor.aceEditor.session.insert({row:1, column: 10}, newString)
 
             $(this).addClass('used');
@@ -323,9 +300,6 @@ define([
         }
     }
 
-    /*
-     TODO:  integration css function initDomEvents ()  in comment
-     */
     function initDomEvents () {
         $('#btn_reset').on('click', reset)
 
@@ -487,11 +461,6 @@ define([
             })
         })
 
-
-
-       
-
-
         content.append(select)
 
         if (lang === 'fr') {
@@ -515,8 +484,6 @@ define([
             $('.popin').remove()
         })
     }
-
-
 
     function saveCode (fileName) {
         var data = JSON.parse(localStorage.getItem('tune') || '{}')
@@ -578,7 +545,7 @@ define([
     }
 
     function detectInstrument(){
-        var sampleUsed = parseAlreadyExistantSamples(codeEditor.content());
+        var sampleUsed = parseAlreadyExistantSamples(codeEditor.content())
 
         var errorContent = []
 

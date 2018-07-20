@@ -51,7 +51,7 @@ define([], function () {
                     }
                  
                 tune.playPattern(nextId)
-            }, pattern.duration())
+            }, 7471) // duration pattern
         }
 
         Tune.prototype.stop = function () {

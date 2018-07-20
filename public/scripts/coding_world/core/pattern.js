@@ -4,7 +4,7 @@ define([
     'toxilibs/event_bus_queued',
     './timeline_tab',
     '../../ext_libs/lodash/lodash',
-], function (Note, userToCoreKeys,globalEventBus,createTabConstructor,lodash) {
+], function (Note, userToCoreKeys, globalEventBus, createTabConstructor, lodash) {
     var eventBus = globalEventBus('view')
     var Tab = createTabConstructor(eventBus)
 
@@ -132,7 +132,7 @@ define([
                 var note = notes[i]
                 var beatDelay = note.start - Math.floor(note.start)
                 var silenceLength = 1000 - (beatDuration * beatDelay)
-                note.play(silenceLength + delay)
+                note.play(0) // no delay needed
             }
         }
 

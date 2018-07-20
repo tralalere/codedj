@@ -1,25 +1,22 @@
-var lang = 'fr';
+var lang = 'fr'
 if(navigator.language || navigator.userLanguage){
-    lang = navigator.language || navigator.userLanguage;
-};
-
+    lang = navigator.language || navigator.userLanguage
+    if (lang !== 'fr' || lang.substring(0, 2) !== 'fr') {
+        lang = 'en'
+    } else {
+        lang = 'fr'
+    }
+}
 if(localStorage.getItem('lang')){
 
     if (localStorage.getItem('lang') !== 'fr' || localStorage.getItem('lang').substring(0, 2) !== 'fr') {
-        if(localStorage.getItem('lang') !== 'en'){
-            localStorage.setItem('lang', 'en')
-            location.reload();
-        }
+        localStorage.setItem('lang', 'en')
+        location.reload();
+    } else{
+        lang = localStorage.getItem('fr')
     }
-
-    lang = localStorage.getItem('lang')
 }
 
-if (lang !== 'fr' || lang.substring(0, 2) !== 'fr') {
-    lang = 'en'
-} else {
-    lang = 'fr'
-}
 
 define([
     'toxilibs/event_bus_queued',
@@ -73,7 +70,6 @@ define([
     ]
     var currentLevelIndex = 0
     var challenge
-    var nextChallenge
     var userAskedForSolution
     var consecutiveGoodAnswers
 
@@ -82,7 +78,7 @@ define([
     function init () {
         globalEventBus.on('lang changed', function (lang) {
             localStorage.setItem('lang', lang)
-            location.reload();
+            location.reload()
         })
 
         setChallenge(levelsData[currentLevelIndex])
@@ -154,7 +150,7 @@ define([
     }
 
     function getLevelsData(){
-        return levelsData;
+        return levelsData
     }
 
     return {

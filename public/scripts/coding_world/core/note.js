@@ -13,11 +13,6 @@ define([], function () {
     }
 
 
-    // Note.prototype.soundName = function () {
-    //     return this.sample.soundName
-    // }
-
-
     Note.prototype.soundSource = function () {
         return this.sample.soundSource || this.sample.soundName
     }
