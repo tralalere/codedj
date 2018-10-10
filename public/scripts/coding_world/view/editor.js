@@ -8,13 +8,13 @@ if(navigator.language || navigator.userLanguage){
     }
 }
 if(localStorage.getItem('lang')){
-
-    if (localStorage.getItem('lang') !== 'fr' || localStorage.getItem('lang').substring(0, 2) !== 'fr') {
-        localStorage.setItem('lang', 'en')
-        location.reload();
-    } else{
-        lang = localStorage.getItem('lang')
+    if(localStorage.getItem('lang') !== 'en'){
+        if (localStorage.getItem('lang') !== 'fr' || localStorage.getItem('lang').substring(0, 2) !== 'fr') {
+            localStorage.setItem('lang', 'en')
+            location.reload();
+        }
     }
+    lang = localStorage.getItem('lang')
 }
 
 define([

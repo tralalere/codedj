@@ -55,16 +55,6 @@ define([
 
         TimelineTab.prototype.setActive = function (active) {
             this.view.toggleClass('active', active)
-
-           /* for (var name in this.timelines) {
-                var timeline = this.timelines[name]
-                if (active) {
-                    timeline.show()
-                } else {
-                    timeline.hide()
-                }
-            }*/
-
             this.active = active
         }
 
@@ -88,9 +78,6 @@ define([
 
         TimelineTab.prototype.addTimeline = function (timeline) {
             this.timelines[timeline.sampleName] = timeline
-            /*if (!this.active) {
-                timeline.hide()
-            }*/
         }
 
 
@@ -131,9 +118,6 @@ define([
                 tab.setActive(true)
             }
         })
-
-
-
 
         return TimelineTab
 

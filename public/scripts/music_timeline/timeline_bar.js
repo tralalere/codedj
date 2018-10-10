@@ -81,8 +81,6 @@ define([
             'width': (0 + percent * this.timelineWidth),
             'left': this.startOffset
         })
-
-       // this.$bar.css('left',(-this.timelineWidth - this.startOffset + 80 + percent * this.timelineWidth))
     }
 
 
