@@ -2812,7 +2812,7 @@ progress span{
 
 
 #world2 .containPreHome #editor #resizable #code_editor .ace_scroller .ace_content{
-    height:100% !important;
+    height:105% !important;
 }
 #world2 .containPreHome #editor #resizable #code_editor .ace_scroller {
     border-radius: 15px;

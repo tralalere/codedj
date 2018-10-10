@@ -48,12 +48,13 @@ app.get('/samples', function (req, res) {
 var tokenToID = {}
 var increment = 0
 
-app.get('/export', function (req, res) {
-    var token = req.query.token
+app.post('/export', function (req, res) {
+
+    var token = req.body.token
     var id    = String(Date.now()) + increment
     increment++
     tokenToID[token] = id
-    var notesList = JSON.parse(req.query.notes.replace(/mp3/g,'wav'))
+    var notesList = JSON.parse(req.body.notes.replace(/mp3/g,'wav'))
     exportSounds({
         notes: notesList,
         id: id

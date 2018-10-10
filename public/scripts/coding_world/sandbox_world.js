@@ -205,7 +205,7 @@ define([
             notesNotFiltered = notesNotFiltered.replace(/CongaC/g,'samples/G1/CONGA_3.mp3')
         }
 
-        $.get(document.location.origin + document.location.pathname + 'export', {
+        $.post(document.location.origin + document.location.pathname + 'export', {
             notes: notesNotFiltered,
             token: userToken
         }, function () {
