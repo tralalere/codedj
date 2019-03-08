@@ -55,16 +55,6 @@ define([
             end:     portionsAfter.concat(this.challengeData.end)
         }
 
-        console.log(this.base)
-        console.log(this.solution)
-
-        addSpaceToBaseAndSolution(this.solution.exposed)
-        addSpaceToBaseAndSolution(this.solution.end)
-
-        addSpaceToBaseAndSolution(this.exposed)
-        addSpaceToBaseAndSolution(this.end)
-
-
     }
 
 
@@ -96,18 +86,6 @@ define([
         }
     }
 
-    function addSpaceToBaseAndSolution (arraySting){
-        if(arraySting && arraySting.length > 0){
-            arraySting.forEach(function(val){
-                console.log(val)
-            })
-        }
-
-    }
-
-
-
     return Challenge
-
 
 })

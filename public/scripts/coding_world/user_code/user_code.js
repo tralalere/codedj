@@ -18,7 +18,7 @@ define([
     function run (sourceCode) {
         try {
             var userToCoreCode = userToCoreKeysCode()
-            sourceCode = userToCoreCode.declaration.concat(worldRef.startCode(), sourceCode, userToCoreCode.assignation, worldRef.endCode()).join('\n')
+            sourceCode = userToCoreCode.declaration.concat(worldRef.startCode(), sourceCode, userToCoreCode.assignation, worldRef.endCode()).join('\n\n')
 
             execute({
                 source: sourceCode,
