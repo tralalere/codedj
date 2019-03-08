@@ -1,7 +1,7 @@
 define([], function () {
 
     return {
-        tempo: 130
+        tempo: 148
     }
 
 })

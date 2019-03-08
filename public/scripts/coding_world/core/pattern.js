@@ -132,7 +132,7 @@ define([
                 var note = notes[i]
                 var beatDelay = note.start - Math.floor(note.start)
                 var silenceLength = 1000 - (beatDuration * beatDelay)
-                note.play(0) // no delay needed
+                note.play(silenceLength + delay)
             }
         }
 
