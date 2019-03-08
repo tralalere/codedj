@@ -25,7 +25,6 @@ var signinCallback = function (result) {
 }
 
 function ready (accessToken) {
-    console.log(accessToken)
     token = accessToken
     this.gapi = gapi
     this.authenticated = true
@@ -119,9 +118,9 @@ require([
             $('.missionCompleted').html(data.missionCompleted)
             $('.levelWon').html(data.levelWon)
 
-            $('.titleWorld.samples span').html(data.button['titleWorld-samples'])
-            $('.titleWorld.rythmes span').html(data.button['titleWorld-rhytmes'])
-            $('.titleWorld.morceaux span').html(data.button['titleWorld-morceaux'])
+            $('.titleWorld.samples span').html(data.button.titleWorld-samples)
+            $('.titleWorld.rythmes span').html(data.button.titleWorld-rhytmes)
+            $('.titleWorld.morceaux span').html(data.button.titleWorld-morceaux)
 
             $('.creditText').html(data.button.creditText)
             $('.mentionText').html(data.button.mentionText)
@@ -155,8 +154,13 @@ require([
             initWin(urlParams.win)
         } else if (urlParams.monde === 'select') {
             initHome('world select')
-        } else {
+        } else if ( 'home' in urlParams) {
             initHome()
+        }else {
+            var pathname = '/?home'
+            if (window.location.href !== (window.location.origin + pathname)) {
+                window.location.href = window.location.origin + pathname
+            }
         }
         $('.logoImg').on('click', function () {
             $('#viewApp').empty()
