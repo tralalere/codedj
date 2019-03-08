@@ -407,10 +407,8 @@ define([
         popin.append(content)
 
         var select = $('<select id="saves"></select>')
-        var selectBeats = $('<select id="selectBeat"></select>')
 
         var saves = loadCodes()
-
 
         if(lang == 'fr'){
             select.append('<option>'+'Mes morceaux :'+'</option>')
@@ -420,6 +418,17 @@ define([
         for (var i in saves) {
             select.append('<option values="' + i + '">' + i + '</option>')
         }
+
+        content.append(select)
+
+        if (lang === 'fr') {
+            content.append('<div class="btnNext btn btnCodeDj" id="load"><img class="iconBtnNext" src="assets/iconBtnNext.png"><span>Charger</span></div>')
+        } else {
+            content.append('<div class="btnNext btn btnCodeDj" id="load"><img class="iconBtnNext" src="assets/iconBtnNext.png"><span>Load</span></div>')
+        }
+
+        /*
+        var selectBeats = $('<select id="selectBeat"></select>')
 
         $.getJSON('json/data/beats.json', function (data) {
 
@@ -460,14 +469,7 @@ define([
 
             })
         })
-
-        content.append(select)
-
-        if (lang === 'fr') {
-            content.append('<div class="btnNext btn btnCodeDj" id="load"><img class="iconBtnNext" src="assets/iconBtnNext.png"><span>Charger</span></div>')
-        } else {
-            content.append('<div class="btnNext btn btnCodeDj" id="load"><img class="iconBtnNext" src="assets/iconBtnNext.png"><span>Load</span></div>')
-        }
+        */
 
 
         $('body').append(popin)
