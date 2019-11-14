@@ -53,6 +53,11 @@ define([
         $('.recoText').on('click', function () {
             showPopUp('recoText')
         })
+        $('.privatePolicy').on('click', function () {
+            $('.blocPopUp .pop')
+                .empty()
+                .load("../../docs/privacy_policy.html")
+        })
         $('a').on('click', function (event) {
             event.stopPropagation()
         })

@@ -128,6 +128,8 @@ require([
             $('.faqText').html(data.button.faqText)
             $('.sourcesGitHub').html(data.button.sourcesGitHub)
 
+            $('.privatePolicy').html(data.button.privatePolicy)
+
             $('.encart').html(data.partenaires)
 
             $('#uploadYt div').html(data.button.publish)
