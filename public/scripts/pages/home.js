@@ -45,7 +45,13 @@ define([
             showPopUp('credit')
         })
         $('.mentionText').on('click', function () {
-            showPopUp('mentions')
+            let url = './../docs/mentions.html';
+            if (lang === 'en') {
+                url = './../docs/mentions-en.html'
+            }
+            $('.blocPopUp .pop')
+                .empty()
+                .load(url)
         })
         $('.faqText').on('click', function () {
             showPopUp('foire_aux_questions')
@@ -54,9 +60,13 @@ define([
             showPopUp('recoText')
         })
         $('.privatePolicy').on('click', function () {
+            let url = './../docs/privacy_policy.html';
+            if (lang === 'en') {
+                url = './../docs/privacy_policy-en.html'
+            }
             $('.blocPopUp .pop')
                 .empty()
-                .load("../../docs/privacy_policy.html")
+                .load(url)
         })
         $('a').on('click', function (event) {
             event.stopPropagation()

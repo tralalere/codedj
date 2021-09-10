@@ -1,7 +1,7 @@
 require('module-alias/register')
 
 var express = require('express')
-var expressCtrl = require('express-controllers-loader')
+var expressCtrl = require('lumie')
 var path = require('path')
 var app = express()
 var bodyParser = require('body-parser')
